@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ncnn webassembly yolov5 camera</title>
+    <title>ncnn webassembly yolo-fastest camera</title>
     <style>
         video {
             position: absolute;
@@ -17,7 +17,7 @@
 
 <body>
     <div>
-        <h1>ncnn webassembly yolov5 camera</h1>
+        <h1>ncnn webassembly yolo-fastest camera</h1>
         <video id="video"></video>
         <div>
             <canvas id="canvas" width="640"></canvas>
@@ -27,12 +27,12 @@
     <script type='text/javascript'>
         var Module = {};
         if (typeof SharedArrayBuffer === 'undefined') {
-            fetch('yolov5up.wasm')
+            fetch('yolo.wasm')
             .then(response => response.arrayBuffer())
             .then(buffer => {
                 Module.wasmBinary = buffer;
                 var script = document.createElement('script');
-                script.src = 'yolov5up.js';
+                script.src = 'yolo.js';
                 script.onload = function() {
                     console.log('Emscripten boilerplate loaded.');
                 }
@@ -40,12 +40,12 @@
             });
         }
         else {
-            fetch('yolov5.wasm')
+            fetch('yolo.wasm')
             .then(response => response.arrayBuffer())
             .then(buffer => {
                 Module.wasmBinary = buffer;
                 var script = document.createElement('script');
-                script.src = 'yolov5.js';
+                script.src = 'yolo.js';
                 script.onload = function() {
                     console.log('Emscripten boilerplate loaded.');
                 }
@@ -107,15 +107,8 @@
         });
 
         var class_names = [
-            "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light",
-            "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
-            "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
-            "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard",
-            "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple",
-            "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "couch",
-            "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse", "remote", "keyboard", "cell phone",
-            "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear",
-            "hair drier", "toothbrush"
+            "background",
+            "NoMask", "Mask"
         ];
 
         var colors = [
@@ -140,7 +133,7 @@
             "rgb(139, 125,  96)"
         ];
 
-        function ncnn_yolov5() {
+        function ncnn_yolo() {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
 
@@ -149,7 +142,7 @@
 
             HEAPU8.set(data, dst);
 
-            _yolov5_ncnn(dst, canvas.width, canvas.height, resultbuffer);
+            _yolo_ncnn(dst, canvas.width, canvas.height, resultbuffer);
 
             // resultarray
             var qaqarray = HEAPF32.subarray(resultbuffer / Float32Array.BYTES_PER_ELEMENT, resultbuffer / Float32Array.BYTES_PER_ELEMENT + 6 * 20);
@@ -198,7 +191,7 @@
             ctx.fillRect(0, 0, w, h);
             ctx.drawImage(video, 0, 0, w, h);
 
-            ncnn_yolov5();
+            ncnn_yolo();
 
             window.requestAnimationFrame(sFilter);
         }
