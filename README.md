@@ -4,9 +4,9 @@
 
 1. launch google chrome browser, open chrome://flags and enable all experimental webassembly features
 
-2. re-launch google chrome browser, open https://nihui.github.io/ncnn-webassembly-yolov5/index.html and enjoy
+2. re-launch google chrome browser, open https://waittim.github.io/ncnn-webassembly-yolo-fastest/index.html and enjoy
 
-3. re-launch google chrome browser, open https://nihui.github.io/ncnn-webassembly-yolov5/camera.html and enjoy
+3. re-launch google chrome browser, open https://waittim.github.io/ncnn-webassembly-yolo-fastest/camera.html and enjoy
 
 ### Method 2: run locally(chrome)
 
