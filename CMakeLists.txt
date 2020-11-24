@@ -15,12 +15,16 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp -s USE_PTHREADS=1 -s PTHREAD_POOL_S
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=15")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fopenmp -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=15")
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -sEXPORTED_FUNCTIONS=['_yolov5_ncnn'] --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@.")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sEXPORTED_FUNCTIONS=['_yolov5_ncnn'] --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@.")
-set(CMAKE_EXECUTBLE_LINKER_FLAGS "${CMAKE_EXECUTBLE_LINKER_FLAGS} -sEXPORTED_FUNCTIONS=['_yolov5_ncnn'] --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@.")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -sEXPORTED_FUNCTIONS=['_yolo_ncnn'] --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@.")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sEXPORTED_FUNCTIONS=['_yolo_ncnn'] --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@.")
+set(CMAKE_EXECUTBLE_LINKER_FLAGS "${CMAKE_EXECUTBLE_LINKER_FLAGS} -sEXPORTED_FUNCTIONS=['_yolo_ncnn'] --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@.")
 
-add_executable(yolov5 yolov5.cpp)
-target_link_libraries(yolov5 ncnn pthread)
+
+add_executable(yolo yolo.cpp)
+target_link_libraries(yolo ncnn pthread)
+
+#add_executable(yolov5 yolov5.cpp)
+#target_link_libraries(yolov5 ncnn pthread)
 
 # add_executable(yolov5up yolov5.cpp)
 # target_link_libraries(yolov5up ncnn)
