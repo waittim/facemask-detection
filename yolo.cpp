@@ -50,8 +50,8 @@ static int detect_yolo(const unsigned char* rgba_data, int width, int height, st
 
         // original pretrained model from https://github.com/ultralytics/yolo
         // the ncnn model https://github.com/nihui/ncnn-assets/tree/master/models
-        yolo->load_param("model/yolo-fastest-opt.param");
-        yolo->load_model("model/yolo-fastest-opt.bin");
+        yolo->load_param("yolo-fastest-opt.param");
+        yolo->load_model("yolo-fastest-opt.bin");
     }
 
     const int target_size = 320;
