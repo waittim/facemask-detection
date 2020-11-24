@@ -44,9 +44,6 @@ static int detect_yolo(const unsigned char* rgba_data, int width, int height, st
         yolo->opt.use_vulkan_compute = true;
         // yolo->opt.use_bf16_storage = true;
 
-//         yolo->opt.num_threads = 4;
-
-//        yolo->register_custom_layer("yoloFocus", yoloFocus_layer_creator);
 
         // original pretrained model from https://github.com/ultralytics/yolo
         // the ncnn model https://github.com/nihui/ncnn-assets/tree/master/models
@@ -55,8 +52,7 @@ static int detect_yolo(const unsigned char* rgba_data, int width, int height, st
     }
 
     const int target_size = 320;
-//    const float prob_threshold = 0.25f;
-//    const float nms_threshold = 0.45f;
+
 
     // letterbox pad to multiple of 32
     int w = width;
@@ -102,31 +98,7 @@ static int detect_yolo(const unsigned char* rgba_data, int width, int height, st
     objects.resize(count);
     for (int i = 0; i < count; i++)
     {
-//        objects[i] = proposals[picked[i]];
-//
-//        // adjust offset to original unpadded
-//        float x0 = (objects[i].x - (wpad / 2)) / scale;
-//        float y0 = (objects[i].y - (hpad / 2)) / scale;
-//        float x1 = (objects[i].x + objects[i].w - (wpad / 2)) / scale;
-//        float y1 = (objects[i].y + objects[i].h - (hpad / 2)) / scale;
-//
-//        // clip
-//        x0 = std::max(std::min(x0, (float)(width - 1)), 0.f);
-//        y0 = std::max(std::min(y0, (float)(height - 1)), 0.f);
-//        x1 = std::max(std::min(x1, (float)(width - 1)), 0.f);
-//        y1 = std::max(std::min(y1, (float)(height - 1)), 0.f);
-//
-//        objects[i].x = x0;
-//        objects[i].y = y0;
-//        objects[i].w = x1 - x0;
-//        objects[i].h = y1 - y0;
-//    }
-//
-//    return 0;
-//
-//
-//    for (int i = 0; i < out.h; i++)
-//    {
+
         int label;
         float x1, y1, x2, y2, score;
         float pw,ph,cx,cy;
@@ -163,103 +135,7 @@ static int detect_yolo(const unsigned char* rgba_data, int width, int height, st
 }
 
     
-//
-//
-//    std::vector<Object> proposals;
-//
-//    // anchor setting from yolo/models/yolos.yaml
-//
-//    // stride 8
-//    {
-//        ncnn::Mat out;
-//        ex.extract("output", out);
-//
-//        ncnn::Mat anchors(6);
-//        anchors[0] = 10.f;
-//        anchors[1] = 13.f;
-//        anchors[2] = 16.f;
-//        anchors[3] = 30.f;
-//        anchors[4] = 33.f;
-//        anchors[5] = 23.f;
-//
-//        std::vector<Object> objects8;
-//        generate_proposals(anchors, 8, in_pad, out, prob_threshold, objects8);
-//
-//        proposals.insert(proposals.end(), objects8.begin(), objects8.end());
-//    }
-//
-//    // stride 16
-//    {
-//        ncnn::Mat out;
-//        ex.extract("781", out);
-//
-//        ncnn::Mat anchors(6);
-//        anchors[0] = 30.f;
-//        anchors[1] = 61.f;
-//        anchors[2] = 62.f;
-//        anchors[3] = 45.f;
-//        anchors[4] = 59.f;
-//        anchors[5] = 119.f;
-//
-//        std::vector<Object> objects16;
-//        generate_proposals(anchors, 16, in_pad, out, prob_threshold, objects16);
-//
-//        proposals.insert(proposals.end(), objects16.begin(), objects16.end());
-//    }
-//
-//    // stride 32
-//    {
-//        ncnn::Mat out;
-//        ex.extract("801", out);
-//
-//        ncnn::Mat anchors(6);
-//        anchors[0] = 116.f;
-//        anchors[1] = 90.f;
-//        anchors[2] = 156.f;
-//        anchors[3] = 198.f;
-//        anchors[4] = 373.f;
-//        anchors[5] = 326.f;
-//
-//        std::vector<Object> objects32;
-//        generate_proposals(anchors, 32, in_pad, out, prob_threshold, objects32);
-//
-//        proposals.insert(proposals.end(), objects32.begin(), objects32.end());
-//    }
-//
-//    // sort all proposals by score from highest to lowest
-//    qsort_descent_inplace(proposals);
-//
-//    // apply nms with nms_threshold
-//    std::vector<int> picked;
-//    nms_sorted_bboxes(proposals, picked, nms_threshold);
-//
-//    int count = picked.size();
-//
-//    objects.resize(count);
-//    for (int i = 0; i < count; i++)
-//    {
-//        objects[i] = proposals[picked[i]];
-//
-//        // adjust offset to original unpadded
-//        float x0 = (objects[i].x - (wpad / 2)) / scale;
-//        float y0 = (objects[i].y - (hpad / 2)) / scale;
-//        float x1 = (objects[i].x + objects[i].w - (wpad / 2)) / scale;
-//        float y1 = (objects[i].y + objects[i].h - (hpad / 2)) / scale;
-//
-//        // clip
-//        x0 = std::max(std::min(x0, (float)(width - 1)), 0.f);
-//        y0 = std::max(std::min(y0, (float)(height - 1)), 0.f);
-//        x1 = std::max(std::min(x1, (float)(width - 1)), 0.f);
-//        y1 = std::max(std::min(y1, (float)(height - 1)), 0.f);
-//
-//        objects[i].x = x0;
-//        objects[i].y = y0;
-//        objects[i].w = x1 - x0;
-//        objects[i].h = y1 - y0;
-//    }
-//
-//    return 0;
-//}
+
 
 #include <emscripten.h>
 
