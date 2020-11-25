@@ -45,8 +45,7 @@ static int detect_yolo(const unsigned char* rgba_data, int width, int height, st
         // yolo->opt.use_bf16_storage = true;
 
 
-        // original pretrained model from https://github.com/ultralytics/yolo
-        // the ncnn model https://github.com/nihui/ncnn-assets/tree/master/models
+
         yolo->load_param("yolo-fastest-opt.param");
         yolo->load_model("yolo-fastest-opt.bin");
     }
@@ -163,7 +162,6 @@ static void worker()
         std::vector<Object> objects;
         detect_yolo(rgba_data, w, h, objects);
 
-//         print_objects(objects);
 
         // result_buffer max 20 objects
         if (objects.size() > 20)
