@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ncnn webassembly yolo-fastest</title>
+    <title>ncnn webassembly yolo-fastest test</title>
     <style>
         video {
             position: absolute;
@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <h1>ncnn webassembly yolo-fastest</h1>
+    <h1>ncnn webassembly yolo-fastest test</h1>
     <input type="file" id="input" accept="image/*">
     <div>
         <canvas id="canvas"></canvas>
@@ -97,13 +97,13 @@
                 console.log('qaq ' + label + ' = ' + prob);
 
                 //ctx.strokeStyle = colors[i % 19];
-                if (label == 1)
-                {
+                if (label == 1) {
                     ctx.strokeStyle = colors[0];
+                    ctx.fillStyle = colors[0];
                 }
-                else
-                {
+                else {
                     ctx.strokeStyle = colors[1];
+                    ctx.fillStyle = colors[1];
                 }
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
 
@@ -121,14 +121,6 @@
                     x = canvas.width - text_width;
 
                 //ctx.fillStyle = "rgb(255,255,255)";
-                if (label == 1)
-                {
-                    ctx.fillStyle = colors[0];
-                }
-                else
-                {
-                    ctx.fillStyle = colors[1];
-                }
                 ctx.fillRect(x, y, text_width, text_height);
                 ctx.fillStyle = "rgb(0,0,0)";
                 ctx.fillText(text, x, y);
