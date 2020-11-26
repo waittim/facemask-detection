@@ -1,4 +1,4 @@
-# ncnn-webassembly-yolov5
+# Real-time In-browser Face Mask Detection
 
 ### Method 1: github pages(chrome)
 
