@@ -1,12 +1,12 @@
-# ncnn-webassembly-yolov5
+# Real-time In-browser Face Mask Detection
 
 ### Method 1: github pages(chrome)
 
 1. launch google chrome browser, open chrome://flags and enable all experimental webassembly features
 
-2. re-launch google chrome browser, open https://waittim.github.io/ncnn-webassembly-yolo-fastest/test.html and enjoy
+2. re-launch google chrome browser, open https://waittim.github.io/facemask-detection/test.html and enjoy
 
-3. re-launch google chrome browser, open https://waittim.github.io/ncnn-webassembly-yolo-fastest/index.html and enjoy
+3. re-launch google chrome browser, open https://waittim.github.io/facemask-detection/index.html and enjoy
 
 ### Method 2: run locally(chrome)
 
