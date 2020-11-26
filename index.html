@@ -2,27 +2,65 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ncnn webassembly yolo-fastest camera</title>
+    <title>Real-time In-browser Face Mask Detection</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <style>
         video {
             position: absolute;
             visibility: hidden;
         }
         canvas {
-            border: 1px solid gray;
+            border: 1px solid lightgray;
         }
     </style>
 
 </head>
 
 <body>
-    <div>
-        <h3>ncnn webassembly yolo-fastest camera</h3>
-        <h1 id="remind">Loading...</h1>
+    <div class="wrapper">
+        <h3>Real-time In-browser Face Mask Detection</h3>
+        <div class='remind_box'>
+            <h1 id="remind">Loading...</h1>
+        </div>
         <video id="video"></video>
         <div>
             <canvas id="canvas" width="640"></canvas>
         </div>
+    </div>
+
+    <div class="intro">
+        <h2>How to use it?</h2>
+        <p>
+            Launch google chrome browser, open 
+            <a href="chrome://flags" target="_blank" rel="noopener noreferrer">chrome://flags</a>
+            and enable all experimental WebAssembly features, then re-launch chrome. 
+            The FPS depends on your device CPU.
+        </p>
+        <h2>Privacy Statement</h2>
+        <p>
+            Don't worry. The mask detection program runs completely in your browser, 
+            and no information will be saved or uploaded to the server. 
+            You can even turn off the internet connection after you start using it.
+        </p>
+        <h2>Project Summary</h2>
+        <p>
+            This is a deep learning project. 
+            The model used is modified from
+            <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
+            and trained based on the 
+            <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a> 
+            framework, 
+            and runs in the browser through 
+            <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
+            and WebAssembly
+            <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>
+            . 
+            All content has been open sourced on 
+            <a href="https://github.com/waittim" target="_blank" rel="noopener noreferrer">My Github</a>
+            .
+        </p>
+    
+
     </div>
 
     <script type='text/javascript'>
@@ -204,9 +242,6 @@
 
     </script>
 
-    <p>
-        To use this demo, launch google chrome browser, open chrome://flags and enable all experimental webassembly features, then re-launch chrome.
-    </p>
 </body>
 
 </html>
