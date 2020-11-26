@@ -1,0 +1,172 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ncnn webassembly yolo-fastest test</title>
+    <style>
+        video {
+            position: absolute;
+            visibility: hidden;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ncnn webassembly yolo-fastest test</h1>
+    <input type="file" id="input" accept="image/*">
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script type='text/javascript'>
+        var Module = {};
+        if (typeof SharedArrayBuffer === 'undefined') {
+            fetch('yolo.wasm')
+                .then(response => response.arrayBuffer())
+                .then(buffer => {
+                    Module.wasmBinary = buffer;
+                    var script = document.createElement('script');
+                    script.src = 'yolo.js';
+                    script.onload = function() {
+                        console.log('Emscripten boilerplate loaded.');
+                    }
+                    document.body.appendChild(script);
+                });
+        }
+        else {
+            fetch('yolo.wasm')
+                .then(response => response.arrayBuffer())
+                .then(buffer => {
+                    Module.wasmBinary = buffer;
+                    var script = document.createElement('script');
+                    script.src = 'yolo.js';
+                    script.onload = function() {
+                        console.log('Emscripten boilerplate loaded.');
+                    }
+                    document.body.appendChild(script);
+                });
+        }
+
+        var class_names = [
+            "background",
+            "NoMask", "Mask"
+        ];
+
+        var colors = [
+            "rgb( 255, 69,   0)",
+            "rgb( 32, 178, 170)"
+        ];
+
+        function ncnn_yolo() {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var data = imageData.data;
+            ctx.font = '12px sans-serif'
+
+            dst = _malloc(data.length);
+            HEAPU8.set(data, dst);
+
+            // max 20 objects
+            resultarray = new Float32Array(6 * 20);
+            resultbuffer = _malloc(6 * 20 * Float32Array.BYTES_PER_ELEMENT);
+
+            HEAPF32.set(resultarray, resultbuffer / Float32Array.BYTES_PER_ELEMENT);
+
+            _yolo_ncnn(dst, canvas.width, canvas.height, resultbuffer);
+
+            // resultarray
+            var qaqarray = HEAPF32.subarray(resultbuffer / Float32Array.BYTES_PER_ELEMENT, resultbuffer / Float32Array.BYTES_PER_ELEMENT + 6 * 20);
+
+            var i;
+            for (i = 0; i < 20; i++) {
+                var label = qaqarray[i * 6 + 0];
+                var prob = qaqarray[i * 6 + 1];
+                var bbox_x = qaqarray[i * 6 + 2];
+                var bbox_y = qaqarray[i * 6 + 3];
+                var bbox_w = qaqarray[i * 6 + 4];
+                var bbox_h = qaqarray[i * 6 + 5];
+
+                if (label == -233)
+                    continue;
+
+                console.log('qaq ' + label + ' = ' + prob);
+
+                //ctx.strokeStyle = colors[i % 19];
+                if (label == 1) {
+                    ctx.strokeStyle = colors[0];
+                    ctx.fillStyle = colors[0];
+                }
+                else {
+                    ctx.strokeStyle = colors[1];
+                    ctx.fillStyle = colors[1];
+                }
+                ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
+
+                var text = class_names[label] + " = " + parseFloat(prob * 100).toFixed(2) + "%";
+
+                ctx.textBaseline = 'top';
+                var text_width = ctx.measureText(text).width;
+                var text_height = parseInt(ctx.font, 10);
+
+                var x = bbox_x;
+                var y = bbox_y - text_height;
+                if (y < 0)
+                    y = 0;
+                if (x + text_width > canvas.width)
+                    x = canvas.width - text_width;
+
+                //ctx.fillStyle = "rgb(255,255,255)";
+                ctx.fillRect(x, y, text_width, text_height);
+                ctx.fillStyle = "rgb(0,0,0)";
+                ctx.fillText(text, x, y);
+            }
+
+            _free(resultbuffer);
+            _free(dst);
+        }
+
+        document.getElementById('input').onchange = function(e) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = new Image();
+                img.onload = function() {
+
+                    var canvas = document.getElementById('canvas');
+                    var ctx = canvas.getContext('2d');
+
+                    // scale down to 640x640
+                    var img_w = img.width;
+                    var img_h = img.height;
+
+                    if (img_w > img_h) {
+                        img_h = img_h * 640 / img_w;
+                        img_w = 640;
+                    }
+                    else {
+                        img_w = img_w * 640 / img_h;
+                        img_h = 640;
+                    }
+
+                    canvas.width = img_w;
+                    canvas.height = img_h;
+                    ctx.drawImage(img, 0, 0, img_w, img_h);
+
+                    ncnn_yolo();
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        };
+    </script>
+
+    <p>
+        To use this demo, launch google chrome browser, open chrome://flags and enable all experimental webassembly features.
+    </p>
+</body>
+
+</html>
