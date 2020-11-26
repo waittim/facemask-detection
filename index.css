@@ -39,12 +39,18 @@ html, body {
   margin: 0 auto;
   padding: 15px;
 }
-/* .intro h1 {
-  font-weight: 300;
-  font-weight: 2rem;
-} */
-/* .intro p {
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.4;
-} */
+.intro summary{
+  cursor: pointer;
+  font-size: 28px;
+  color:gray;
+  font-weight: bold;
+}
+
+.footer {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  font-size: 10px;
+  text-align:center;
+  color: gray;
+}
