@@ -18,7 +18,7 @@ html, body {
   max-height: 90px;
 }
 
-.wrapper .tags a {
+.tags a {
   display: inline-block;
   border: 1px solid gray;
   border-radius: 5px;
@@ -30,8 +30,8 @@ html, body {
   margin: 0 1px;
   margin-bottom: 1px;
 }
-.wrapper .tags a:hover,
-.wrapper .tags a:active {
+.tags a:hover,
+.tags a:active {
   color: lightblue;
   border-color: lightblue;
   background-color: rgba(255, 255, 255, 0.4);
