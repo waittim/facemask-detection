@@ -70,6 +70,9 @@ html, body {
   color:gray;
   font-weight: bold;
 }
+/* .intro p {
+  padding: 0 0 0 10px;
+} */
 
 .footer {
   display: flex; 
