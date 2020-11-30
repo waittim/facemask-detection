@@ -1,8 +1,8 @@
-<html lang="zh">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
-    <title>实时口罩检测 | 浏览器内建</title>
+    <title>Detección gratuita de mascarillas en tiempo real</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJ6JEE5PWX"></script>
         <script>
@@ -38,9 +38,14 @@
               <img class="logo" src="gallary/logo.png">
             </a>
         </div>
-        <h3>实时口罩检测</h3>
+        <h3>Detección de mascarilla en tiempo real</h3>
+        <div class="tags">
+            <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
+            <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
+            <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
+        </div>
         <div class='remind_box'>
-            <h1 id="remind">加载中...</h1>
+            <h1 id="remind">Cargando...</h1>
         </div>
         <video autoplay muted playsinline id="video"></video>
         <div>
@@ -52,31 +57,32 @@
 
     <div class="intro">
         <details open>
-            <summary>介绍</summary>
-            <h2>使用说明</h2>
+            <summary>Introducción</summary>
+            <h2>¿Cómo usarlo?</h2>
             <p>
-                启动Google Chrome浏览器，在地址栏打开
-                <i> chrome://flags </i>
-                并启动所有 <i>WebAssembly</i> 相关功能。然后重启Chrome浏览器并允许开启摄像头. 
-                <br />iOS系统尚未支持。检测帧率取决于您的设备CPU。
+                Inicie el navegador Google Chrome, abra <i>chrome://flags</i> en la barra de direcciones y habilite todas las funciones de <i>WebAssembly</i>, luego vuelva a iniciar Chrome y permita el acceso a la cámara. 
+                <br />iOS aún no es compatible. El FPS depende de la CPU de su dispositivo.
             </p>
-            <h2>隐私声明</h2>
+            <h2>Declaracion de privacidad</h2>
             <p>
-                不用担心。该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。
+                No se preocupe. El programa de detección de mascarillas se ejecuta completamente en su navegador, 
+                y no se guardará ni se cargará ninguna información en el servidor. 
+                Incluso puede desconectar Internet después de que comience la detección.
             </p>
-            <h2>项目简介</h2>
+            <h2>Resumen del proyecto</h2>
             <p>
-                这是一个深度学习项目。模型修改自
+                Este es un proyecto de aprendizaje profundo. 
+                El modelo utilizado se modifica de 
                 <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
-                并基于
-                <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a> 
-                框架训练，
-                通过
+                y se entrena en base al marco de 
+                <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a>
+                . Se ejecuta en el navegador a través de 
                 <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
-                和
-                <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>
-                实现浏览器内运行。
-                <br />所有内容已在Github开源，您可访问我的<a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">博客</a>了解更多细节。
+                y 
+                <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>.
+                <br />
+                Todo el contenido ha sido de código abierto en mi Github y 
+                <a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">blog</a>.
             </p>
 
             <br /><br /><br />
@@ -216,7 +222,7 @@
             var qaqarray = HEAPF32.subarray(resultbuffer / Float32Array.BYTES_PER_ELEMENT, resultbuffer / Float32Array.BYTES_PER_ELEMENT + 6 * 20);
 
             var i;
-            var remind_ctx = '欢迎光临！'; 
+            var remind_ctx = 'Bienvenido!'; 
             for (i = 0; i < 20; i++) {
                 var label = qaqarray[i * 6 + 0];
                 var prob = qaqarray[i * 6 + 1];
@@ -234,7 +240,7 @@
                 if (label == 1) {
                     ctx.strokeStyle = colors[0];
                     ctx.fillStyle = colors[0];
-                    remind_ctx = '请戴好口罩';
+                    remind_ctx = 'Por favor use una mascara!';
                 }
                 else {
                     ctx.strokeStyle = colors[1];

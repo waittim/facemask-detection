@@ -9,6 +9,7 @@ html, body {
   min-width: 500px;
   text-align: center;
 }
+
 .logo-wrapper {
   margin: 0 auto 25px auto;
   text-align: center;
@@ -16,6 +17,28 @@ html, body {
 .logo {
   max-height: 90px;
 }
+
+.wrapper .tags a {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0 10px;
+  color: gray;
+  line-height: 24px;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 0 1px;
+  margin-bottom: 1px;
+}
+.wrapper .tags a:hover,
+.wrapper .tags a:active {
+  color: lightblue;
+  border-color: lightblue;
+  background-color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+}
+
+
 .remind_box{
   display: inline-block;
   text-align: left;
@@ -39,7 +62,9 @@ html, body {
   margin: 0 auto;
   padding: 15px;
 }
-.intro summary{
+
+
+.intro summary {
   cursor: pointer;
   font-size: 28px;
   color:gray;

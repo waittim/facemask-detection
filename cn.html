@@ -1,8 +1,8 @@
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="utf-8">
-    <title>Free Real-time In-browser Face Mask Detection</title>
+    <title>实时口罩检测</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJ6JEE5PWX"></script>
         <script>
@@ -38,14 +38,14 @@
               <img class="logo" src="gallary/logo.png">
             </a>
         </div>
-        <h3>Real-time Face Mask Detection</h3>
+        <h3>实时口罩检测</h3>
         <div class="tags">
             <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
             <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
             <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
         </div>
         <div class='remind_box'>
-            <h1 id="remind">Loading...</h1>
+            <h1 id="remind", font size="50">加载中...</h1>
         </div>
         <video autoplay muted playsinline id="video"></video>
         <div>
@@ -56,35 +56,33 @@
     <br /><br />
 
     <div class="intro">
+
         <details open>
-            <summary>Introduction</summary>
-            <h2>How to use it?</h2>
+            <summary>介绍</summary>
+            <h2>使用说明</h2>
             <p>
-                Launch Google chrome browser, open
+                启动Google Chrome浏览器，在地址栏打开
                 <i> chrome://flags </i>
-                in the address bar and enable all <i>WebAssembly</i> features, then re-launch chrome and allow the access to camera. 
-                <br />iOS is not supported yet. The FPS depends on your device CPU.
+                并启动所有 <i>WebAssembly</i> 相关功能。然后重启Chrome浏览器并允许开启摄像头. 
+                <br />尚未支持iOS系统。检测帧率取决于您的设备CPU。
             </p>
-            <h2>Privacy Statement</h2>
+            <h2>隐私声明</h2>
             <p>
-                Don't worry. The face mask detection program runs completely in your browser, 
-                and no information will be saved or uploaded to the server. 
-                You can even disconnect the internet after the detection started.
+                不用担心。该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。
             </p>
-            <h2>Project Summary</h2>
+            <h2>项目简介</h2>
             <p>
-                This is a deep learning project. 
-                The model used is modified from
+                这是一个深度学习项目。模型修改自
                 <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
-                and trained based on the 
+                并基于
                 <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a> 
-                framework. 
-                It runs in the browser through 
+                框架训练，
+                通过
                 <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
-                and 
+                和
                 <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>
-                . 
-                <br />All content has been open sourced on my Github and <a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">blog</a>.
+                实现浏览器内运行。
+                <br />所有内容已在Github开源，您可访问我的<a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">博客</a>了解更多细节。
             </p>
 
             <br /><br /><br />
@@ -200,7 +198,7 @@
 
         var class_names = [
             "background",
-            "No Mask", "Mask"
+            "无口罩", "有口罩"
         ];
 
         var colors = [
@@ -224,7 +222,7 @@
             var qaqarray = HEAPF32.subarray(resultbuffer / Float32Array.BYTES_PER_ELEMENT, resultbuffer / Float32Array.BYTES_PER_ELEMENT + 6 * 20);
 
             var i;
-            var remind_ctx = 'Welcome!'; 
+            var remind_ctx = '欢迎光临'; 
             for (i = 0; i < 20; i++) {
                 var label = qaqarray[i * 6 + 0];
                 var prob = qaqarray[i * 6 + 1];
@@ -242,7 +240,7 @@
                 if (label == 1) {
                     ctx.strokeStyle = colors[0];
                     ctx.fillStyle = colors[0];
-                    remind_ctx = 'Please wear a mask!';
+                    remind_ctx = '请戴好口罩';
                 }
                 else {
                     ctx.strokeStyle = colors[1];
