@@ -162,7 +162,7 @@
                     var video = document.querySelector('video');
                     video.srcObject = mediaStream;
                     video.onloadedmetadata = function(e) {
-                        //video.play();
+                        video.play();
                     };
                 })
                 .catch(function(err) {
