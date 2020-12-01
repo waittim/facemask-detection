@@ -7,7 +7,7 @@ html, body {
 .wrapper {
   width: 100%;
   min-width: 500px;
-  text-align: center;
+  justify-content: center;
 }
 
 .logo-wrapper {
@@ -40,8 +40,9 @@ html, body {
 
 
 .remind_box{
+  position: relative;
+  display: flex;
   display: inline-block;
-  text-align: left;
   font-size: 32px;
 }
 .video_box{
