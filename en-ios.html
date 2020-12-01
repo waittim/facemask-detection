@@ -47,7 +47,7 @@
         <div class='remind_box'>
             <h1 id="remind">Loading...</h1>
         </div>
-        <video id="video" ></video>
+        <video id="video" autoplay playsinline></video>
         <div>
             <canvas id="canvas" width="640"></canvas>
         </div>
@@ -159,7 +159,7 @@
             var constraints = { audio: false, video: { facingMode: 'user', width: w, height: h } };
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(mediaStream) {
-                    var video = document.querySelector('video');
+                    var video = document.querySelector('#video');
                     video.srcObject = mediaStream;
                     video.onloadedmetadata = function(e) {
                         video.play();
