@@ -21,8 +21,8 @@
             text-decoration:underline; 
         } 
         video {
-            position: absolute;
-            visibility: hidden;
+            /* position: absolute;
+            visibility: hidden; */
         }
         canvas {
             border: 1px solid lightgray;
@@ -37,78 +37,80 @@
             <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
               <img class="logo" src="gallary/logo.png">
             </a>
-        </div>
-        <h3>实时口罩检测</h3>
-        <div class="tags">
-            <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
-            <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
-            <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
-            &nbsp; &nbsp; &nbsp; &nbsp;
-            <a class="tag" href="https://facemask-detection.com/ios.html" title="Chinese Version">iOS</a>
-        </div>
-        <div class='remind_box'>
-            <h1 id="remind", font size="50">加载中...</h1>
-        </div>
-        <video autoplay muted playsinline id="video"></video>
-        <div>
-            <canvas id="canvas" width="640"></canvas>
-        </div>
-    </div>
-    
-    <br /><br />
-
-    <div class="intro">
-
-        <details open>
-            <summary>介绍</summary>
-            <h2>使用说明</h2>
-            <p>
-                1. 启动最新版<a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer">Chrome 浏览器</a><br />
-                2. 在地址栏输入并打开<i> chrome://flags </i><br />
-                3. 启动所有 <i>WebAssembly</i> 相关功能<br />
-                4. 重启Chrome浏览器并允许开启摄像头<br />
-                <br />检测帧率取决于您的设备CPU。
-            </p>
-            <h2>隐私声明</h2>
-            <p>
-                不用担心。该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。
-            </p>
-            <h2>项目简介</h2>
-            <p>
-                这是一个深度学习项目。模型修改自
-                <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
-                并基于
-                <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a> 
-                框架训练，
-                通过
-                <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
-                和
-                <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>
-                实现浏览器内运行。
-                <br />所有内容已在Github开源，您可访问我的<a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">博客</a>了解更多细节。
-            </p>
-
-            <br /><br /><br />
-
-
-            <div class='footer'>
-                <p>
-                    <a href="https://www.linkedin.com/in/zekun-wang/" > <img src="gallary/linkedin-logo.png" width="36" height="36" alt="View Zekun Wang’s profile on LinkedIn"></a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a href="https://github.com/waittim" > <img src="gallary/github-logo.png" width="36" height="36" alt="View Zekun Wang’s Github"></a>
-                    <!-- &nbsp;&nbsp;&nbsp;
-                    <a href="https://www.vanderbilt.edu/datascience/" > <img src="gallary/VU-logo.jpg" width="36" height="36" alt="View Vanderbilt University Data Science Institute"></a> -->
-
-                    <br />
-                    <br />
-                    <a href="https://waittim.github.io/" target="_blank" rel="noopener noreferrer">Zekun Wang</a> | <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer">Vanderbilt University</a>
-                    <br />
-                    <br />
-                </p>
+            <h3>实时口罩检测</h3>
+            <div class="tags">
+                <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
+                <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
+                <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
             </div>
-        </details>
+            <div class='remind_box'>
+                <h1 id="remind", font size="50">加载中...</h1>
+            </div>
+        </div>
+
+
+        <div class='video_box'>
+            
+            <canvas id="canvas" width="640"></canvas>
+            <video autoplay muted playsinline id="video"></video>
+        </div>
+
+        <br /><br />
+
+        <div class="intro">
     
+            <details open>
+                <summary>介绍</summary>
+                <h2>使用说明</h2>
+                <p>
+                    1. 启动最新版<a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer">Chrome 浏览器</a><br />
+                    2. 在地址栏输入并打开<i> chrome://flags </i><br />
+                    3. 启动所有 <i>WebAssembly</i> 相关功能<br />
+                    4. 重启Chrome浏览器并允许开启摄像头<br />
+                    <br />检测帧率取决于您的设备CPU。
+                </p>
+                <h2>隐私声明</h2>
+                <p>
+                    不用担心。该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。
+                </p>
+                <h2>项目简介</h2>
+                <p>
+                    这是一个深度学习项目。模型修改自
+                    <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
+                    并基于
+                    <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a> 
+                    框架训练，
+                    通过
+                    <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
+                    和
+                    <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>
+                    实现浏览器内运行。
+                    <br />所有内容已在Github开源，您可访问我的<a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">博客</a>了解更多细节。
+                </p>
+    
+                <br /><br /><br />
+    
+    
+                <div class='footer'>
+                    <p>
+                        <a href="https://www.linkedin.com/in/zekun-wang/" > <img src="gallary/linkedin-logo.png" width="36" height="36" alt="View Zekun Wang’s profile on LinkedIn"></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://github.com/waittim" > <img src="gallary/github-logo.png" width="36" height="36" alt="View Zekun Wang’s Github"></a>
+                        <!-- &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.vanderbilt.edu/datascience/" > <img src="gallary/VU-logo.jpg" width="36" height="36" alt="View Vanderbilt University Data Science Institute"></a> -->
+    
+                        <br />
+                        <br />
+                        <a href="https://waittim.github.io/" target="_blank" rel="noopener noreferrer">Zekun Wang</a> | <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer">Vanderbilt University</a>
+                        <br />
+                        <br />
+                    </p>
+                </div>
+            </details>
+        
+        </div>
     </div>
+    
 
 
 
@@ -116,35 +118,61 @@
 
 
 
+    <script src="wasmFeatureDetect.js"></script>
 
     <script type='text/javascript'>
         var Module = {};
-        if (typeof SharedArrayBuffer === 'undefined') {
-            fetch('yolo.wasm')
-            .then(response => response.arrayBuffer())
-            .then(buffer => {
-                Module.wasmBinary = buffer;
-                var script = document.createElement('script');
-                script.src = 'yolo.js';
-                script.onload = function() {
-                    console.log('Emscripten boilerplate loaded.');
-                }
-                document.body.appendChild(script);
-            });
+
+        var has_simd;
+        var has_threads;
+
+        var wasmModuleLoaded = false;
+        var wasmModuleLoadedCallbacks = [];
+
+        Module.onRuntimeInitialized = function() {
+            wasmModuleLoaded = true;
+            for (var i = 0; i < wasmModuleLoadedCallbacks.length; i++) {
+                wasmModuleLoadedCallbacks[i]();
+            }
         }
-        else {
-            fetch('yolo.wasm')
-            .then(response => response.arrayBuffer())
-            .then(buffer => {
-                Module.wasmBinary = buffer;
-                var script = document.createElement('script');
-                script.src = 'yolo.js';
-                script.onload = function() {
-                    console.log('Emscripten boilerplate loaded.');
+
+        wasmFeatureDetect.simd().then(simdSupported => {
+            has_simd = simdSupported;
+
+            wasmFeatureDetect.threads().then(threadsSupported => {
+                has_threads = threadsSupported;
+
+                if (has_simd & has_threads)
+                {
+                    yolo_module_name = 'yolo';
+                    console.log('simd&threads enabled.');
                 }
-                document.body.appendChild(script);
+                else
+                {
+                    yolo_module_name = 'ios/yolo-ios';
+                    console.log('cannot enable simd&threads.');
+                }
+
+                console.log('load ' + yolo_module_name);
+
+                var yolowasm = yolo_module_name + '.wasm';
+                var yolojs = yolo_module_name + '.js';
+
+                fetch(yolowasm)
+                    .then(response => response.arrayBuffer())
+                    .then(buffer => {
+                        Module.wasmBinary = buffer;
+                        var script = document.createElement('script');
+                        script.src = yolojs;
+                        script.onload = function() {
+                            console.log('Emscripten boilerplate loaded.');
+                        }
+                        document.body.appendChild(script);
+                    });
+
             });
-        }
+        });
+
 
         var dst = null;
         var resultarray = null;
@@ -184,17 +212,26 @@
                 //Setup image memory
                 var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 var d = id.data;
-                dst = _malloc(d.length);
 
-                // max 20 objects
-                resultarray = new Float32Array(6 * 20);
-                resultbuffer = _malloc(6 * 20 * Float32Array.BYTES_PER_ELEMENT);
+                if (wasmModuleLoaded) {
+                    mallocAndCallSFilter();
+                } else {
+                    wasmModuleLoadedCallbacks.push(mallocAndCallSFilter);
+                }
 
-                HEAPF32.set(resultarray, resultbuffer / Float32Array.BYTES_PER_ELEMENT);
+                function mallocAndCallSFilter() {
+                    dst = _malloc(d.length);
 
-                //console.log("What " + d.length);
+                    // max 20 objects
+                    resultarray = new Float32Array(6 * 20);
+                    resultbuffer = _malloc(6 * 20 * Float32Array.BYTES_PER_ELEMENT);
 
-                sFilter();
+                    HEAPF32.set(resultarray, resultbuffer / Float32Array.BYTES_PER_ELEMENT);
+
+                    //console.log("What " + d.length);
+
+                    sFilter();
+                }
             });
 
         });
@@ -243,7 +280,7 @@
                 if (label == 1) {
                     ctx.strokeStyle = colors[0];
                     ctx.fillStyle = colors[0];
-                    remind_ctx = '请戴好口罩';
+                    remind_ctx = '请带好口罩';
                 }
                 else {
                     ctx.strokeStyle = colors[1];
@@ -285,14 +322,7 @@
 
             window.requestAnimationFrame(sFilter);
         }
-
-        // function create_remind(remind) {
-        //     var remind_ctx = 'Welcome';
-        //     if (remind == 1) {
-        //         remind_ctx = 'Please wear a mask!';
-        //     }
-        //     return remind_ctx;
-        // }
+        
 
     </script>
 

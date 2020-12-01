@@ -21,8 +21,8 @@
             text-decoration:underline; 
         } 
         video {
-            position: absolute;
-            visibility: hidden;
+            /* position: absolute;
+            visibility: hidden; */
         }
         canvas {
             border: 1px solid lightgray;
@@ -37,81 +37,84 @@
             <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
               <img class="logo" src="gallary/logo.png">
             </a>
-        </div>
-        <h3>Detección de mascarilla en tiempo real</h3>
-        <div class="tags">
-            <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
-            <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
-            <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
-            &nbsp; &nbsp; &nbsp; &nbsp;
-            <a class="tag" href="https://facemask-detection.com/ios.html" title="Chinese Version">iOS</a>
-        </div>
-        <div class='remind_box'>
-            <h1 id="remind">Cargando...</h1>
-        </div>
-        <video autoplay muted playsinline id="video"></video>
-        <div>
-            <canvas id="canvas" width="640"></canvas>
-        </div>
-    </div>
-    
-    <br /><br />
-
-    <div class="intro">
-        <details open>
-            <summary>Introducción</summary>
-            <h2>¿Cómo usarlo?</h2>
-            <p>
-                1. Inicie la última versión del <a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer">navegador Chrome</a><br />
-                2. Ingresa <i>chrome://flags</i> en la barra de direcciones y ábrela<br />
-                3. Habilite todas las funciones de <i>WebAssembly</i><br />
-                4. Vuelva a iniciar Chrome, abra esta página web y permita el acceso a la cámara<br />
-
-                <br />El FPS depende de la CPU de su dispositivo.
-            </p>
-            <h2>Declaracion de privacidad</h2>
-            <p>
-                No se preocupe. El programa de detección de mascarillas se ejecuta completamente en su navegador, 
-                y no se guardará ni se cargará ninguna información en el servidor. 
-                Incluso puede desconectar Internet después de que comience la detección.
-            </p>
-            <h2>Resumen del proyecto</h2>
-            <p>
-                Este es un proyecto de aprendizaje profundo. 
-                El modelo utilizado se modifica de 
-                <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
-                y se entrena en base al marco de 
-                <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a>
-                . Se ejecuta en el navegador a través de 
-                <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
-                y 
-                <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>.
-                <br />
-                Todo el contenido ha sido de código abierto en mi Github y 
-                <a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">blog</a>.
-            </p>
-
-            <br /><br /><br />
-
-
-            <div class='footer'>
-                <p>
-                    <a href="https://www.linkedin.com/in/zekun-wang/" > <img src="gallary/linkedin-logo.png" width="36" height="36" alt="View Zekun Wang’s profile on LinkedIn"></a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a href="https://github.com/waittim" > <img src="gallary/github-logo.png" width="36" height="36" alt="View Zekun Wang’s Github"></a>
-                    <!-- &nbsp;&nbsp;&nbsp;
-                    <a href="https://www.vanderbilt.edu/datascience/" > <img src="gallary/VU-logo.jpg" width="36" height="36" alt="View Vanderbilt University Data Science Institute"></a> -->
-
-                    <br />
-                    <br />
-                    <a href="https://waittim.github.io/" target="_blank" rel="noopener noreferrer">Zekun Wang</a> | <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer">Vanderbilt University</a>
-                    <br />
-                    <br />
-                </p>
+            <h3>Detección de mascarilla en tiempo real</h3>
+            <div class="tags">
+                <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
+                <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
+                <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
             </div>
-        </details>
-    
+            <div class='remind_box'>
+                <h1 id="remind">Cargando...</h1>
+            </div>
+        </div>
+
+        <div class='video_box'>
+            
+            <canvas id="canvas" width="640"></canvas>
+            <video autoplay muted playsinline id="video"></video>
+        </div>
+
+        <br /><br />
+
+        <div class="intro">
+            <details open>
+                <summary>Introducción</summary>
+                <h2>¿Cómo usarlo?</h2>
+                <p>
+                    1. Inicie la última versión del <a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer">navegador Chrome</a><br />
+                    2. Ingresa <i>chrome://flags</i> en la barra de direcciones y ábrela<br />
+                    3. Habilite todas las funciones de <i>WebAssembly</i><br />
+                    4. Vuelva a iniciar Chrome, abra esta página web y permita el acceso a la cámara<br />
+
+                    <br />El FPS depende de la CPU de su dispositivo.
+                </p>
+                <h2>Declaracion de privacidad</h2>
+                <p>
+                    No se preocupe. El programa de detección de mascarillas se ejecuta completamente en su navegador, 
+                    y no se guardará ni se cargará ninguna información en el servidor. 
+                    Incluso puede desconectar Internet después de que comience la detección.
+                </p>
+                <h2>Resumen del proyecto</h2>
+                <p>
+                    Este es un proyecto de aprendizaje profundo. 
+                    El modelo utilizado se modifica de 
+                    <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a> 
+                    y se entrena en base al marco de 
+                    <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a>
+                    . Se ejecuta en el navegador a través de 
+                    <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a> 
+                    y 
+                    <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>.
+                    <br />
+                    Todo el contenido ha sido de código abierto en mi Github y 
+                    <a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">blog</a>.
+                </p>
+
+                <br /><br /><br />
+
+
+                <div class='footer'>
+                    <p>
+                        <a href="https://www.linkedin.com/in/zekun-wang/" > <img src="gallary/linkedin-logo.png" width="36" height="36" alt="View Zekun Wang’s profile on LinkedIn"></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://github.com/waittim" > <img src="gallary/github-logo.png" width="36" height="36" alt="View Zekun Wang’s Github"></a>
+                        <!-- &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.vanderbilt.edu/datascience/" > <img src="gallary/VU-logo.jpg" width="36" height="36" alt="View Vanderbilt University Data Science Institute"></a> -->
+
+                        <br />
+                        <br />
+                        <a href="https://waittim.github.io/" target="_blank" rel="noopener noreferrer">Zekun Wang</a> | <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer">Vanderbilt University</a>
+                        <br />
+                        <br />
+                    </p>
+                </div>
+            </details>
+        
+        </div>
+
     </div>
+    
+    
 
 
 
@@ -119,35 +122,61 @@
 
 
 
+    <script src="wasmFeatureDetect.js"></script>
 
     <script type='text/javascript'>
         var Module = {};
-        if (typeof SharedArrayBuffer === 'undefined') {
-            fetch('yolo.wasm')
-            .then(response => response.arrayBuffer())
-            .then(buffer => {
-                Module.wasmBinary = buffer;
-                var script = document.createElement('script');
-                script.src = 'yolo.js';
-                script.onload = function() {
-                    console.log('Emscripten boilerplate loaded.');
-                }
-                document.body.appendChild(script);
-            });
+
+        var has_simd;
+        var has_threads;
+
+        var wasmModuleLoaded = false;
+        var wasmModuleLoadedCallbacks = [];
+
+        Module.onRuntimeInitialized = function() {
+            wasmModuleLoaded = true;
+            for (var i = 0; i < wasmModuleLoadedCallbacks.length; i++) {
+                wasmModuleLoadedCallbacks[i]();
+            }
         }
-        else {
-            fetch('yolo.wasm')
-            .then(response => response.arrayBuffer())
-            .then(buffer => {
-                Module.wasmBinary = buffer;
-                var script = document.createElement('script');
-                script.src = 'yolo.js';
-                script.onload = function() {
-                    console.log('Emscripten boilerplate loaded.');
+
+        wasmFeatureDetect.simd().then(simdSupported => {
+            has_simd = simdSupported;
+
+            wasmFeatureDetect.threads().then(threadsSupported => {
+                has_threads = threadsSupported;
+
+                if (has_simd & has_threads)
+                {
+                    yolo_module_name = 'yolo';
+                    console.log('simd&threads enabled.');
                 }
-                document.body.appendChild(script);
+                else
+                {
+                    yolo_module_name = 'ios/yolo-ios';
+                    console.log('cannot enable simd&threads.');
+                }
+
+                console.log('load ' + yolo_module_name);
+
+                var yolowasm = yolo_module_name + '.wasm';
+                var yolojs = yolo_module_name + '.js';
+
+                fetch(yolowasm)
+                    .then(response => response.arrayBuffer())
+                    .then(buffer => {
+                        Module.wasmBinary = buffer;
+                        var script = document.createElement('script');
+                        script.src = yolojs;
+                        script.onload = function() {
+                            console.log('Emscripten boilerplate loaded.');
+                        }
+                        document.body.appendChild(script);
+                    });
+
             });
-        }
+        });
+
 
         var dst = null;
         var resultarray = null;
@@ -187,17 +216,26 @@
                 //Setup image memory
                 var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 var d = id.data;
-                dst = _malloc(d.length);
 
-                // max 20 objects
-                resultarray = new Float32Array(6 * 20);
-                resultbuffer = _malloc(6 * 20 * Float32Array.BYTES_PER_ELEMENT);
+                if (wasmModuleLoaded) {
+                    mallocAndCallSFilter();
+                } else {
+                    wasmModuleLoadedCallbacks.push(mallocAndCallSFilter);
+                }
 
-                HEAPF32.set(resultarray, resultbuffer / Float32Array.BYTES_PER_ELEMENT);
+                function mallocAndCallSFilter() {
+                    dst = _malloc(d.length);
 
-                //console.log("What " + d.length);
+                    // max 20 objects
+                    resultarray = new Float32Array(6 * 20);
+                    resultbuffer = _malloc(6 * 20 * Float32Array.BYTES_PER_ELEMENT);
 
-                sFilter();
+                    HEAPF32.set(resultarray, resultbuffer / Float32Array.BYTES_PER_ELEMENT);
+
+                    //console.log("What " + d.length);
+
+                    sFilter();
+                }
             });
 
         });
@@ -288,14 +326,7 @@
 
             window.requestAnimationFrame(sFilter);
         }
-
-        // function create_remind(remind) {
-        //     var remind_ctx = 'Welcome';
-        //     if (remind == 1) {
-        //         remind_ctx = 'Please wear a mask!';
-        //     }
-        //     return remind_ctx;
-        // }
+        
 
     </script>
 
