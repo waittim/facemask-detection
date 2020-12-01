@@ -30,21 +30,21 @@
 
             // 所以首先需要对浏览器支持情况进行判断
             // 先判断浏览器是否支持
-            if (navigator.mediaDevices === undefined ||
-                navigator.mediaDevices.enumerateDevices === undefined ||
-                navigator.mediaDevices.getUserMedia === undefined) {
-                // 再判断具体是那个方法不支持，并向用户显示
-                if (navigator.mediaDevices === undefined) {
-                    var fctName = 'navigator.mediaDevices'
-                } else if (navigator.mediaDevices.enumerateDevices === undefined) {
-                    var fctName = 'navigator.mediaDevices.enumerateDevices'
-                } else if (navigator.mediaDevices.getUserMedia === undefined) {
-                    var fctName = 'navigator.mediaDevices.getUserMedia'
-                } else {
-                    console.assert(false)
-                }
-                alert('WebRTC issue-! ' + fctName + ' not present in your browser')
-            }
+            // if (navigator.mediaDevices === undefined ||
+            //     navigator.mediaDevices.enumerateDevices === undefined ||
+            //     navigator.mediaDevices.getUserMedia === undefined) {
+            //     // 再判断具体是那个方法不支持，并向用户显示
+            //     if (navigator.mediaDevices === undefined) {
+            //         var fctName = 'navigator.mediaDevices'
+            //     } else if (navigator.mediaDevices.enumerateDevices === undefined) {
+            //         var fctName = 'navigator.mediaDevices.enumerateDevices'
+            //     } else if (navigator.mediaDevices.getUserMedia === undefined) {
+            //         var fctName = 'navigator.mediaDevices.getUserMedia'
+            //     } else {
+            //         console.assert(false)
+            //     }
+            //     alert('WebRTC issue-! ' + fctName + ' not present in your browser')
+            // }
             const video = document.querySelector('#video')
 
             // 如果浏览器支持，该方法的更新是向后兼容，新版将所有功能都使用navigator.mediaDevices进行了封装
