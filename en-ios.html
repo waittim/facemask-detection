@@ -158,7 +158,7 @@
             h = 480;
             var constraints = { audio: false, video: { facingMode: 'user', width: w, height: h } };
             navigator.mediaDevices.getUserMedia(constraints)
-                .then(function(mediaStream) {
+                .then(function success(mediaStream) {
                     var video = document.querySelector('#video');
                     video.srcObject = mediaStream;
                     video.onloadedmetadata = function(e) {
