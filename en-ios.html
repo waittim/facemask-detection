@@ -149,21 +149,20 @@
         var dst = null;
         var resultarray = null;
         var resultbuffer = null;
-        const video = document.querySelector('#video')
         window.addEventListener('DOMContentLoaded', function() {
             var isStreaming = false;
-            //video = document.getElementById('video');
+            video = document.getElementById('video');
             canvas = document.getElementById('canvas');
             ctx = canvas.getContext('2d');
             w = 640;
             h = 480;
             var constraints = { audio: false, video: { facingMode: 'user', width: w, height: h } };
             navigator.mediaDevices.getUserMedia(constraints)
-                .then(function success(mediaStream) {
-                    //var video = document.querySelector('#video');
+                .then(function(mediaStream) {
+                    var video = document.querySelector('video');
                     video.srcObject = mediaStream;
                     video.onloadedmetadata = function(e) {
-                        video.play();
+                        //video.play();
                     };
                 })
                 .catch(function(err) {
