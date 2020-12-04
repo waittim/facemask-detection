@@ -48,41 +48,32 @@ html, body {
 .video_box{
   position: relative;
   width: 640px;
-  height: 480px;
   display: flex;
   justify-content: center;
   margin: 0 auto;
 }
 #canvas {
   border-radius: 5px;
-  box-shadow: 0 5px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  margin: 0 auto;
-  position:absolute;
-  top: 0px;
-  left: 0px;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
+  box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 1px 30px rgba(0,0,0,0.24);
 }
 #video {
   border-radius: 5px;
-  box-shadow: 0 5px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   margin: 0 auto;
   position:absolute;
-  top: 0px;
-  left: 0px;
-  width: 64px;
-  height: 48px;
+  top: 2px;
+  left: 2px;
+  width: 10%;
+  height: 10%;
   display: flex;
   justify-content: center;
   overflow: hidden;
 }
-/* .clear{
-  clear:both;
-} */
+.clear{clear:both;}
+
 
 .intro {
-  max-width: 640px;
+  max-width: 650px;
   margin: 0 auto;
   padding: 15px;
 }
