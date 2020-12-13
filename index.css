@@ -71,9 +71,15 @@ html, body {
 }
 .clear{clear:both;}
 
+.tips{
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 10px;
+  color:gray;
+}
 
 .intro {
-  max-width: 650px;
+  max-width: 640px;
   margin: 0 auto;
   padding: 15px;
 }
