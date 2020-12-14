@@ -302,7 +302,7 @@
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
                 ctx.lineWidth = 2;
 
-                var text = class_names[label] + " : " + parseFloat(prob * 100).toFixed(2) + "%";
+                var text = class_names[label] + ": " + parseFloat(prob * 100).toFixed(2) + "%";
 
                 ctx.textBaseline = 'top';
                 var text_width = ctx.measureText(text).width;
