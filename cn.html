@@ -58,7 +58,7 @@
 
         <div class='tips'>
             <p>
-                温馨提示：只有<b>完全</b>覆盖鼻孔和嘴巴才能预防病毒哦！
+                小提示：只有<b>完全</b>覆盖鼻孔和嘴巴才能预防病毒哦！
             </p>
         </div>
 
@@ -125,7 +125,7 @@
 
 
 
-    <script src="wasmFeatureDetect.js"></script>
+    <script src="wasmFeatureDetect.js?version=2.0.0"></script>
 
     <script type='text/javascript'>
         var Module = {};
@@ -295,6 +295,7 @@
                 }
 
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
+                ctx.lineWidth = 2;
 
                 var text = class_names[label] + " : " + parseFloat(prob * 100).toFixed(2) + "%";
 
@@ -310,9 +311,9 @@
                     x = canvas.width - text_width;
 
                 //ctx.fillStyle = "rgb(255,255,255)";
-                ctx.fillRect(x, y, text_width, text_height);
-                ctx.fillStyle = "rgb(0,0,0)";
-                ctx.fillText(text, x, y);
+                ctx.fillRect(x-1, y-1, text_width+4, text_height+2);
+                ctx.fillStyle = "rgb(255,255,255)";
+                ctx.fillText(text, x+1, y);
             }
             console.log(remind_ctx);
             document.getElementById('remind').innerHTML = remind_ctx;
