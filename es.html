@@ -321,7 +321,11 @@
                 ctx.fillStyle = "rgb(255,255,255)";
                 ctx.fillText(text, x+1, y-2);
             }
-            console.log(remind_ctx);
+            // console.log(remind_ctx);
+            var time = new Date((new Date()).valueOf());
+            var s = time.getSeconds();
+            console.log(s)
+            
             document.getElementById('remind').innerHTML = remind_ctx;
         }
 
