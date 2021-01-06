@@ -101,3 +101,9 @@ html, body {
   text-align:center;
   color: gray;
 }
+
+.footer img {
+  width: 60px;
+  height: 60px;
+  border-radius:10% 10% 10% 10%;
+}
