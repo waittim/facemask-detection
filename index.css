@@ -71,11 +71,30 @@ html, body {
 }
 .clear{clear:both;}
 
+.box_bottom{
+  position: relative;
+  width: 640px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
 .tips{
-  max-width: 640px;
+  position: absolute;
+  left:0px;
+  max-width: 600px;
   margin: 0 auto;
   font-size: 10px;
   color:gray;
+  text-align:left;
+}
+
+.feedback {
+  position: absolute;
+  right: 38px;
+  top: 10px;
+  max-width: 38px;
+  margin: 0 auto;
+  text-align:right;
 }
 
 .intro {
