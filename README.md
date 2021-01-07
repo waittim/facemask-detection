@@ -1,4 +1,4 @@
-# Real-time In-browser Face Mask Detection
+# WearMask: In-browser Face Mask Detection - Deployment
 
 For more details about this project, please visit the [main repo](https://github.com/waittim/mask-detector).
 
