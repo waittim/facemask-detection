@@ -33,7 +33,9 @@
         } 
         video {
             position: absolute;
-            visibility: hidden;
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
         }
         canvas {
             border: none;
@@ -212,7 +214,7 @@
                     <p class="text-sm font-medium" data-i18n="overlay.initializing">Initializing AI model...</p>
                 </div>
             </div>
-            <canvas id="canvas" width="640"></canvas>
+            <canvas id="canvas" width="640" height="480"></canvas>
             <video autoplay muted playsinline id="video"></video>
         </div>
 
@@ -401,7 +403,7 @@
         }
 
         function loadTranslations(lang) {
-            return fetch('i18n/' + lang + '.json?v=2024112201')
+            return fetch('i18n/' + lang + '.json?v=' + Date.now())
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load translations');
@@ -641,7 +643,6 @@
         function ncnn_yolo(ctx, canvas) {
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             var data = imageData.data;
-            ctx.font = '12px sans-serif';
 
             HEAPU8.set(data, dst);
 
@@ -658,39 +659,55 @@
                 var bbox_w = qaqarray[i * 6 + 4];
                 var bbox_h = qaqarray[i * 6 + 5];
 
-                if (label == -233)
-                    continue;
+                if (label == -233) continue;
 
+                // 定义颜色配置
+                var colorBase, colorBg;
                 if (label == 1) {
-                    ctx.strokeStyle = "rgb( 255, 69,   0)";
-                    ctx.fillStyle = "rgb( 255, 69,   0)";
+                    // No Mask: 警示红
+                    colorBase = "rgba(239, 68, 68, 1)"; // tailwind red-500
+                    colorBg = "rgba(239, 68, 68, 0.2)"; 
                     remind_ctx = detectionStatus.maskWarning;
-                }
-                else {
-                    ctx.strokeStyle = "rgb( 32, 178, 170)";
-                    ctx.fillStyle = "rgb( 32, 178, 170)";
+                } else {
+                    // Mask: 安全蓝/绿
+                    colorBase = "rgba(59, 130, 246, 1)"; // tailwind blue-500
+                    colorBg = "rgba(59, 130, 246, 0.2)";
                     remind_ctx = detectionStatus.welcome;
                 }
 
+                // 1. 绘制半透明填充背景 (科技感的核心)
+                ctx.fillStyle = colorBg;
+                ctx.fillRect(bbox_x, bbox_y, bbox_w, bbox_h);
+
+                // 2. 绘制圆角边框
+                ctx.lineWidth = 4; // 加粗线条
+                ctx.strokeStyle = colorBase;
+                ctx.lineJoin = "round"; // 圆润拐角
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
-                ctx.lineWidth = 2;
 
-                var text = class_names[label] + ": " + parseFloat(prob * 100).toFixed(2) + "%";
+                // 3. 绘制精致的标签胶囊
+                var text = class_names[label] + " " + Math.round(prob * 100) + "%";
+                ctx.font = "bold 16px Inter, sans-serif"; // 加大字体
+                var textMetrics = ctx.measureText(text);
+                var textWidth = textMetrics.width;
+                var textHeight = 24; // 固定标签高度
+                var padding = 10;
 
-                ctx.textBaseline = 'top';
-                var text_width = ctx.measureText(text).width;
-                var text_height = parseInt(ctx.font, 10);
+                var labelX = bbox_x;
+                var labelY = bbox_y - 30; // 标签浮动在框上方
+                if (labelY < 0) labelY = bbox_y + 10; // 如果上方没空间，就放里面
 
-                var x = bbox_x;
-                var y = bbox_y - text_height;
-                if (y < 0)
-                    y = 0;
-                if (x + text_width > canvas.width)
-                    x = canvas.width - text_width;
+                // 标签背景 (圆角矩形)
+                ctx.fillStyle = colorBase;
+                // 简单的圆角矩形绘制
+                ctx.beginPath();
+                ctx.roundRect(labelX, labelY, textWidth + padding * 2, textHeight + 6, 8);
+                ctx.fill();
 
-                ctx.fillRect(x-1, y-2, text_width+4, text_height+2);
-                ctx.fillStyle = "rgb(255,255,255)";
-                ctx.fillText(text, x+1, y-2);
+                // 标签文字
+                ctx.fillStyle = "#ffffff";
+                ctx.textBaseline = "middle";
+                ctx.fillText(text, labelX + padding, labelY + (textHeight + 6)/2);
             }
 
             updateStatus(remind_ctx);
