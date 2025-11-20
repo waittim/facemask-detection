@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WearMask: 口罩检测AI | 实时快速，即开即用</title>
     <meta name="description" content="浏览器内置免费口罩检测器。只需一个平板，你就能获得一个口罩检测AI！为小商业和公共场所设计，让我们共同应对COVID-19。" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -13,116 +14,302 @@
 
         gtag('config', 'G-ZJ6JEE5PWX');
         </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css?version=2.0.4">
     <style>
-        a:link,a:visited{ 
-            text-decoration:none;  
+        body { 
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        a:link, a:visited { 
+            text-decoration: none;  
         } 
-        a:hover{ 
-            text-decoration:underline; 
+        a:hover { 
+            text-decoration: underline; 
         } 
         video {
-            /* position: absolute;
-            visibility: hidden; */
+            position: absolute;
+            visibility: hidden;
         }
         canvas {
-            border: 1px solid lightgray;
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .video-container {
+            position: relative;
+            background: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.3s ease-out;
+        }
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #3B82F6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .floating-feedback {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+        }
+        /* Modern accordion card styles */
+        details.accordion-card {
+            border-radius: 0.75rem;
+            border: 1px solid rgba(229, 231, 235, 1);
+            background-color: #ffffff;
+        }
+        details.accordion-card > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.accordion-card > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details.accordion-card[open] .accordion-chevron {
+            transform: rotate(180deg);
+        }
+        .accordion-chevron {
+            transition: transform 0.2s ease;
+        }
+        .footer {
+            width: 100%;
+            color: #6b7280;
+        }
+        .footer img {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
         }
     </style>
 
 </head>
 
-<body>
-    <div class="wrapper">
-        <div class="logo-wrapper">
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
             <a href="https://facemask-detection.com/cn.html" target="_parent" rel="noopener noreferrer">
-              <img class="logo" src="gallary/logo.png">
-            </a>
-            <h3>WearMask: 实时口罩检测</h3>
-            <div class="tags">
-                <a class="tag" href="https://facemask-detection.com/" title="English Version">English</a>
-                <a class="tag" href="https://facemask-detection.com/es.html" title="Spanish Version">Español</a>
-                <a class="tag" href="https://facemask-detection.com/cn.html" title="Chinese Version">中文</a>
+                    <img class="h-12 sm:h-16" src="gallary/logo.png" alt="WearMask Logo">
+                </a>
+                <div>
+                    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900">WearMask</h1>
+                    <p class="text-xs sm:text-sm text-gray-500">实时口罩检测</p>
+                </div>
             </div>
-            <div class='remind_box'>
-                <h1 id="remind", font size="50">加载中...</h1>
+            <div class="flex items-center space-x-2 text-sm font-medium">
+                <a href="https://facemask-detection.com/" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="English Version">English</a>
+                <a href="https://facemask-detection.com/es.html" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="Spanish Version">Español</a>
+                <a href="https://facemask-detection.com/cn.html" class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 font-semibold" title="Chinese Version">中文</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 py-8">
+        <!-- Status Indicator -->
+        <div class="text-center mb-6 fade-in">
+            <div id="remind" class="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-blue-100 text-blue-700 font-extrabold text-4xl sm:text-6xl">
+                <svg class="animate-spin h-7 w-7 sm:h-8 sm:w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>加载中...</span>
             </div>
         </div>
 
-
-        <div class='video_box'>
-            
+        <!-- Video Container -->
+        <div class="video-container mx-auto max-w-2xl mb-6">
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="text-center text-white">
+                    <div class="spinner mx-auto mb-4"></div>
+                    <p class="text-sm font-medium">AI 模型初始化中...</p>
+                </div>
+            </div>
             <canvas id="canvas" width="640"></canvas>
             <video autoplay muted playsinline id="video"></video>
         </div>
         
-        <div class='box_bottom'>
-            <div class='tips'>
-                <p>
-                    小提示：只有<b>完全</b>覆盖鼻孔和嘴巴才能预防病毒哦！
-                </p>
-            </div>
-
-            <div class="feedback">
-                <div class="tags">
-                    <a class="tag" href="mailto:wearmask.feedback@gmail.com?subject=Feedback&body=如有错误结果截图，请放在此处。" title="报告失败案例或与开发者交流" >Feedback</a>
+        <!-- Tips Card -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg shadow-sm mb-8 fade-in max-w-2xl mx-auto">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-blue-700">
+                        <strong>小提示：</strong>只有<strong>完全</strong>覆盖鼻孔和嘴巴才能预防病毒哦！
+                    </p>
                 </div>
             </div>
         </div>
 
-        <br /><br /><br />
-
-
-        <div class="intro">
-    
-            <details open>
-                <summary>介绍</summary>
-                <h2>如何获得最佳体验？</h2>
-                <p>
-                    1. 启动最新版<a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer">Chrome 浏览器</a><br />
-                    2. 在地址栏输入并打开<i> chrome://flags </i><br />
-                    3. 启动所有 <i>WebAssembly</i> 相关功能<br />
-                    4. 重启Chrome浏览器并允许开启摄像头<br />
-                    <br />检测帧率取决于您的设备CPU。iOS系统用户暂时只能使用Safari，检测帧数可能相对较低。
-                </p>
-                <h2>隐私声明</h2>
-                <p>
-                    不用担心。该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。
-                    <br />您也可以查看完整的<a href="https://facemask-detection.com/statement_cn.html" target="_parent" rel="noopener noreferrer">服务申明</a>。
-                </p>
-                <h2>项目简介</h2>
-                <p>
-                    Web-based efﬁcient AI recognition of masks (WearMask) 是一个深度学习项目。所用模型修改自<a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Yolo-Fastest</a>，并基于<a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer">Pytorch</a> 框架训练，通过<a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer">NCNN</a>和<a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly</a>实现浏览器内运行。
-                </p>
-                <p>
-                    所有内容已在<a href="https://github.com/waittim/mask-detector" target="_blank" rel="noopener noreferrer">Github</a>开源，您可访问<a href="https://arxiv.org/abs/2101.00784" target="_blank" rel="noopener noreferrer">arXiv</a>和我的<a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer">博客</a>了解更多细节。如果您也想为本项目做出贡献，可将包含错误结果的截图发送至<a href="mailto:wearmask.feedback@gmail.com?subject=Incorrect case&body=请将截图放在此处。" title="feedback" >该邮箱</a>，谢谢！
-                </p>
-    
-                <br /><br /><br /><br /><br />
-    
-    
-                <div class='footer'>
-                    <p>
-                        <!-- <a href="https://www.linkedin.com/in/zekun-wang/" > <img src="gallary/linkedin-logo.png" alt="View Zekun Wang’s profile on LinkedIn"></a>
-                        &nbsp;&nbsp;&nbsp; -->
-                        <!-- <a href="https://github.com/waittim/mask-detector/" > <img src="gallary/github-logo.png"  alt="View Zekun Wang’s Github"></a>
-                        &nbsp;&nbsp;&nbsp; -->
-                        <a href="https://www.nsf.gov/" > <img src="gallary/nsf-logo.png"  alt="View National Science Foundation"></a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a href="https://www.vanderbilt.edu/" > <img src="gallary/VU-logo.jpg" alt="View Vanderbilt University"></a>
-                        
-                        <br />
-                        <br />
-                        <a href="https://www.linkedin.com/in/zekun-wang/" target="_blank" rel="noopener noreferrer">Zekun Wang</a> | <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer">Vanderbilt University</a>
-                        <br />
-                        <br />
+        <!-- Info & Project Accordions -->
+        <div class="space-y-4 mb-8">
+            <!-- Setup Accordion -->
+            <details class="accordion-card shadow-sm fade-in" open>
+                <summary class="flex items-center justify-between px-6 py-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold">设置</span>
+                        <span class="font-bold text-lg">如何获得最佳体验？</span>
+                    </div>
+                    <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </summary>
+                <div class="px-6 pb-5 pt-1 border-t border-gray-100">
+                    <ul class="space-y-3 text-sm text-gray-600 list-disc list-inside">
+                        <li>启动最新版<a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Chrome 浏览器</a></li>
+                        <li>在地址栏输入并打开 <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">chrome://flags</code></li>
+                        <li>启动所有 <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">WebAssembly</code> 相关功能</li>
+                        <li>重启Chrome浏览器并允许开启摄像头</li>
+                    </ul>
+                    <p class="mt-3 text-xs text-gray-500">
+                        检测帧率取决于您的设备CPU。iOS系统用户暂时只能使用Safari，检测帧数可能相对较低。
                     </p>
                 </div>
             </details>
         
+            <!-- Privacy Accordion -->
+            <details class="accordion-card shadow-sm fade-in" open>
+                <summary class="flex items-center justify-between px-6 py-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold">隐私</span>
+                        <span class="font-bold text-lg">隐私声明</span>
+                    </div>
+                    <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </summary>
+                <div class="px-6 pb-5 pt-1 border-t border-gray-100">
+                    <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                        不用担心。该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。
+                    </p>
+                    <a href="https://facemask-detection.com/statement_cn.html" target="_parent" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm">
+                        查看完整的服务申明 →
+                    </a>
+                </div>
+            </details>
+
+            <!-- Project Info Accordion -->
+            <details class="accordion-card shadow-sm fade-in" open>
+                <summary class="flex items-center justify-between px-6 py-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold">项目</span>
+                        <span class="font-bold text-lg text-gray-900">项目简介</span>
+                    </div>
+                    <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </summary>
+                <div class="px-6 pb-5 pt-1 border-t border-gray-100">
+                    <div class="mt-4 space-y-4 text-sm text-gray-600">
+                        <p>
+                            Web-based efﬁcient AI recognition of masks (WearMask) 是一个深度学习项目。所用模型修改自<a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Yolo-Fastest</a>，并基于<a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Pytorch</a> 框架训练，通过<a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">NCNN</a>和<a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">WebAssembly</a>实现浏览器内运行。
+                        </p>
+                        <p>
+                            所有内容已在<a href="https://github.com/waittim/mask-detector" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Github</a>开源，您可访问<a href="https://arxiv.org/abs/2101.00784" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">arXiv</a>和我的<a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">博客</a>了解更多细节。如果您也想为本项目做出贡献，可将包含错误结果的截图发送至<a href="mailto:wearmask.feedback@gmail.com?subject=Incorrect case&body=请将截图放在此处。" title="feedback" class="text-blue-600 hover:underline">该邮箱</a>，谢谢！
+                        </p>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer border-t border-gray-200 mt-12">
+            <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
+                        <img src="gallary/nsf-logo.png" alt="National Science Foundation">
+                    </a>
+                    <a href="https://www.vanderbilt.edu/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
+                        <img src="gallary/VU-logo.jpg" alt="Vanderbilt University">
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500 text-center sm:text-right">
+                    <a href="https://www.linkedin.com/in/zekun-wang/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold">Zekun Wang</a>
+                    <span class="text-gray-300 mx-2 hidden sm:inline">|</span>
+                    <br class="sm:hidden" />
+                    <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Vanderbilt University</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Floating Feedback Button -->
+    <div class="floating-feedback">
+        <a href="mailto:wearmask.feedback@gmail.com?subject=Feedback&body=如有错误结果截图，请放在此处。" 
+           title="报告失败案例或与开发者交流"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-lg flex items-center space-x-2 transition transform hover:scale-105">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+            <span class="hidden sm:inline">反馈</span>
+        </a>
+    </div>
+
+    <!-- Camera Permission Error Modal (hidden by default) -->
+    <div id="camera-error-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full shadow-xl">
+            <div class="flex items-center mb-4">
+                <svg class="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <h3 class="text-lg font-bold text-gray-900">需要摄像头权限</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+                为了开始口罩检测，请允许浏览器访问您的摄像头。请在浏览器设置中启用摄像头权限，然后刷新页面。
+            </p>
+            <button onclick="location.reload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+                刷新页面
+            </button>
         </div>
     </div>
-    
 
 
 
@@ -143,6 +330,13 @@
 
         Module.onRuntimeInitialized = function() {
             wasmModuleLoaded = true;
+            // Hide loading overlay when WASM module is ready
+            var loadingOverlay = document.getElementById('loading-overlay');
+            if (loadingOverlay) {
+                setTimeout(function() {
+                    loadingOverlay.classList.add('hidden');
+                }, 300);
+            }
             for (var i = 0; i < wasmModuleLoadedCallbacks.length; i++) {
                 wasmModuleLoadedCallbacks[i]();
             }
@@ -204,15 +398,31 @@
                     video.onloadedmetadata = function(e) {
                         video.play();
                     };
+                    // Hide camera error modal if it was shown
+                    var errorModal = document.getElementById('camera-error-modal');
+                    if (errorModal) {
+                        errorModal.classList.add('hidden');
+                    }
                 })
                 .catch(function(err) {
                     console.log(err.message);
+                    // Show friendly error message
+                    var errorModal = document.getElementById('camera-error-modal');
+                    if (errorModal) {
+                        errorModal.classList.remove('hidden');
+                    }
                 });
             // Wait until the video stream canvas play
             video.addEventListener('canplay', function(e) {
                 if (!isStreaming) {
                     // videoWidth isn't always set correctly in all browsers
-                    if (video.videoWidth > 0) h = video.videoHeight / (video.videoWidth / w);
+                    if (video.videoWidth > 0) {
+                        // Match canvas size to video aspect ratio
+                        var videoAspect = video.videoWidth / video.videoHeight;
+                        var containerWidth = 640; // max width
+                        w = containerWidth;
+                        h = containerWidth / videoAspect;
+                    }
                     canvas.setAttribute('width', w);
                     canvas.setAttribute('height', h);
                     isStreaming = true;
@@ -262,6 +472,7 @@
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
 
+            // Get image data from canvas (which already has mirrored video)
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             var data = imageData.data;
             ctx.font = '12px sans-serif'
@@ -299,6 +510,7 @@
                     ctx.fillStyle = colors[1];
                 }
 
+                // Draw bbox (coordinates are already correct since we flipped the image before detection)
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
                 ctx.lineWidth = 2;
 
@@ -321,7 +533,24 @@
                 ctx.fillText(text, x+1, y-2);
             }
             // console.log(remind_ctx);
-            document.getElementById('remind').innerHTML = remind_ctx;
+            var remindElement = document.getElementById('remind');
+            if (remindElement) {
+                // Update status with appropriate styling - extra large font for long-distance visibility
+                var statusText = remind_ctx;
+                var statusClass = 'inline-flex items-center space-x-4 px-8 py-4 rounded-full font-extrabold text-4xl sm:text-6xl';
+                
+                if (remind_ctx === '请戴好口罩') {
+                    remindElement.className = statusClass + ' bg-red-100 text-red-700';
+                    statusText = '⚠️ ' + remind_ctx;
+                } else if (remind_ctx === '欢迎光临') {
+                    remindElement.className = statusClass + ' bg-green-100 text-green-700';
+                    statusText = '✓ ' + remind_ctx;
+                } else {
+                    remindElement.className = statusClass + ' bg-blue-100 text-blue-700';
+                }
+                
+                remindElement.innerHTML = '<span>' + statusText + '</span>';
+            }
         }
 
         //Request Animation Frame function
@@ -329,7 +558,12 @@
             if (video.paused || video.ended) return;
 
             ctx.fillRect(0, 0, w, h);
-            ctx.drawImage(video, 0, 0, w, h);
+            
+            // Flip video horizontally (mirror effect) before drawing
+            ctx.save();
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, -w, 0, w, h);
+            ctx.restore();
 
             ncnn_yolo();
 
