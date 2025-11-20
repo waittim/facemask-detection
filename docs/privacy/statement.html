@@ -15,7 +15,7 @@
         gtag('config', 'G-ZJ6JEE5PWX');
         </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="index.css?version=2.0.4">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.4">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -47,12 +47,12 @@
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <a href="index.html" id="nav-logo-link" class="flex items-center space-x-2">
-                    <img class="h-10 sm:h-12" src="gallary/logo_mask.png" alt="WearMask Logo">
+                <a href="../index.html" id="nav-logo-link" class="flex items-center space-x-2">
+                    <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
                     <span class="text-xl font-bold text-gray-900" data-i18n="nav.brand">WearMask</span>
                 </a>
             </div>
-            <a id="back-link" class="text-sm text-blue-600 hover:text-blue-800 hover:underline font-semibold flex items-center transition" href="index.html" data-i18n="nav.back">
+            <a id="back-link" class="text-sm text-blue-600 hover:text-blue-800 hover:underline font-semibold flex items-center transition" href="../index.html" data-i18n="nav.back">
                 <span>←</span>
                 <span class="ml-1">Back to detector</span>
             </a>
@@ -131,10 +131,10 @@
         <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-gray-500">
             <div class="flex items-center space-x-4">
                 <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                    <img src="gallary/nsf-logo.png" alt="National Science Foundation" class="h-10 w-auto rounded-md">
+                    <img src="../static/images/nsf-logo.png" alt="National Science Foundation" class="h-10 w-auto rounded-md">
                 </a>
                 <a href="https://www.vanderbilt.edu/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                    <img src="gallary/VU-logo.jpg" alt="Vanderbilt University" class="h-10 w-auto rounded-md">
+                    <img src="../static/images/VU-logo.jpg" alt="Vanderbilt University" class="h-10 w-auto rounded-md">
                 </a>
             </div>
             <p class="text-center sm:text-right">
@@ -207,12 +207,12 @@
         function updateBackLink(lang) {
             const backLink = document.getElementById('back-link');
             const logoLink = document.getElementById('nav-logo-link');
-            if (backLink) backLink.href = `index.html?lang=${lang}`;
-            if (logoLink) logoLink.href = `index.html?lang=${lang}`;
+            if (backLink) backLink.href = `../index.html?lang=${lang}`;
+            if (logoLink) logoLink.href = `../index.html?lang=${lang}`;
         }
 
         function loadTranslations(lang) {
-            return fetch('i18n/statement-' + lang + '.json?v=2024112201')
+            return fetch('../i18n/statement-' + lang + '.json?v=2024112201')
                 .then(function(response) {
                     if (!response.ok) throw new Error('Failed to load translations');
                     return response.json();

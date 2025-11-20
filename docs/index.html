@@ -17,7 +17,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="index.css?version=2.0.4">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=2.0.4">
     <style>
         body { 
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -176,7 +176,7 @@
         <div class="max-w-6xl mx-auto px-4 py-3">
             <div class="brand-block flex items-center space-x-3">
             <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
-                    <img class="h-12 sm:h-16" src="gallary/logo_mask.png" alt="WearMask Logo">
+                    <img class="h-12 sm:h-16" src="static/images/logo_mask.png" alt="WearMask Logo">
                 </a>
                 <div>
                     <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask</h1>
@@ -307,10 +307,10 @@
             <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="flex items-center space-x-4">
                     <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                        <img src="gallary/nsf-logo.png" alt="National Science Foundation">
+                        <img src="static/images/nsf-logo.png" alt="National Science Foundation">
                     </a>
                     <a href="https://www.vanderbilt.edu/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                        <img src="gallary/VU-logo.jpg" alt="Vanderbilt University">
+                        <img src="static/images/VU-logo.jpg" alt="Vanderbilt University">
                     </a>
                 </div>
                 <p class="text-sm text-gray-500 text-center sm:text-right">
@@ -493,7 +493,7 @@
         }
     })();
     </script>
-    <script src="wasmFeatureDetect.js?version=2.0.3"></script>
+    <script src="static/js/vendor/wasmFeatureDetect.js?version=2.0.3"></script>
     <script type='text/javascript'>
     function initializeDetection(translations) {
         var Module = window.Module = window.Module || {};
@@ -531,10 +531,10 @@
                 has_threads = threadsSupported;
 
                 if (has_simd & has_threads) {
-                    yolo_module_name = 'yolo';
+                    yolo_module_name = 'static/model/yolo';
                     console.log('simd&threads enabled.');
                 } else {
-                    yolo_module_name = 'ios/yolo-ios';
+                    yolo_module_name = 'static/model/ios/yolo-ios';
                     console.log('cannot enable simd&threads.');
                 }
 
@@ -542,6 +542,13 @@
 
                 var yolowasm = yolo_module_name + '.wasm';
                 var yolojs = yolo_module_name + '.js';
+
+                // Configure Module to locate files in the model directory
+                Module.locateFile = Module.locateFile || function(path) {
+                    // Extract directory from yolo_module_name (e.g., 'static/model/yolo' -> 'static/model/')
+                    var modelDir = yolo_module_name.substring(0, yolo_module_name.lastIndexOf('/') + 1);
+                    return modelDir + path;
+                };
 
                 fetch(yolowasm)
                     .then(function(response) { return response.arrayBuffer(); })
