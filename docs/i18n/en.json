@@ -40,7 +40,7 @@
     "title": "Privacy statement",
     "body": "Everything runs fully inside your browser via WebAssembly. No images or videos leave your device, and no data is stored on any server. You can even disconnect the internet once detection starts.",
     "linkText": "Read the full service statement →",
-    "linkHref": "statement.html?lang=en"
+    "linkHref": "privacy/statement.html?lang=en"
   },
   "project": {
     "label": "Project",

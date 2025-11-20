@@ -40,7 +40,7 @@
     "title": "隐私声明",
     "body": "该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。",
     "linkText": "查看完整的服务申明 →",
-    "linkHref": "statement.html?lang=zh"
+    "linkHref": "privacy/statement.html?lang=zh"
   },
   "project": {
     "label": "项目",
