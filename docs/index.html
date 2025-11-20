@@ -1,10 +1,47 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WearMask: Face Mask Detection | Real-time, In-browser AI</title>
-    <meta name="description" content="A free face mask detector. Just a tablet, you can get a mask detection AI! Designed for small businesses and public places, let us defeat COVID-19 together." />
+    
+    <title>WearMask: Free In-Browser Face Mask Detection | Privacy-First AI</title>
+    
+    <meta name="description" content="Real-time face mask detection running locally in your browser via WebAssembly. No server upload, 100% privacy. Powered by NCNN and YOLO-Fastest. Try it free." />
+    <meta name="keywords" content="face mask detection, browser ai, webassembly, ncnn, yolo, privacy ai, real-time detection" />
+    <meta name="author" content="Zekun Wang">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="WearMask: AI Face Mask Detection in Browser" />
+    <meta property="og:description" content="Run AI locally on your device. No installation needed. Protect yourself and others." />
+    <meta property="og:image" content="https://facemask-detection.com/static/images/logo_mask.png" />
+    <meta property="og:url" content="https://facemask-detection.com/" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WearMask: AI Face Mask Detection in Browser" />
+    <meta name="twitter:description" content="Run AI locally on your device. No installation needed. Protect yourself and others." />
+    <meta name="twitter:image" content="https://facemask-detection.com/static/images/logo_mask.png" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "WearMask",
+      "url": "https://facemask-detection.com",
+      "description": "Real-time face mask detection running entirely in browser via WebAssembly.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJ6JEE5PWX"></script>
         <script>
@@ -17,156 +54,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=2.0.4">
-    <style>
-        body { 
-            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-        body.i18n-loading {
-            visibility: hidden;
-        }
-        a:link, a:visited { 
-            text-decoration: none;  
-        } 
-        a:hover { 
-            text-decoration: underline; 
-        } 
-        video {
-            position: absolute;
-            opacity: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-        canvas {
-            border: none;
-            border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .video-container {
-            position: relative;
-            background: #000;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #canvas {
-            display: block;
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-        }
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: opacity 0.3s ease-out;
-        }
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid #3B82F6;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .floating-feedback {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 50;
-        }
-        .nav-language {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .language-switcher button {
-            border-radius: 0.75rem;
-            padding: 0.35rem 0.9rem;
-            color: #4b5563;
-            border: 1px solid transparent;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        .language-switcher button.lang-active {
-            background-color: #dbeafe;
-            color: #2563eb;
-            font-weight: 600;
-        }
-        @media (max-width: 640px) {
-            nav .brand-block {
-                width: 100%;
-                justify-content: center;
-                text-align: center;
-            }
-            .language-switcher {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-        }
-        .hero-title {
-            font-size: clamp(1.75rem, 5vw, 3rem);
-            line-height: 1.2;
-            font-weight: 700;
-        }
-        .status-pill {
-            font-size: clamp(1.5rem, 4.5vw, 3rem);
-            padding: clamp(0.75rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
-            border-radius: 999px;
-            font-weight: 800;
-        }
-        details.accordion-card {
-            border-radius: 0.75rem;
-            border: 1px solid rgba(229, 231, 235, 1);
-            background-color: #ffffff;
-        }
-        details.accordion-card > summary::-webkit-details-marker {
-            display: none;
-        }
-        details.accordion-card > summary {
-            list-style: none;
-            cursor: pointer;
-        }
-        details.accordion-card[open] .accordion-chevron {
-            transform: rotate(180deg);
-        }
-        .accordion-chevron {
-            transition: transform 0.2s ease;
-        }
-        .footer {
-            width: 100%;
-            color: #6b7280;
-        }
-        .footer img {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=2.0.5">
 
 </head>
 
@@ -179,8 +67,8 @@
                     <img class="h-12 sm:h-16" src="static/images/logo_mask.png" alt="WearMask Logo">
                 </a>
                 <div>
-                    <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask</h1>
-                    <p class="text-xs sm:text-sm text-gray-500" data-i18n="hero.subtitle">Real-time face mask detection</p>
+                    <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask: Real-time Face Mask Detection</h1>
+                    <p class="text-xs sm:text-sm text-gray-500" data-i18n="hero.subtitle">Real-time face mask detection powered by WebAssembly and NCNN</p>
                 </div>
             </div>
         </div>
@@ -202,7 +90,7 @@
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span data-i18n="status.loading">Loading...</span>
+                <span data-i18n="status.loading">Loading AI Model...</span>
             </div>
         </div>
         
@@ -247,8 +135,8 @@
                 </summary>
                 <div class="px-6 pb-5 pt-1 border-t border-gray-100">
                     <ul class="space-y-3 text-sm text-gray-600 list-disc list-inside">
-                        <li data-i18n="setup.steps.0">Launch the latest Chrome browser.</li>
-                        <li data-i18n="setup.steps.1">Open chrome://flags and enable WebAssembly features.</li>
+                        <li data-i18n="setup.steps.0">Launch the latest Chrome browser for best performance.</li>
+                        <li data-i18n="setup.steps.1">Open chrome://flags and enable WebAssembly features if needed.</li>
                         <li data-i18n="setup.steps.2">Restart Chrome, open this page, and allow camera access.</li>
                         <li data-i18n="setup.steps.3">Safari on iOS is supported but may run at a lower frame rate.</li>
                     </ul>
@@ -292,10 +180,10 @@
                 <div class="px-6 pb-5 pt-1 border-t border-gray-100">
                     <div class="mt-4 space-y-4 text-sm text-gray-600">
                         <p data-i18n-html="project.paragraph1">
-                            WearMask is a deep learning project based on Yolo-Fastest...
+                            WearMask is a deep learning project based on Yolo-Fastest and NCNN. It's lightweight and runs entirely in your browser via WebAssembly.
                         </p>
                         <p data-i18n-html="project.paragraph2">
-                            Everything is open-sourced on GitHub...
+                            This project is open-sourced on GitHub. Contributions are welcome.
                         </p>
                     </div>
                 </div>
