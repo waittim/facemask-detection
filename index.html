@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WearMask: Face Mask Detection | Real-time, In-browser AI </title>
+    <title>WearMask: Face Mask Detection | Real-time, In-browser AI</title>
     <meta name="description" content="A free face mask detector. Just a tablet, you can get a mask detection AI! Designed for small businesses and public places, let us defeat COVID-19 together." />
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJ6JEE5PWX"></script>
@@ -21,6 +21,9 @@
     <style>
         body { 
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        body.i18n-loading {
+            visibility: hidden;
         }
         a:link, a:visited { 
             text-decoration: none;  
@@ -100,10 +103,17 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        .language-switcher {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .language-switcher button {
+            border-radius: 0.75rem;
+            padding: 0.35rem 0.9rem;
+            color: #4b5563;
+            border: 1px solid transparent;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .language-switcher button.lang-active {
+            background-color: #dbeafe;
+            color: #2563eb;
+            font-weight: 600;
         }
         @media (max-width: 640px) {
             nav .brand-block {
@@ -158,17 +168,17 @@
 
 </head>
 
-<body class="bg-gray-50 text-gray-800 min-h-screen">
+<body class="bg-gray-50 text-gray-800 min-h-screen i18n-loading">
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-3">
             <div class="brand-block flex items-center space-x-3">
-                <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
+            <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
                     <img class="h-12 sm:h-16" src="gallary/logo.png" alt="WearMask Logo">
                 </a>
                 <div>
-                    <h1 class="hero-title text-gray-900">WearMask</h1>
-                    <p class="text-xs sm:text-sm text-gray-500">Real-time face mask detection</p>
+                    <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask</h1>
+                    <p class="text-xs sm:text-sm text-gray-500" data-i18n="hero.subtitle">Real-time face mask detection</p>
                 </div>
             </div>
         </div>
@@ -178,9 +188,9 @@
     <main class="max-w-5xl mx-auto px-4 py-8">
         <!-- Language Switcher -->
         <div class="language-switcher nav-language text-xs sm:text-sm font-medium mb-4 sm:mb-6 justify-center">
-            <a href="https://facemask-detection.com/" class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 font-semibold" title="English Version">English</a>
-            <a href="https://facemask-detection.com/es.html" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="Spanish Version">Español</a>
-            <a href="https://facemask-detection.com/cn.html" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="Chinese Version">中文</a>
+            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="en" data-i18n="language.options.en">English</button>
+            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="es" data-i18n="language.options.es">Español</button>
+            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="zh" data-i18n="language.options.zh">中文</button>
         </div>
 
         <!-- Status Indicator -->
@@ -190,16 +200,16 @@
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span>Loading...</span>
+                <span data-i18n="status.loading">Loading...</span>
             </div>
         </div>
-
+        
         <!-- Video Container -->
         <div class="video-container mx-auto max-w-2xl mb-6">
             <div id="loading-overlay" class="loading-overlay">
                 <div class="text-center text-white">
                     <div class="spinner mx-auto mb-4"></div>
-                    <p class="text-sm font-medium">Initializing AI model...</p>
+                    <p class="text-sm font-medium" data-i18n="overlay.initializing">Initializing AI model...</p>
                 </div>
             </div>
             <canvas id="canvas" width="640"></canvas>
@@ -213,23 +223,21 @@
                     <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
                     </svg>
-                </div>
-                <div class="ml-3">
-                    <p class="text-sm text-blue-700">
-                        <strong>Tip:</strong> Fully cover your nose and mouth to block viral particles.
-                    </p>
+            </div>
+                <div class="ml-3 text-sm text-blue-700">
+                    <strong data-i18n="tips.highlight">Tip:</strong>
+                    <span data-i18n="tips.message">Fully cover your nose and mouth to block viral particles.</span>
                 </div>
             </div>
         </div>
 
         <!-- Accordions -->
         <div class="space-y-4 mb-8">
-            <!-- Setup -->
             <details class="accordion-card shadow-sm fade-in" open>
                 <summary class="flex items-center justify-between px-6 py-4">
                     <div class="flex items-center space-x-2">
-                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold">Setup</span>
-                        <span class="font-bold text-lg">How to get the best experience?</span>
+                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold" data-i18n="setup.label">Setup</span>
+                        <span class="font-bold text-lg" data-i18n="setup.title">How to get the best experience?</span>
                     </div>
                     <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -237,44 +245,43 @@
                 </summary>
                 <div class="px-6 pb-5 pt-1 border-t border-gray-100">
                     <ul class="space-y-3 text-sm text-gray-600 list-disc list-inside">
-                        <li>Launch the latest <a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Chrome</a> browser.</li>
-                        <li>Go to <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">chrome://flags</code> and enable WebAssembly features.</li>
-                        <li>Restart Chrome, open this page, and allow camera access.</li>
-                        <li>For iOS, use Safari (frame rate may be lower).</li>
+                        <li data-i18n="setup.steps.0">Launch the latest Chrome browser.</li>
+                        <li data-i18n="setup.steps.1">Open chrome://flags and enable WebAssembly features.</li>
+                        <li data-i18n="setup.steps.2">Restart Chrome, open this page, and allow camera access.</li>
+                        <li data-i18n="setup.steps.3">Safari on iOS is supported but may run at a lower frame rate.</li>
                     </ul>
-                    <p class="mt-3 text-xs text-gray-500">
-                        Frame rate depends on your device CPU. Higher performance chips deliver faster inference.
+                    <p class="mt-3 text-xs text-gray-500" data-i18n="setup.note">
+                        Frame rate depends on your device CPU.
                     </p>
                 </div>
             </details>
-
-            <!-- Privacy -->
+        
             <details class="accordion-card shadow-sm fade-in" open>
                 <summary class="flex items-center justify-between px-6 py-4">
                     <div class="flex items-center space-x-2">
-                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold">Privacy</span>
-                        <span class="font-bold text-lg">Privacy statement</span>
+                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold" data-i18n="privacy.label">Privacy</span>
+                        <span class="font-bold text-lg" data-i18n="privacy.title">Privacy statement</span>
                     </div>
                     <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </summary>
                 <div class="px-6 pb-5 pt-1 border-t border-gray-100">
-                    <p class="text-sm text-gray-600 leading-relaxed mb-3">
-                        Everything runs fully inside your browser via WebAssembly. No images or video frames leave your device, and no data is stored on any server. You can even disconnect the internet once the detector loads.
+                    <p class="text-sm text-gray-600 leading-relaxed mb-3" data-i18n="privacy.body">
+                        Everything runs fully inside your browser via WebAssembly. No images or video leave your device.
                     </p>
-                    <a href="https://facemask-detection.com/statement.html" target="_parent" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm">
+                    <a class="text-blue-600 hover:underline text-sm" target="_parent" rel="noopener noreferrer"
+                       data-i18n="privacy.linkText" data-i18n-attr="href:privacy.linkHref">
                         Read the full service statement →
                     </a>
                 </div>
             </details>
 
-            <!-- Project info -->
             <details class="accordion-card shadow-sm fade-in" open>
                 <summary class="flex items-center justify-between px-6 py-4">
                     <div class="flex items-center space-x-2">
-                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold">Project</span>
-                        <span class="font-bold text-lg text-gray-900">Project overview</span>
+                        <span class="bg-blue-600/10 text-blue-600 px-3 py-1 rounded-lg text-xs font-semibold" data-i18n="project.label">Project</span>
+                        <span class="font-bold text-lg text-gray-900" data-i18n="project.title">Project overview</span>
                     </div>
                     <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -282,11 +289,11 @@
                 </summary>
                 <div class="px-6 pb-5 pt-1 border-t border-gray-100">
                     <div class="mt-4 space-y-4 text-sm text-gray-600">
-                        <p>
-                            WearMask is a deep learning project based on the <a href="https://github.com/dog-qiuqiu/Yolo-Fastest" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Yolo-Fastest</a> model, trained with <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">PyTorch</a>, and deployed through <a href="https://github.com/Tencent/ncnn" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">NCNN</a> and <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">WebAssembly</a>.
+                        <p data-i18n-html="project.paragraph1">
+                            WearMask is a deep learning project based on Yolo-Fastest...
                         </p>
-                        <p>
-                            Everything is open-sourced on <a href="https://github.com/waittim/mask-detector" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub</a>. You can also check <a href="https://arxiv.org/abs/2101.00784" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">arXiv</a> and my <a href="https://waittim.github.io/2020/11/27/mask-detection/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">blog</a> for more context. To contribute, send incorrect detections to <a href="mailto:wearmask.feedback@gmail.com?subject=Feedback&body=If there is a screenshot of the incorrect result, please put it here." class="text-blue-600 hover:underline">wearmask.feedback@gmail.com</a>. Thank you!
+                        <p data-i18n-html="project.paragraph2">
+                            Everything is open-sourced on GitHub...
                         </p>
                     </div>
                 </div>
@@ -305,10 +312,10 @@
                     </a>
                 </div>
                 <p class="text-sm text-gray-500 text-center sm:text-right">
-                    <a href="https://www.linkedin.com/in/zekun-wang/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold">Zekun Wang</a>
+                    <a href="https://www.linkedin.com/in/zekun-wang/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold" data-i18n="footer.name">Zekun Wang</a>
                     <span class="text-gray-300 mx-2 hidden sm:inline">|</span>
                     <br class="sm:hidden" />
-                    <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Vanderbilt University</a>
+                    <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline" data-i18n="footer.org">Vanderbilt University</a>
                 </p>
             </div>
         </footer>
@@ -316,13 +323,12 @@
 
     <!-- Floating Feedback Button -->
     <div class="floating-feedback">
-        <a href="mailto:wearmask.feedback@gmail.com?subject=Feedback&body=If there is a screenshot of the incorrect result, please put it here." 
-           title="Report failed cases or talk with the developer"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-lg flex items-center space-x-2 transition transform hover:scale-105">
+        <a class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-lg flex items-center space-x-2 transition transform hover:scale-105"
+           data-i18n-attr="href:feedback.mailto|title:feedback.buttonTitle">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
             </svg>
-            <span class="hidden sm:inline">Feedback</span>
+            <span class="hidden sm:inline" data-i18n="feedback.button">Feedback</span>
         </a>
     </div>
 
@@ -333,21 +339,162 @@
                 <svg class="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
-                <h3 class="text-lg font-bold text-gray-900">Camera permission required</h3>
+                <h3 class="text-lg font-bold text-gray-900" data-i18n="modal.title">Camera permission required</h3>
             </div>
-            <p class="text-gray-600 mb-4">
-                To start mask detection, please allow your browser to access the camera. Enable permission in your browser settings and refresh the page.
+            <p class="text-gray-600 mb-4" data-i18n="modal.body">
+                To start mask detection, allow your browser to access the camera in its settings, then refresh this page.
             </p>
-            <button onclick="location.reload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+            <button onclick="location.reload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition" data-i18n="modal.button">
                 Refresh page
             </button>
         </div>
     </div>
+    
+    <script>
+    (function() {
+        const SUPPORTED_LANGS = ['en', 'es', 'zh'];
+        const DEFAULT_LANG = 'en';
+        const STORAGE_KEY = 'wearmask.lang';
+        const langButtonsSelector = '[data-switch-lang]';
 
+        const currentLang = detectLanguage();
+        document.documentElement.lang = currentLang === 'zh' ? 'zh' : currentLang;
+
+        const translationsPromise = loadTranslations(currentLang);
+
+        ready(function() {
+            initLanguageButtons();
+            updateLanguageButtons(currentLang);
+
+            translationsPromise.then(function(data) {
+                applyTranslations(data || {});
+                document.body.classList.remove('i18n-loading');
+                initializeDetection(data || {});
+            }).catch(function(err) {
+                console.error('Failed to load translations', err);
+                document.body.classList.remove('i18n-loading');
+                initializeDetection({});
+            });
+        });
+
+        function detectLanguage() {
+            const params = new URLSearchParams(window.location.search);
+            const urlLang = normalizeLang(params.get('lang'));
+            if (urlLang) {
+                localStorage.setItem(STORAGE_KEY, urlLang);
+                return urlLang;
+            }
+            const stored = normalizeLang(localStorage.getItem(STORAGE_KEY));
+            if (stored) return stored;
+            const nav = normalizeLang(navigator.language || navigator.userLanguage);
+            if (nav) return nav;
+            return DEFAULT_LANG;
+        }
+
+        function normalizeLang(lang) {
+            if (!lang) return null;
+            lang = lang.toLowerCase();
+            if (lang.startsWith('zh')) return 'zh';
+            if (lang.startsWith('es')) return 'es';
+            if (lang.startsWith('en')) return 'en';
+            return SUPPORTED_LANGS.includes(lang) ? lang : null;
+        }
+
+        function loadTranslations(lang) {
+            return fetch('i18n/' + lang + '.json?v=2024112201')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Failed to load translations');
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    if (data && data.page) {
+                        if (data.page.title) document.title = data.page.title;
+                        if (data.page.description) {
+                            var meta = document.querySelector('meta[name="description"]');
+                            if (meta) meta.setAttribute('content', data.page.description);
+                        }
+                    }
+                    return data;
+                });
+        }
+
+        function applyTranslations(dict) {
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var value = getValue(dict, el.getAttribute('data-i18n'));
+                if (value !== undefined && value !== null) {
+                    el.textContent = value;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var value = getValue(dict, el.getAttribute('data-i18n-html'));
+                if (value !== undefined && value !== null) {
+                    el.innerHTML = value;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-attr]').forEach(function(el) {
+                var mappings = el.getAttribute('data-i18n-attr').split('|');
+                mappings.forEach(function(mapping) {
+                    var parts = mapping.split(':');
+                    if (parts.length !== 2) return;
+                    var attr = parts[0].trim();
+                    var key = parts[1].trim();
+                    var value = getValue(dict, key);
+                    if (attr && value !== undefined && value !== null) {
+                        el.setAttribute(attr, value);
+                    }
+                });
+            });
+        }
+
+        function getValue(obj, path) {
+            if (!obj || !path) return undefined;
+            return path.split('.').reduce(function(acc, key) {
+                return acc && acc[key] !== undefined ? acc[key] : undefined;
+            }, obj);
+        }
+
+        function initLanguageButtons() {
+            document.querySelectorAll(langButtonsSelector).forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    switchLanguage(btn.getAttribute('data-switch-lang'));
+                });
+            });
+        }
+
+        function updateLanguageButtons(lang) {
+            document.querySelectorAll(langButtonsSelector).forEach(function(btn) {
+                var isActive = btn.getAttribute('data-switch-lang') === lang;
+                btn.classList.toggle('lang-active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+        }
+
+        function switchLanguage(lang) {
+            if (!SUPPORTED_LANGS.includes(lang)) return;
+            if (lang === currentLang) return;
+            localStorage.setItem(STORAGE_KEY, lang);
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+
+        function ready(fn) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fn);
+            } else {
+                fn();
+            }
+        }
+    })();
+    </script>
     <script src="wasmFeatureDetect.js?version=2.0.3"></script>
-
     <script type='text/javascript'>
-        var Module = {};
+    function initializeDetection(translations) {
+        var Module = window.Module = window.Module || {};
 
         var has_simd;
         var has_threads;
@@ -355,9 +502,15 @@
         var wasmModuleLoaded = false;
         var wasmModuleLoadedCallbacks = [];
 
+        var class_names = resolveTranslation('detection.labels', ["background", "No Mask", "Mask"]);
+        var detectionStatus = {
+            welcome: resolveTranslation('detection.status.welcome', 'Welcome!'),
+            maskWarning: resolveTranslation('detection.status.maskWarning', 'Please wear a mask!')
+        };
+        var loadingLabel = resolveTranslation('status.loading', 'Loading...');
+
         Module.onRuntimeInitialized = function() {
             wasmModuleLoaded = true;
-            // Hide loading overlay when WASM module is ready
             var loadingOverlay = document.getElementById('loading-overlay');
             if (loadingOverlay) {
                 setTimeout(function() {
@@ -367,21 +520,18 @@
             for (var i = 0; i < wasmModuleLoadedCallbacks.length; i++) {
                 wasmModuleLoadedCallbacks[i]();
             }
-        }
+        };
 
-        wasmFeatureDetect.simd().then(simdSupported => {
+        wasmFeatureDetect.simd().then(function(simdSupported) {
             has_simd = simdSupported;
 
-            wasmFeatureDetect.threads().then(threadsSupported => {
+            wasmFeatureDetect.threads().then(function(threadsSupported) {
                 has_threads = threadsSupported;
 
-                if (has_simd & has_threads)
-                {
+                if (has_simd & has_threads) {
                     yolo_module_name = 'yolo';
                     console.log('simd&threads enabled.');
-                }
-                else
-                {
+                } else {
                     yolo_module_name = 'ios/yolo-ios';
                     console.log('cannot enable simd&threads.');
                 }
@@ -392,14 +542,14 @@
                 var yolojs = yolo_module_name + '.js';
 
                 fetch(yolowasm)
-                    .then(response => response.arrayBuffer())
-                    .then(buffer => {
+                    .then(function(response) { return response.arrayBuffer(); })
+                    .then(function(buffer) {
                         Module.wasmBinary = buffer;
                         var script = document.createElement('script');
                         script.src = yolojs;
                         script.onload = function() {
                             console.log('Emscripten boilerplate loaded.');
-                        }
+                        };
                         document.body.appendChild(script);
                     });
 
@@ -410,35 +560,34 @@
         var dst = null;
         var resultarray = null;
         var resultbuffer = null;
-        window.addEventListener('DOMContentLoaded', function() {
+
+        ready(function() {
+            initializeStream();
+        });
+
+        function initializeStream() {
             var isStreaming = false;
-            video = document.getElementById('video');
-            canvas = document.getElementById('canvas');
-            ctx = canvas.getContext('2d');
-            w = 640;
-            h = 480;
+            var video = document.getElementById('video');
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            var w = 640;
+            var h = 480;
             var constraints = { audio: false, video: { width: w, height: h } };
+
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(mediaStream) {
-                    var video = document.querySelector('video');
                     video.srcObject = mediaStream;
-                    video.onloadedmetadata = function(e) {
+                    video.onloadedmetadata = function() {
                         video.play();
                     };
-                    var errorModal = document.getElementById('camera-error-modal');
-                    if (errorModal) {
-                        errorModal.classList.add('hidden');
-                    }
+                    toggleCameraModal(true);
                 })
                 .catch(function(err) {
                     console.log(err.message);
-                    var errorModal = document.getElementById('camera-error-modal');
-                    if (errorModal) {
-                        errorModal.classList.remove('hidden');
-                    }
+                    toggleCameraModal(false);
                 });
-            // Wait until the video stream canvas play
-            video.addEventListener('canplay', function(e) {
+
+            video.addEventListener('canplay', function() {
                 if (!isStreaming) {
                     if (video.videoWidth > 0) {
                         var videoAspect = video.videoWidth / video.videoHeight;
@@ -452,9 +601,7 @@
                 }
             }, false);
 
-            // Wait for the video to start to play
             video.addEventListener('play', function() {
-                //Setup image memory
                 var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 var d = id.data;
 
@@ -466,8 +613,6 @@
 
                 function mallocAndCallSFilter() {
                     dst = _malloc(d.length);
-
-                    // max 20 objects
                     resultarray = new Float32Array(6 * 20);
                     resultbuffer = _malloc(6 * 20 * Float32Array.BYTES_PER_ELEMENT);
 
@@ -477,36 +622,35 @@
                 }
             });
 
-        });
+            function sFilter() {
+                if (video.paused || video.ended) return;
 
-        var class_names = [
-            "background",
-            "No Mask", "Mask"
-        ];
+                ctx.fillRect(0, 0, w, h);
 
-        var colors = [
-            "rgb( 255, 69,   0)",
-            "rgb( 32, 178, 170)"
-        ];
+                ctx.save();
+                ctx.scale(-1, 1);
+                ctx.drawImage(video, -w, 0, w, h);
+                ctx.restore();
 
-        function ncnn_yolo() {
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
+                ncnn_yolo(ctx, canvas);
 
+                window.requestAnimationFrame(sFilter);
+            }
+        }
+
+        function ncnn_yolo(ctx, canvas) {
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             var data = imageData.data;
-            ctx.font = '12px sans-serif'
+            ctx.font = '12px sans-serif';
 
             HEAPU8.set(data, dst);
 
             _yolo_ncnn(dst, canvas.width, canvas.height, resultbuffer);
 
-            // resultarray
             var qaqarray = HEAPF32.subarray(resultbuffer / Float32Array.BYTES_PER_ELEMENT, resultbuffer / Float32Array.BYTES_PER_ELEMENT + 6 * 20);
 
-            var i;
-            var remind_ctx = 'Welcome!'; 
-            for (i = 0; i < 20; i++) {
+            var remind_ctx = detectionStatus.welcome;
+            for (var i = 0; i < 20; i++) {
                 var label = qaqarray[i * 6 + 0];
                 var prob = qaqarray[i * 6 + 1];
                 var bbox_x = qaqarray[i * 6 + 2];
@@ -517,15 +661,15 @@
                 if (label == -233)
                     continue;
 
-                //ctx.strokeStyle = colors[i % 19];
                 if (label == 1) {
-                    ctx.strokeStyle = colors[0];
-                    ctx.fillStyle = colors[0];
-                    remind_ctx = 'Please wear a mask!';
+                    ctx.strokeStyle = "rgb( 255, 69,   0)";
+                    ctx.fillStyle = "rgb( 255, 69,   0)";
+                    remind_ctx = detectionStatus.maskWarning;
                 }
                 else {
-                    ctx.strokeStyle = colors[1];
-                    ctx.fillStyle = colors[1];
+                    ctx.strokeStyle = "rgb( 32, 178, 170)";
+                    ctx.fillStyle = "rgb( 32, 178, 170)";
+                    remind_ctx = detectionStatus.welcome;
                 }
 
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
@@ -548,44 +692,59 @@
                 ctx.fillStyle = "rgb(255,255,255)";
                 ctx.fillText(text, x+1, y-2);
             }
+
+            updateStatus(remind_ctx);
+        }
+
+        function updateStatus(remind_ctx) {
             var remindElement = document.getElementById('remind');
-            if (remindElement) {
-                var statusText = remind_ctx;
-                var statusClass = 'status-pill inline-flex items-center space-x-4';
-                
-                if (remind_ctx === 'Please wear a mask!') {
-                    remindElement.className = statusClass + ' bg-red-100 text-red-700';
-                    statusText = '⚠️ ' + remind_ctx;
-                } else if (remind_ctx === 'Welcome!') {
-                    remindElement.className = statusClass + ' bg-green-100 text-green-700';
-                    statusText = '✓ ' + remind_ctx;
-                } else {
-                    remindElement.className = statusClass + ' bg-blue-100 text-blue-700';
-                }
-                
-                remindElement.innerHTML = '<span>' + statusText + '</span>';
+            if (!remindElement) return;
+
+            var statusClass = 'status-pill inline-flex items-center space-x-4';
+            var statusText = remind_ctx || loadingLabel;
+
+            if (remind_ctx === detectionStatus.maskWarning) {
+                remindElement.className = statusClass + ' bg-red-100 text-red-700';
+                statusText = '⚠️ ' + statusText;
+            } else if (remind_ctx === detectionStatus.welcome) {
+                remindElement.className = statusClass + ' bg-green-100 text-green-700';
+                statusText = '✓ ' + statusText;
+            } else {
+                remindElement.className = statusClass + ' bg-blue-100 text-blue-700';
+            }
+
+            remindElement.innerHTML = '<span>' + statusText + '</span>';
+        }
+
+        function toggleCameraModal(success) {
+            var modal = document.getElementById('camera-error-modal');
+            if (!modal) return;
+            if (success) {
+                modal.classList.add('hidden');
+            } else {
+                modal.classList.remove('hidden');
             }
         }
 
-        //Request Animation Frame function
-        var sFilter = function() {
-            if (video.paused || video.ended) return;
-
-            ctx.fillRect(0, 0, w, h);
-            
-            ctx.save();
-            ctx.scale(-1, 1);
-            ctx.drawImage(video, -w, 0, w, h);
-            ctx.restore();
-
-            ncnn_yolo();
-
-            window.requestAnimationFrame(sFilter);
+        function resolveTranslation(path, fallback) {
+            if (!translations || !path) return fallback;
+            var value = path.split('.').reduce(function(acc, key) {
+                return acc && acc[key] !== undefined ? acc[key] : undefined;
+            }, translations);
+            return value !== undefined ? value : fallback;
         }
-        
 
+        function ready(fn) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fn);
+            } else {
+                fn();
+            }
+        }
+    }
     </script>
 
 </body>
 
 </html>
+

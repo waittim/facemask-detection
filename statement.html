@@ -1,9 +1,9 @@
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Face Mask Detection | Service Statement</title>
-    <meta name="description" content="A free face mask detector. Just a tablet, you can get a mask detection AI! Designed for small businesses and public places, let us defeat COVID-19 together." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WearMask Service Statement</title>
+    <meta name="description" content="WearMask runs entirely inside your browser. Read the full privacy and service statement." />
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJ6JEE5PWX"></script>
         <script>
@@ -13,104 +13,272 @@
 
         gtag('config', 'G-ZJ6JEE5PWX');
         </script>
-    <link rel="stylesheet" type="text/css" href="index.css?version=2.0.3">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="index.css?version=2.0.4">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        a:link,a:visited{ 
-            text-decoration:none;  
-        } 
-        a:hover{ 
-            text-decoration:underline; 
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        body.i18n-loading {
+            visibility: hidden;
+        }
+        .language-switcher button {
+            border-radius: 0.75rem;
+            padding: 0.35rem 0.9rem;
+            color: #4b5563;
+            border: 1px solid transparent;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .language-switcher button.lang-active {
+            background-color: #dbeafe;
+            color: #2563eb;
+            font-weight: 600;
         } 
     </style>
-
 </head>
-
-<body>
-    <div class="wrapper">
-        <div class="logo-wrapper">
-            <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
-              <img class="logo" src="gallary/logo.png">
-            </a>
-            <h3>Real-time Face Mask Detection</h3>
-            <div class="tags">
-                <a class="tag" href="https://facemask-detection.com/statement.html" title="English Version">English</a>
-                <a class="tag" href="https://facemask-detection.com/statement_es.html" title="Spanish Version">Español</a>
-                <a class="tag" href="https://facemask-detection.com/statement_cn.html" title="Chinese Version">中文</a>
+<body class="bg-gray-50 text-gray-800 min-h-screen i18n-loading">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img class="h-10 sm:h-12" src="gallary/logo.png" alt="WearMask Logo">
+                    <span class="text-xl font-bold text-gray-900" data-i18n="nav.brand">WearMask</span>
+                </a>
             </div>
+            <a class="text-sm text-blue-600 hover:underline font-semibold" href="index.html" data-i18n="nav.back">
+                ← Back to detector
+            </a>
+        </div>
+    </nav>
 
+    <main class="max-w-4xl mx-auto px-4 py-10 space-y-8">
+        <div class="language-switcher nav-language text-xs sm:text-sm font-medium mb-6 flex justify-center gap-2">
+            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="en" data-i18n="language.options.en">English</button>
+            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="es" data-i18n="language.options.es">Español</button>
+            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="zh" data-i18n="language.options.zh">中文</button>
         </div>
         
-        
-        <div class="intro">
-
-            <h2>Service Statement</h2>
-                <p>
-                    You understand and agree that if you use the face mask detection service, 
-                    you are deemed to have fully read and agree to accept the content of this statement, 
-                    otherwise, please stop this service immediately.
+        <section class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 space-y-8 text-sm text-gray-700 leading-relaxed">
+            <article class="space-y-3">
+                <h1 class="text-3xl font-bold text-gray-900" data-i18n="hero.title">Service Statement</h1>
+                <p class="text-gray-600" data-i18n="hero.description">
+                    You understand and agree that if you use the face mask detection service, you are deemed to have fully read and agree to accept the content of this statement, otherwise, please stop this service immediately.
                 </p>
-            <h3>1. Service content</h3>
-                <p>
+            </article>
+
+            <article class="space-y-3">
+                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.service.title">1. Service content</h2>
+                <p data-i18n="sections.service.body">
                     This service is provided to users in the form of a webpage. 
                     You can obtain the service by opening the webpage to realize the function 
                     of automatically detecting and reminding the wearing of masks.
                 </p>
-            <h3>2. Privacy protection</h3>
-                <h4>2.1 Data collection</h4>
-                    <p>
+            </article>
+
+            <article class="space-y-4">
+                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.privacy.title">2. Privacy protection</h2>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide" data-i18n="sections.privacy.collectionTitle">2.1 Data collection</h3>
+                    <p data-i18n="sections.privacy.collectionBody">
                         You understand and agree that, in order to provide services, 
                         you agree to turn on the camera on the webpage and identify the captured content. 
                         This service does not collect information about mask-wearing.
                     </p>
-                <h4>2.2 Data storage and protection</h4>
-                    <p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide" data-i18n="sections.privacy.storageTitle">2.2 Data storage and protection</h3>
+                    <p data-i18n="sections.privacy.storageBody">
                         This service does not store or upload the captured video, audio, and image content. 
                         The detection process is performed in real-time in your browser locally.
                     </p>
-            <h3>3. Declaration and Guarantee</h3>
-                <p>
+                </div>
+            </article>
+
+            <article class="space-y-3">
+                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.declaration.title">3. Declaration and Guarantee</h2>
+                <p data-i18n="sections.declaration.body">
                     You should ensure that your use of this service meets the requirements of laws and regulations, 
                     and you are responsible for the legality and compliance of your content sources and acquisitions. 
                     This service only provides you with a face mask detection service in accordance with your instructions 
                     and is not responsible for the legal compliance of your use of this service.
                 </p>
-            <h3>4. Notice and Correction</h3>
-                <p>
-                    You understand and agree that, in order to meet the needs of policies and service, 
+            </article>
+
+            <article class="space-y-3">
+                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.notice.title">4. Notice and Correction</h2>
+                <p data-i18n="sections.notice.body">
+                    You understand and agree that, in order to meet policy requirements and service needs, 
                     we will update the content of this service statement when necessary and publish it on this website. 
                     Please refer to this service statement for updates in time.
                 </p>
-            <br />
-            <p>
-                Last updated: December 16, 2020
-            </p>
+            </article>
 
-            <br /><br /><br />
+            <p class="text-xs text-gray-500 text-right" data-i18n="meta.updated">Last updated: December 16, 2020</p>
+        </section>
+    </main>
 
 
-            <div class='footer'>
-                <p>
-                    <a href="https://www.nsf.gov/" > <img src="gallary/nsf-logo.png"  alt="View National Science Foundation"></a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a href="https://www.vanderbilt.edu/" > <img src="gallary/VU-logo.jpg" alt="View Vanderbilt University"></a>
-                    
-                    <br />
-                    <br />
-                    <a href="https://www.linkedin.com/in/zekun-wang/" target="_blank" rel="noopener noreferrer">Zekun Wang</a> | <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer">Vanderbilt University</a>
-                    <br />
-                    <br />
-                </p>
+    <footer class="border-t border-gray-200 mt-12">
+        <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-gray-500">
+            <div class="flex items-center space-x-4">
+                <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
+                    <img src="gallary/nsf-logo.png" alt="National Science Foundation" class="h-12 w-auto">
+                </a>
+                <a href="https://www.vanderbilt.edu/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
+                    <img src="gallary/VU-logo.jpg" alt="Vanderbilt University" class="h-12 w-auto rounded-lg">
+                </a>
             </div>
-            
-        
+            <p class="text-center sm:text-right">
+                <a href="https://www.linkedin.com/in/zekun-wang/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold" data-i18n="footer.name">Zekun Wang</a>
+                <span class="text-gray-300 mx-2 hidden sm:inline">|</span>
+                <br class="sm:hidden" />
+                <a href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline" data-i18n="footer.org">Vanderbilt University</a>
+            </p>
         </div>
+    </footer>
 
-    </div>
-    
-    <br /><br />
+    <script>
+    (function() {
+        const SUPPORTED_LANGS = ['en', 'es', 'zh'];
+        const DEFAULT_LANG = 'en';
+        const STORAGE_KEY = 'wearmask.statement.lang';
+        const langButtonsSelector = '[data-switch-lang]';
 
+        const currentLang = detectLanguage();
+        document.documentElement.lang = currentLang === 'zh' ? 'zh' : currentLang;
 
+        var safetyTimer = setTimeout(function() {
+            document.body.classList.remove('i18n-loading');
+        }, 3000);
 
+        ready(function() {
+            initLanguageButtons();
+            updateLanguageButtons(currentLang);
+
+            loadTranslations(currentLang)
+                .then(function(data) {
+                    applyTranslations(data || {});
+                    document.body.classList.remove('i18n-loading');
+                    clearTimeout(safetyTimer);
+                })
+                .catch(function(err) {
+                    console.error('Failed to load translations', err);
+                    document.body.classList.remove('i18n-loading');
+                    clearTimeout(safetyTimer);
+                });
+        });
+
+        function detectLanguage() {
+            const params = new URLSearchParams(window.location.search);
+            const urlLang = normalizeLang(params.get('lang'));
+            if (urlLang) {
+                localStorage.setItem(STORAGE_KEY, urlLang);
+                return urlLang;
+            }
+            const stored = normalizeLang(localStorage.getItem(STORAGE_KEY));
+            if (stored) return stored;
+            const nav = normalizeLang(navigator.language || navigator.userLanguage);
+            if (nav) return nav;
+            return DEFAULT_LANG;
+        }
+
+        function normalizeLang(lang) {
+            if (!lang) return null;
+            lang = lang.toLowerCase();
+            if (lang.startsWith('zh')) return 'zh';
+            if (lang.startsWith('es')) return 'es';
+            if (lang.startsWith('en')) return 'en';
+            return SUPPORTED_LANGS.includes(lang) ? lang : null;
+        }
+
+        function loadTranslations(lang) {
+            return fetch('i18n/statement-' + lang + '.json?v=2024112201')
+                .then(function(response) {
+                    if (!response.ok) throw new Error('Failed to load translations');
+                    return response.json();
+                })
+                .then(function(data) {
+                    if (data && data.page) {
+                        if (data.page.title) document.title = data.page.title;
+                        if (data.page.description) {
+                            var meta = document.querySelector('meta[name="description"]');
+                            if (meta) meta.setAttribute('content', data.page.description);
+                        }
+                    }
+                    return data;
+                });
+        }
+
+        function applyTranslations(dict) {
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var value = getValue(dict, el.getAttribute('data-i18n'));
+                if (value !== undefined && value !== null) {
+                    el.textContent = value;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var value = getValue(dict, el.getAttribute('data-i18n-html'));
+                if (value !== undefined && value !== null) {
+                    el.innerHTML = value;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-attr]').forEach(function(el) {
+                var mappings = el.getAttribute('data-i18n-attr').split('|');
+                mappings.forEach(function(mapping) {
+                    var parts = mapping.split(':');
+                    if (parts.length !== 2) return;
+                    var attr = parts[0].trim();
+                    var key = parts[1].trim();
+                    var value = getValue(dict, key);
+                    if (attr && value !== undefined && value !== null) {
+                        el.setAttribute(attr, value);
+                    }
+                });
+            });
+        }
+
+        function getValue(obj, path) {
+            if (!obj || !path) return undefined;
+            return path.split('.').reduce(function(acc, key) {
+                return acc && acc[key] !== undefined ? acc[key] : undefined;
+            }, obj);
+        }
+
+        function initLanguageButtons() {
+            document.querySelectorAll(langButtonsSelector).forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    switchLanguage(btn.getAttribute('data-switch-lang'));
+                });
+            });
+        }
+
+        function updateLanguageButtons(lang) {
+            document.querySelectorAll(langButtonsSelector).forEach(function(btn) {
+                var isActive = btn.getAttribute('data-switch-lang') === lang;
+                btn.classList.toggle('lang-active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+        }
+
+        function switchLanguage(lang) {
+            if (!SUPPORTED_LANGS.includes(lang)) return;
+            localStorage.setItem(STORAGE_KEY, lang);
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.replace(url.toString());
+        }
+
+        function ready(fn) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fn);
+            } else {
+                fn();
+            }
+        }
+    })();
+    </script>
 </body>
-
 </html>
