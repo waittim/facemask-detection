@@ -5,9 +5,9 @@
   },
   "language": {
     "options": {
-      "en": "Inglés",
-      "es": "Español",
-      "zh": "Chino"
+        "en": "English",
+        "es": "Español",
+        "zh": "中文"
     }
   },
   "hero": {
