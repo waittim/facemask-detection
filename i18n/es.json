@@ -1,0 +1,77 @@
+{
+  "page": {
+    "title": "WearMask: Detección de mascarilla facial | IA en tiempo real en el navegador",
+    "description": "Un detector de mascarillas gratuito en el navegador. Diseñado para comercios y espacios públicos, ayudemos juntos a combatir el COVID-19."
+  },
+  "language": {
+    "options": {
+      "en": "Inglés",
+      "es": "Español",
+      "zh": "Chino"
+    }
+  },
+  "hero": {
+    "title": "WearMask",
+    "subtitle": "Detección de mascarilla en tiempo real"
+  },
+  "status": {
+    "loading": "Cargando..."
+  },
+  "overlay": {
+    "initializing": "Inicializando modelo de IA..."
+  },
+  "tips": {
+    "highlight": "Consejo:",
+    "message": "Cubre completamente tu nariz y boca para bloquear las partículas virales."
+  },
+  "setup": {
+    "label": "Configuración",
+    "title": "¿Cómo obtener la mejor experiencia?",
+    "steps": [
+      "Abre la versión más reciente del navegador Chrome.",
+      "Visita chrome://flags y habilita todas las funciones de WebAssembly.",
+      "Reinicia Chrome, abre esta página y permite el uso de la cámara.",
+      "En iOS solo está disponible Safari (la tasa de FPS puede ser menor)."
+    ],
+    "note": "El FPS depende de la CPU de tu dispositivo."
+  },
+  "privacy": {
+    "label": "Privacidad",
+    "title": "Declaración de privacidad",
+    "body": "Todo se ejecuta localmente en tu navegador mediante WebAssembly. Ninguna imagen ni video se envía a servidores externos y no se almacena información. Incluso puedes desconectarte de internet una vez que el modelo se cargue.",
+    "linkText": "Leer la declaración completa →",
+    "linkHref": "statement.html?lang=es"
+  },
+  "project": {
+    "label": "Proyecto",
+    "title": "Resumen del proyecto",
+    "paragraph1": "WearMask es un proyecto de aprendizaje profundo basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> y desplegado mediante <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
+    "paragraph2": "Todo el contenido está disponible en <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>. También puedes visitar <a href=\"https://arxiv.org/abs/2101.00784\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a> y mi <a href=\"https://waittim.github.io/2020/11/27/mask-detection/\" target=\"_blank\" rel=\"noopener noreferrer\">blog</a>. Si encuentras resultados incorrectos, envía las capturas a <a href=\"mailto:wearmask.feedback@gmail.com?subject=Incorrect%20case&body=Pon%20tu%20captura%20de%20pantalla%20aqu%C3%AD.\" rel=\"noopener noreferrer\">wearmask.feedback@gmail.com</a>."
+  },
+  "feedback": {
+    "button": "Comentarios",
+    "buttonTitle": "Informe casos fallidos o hable con el desarrollador.",
+    "mailto": "mailto:wearmask.feedback@gmail.com?subject=Incorrect%20case&body=Pon%20tu%20captura%20de%20pantalla%20aqu%C3%AD."
+  },
+  "modal": {
+    "title": "Se necesita permiso para la cámara",
+    "body": "Para comenzar la detección, permite que tu navegador acceda a la cámara en su configuración y vuelve a cargar esta página.",
+    "button": "Actualizar página"
+  },
+  "detection": {
+    "labels": [
+      "background",
+      "Sin mascarilla",
+      "Con mascarilla"
+    ],
+    "status": {
+      "welcome": "¡Bienvenido!",
+      "maskWarning": "¡Por favor use una mascarilla!"
+    }
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "Universidad Vanderbilt"
+  }
+}
+

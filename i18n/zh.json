@@ -1,0 +1,77 @@
+{
+  "page": {
+    "title": "WearMask: 口罩检测AI | 实时快速，即开即用",
+    "description": "浏览器内置免费口罩检测器。只需一个平板，你就能获得一个口罩检测AI！为小商业和公共场所设计，让我们共同应对COVID-19。"
+  },
+  "language": {
+    "options": {
+      "en": "英文",
+      "es": "西班牙语",
+      "zh": "中文"
+    }
+  },
+  "hero": {
+    "title": "WearMask",
+    "subtitle": "实时口罩检测"
+  },
+  "status": {
+    "loading": "加载中..."
+  },
+  "overlay": {
+    "initializing": "AI 模型初始化中..."
+  },
+  "tips": {
+    "highlight": "小提示：",
+    "message": "只有完全覆盖鼻孔和嘴巴才能预防病毒哦！"
+  },
+  "setup": {
+    "label": "设置",
+    "title": "如何获得最佳体验？",
+    "steps": [
+      "启动最新版 Chrome 浏览器。",
+      "在地址栏输入 chrome://flags 并打开，启用所有 WebAssembly 相关功能。",
+      "重启 Chrome，打开本页面并允许开启摄像头。",
+      "iOS 暂时只能使用 Safari，检测帧率可能较低。"
+    ],
+    "note": "检测帧率取决于您的设备 CPU。"
+  },
+  "privacy": {
+    "label": "隐私",
+    "title": "隐私声明",
+    "body": "该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。",
+    "linkText": "查看完整的服务申明 →",
+    "linkHref": "statement.html?lang=zh"
+  },
+  "project": {
+    "label": "项目",
+    "title": "项目简介",
+    "paragraph1": "WearMask 是一个基于 <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a> 的深度学习项目，采用 <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> 训练，通过 <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> 和 <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a> 实现浏览器端实时运行。",
+    "paragraph2": "所有内容已在 <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> 开源，您也可以访问 <a href=\"https://arxiv.org/abs/2101.00784\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a> 和我的 <a href=\"https://waittim.github.io/2020/11/27/mask-detection/\" target=\"_blank\" rel=\"noopener noreferrer\">博客</a> 了解更多。如果您想贡献，请将包含错误结果的截图发送至 <a href=\"mailto:wearmask.feedback@gmail.com?subject=Incorrect%20case&body=%E8%AF%B7%E5%B0%86%E6%88%AA%E5%9B%BE%E6%94%BE%E5%9C%A8%E6%AD%A4%E5%A4%84%E3%80%82\" rel=\"noopener noreferrer\">wearmask.feedback@gmail.com</a>。"
+  },
+  "feedback": {
+    "button": "反馈",
+    "buttonTitle": "报告失败案例或与开发者交流。",
+    "mailto": "mailto:wearmask.feedback@gmail.com?subject=Incorrect%20case&body=%E8%AF%B7%E5%B0%86%E6%88%AA%E5%9B%BE%E6%94%BE%E5%9C%A8%E6%AD%A4%E5%A4%84%E3%80%82"
+  },
+  "modal": {
+    "title": "需要摄像头权限",
+    "body": "为了开始口罩检测，请在浏览器设置中允许访问摄像头，然后刷新页面。",
+    "button": "刷新页面"
+  },
+  "detection": {
+    "labels": [
+      "background",
+      "无口罩",
+      "有口罩"
+    ],
+    "status": {
+      "welcome": "欢迎光临",
+      "maskWarning": "请戴好口罩"
+    }
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "范德堡大学"
+  }
+}
+

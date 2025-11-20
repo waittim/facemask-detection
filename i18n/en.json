@@ -1,0 +1,77 @@
+{
+  "page": {
+    "title": "WearMask: Face Mask Detection | Real-time, In-browser AI",
+    "description": "A free face mask detector. Just a tablet, you can get a mask detection AI! Designed for small businesses and public places, let us defeat COVID-19 together."
+  },
+  "language": {
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文"
+    }
+  },
+  "hero": {
+    "title": "WearMask",
+    "subtitle": "Real-time face mask detection"
+  },
+  "status": {
+    "loading": "Loading..."
+  },
+  "overlay": {
+    "initializing": "Initializing AI model..."
+  },
+  "tips": {
+    "highlight": "Tip:",
+    "message": "Fully cover your nose and mouth to block viral particles."
+  },
+  "setup": {
+    "label": "Setup",
+    "title": "How to get the best experience?",
+    "steps": [
+      "Launch the latest Chrome browser.",
+      "Open chrome://flags and enable all WebAssembly features.",
+      "Restart Chrome, open this page, and allow camera access.",
+      "Safari on iOS is supported but may run at a lower frame rate."
+    ],
+    "note": "Frame rate depends on your device CPU."
+  },
+  "privacy": {
+    "label": "Privacy",
+    "title": "Privacy statement",
+    "body": "Everything runs fully inside your browser via WebAssembly. No images or videos leave your device, and no data is stored on any server. You can even disconnect the internet once detection starts.",
+    "linkText": "Read the full service statement →",
+    "linkHref": "statement.html?lang=en"
+  },
+  "project": {
+    "label": "Project",
+    "title": "Project overview",
+    "paragraph1": "WearMask is a deep learning project based on <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, trained with <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a>, and deployed through <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> and <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
+    "paragraph2": "Everything is open-sourced on <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>. You can also visit <a href=\"https://arxiv.org/abs/2101.00784\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a> and my <a href=\"https://waittim.github.io/2020/11/27/mask-detection/\" target=\"_blank\" rel=\"noopener noreferrer\">blog</a>. To contribute, send incorrect cases to <a href=\"mailto:wearmask.feedback@gmail.com?subject=Feedback&body=If%20there%20is%20a%20screenshot%20of%20the%20incorrect%20result,%20please%20put%20it%20here.\" rel=\"noopener noreferrer\">wearmask.feedback@gmail.com</a>."
+  },
+  "feedback": {
+    "button": "Feedback",
+    "buttonTitle": "Report failed cases or talk with the developer.",
+    "mailto": "mailto:wearmask.feedback@gmail.com?subject=Feedback&body=If%20there%20is%20a%20screenshot%20of%20the%20incorrect%20result,%20please%20put%20it%20here."
+  },
+  "modal": {
+    "title": "Camera permission required",
+    "body": "To start mask detection, allow your browser to access the camera in its settings, then refresh this page.",
+    "button": "Refresh page"
+  },
+  "detection": {
+    "labels": [
+      "background",
+      "No Mask",
+      "Mask"
+    ],
+    "status": {
+      "welcome": "Welcome!",
+      "maskWarning": "Please wear a mask!"
+    }
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "Vanderbilt University"
+  }
+}
+

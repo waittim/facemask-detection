@@ -1,0 +1,50 @@
+{
+  "page": {
+    "title": "WearMask | 服务申明",
+    "description": "阅读 WearMask 服务与隐私申明，了解浏览器端运行机制。"
+  },
+  "nav": {
+    "brand": "WearMask",
+    "back": "← 返回检测页面"
+  },
+  "language": {
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文"
+    }
+  },
+  "hero": {
+    "title": "服务申明",
+    "description": "当您使用 WearMask 口罩检测服务，即表示您已阅读并同意以下内容。如不同意，请立即停止使用该服务。"
+  },
+  "sections": {
+    "service": {
+      "title": "1. 服务内容",
+      "body": "本服务以网页形式提供。您只需打开页面，即可获得实时口罩检测与提醒功能。"
+    },
+    "privacy": {
+      "title": "2. 隐私保护",
+      "collectionTitle": "2.1 数据采集",
+      "collectionBody": "为提供检测服务，您需授权网页调用摄像头。WearMask 仅在本地识别画面，不会收集您的口罩佩戴信息。",
+      "storageTitle": "2.2 数据存储与保护",
+      "storageBody": "本服务不会上传或保存任何视频、音频或图像内容，所有推理均在浏览器本地实时完成。"
+    },
+    "declaration": {
+      "title": "3. 声明与保证",
+      "body": "您应保证使用本服务符合相关法律法规，并对内容来源及获取的合规性负责。WearMask 仅按您的指令提供检测，不对您使用结果的合法性负责。"
+    },
+    "notice": {
+      "title": "4. 通知与修订",
+      "body": "为满足政策或服务需求，我们可能更新本申明并在网站发布最新内容。请及时查阅以了解最新信息。"
+    }
+  },
+  "meta": {
+    "updated": "更新日期：2020年12月16日"
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "范德堡大学"
+  }
+}
+

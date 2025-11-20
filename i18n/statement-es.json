@@ -1,0 +1,50 @@
+{
+  "page": {
+    "title": "WearMask | Declaración de servicio",
+    "description": "Lee la declaración de servicio y privacidad de WearMask."
+  },
+  "nav": {
+    "brand": "WearMask",
+    "back": "← Volver al detector"
+  },
+  "language": {
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文"
+    }
+  },
+  "hero": {
+    "title": "Declaración de servicio",
+    "description": "Al utilizar WearMask aceptas el contenido de esta declaración. Si no estás de acuerdo, deja de usar el servicio inmediatamente."
+  },
+  "sections": {
+    "service": {
+      "title": "1. Contenido del servicio",
+      "body": "WearMask se ofrece como una experiencia basada en la web. Al abrir la página obtienes la función de detección y recordatorio de uso de mascarilla en tiempo real."
+    },
+    "privacy": {
+      "title": "2. Protección de privacidad",
+      "collectionTitle": "2.1 Recolección de datos",
+      "collectionBody": "Para prestar el servicio autorizas el uso de la cámara dentro del navegador. WearMask no recopila etiquetas ni resultados sobre tu uso de mascarilla.",
+      "storageTitle": "2.2 Almacenamiento y protección",
+      "storageBody": "No se sube ni almacena video, audio ni imágenes. Toda la inferencia se realiza localmente en tu navegador en tiempo real."
+    },
+    "declaration": {
+      "title": "3. Declaración y garantía",
+      "body": "Debes asegurarte de que tu uso del servicio cumpla con las leyes y normativas aplicables. WearMask solo realiza la detección conforme a tus instrucciones y no asume responsabilidad por el uso que hagas de los resultados."
+    },
+    "notice": {
+      "title": "4. Avisos y correcciones",
+      "body": "Podemos actualizar esta declaración para reflejar cambios de políticas o del servicio y publicaremos la nueva versión en este sitio. Consulta periódicamente para conocer las novedades."
+    }
+  },
+  "meta": {
+    "updated": "Última actualización: 16 de diciembre de 2020"
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "Universidad Vanderbilt"
+  }
+}
+
