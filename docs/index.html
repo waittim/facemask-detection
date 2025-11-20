@@ -17,7 +17,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="index.css?version=2.0.4">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=2.0.4">
     <style>
         body { 
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -33,7 +33,9 @@
         } 
         video {
             position: absolute;
-            visibility: hidden;
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
         }
         canvas {
             border: none;
@@ -174,7 +176,7 @@
         <div class="max-w-6xl mx-auto px-4 py-3">
             <div class="brand-block flex items-center space-x-3">
             <a href="https://facemask-detection.com" target="_parent" rel="noopener noreferrer">
-                    <img class="h-12 sm:h-16" src="gallary/logo_mask.png" alt="WearMask Logo">
+                    <img class="h-12 sm:h-16" src="static/images/logo_mask.png" alt="WearMask Logo">
                 </a>
                 <div>
                     <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask</h1>
@@ -212,7 +214,7 @@
                     <p class="text-sm font-medium" data-i18n="overlay.initializing">Initializing AI model...</p>
                 </div>
             </div>
-            <canvas id="canvas" width="640"></canvas>
+            <canvas id="canvas" width="640" height="480"></canvas>
             <video autoplay muted playsinline id="video"></video>
         </div>
 
@@ -305,10 +307,10 @@
             <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="flex items-center space-x-4">
                     <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                        <img src="gallary/nsf-logo.png" alt="National Science Foundation">
+                        <img src="static/images/nsf-logo.png" alt="National Science Foundation">
                     </a>
                     <a href="https://www.vanderbilt.edu/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                        <img src="gallary/VU-logo.jpg" alt="Vanderbilt University">
+                        <img src="static/images/VU-logo.jpg" alt="Vanderbilt University">
                     </a>
                 </div>
                 <p class="text-sm text-gray-500 text-center sm:text-right">
@@ -401,7 +403,7 @@
         }
 
         function loadTranslations(lang) {
-            return fetch('i18n/' + lang + '.json?v=2024112201')
+            return fetch('i18n/' + lang + '.json?v=' + Date.now())
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load translations');
@@ -491,7 +493,7 @@
         }
     })();
     </script>
-    <script src="wasmFeatureDetect.js?version=2.0.3"></script>
+    <script src="static/js/vendor/wasmFeatureDetect.js?version=2.0.3"></script>
     <script type='text/javascript'>
     function initializeDetection(translations) {
         var Module = window.Module = window.Module || {};
@@ -529,10 +531,10 @@
                 has_threads = threadsSupported;
 
                 if (has_simd & has_threads) {
-                    yolo_module_name = 'yolo';
+                    yolo_module_name = 'static/model/yolo';
                     console.log('simd&threads enabled.');
                 } else {
-                    yolo_module_name = 'ios/yolo-ios';
+                    yolo_module_name = 'static/model/ios/yolo-ios';
                     console.log('cannot enable simd&threads.');
                 }
 
@@ -540,6 +542,13 @@
 
                 var yolowasm = yolo_module_name + '.wasm';
                 var yolojs = yolo_module_name + '.js';
+
+                // Configure Module to locate files in the model directory
+                Module.locateFile = Module.locateFile || function(path) {
+                    // Extract directory from yolo_module_name (e.g., 'static/model/yolo' -> 'static/model/')
+                    var modelDir = yolo_module_name.substring(0, yolo_module_name.lastIndexOf('/') + 1);
+                    return modelDir + path;
+                };
 
                 fetch(yolowasm)
                     .then(function(response) { return response.arrayBuffer(); })
@@ -641,7 +650,6 @@
         function ncnn_yolo(ctx, canvas) {
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             var data = imageData.data;
-            ctx.font = '12px sans-serif';
 
             HEAPU8.set(data, dst);
 
@@ -658,39 +666,55 @@
                 var bbox_w = qaqarray[i * 6 + 4];
                 var bbox_h = qaqarray[i * 6 + 5];
 
-                if (label == -233)
-                    continue;
+                if (label == -233) continue;
 
+                // 定义颜色配置
+                var colorBase, colorBg;
                 if (label == 1) {
-                    ctx.strokeStyle = "rgb( 255, 69,   0)";
-                    ctx.fillStyle = "rgb( 255, 69,   0)";
+                    // No Mask: 警示红
+                    colorBase = "rgba(239, 68, 68, 1)"; // tailwind red-500
+                    colorBg = "rgba(239, 68, 68, 0.2)"; 
                     remind_ctx = detectionStatus.maskWarning;
-                }
-                else {
-                    ctx.strokeStyle = "rgb( 32, 178, 170)";
-                    ctx.fillStyle = "rgb( 32, 178, 170)";
+                } else {
+                    // Mask: 安全蓝/绿
+                    colorBase = "rgba(59, 130, 246, 1)"; // tailwind blue-500
+                    colorBg = "rgba(59, 130, 246, 0.2)";
                     remind_ctx = detectionStatus.welcome;
                 }
 
+                // 1. 绘制半透明填充背景 (科技感的核心)
+                ctx.fillStyle = colorBg;
+                ctx.fillRect(bbox_x, bbox_y, bbox_w, bbox_h);
+
+                // 2. 绘制圆角边框
+                ctx.lineWidth = 4; // 加粗线条
+                ctx.strokeStyle = colorBase;
+                ctx.lineJoin = "round"; // 圆润拐角
                 ctx.strokeRect(bbox_x, bbox_y, bbox_w, bbox_h);
-                ctx.lineWidth = 2;
 
-                var text = class_names[label] + ": " + parseFloat(prob * 100).toFixed(2) + "%";
+                // 3. 绘制精致的标签胶囊
+                var text = class_names[label] + " " + Math.round(prob * 100) + "%";
+                ctx.font = "bold 16px Inter, sans-serif"; // 加大字体
+                var textMetrics = ctx.measureText(text);
+                var textWidth = textMetrics.width;
+                var textHeight = 24; // 固定标签高度
+                var padding = 10;
 
-                ctx.textBaseline = 'top';
-                var text_width = ctx.measureText(text).width;
-                var text_height = parseInt(ctx.font, 10);
+                var labelX = bbox_x;
+                var labelY = bbox_y - 30; // 标签浮动在框上方
+                if (labelY < 0) labelY = bbox_y + 10; // 如果上方没空间，就放里面
 
-                var x = bbox_x;
-                var y = bbox_y - text_height;
-                if (y < 0)
-                    y = 0;
-                if (x + text_width > canvas.width)
-                    x = canvas.width - text_width;
+                // 标签背景 (圆角矩形)
+                ctx.fillStyle = colorBase;
+                // 简单的圆角矩形绘制
+                ctx.beginPath();
+                ctx.roundRect(labelX, labelY, textWidth + padding * 2, textHeight + 6, 8);
+                ctx.fill();
 
-                ctx.fillRect(x-1, y-2, text_width+4, text_height+2);
-                ctx.fillStyle = "rgb(255,255,255)";
-                ctx.fillText(text, x+1, y-2);
+                // 标签文字
+                ctx.fillStyle = "#ffffff";
+                ctx.textBaseline = "middle";
+                ctx.fillText(text, labelX + padding, labelY + (textHeight + 6)/2);
             }
 
             updateStatus(remind_ctx);

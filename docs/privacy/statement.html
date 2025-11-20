@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -14,61 +15,67 @@
         gtag('config', 'G-ZJ6JEE5PWX');
         </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="index.css?version=2.0.4">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.4">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
-        body.i18n-loading {
-            visibility: hidden;
+        /* 优化：改为透明度过渡，避免文字突然闪现 */
+        body.i18n-loading main {
+            opacity: 0;
+        }
+        main {
+            transition: opacity 0.3s ease-in;
         }
         .language-switcher button {
             border-radius: 0.75rem;
             padding: 0.35rem 0.9rem;
             color: #4b5563;
             border: 1px solid transparent;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            transition: all 0.2s ease;
         }
         .language-switcher button.lang-active {
             background-color: #dbeafe;
             color: #2563eb;
             font-weight: 600;
+            border-color: #bfdbfe;
         } 
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen i18n-loading">
+<body class="bg-gray-50 text-gray-800 min-h-screen i18n-loading flex flex-col">
     <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <a href="index.html" class="flex items-center space-x-2">
-                    <img class="h-10 sm:h-12" src="gallary/logo_mask.png" alt="WearMask Logo">
+                <a href="../index.html" id="nav-logo-link" class="flex items-center space-x-2">
+                    <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
                     <span class="text-xl font-bold text-gray-900" data-i18n="nav.brand">WearMask</span>
                 </a>
             </div>
-            <a class="text-sm text-blue-600 hover:underline font-semibold" href="index.html" data-i18n="nav.back">
-                ← Back to detector
+            <a id="back-link" class="text-sm text-blue-600 hover:text-blue-800 hover:underline font-semibold flex items-center transition" href="../index.html" data-i18n="nav.back">
+                <span>←</span>
+                <span class="ml-1">Back to detector</span>
             </a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 space-y-8">
+    <main class="max-w-4xl mx-auto px-4 py-10 space-y-8 flex-grow w-full">
         <div class="language-switcher nav-language text-xs sm:text-sm font-medium mb-6 flex justify-center gap-2">
-            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="en" data-i18n="language.options.en">English</button>
-            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="es" data-i18n="language.options.es">Español</button>
-            <button type="button" class="px-3 py-1.5 lang-btn" data-switch-lang="zh" data-i18n="language.options.zh">中文</button>
+            <button type="button" class="lang-btn" data-switch-lang="en" data-i18n="language.options.en">English</button>
+            <button type="button" class="lang-btn" data-switch-lang="es" data-i18n="language.options.es">Español</button>
+            <button type="button" class="lang-btn" data-switch-lang="zh" data-i18n="language.options.zh">中文</button>
         </div>
         
-        <section class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <article class="space-y-3">
-                <h1 class="text-3xl font-bold text-gray-900" data-i18n="hero.title">Service Statement</h1>
+        <section class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
+            <article class="space-y-3 border-b border-gray-100 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900" data-i18n="hero.title">Service Statement</h1>
                 <p class="text-gray-600" data-i18n="hero.description">
                     You understand and agree that if you use the face mask detection service, you are deemed to have fully read and agree to accept the content of this statement, otherwise, please stop this service immediately.
                 </p>
             </article>
 
             <article class="space-y-3">
-                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.service.title">1. Service content</h2>
+                <h2 class="text-lg sm:text-xl font-bold text-gray-900" data-i18n="sections.service.title">1. Service content</h2>
                 <p data-i18n="sections.service.body">
                     This service is provided to users in the form of a webpage. 
                     You can obtain the service by opening the webpage to realize the function 
@@ -77,17 +84,16 @@
             </article>
 
             <article class="space-y-4">
-                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.privacy.title">2. Privacy protection</h2>
-                <div>
-                    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide" data-i18n="sections.privacy.collectionTitle">2.1 Data collection</h3>
-                    <p data-i18n="sections.privacy.collectionBody">
+                <h2 class="text-lg sm:text-xl font-bold text-gray-900" data-i18n="sections.privacy.title">2. Privacy protection</h2>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2" data-i18n="sections.privacy.collectionTitle">2.1 Data collection</h3>
+                    <p class="mb-4" data-i18n="sections.privacy.collectionBody">
                         You understand and agree that, in order to provide services, 
                         you agree to turn on the camera on the webpage and identify the captured content. 
                         This service does not collect information about mask-wearing.
                     </p>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide" data-i18n="sections.privacy.storageTitle">2.2 Data storage and protection</h3>
+                    
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2" data-i18n="sections.privacy.storageTitle">2.2 Data storage and protection</h3>
                     <p data-i18n="sections.privacy.storageBody">
                         This service does not store or upload the captured video, audio, and image content. 
                         The detection process is performed in real-time in your browser locally.
@@ -96,7 +102,7 @@
             </article>
 
             <article class="space-y-3">
-                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.declaration.title">3. Declaration and Guarantee</h2>
+                <h2 class="text-lg sm:text-xl font-bold text-gray-900" data-i18n="sections.declaration.title">3. Declaration and Guarantee</h2>
                 <p data-i18n="sections.declaration.body">
                     You should ensure that your use of this service meets the requirements of laws and regulations, 
                     and you are responsible for the legality and compliance of your content sources and acquisitions. 
@@ -106,7 +112,7 @@
             </article>
 
             <article class="space-y-3">
-                <h2 class="text-xl font-semibold text-gray-900" data-i18n="sections.notice.title">4. Notice and Correction</h2>
+                <h2 class="text-lg sm:text-xl font-bold text-gray-900" data-i18n="sections.notice.title">4. Notice and Correction</h2>
                 <p data-i18n="sections.notice.body">
                     You understand and agree that, in order to meet policy requirements and service needs, 
                     we will update the content of this service statement when necessary and publish it on this website. 
@@ -114,19 +120,21 @@
                 </p>
             </article>
 
-            <p class="text-xs text-gray-500 text-right" data-i18n="meta.updated">Last updated: December 16, 2020</p>
+            <div class="pt-4 border-t border-gray-100">
+                <p class="text-xs text-gray-400 text-right italic" data-i18n="meta.updated">Last updated: December 16, 2020</p>
+            </div>
         </section>
     </main>
 
 
-    <footer class="border-t border-gray-200 mt-12">
+    <footer class="border-t border-gray-200 bg-white mt-auto">
         <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-gray-500">
             <div class="flex items-center space-x-4">
                 <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                    <img src="gallary/nsf-logo.png" alt="National Science Foundation" class="h-12 w-auto">
+                    <img src="../static/images/nsf-logo.png" alt="National Science Foundation" class="h-10 w-auto rounded-md">
                 </a>
                 <a href="https://www.vanderbilt.edu/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
-                    <img src="gallary/VU-logo.jpg" alt="Vanderbilt University" class="h-12 w-auto rounded-lg">
+                    <img src="../static/images/VU-logo.jpg" alt="Vanderbilt University" class="h-10 w-auto rounded-md">
                 </a>
             </div>
             <p class="text-center sm:text-right">
@@ -147,6 +155,9 @@
 
         const currentLang = detectLanguage();
         document.documentElement.lang = currentLang === 'zh' ? 'zh' : currentLang;
+
+        // 优化：更新返回链接的语言参数
+        updateBackLink(currentLang);
 
         var safetyTimer = setTimeout(function() {
             document.body.classList.remove('i18n-loading');
@@ -192,8 +203,16 @@
             return SUPPORTED_LANGS.includes(lang) ? lang : null;
         }
 
+        // 新增：更新返回按钮的链接，带上当前的语言参数
+        function updateBackLink(lang) {
+            const backLink = document.getElementById('back-link');
+            const logoLink = document.getElementById('nav-logo-link');
+            if (backLink) backLink.href = `../index.html?lang=${lang}`;
+            if (logoLink) logoLink.href = `../index.html?lang=${lang}`;
+        }
+
         function loadTranslations(lang) {
-            return fetch('i18n/statement-' + lang + '.json?v=2024112201')
+            return fetch('../i18n/statement-' + lang + '.json?v=2024112201')
                 .then(function(response) {
                     if (!response.ok) throw new Error('Failed to load translations');
                     return response.json();

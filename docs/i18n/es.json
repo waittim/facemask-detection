@@ -40,12 +40,12 @@
     "title": "Declaración de privacidad",
     "body": "Todo se ejecuta localmente en tu navegador mediante WebAssembly. Ninguna imagen ni video se envía a servidores externos y no se almacena información. Incluso puedes desconectarte de internet una vez que el modelo se cargue.",
     "linkText": "Leer la declaración completa →",
-    "linkHref": "statement.html?lang=es"
+    "linkHref": "privacy/statement.html?lang=es"
   },
   "project": {
     "label": "Proyecto",
     "title": "Resumen del proyecto",
-    "paragraph1": "WearMask es un proyecto de aprendizaje profundo basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> y desplegado mediante <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
+    "paragraph1": "WearMask (Web-based Efficient AI Recognition of Masks) es un proyecto de aprendizaje profundo basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> y desplegado mediante <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
     "paragraph2": "Todo el contenido está disponible en <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>. También puedes visitar <a href=\"https://arxiv.org/abs/2101.00784\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a> y mi <a href=\"https://waittim.github.io/2020/11/27/mask-detection/\" target=\"_blank\" rel=\"noopener noreferrer\">blog</a>. Si encuentras resultados incorrectos, envía las capturas a <a href=\"mailto:wearmask.feedback@gmail.com?subject=Incorrect%20case&body=Pon%20tu%20captura%20de%20pantalla%20aqu%C3%AD.\" rel=\"noopener noreferrer\">wearmask.feedback@gmail.com</a>."
   },
   "feedback": {
