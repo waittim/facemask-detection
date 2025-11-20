@@ -114,6 +114,44 @@
         .accordion-chevron {
             transition: transform 0.2s ease;
         }
+        .hero-title {
+            font-size: clamp(1.75rem, 5vw, 3rem);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .status-pill {
+            font-size: clamp(1.5rem, 4.5vw, 3rem);
+            padding: clamp(0.75rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
+            border-radius: 999px;
+            font-weight: 800;
+        }
+        .nav-language {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        @media (max-width: 640px) {
+            nav .brand-block {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+            .language-switcher {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+        @media (min-width: 641px) {
+            nav .brand-block {
+                justify-content: flex-start;
+                text-align: left;
+            }
+        }
         .footer {
             width: 100%;
             color: #6b7280;
@@ -130,29 +168,30 @@
 <body class="bg-gray-50 text-gray-800 min-h-screen">
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-            <a href="https://facemask-detection.com/cn.html" target="_parent" rel="noopener noreferrer">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+            <div class="brand-block flex items-center space-x-3">
+                <a href="https://facemask-detection.com/cn.html" target="_parent" rel="noopener noreferrer">
                     <img class="h-12 sm:h-16" src="gallary/logo.png" alt="WearMask Logo">
                 </a>
                 <div>
-                    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900">WearMask</h1>
+                    <h1 class="hero-title text-gray-900">WearMask</h1>
                     <p class="text-xs sm:text-sm text-gray-500">实时口罩检测</p>
                 </div>
-            </div>
-            <div class="flex items-center space-x-2 text-sm font-medium">
-                <a href="https://facemask-detection.com/" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="English Version">English</a>
-                <a href="https://facemask-detection.com/es.html" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="Spanish Version">Español</a>
-                <a href="https://facemask-detection.com/cn.html" class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 font-semibold" title="Chinese Version">中文</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="max-w-5xl mx-auto px-4 py-8">
+        <!-- Language Switcher (scrolls with content, not fixed in header) -->
+        <div class="language-switcher nav-language text-xs sm:text-sm font-medium mb-4 sm:mb-6 justify-center">
+            <a href="https://facemask-detection.com/" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="English Version">English</a>
+            <a href="https://facemask-detection.com/es.html" class="px-3 py-1.5 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition" title="Spanish Version">Español</a>
+            <a href="https://facemask-detection.com/cn.html" class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 font-semibold" title="Chinese Version">中文</a>
+        </div>
         <!-- Status Indicator -->
         <div class="text-center mb-6 fade-in">
-            <div id="remind" class="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-blue-100 text-blue-700 font-extrabold text-4xl sm:text-6xl">
+            <div id="remind" class="status-pill inline-flex items-center space-x-2 bg-blue-100 text-blue-700">
                 <svg class="animate-spin h-7 w-7 sm:h-8 sm:w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -535,9 +574,9 @@
             // console.log(remind_ctx);
             var remindElement = document.getElementById('remind');
             if (remindElement) {
-                // Update status with appropriate styling - extra large font for long-distance visibility
+                // Update status with appropriate styling - responsive font sizes handled via CSS class
                 var statusText = remind_ctx;
-                var statusClass = 'inline-flex items-center space-x-4 px-8 py-4 rounded-full font-extrabold text-4xl sm:text-6xl';
+                var statusClass = 'status-pill inline-flex items-center space-x-4';
                 
                 if (remind_ctx === '请戴好口罩') {
                     remindElement.className = statusClass + ' bg-red-100 text-red-700';
