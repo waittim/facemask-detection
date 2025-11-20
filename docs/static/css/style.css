@@ -126,3 +126,152 @@ html, body {
   height: 60px;
   border-radius:10% 10% 10% 10%;
 }
+
+/* Modern styles moved from index.html <style> tag */
+body { 
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+body.i18n-loading {
+    visibility: hidden;
+}
+a:link, a:visited { 
+    text-decoration: none;  
+} 
+a:hover { 
+    text-decoration: underline; 
+} 
+video {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+canvas {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.video-container {
+    position: relative;
+    background: #000;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.3s ease-out;
+}
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #3B82F6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.floating-feedback {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+}
+.nav-language {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.language-switcher button {
+    border-radius: 0.75rem;
+    padding: 0.35rem 0.9rem;
+    color: #4b5563;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.language-switcher button.lang-active {
+    background-color: #dbeafe;
+    color: #2563eb;
+    font-weight: 600;
+}
+@media (max-width: 640px) {
+    nav .brand-block {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    .language-switcher {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+.hero-title {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    line-height: 1.2;
+    font-weight: 700;
+}
+.status-pill {
+    font-size: clamp(1.5rem, 4.5vw, 3rem);
+    padding: clamp(0.75rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
+    border-radius: 999px;
+    font-weight: 800;
+}
+details.accordion-card {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(229, 231, 235, 1);
+    background-color: #ffffff;
+}
+details.accordion-card > summary::-webkit-details-marker {
+    display: none;
+}
+details.accordion-card > summary {
+    list-style: none;
+    cursor: pointer;
+}
+details.accordion-card[open] .accordion-chevron {
+    transform: rotate(180deg);
+}
+.accordion-chevron {
+    transition: transform 0.2s ease;
+}
+.footer {
+    width: 100%;
+    color: #6b7280;
+}
+.footer img {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+}

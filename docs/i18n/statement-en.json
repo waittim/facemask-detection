@@ -1,11 +1,11 @@
 {
   "page": {
     "title": "WearMask | Service Statement",
-    "description": "Read the WearMask service statement and privacy commitments."
+    "description": "Read the WearMask service and privacy statement to understand our local browser-based operation."
   },
   "nav": {
     "brand": "WearMask",
-    "back": "← Back to detector"
+    "back": "← Back to Detector"
   },
   "language": {
     "options": {
@@ -16,35 +16,34 @@
   },
   "hero": {
     "title": "Service Statement",
-    "description": "By using the WearMask face mask detection service, you acknowledge that you have read and agree to the statement below. If you do not agree, please stop using the service immediately."
+    "description": "By using the WearMask detection service, you agree to the following terms. If you do not agree, please stop using this service immediately."
   },
   "sections": {
     "service": {
-      "title": "1. Service content",
-      "body": "WearMask is delivered as a web-based experience. By opening the webpage you can access the real-time mask detection reminder functionality."
+      "title": "1. Service Content",
+      "body": "This service is provided as a web page. Simply open the page to access AI-based real-time mask detection and alerts."
     },
     "privacy": {
-      "title": "2. Privacy protection",
-      "collectionTitle": "2.1 Data collection",
-      "collectionBody": "To provide the detection service you grant permission to use your camera feed within the browser. WearMask does not collect or label your mask status.",
-      "storageTitle": "2.2 Data storage and protection",
-      "storageBody": "No captured video, audio, or images are uploaded or stored. All inference happens locally in your browser in real time."
+      "title": "2. Privacy Protection",
+      "collectionTitle": "2.1 Data Collection",
+      "collectionBody": "To provide detection, you must authorize camera access. WearMask analyzes video frames locally on your device and never collects facial recognition data.",
+      "storageTitle": "2.2 Data Storage & Protection",
+      "storageBody": "Powered by WebAssembly, all computations are performed locally in your browser. We do not upload any video, images, or audio to servers. Your data never leaves your device."
     },
     "declaration": {
-      "title": "3. Declaration and guarantee",
-      "body": "You are responsible for ensuring that your use of this service complies with applicable laws and regulations. WearMask only performs detection according to your instructions and does not assume liability for how you use the results."
+      "title": "3. Declaration & Warranty",
+      "body": "You agree to use this service in compliance with applicable laws and are responsible for your content sources. WearMask provides this technical tool based on your instructions and is not liable for legal consequences arising from your use."
     },
     "notice": {
-      "title": "4. Notice and correction",
-      "body": "To reflect policy changes or product updates, we may revise this statement and publish the updated version on this site. Please check back regularly for the latest information."
+      "title": "4. Notice & Updates",
+      "body": "We may update this statement to meet policy or service requirements. Please check this page regularly for the latest information."
     }
   },
   "meta": {
-    "updated": "Last updated: December 16, 2020"
+    "updated": "Last updated: November 1, 2025"
   },
   "footer": {
     "name": "Zekun Wang",
     "org": "Vanderbilt University"
   }
 }
-
