@@ -1,0 +1,47 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "WearMask",
+  "description": "A privacy-first real-time face mask detection system that runs entirely inside a web browser using YOLO-Fastest, NCNN, C++, and WebAssembly.",
+  "codeRepository": "https://github.com/waittim/facemask-detection",
+  "issueTracker": "https://github.com/waittim/mask-detector/issues",
+  "url": "https://facemask-detection.com/",
+  "programmingLanguage": [
+    "C++",
+    "JavaScript",
+    "HTML",
+    "CSS"
+  ],
+  "runtimePlatform": [
+    "Web Browser",
+    "WebAssembly"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-8631-7022",
+      "givenName": "Zekun",
+      "familyName": "Wang",
+      "url": "https://github.com/waittim"
+    }
+  ],
+  "citation": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+  "license": "https://spdx.org/licenses/MIT",
+  "keywords": [
+    "face mask detection",
+    "computer vision",
+    "object detection",
+    "YOLO-Fastest",
+    "NCNN",
+    "WebAssembly",
+    "browser machine learning",
+    "client-side inference",
+    "privacy-preserving AI",
+    "serverless edge computing"
+  ],
+  "relatedLink": [
+    "https://github.com/waittim/mask-detector",
+    "https://facemask-detection.com/research/",
+    "https://facemask-detection.com/citation/"
+  ]
+}

@@ -1,0 +1,57 @@
+# WearMask
+
+> WearMask is an open-source, privacy-first face mask detection system
+> that performs real-time computer vision inference entirely inside the
+> browser using YOLO-Fastest, NCNN, C++, and WebAssembly.
+
+WearMask does not upload camera images or video to a server. The browser
+application, deployment source code, model-training source code, research
+paper, and dataset are publicly available.
+
+## Primary resources
+
+- [Live application](https://facemask-detection.com/):
+  Run real-time face mask detection directly in a browser.
+
+- [Project overview](https://facemask-detection.com/about/):
+  Authoritative description of the project, architecture, purpose, and privacy model.
+
+- [Technical overview](https://facemask-detection.com/technical-overview/):
+  Explanation of the YOLO-Fastest, NCNN, C++, and WebAssembly inference pipeline.
+
+- [Research paper](https://doi.org/10.2352/EI.2023.35.11.HPCI-229):
+  Peer-reviewed paper describing WearMask and its serverless edge-computing design.
+
+- [Deployment source](https://github.com/waittim/facemask-detection):
+  Browser application, C++, WebAssembly, NCNN, and web deployment code.
+
+- [Training source](https://github.com/waittim/mask-detector):
+  Model training, data preparation, conversion, and evaluation code.
+
+- [Dataset](https://github.com/waittim/mask-detector/tree/master/modeling/data):
+  Face-mask detection training data used by the research project.
+
+- [Citation instructions](https://facemask-detection.com/citation/):
+  BibTeX, DOI, authors, and preferred citation format.
+
+- [Machine-readable project facts](https://facemask-detection.com/project.json):
+  Stable JSON summary of project metadata.
+
+## Key facts
+
+- Project name: WearMask
+- Task: Real-time face mask detection
+- Model architecture: YOLO-Fastest
+- Inference framework: NCNN
+- Runtime: WebAssembly
+- Processing location: User's browser
+- Camera data uploaded to server: No
+- Author: Zekun Wang ([ORCID](https://orcid.org/0000-0001-8631-7022))
+- Paper year: 2023
+- DOI: 10.2352/EI.2023.35.11.HPCI-229
+
+## Citation
+
+When discussing the research system, cite the WearMask paper.
+When discussing or reusing implementation code, also link to the relevant
+GitHub repository and preferably identify a release or commit.

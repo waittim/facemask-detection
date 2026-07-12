@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: >
+  If you use WearMask or its browser deployment in your work,
+  please cite the WearMask paper and this software repository.
+title: "WearMask: In-browser Face Mask Detection"
+type: software
+authors:
+  - family-names: Wang
+    given-names: Zekun
+    orcid: "https://orcid.org/0000-0001-8631-7022"
+repository-code: "https://github.com/waittim/facemask-detection"
+url: "https://facemask-detection.com/"
+license: MIT
+preferred-citation:
+  type: article
+  title: >
+    WearMask: Fast in-browser face mask detection with serverless
+    edge computing for COVID-19
+  authors:
+    - family-names: Wang
+      given-names: Zekun
+      orcid: "https://orcid.org/0000-0001-8631-7022"
+    - family-names: Wang
+      given-names: Pengwei
+    - family-names: Louis
+      given-names: Peter C.
+    - family-names: Wheless
+      given-names: Lee E.
+    - family-names: Huo
+      given-names: Yuankai
+  journal: Electronic Imaging
+  volume: 35
+  issue: 11
+  year: 2023
+  doi: 10.2352/EI.2023.35.11.HPCI-229

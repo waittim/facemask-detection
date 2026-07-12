@@ -1,0 +1,24 @@
+{
+  "name": "WearMask",
+  "canonical_url": "https://facemask-detection.com/",
+  "deployment_repository": "https://github.com/waittim/facemask-detection",
+  "training_repository": "https://github.com/waittim/mask-detector",
+  "paper": {
+    "title": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
+    "doi": "10.2352/EI.2023.35.11.HPCI-229",
+    "year": 2023
+  },
+  "task": "real-time face mask object detection",
+  "model": "YOLO-Fastest",
+  "inference_engine": "NCNN",
+  "runtime": "WebAssembly",
+  "processing": "fully client-side",
+  "uploads_camera_data": false,
+  "languages": ["English", "Spanish", "Chinese"],
+  "author": {
+    "name": "Zekun Wang",
+    "orcid": "https://orcid.org/0000-0001-8631-7022"
+  },
+  "license": "MIT",
+  "last_updated": "2026-07-12"
+}

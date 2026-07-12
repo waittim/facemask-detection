@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>WearMask: Free In-Browser Face Mask Detection | Privacy-First AI</title>
+    <title>WearMask: In-browser Face Mask Detection | Privacy-First AI</title>
     
     <link rel="icon" type="image/png" href="static/images/logo_mask.png">
+    <link rel="canonical" href="https://facemask-detection.com/" />
+    <link rel="alternate" type="application/json" href="project.json" title="WearMask project metadata" />
     
-    <meta name="description" content="Real-time face mask detection running locally in your browser via WebAssembly. No server upload, 100% privacy. Powered by NCNN and YOLO-Fastest. Try it free." />
+    <meta name="description" content="WearMask is a real-time face mask detection system that runs entirely in your browser via WebAssembly. No server upload. Powered by YOLO-Fastest and NCNN. Research paper: DOI 10.2352/EI.2023.35.11.HPCI-229." />
     <meta name="keywords" content="face mask detection, browser ai, webassembly, ncnn, yolo, privacy ai, real-time detection" />
     <meta name="author" content="Zekun Wang">
     
@@ -30,17 +32,69 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "WearMask",
-      "url": "https://facemask-detection.com",
-      "description": "Real-time face mask detection running entirely in browser via WebAssembly.",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://facemask-detection.com/#application",
+          "name": "WearMask",
+          "url": "https://facemask-detection.com/",
+          "description": "A real-time face mask detection application that performs computer vision inference entirely inside the browser.",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web Browser",
+          "isAccessibleForFree": true,
+          "browserRequirements": "Requires JavaScript, WebAssembly, and camera permission",
+          "softwareHelp": {
+            "@id": "https://facemask-detection.com/about/#page"
+          },
+          "author": {
+            "@id": "https://facemask-detection.com/#zekun-wang"
+          },
+          "isBasedOn": {
+            "@id": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229"
+          },
+          "sameAs": [
+            "https://github.com/waittim/facemask-detection"
+          ]
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://github.com/waittim/facemask-detection#software",
+          "name": "WearMask browser deployment",
+          "codeRepository": "https://github.com/waittim/facemask-detection",
+          "programmingLanguage": ["C++", "JavaScript", "HTML", "CSS"],
+          "runtimePlatform": "WebAssembly",
+          "author": {
+            "@id": "https://facemask-detection.com/#zekun-wang"
+          },
+          "citation": {
+            "@id": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229"
+          }
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "@id": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+          "headline": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
+          "datePublished": "2023",
+          "identifier": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+          "author": [
+            {"@type": "Person", "name": "Zekun Wang", "sameAs": "https://orcid.org/0000-0001-8631-7022"},
+            {"@type": "Person", "name": "Pengwei Wang"},
+            {"@type": "Person", "name": "Peter C. Louis"},
+            {"@type": "Person", "name": "Lee E. Wheless"},
+            {"@type": "Person", "name": "Yuankai Huo"}
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://facemask-detection.com/#zekun-wang",
+          "name": "Zekun Wang",
+          "url": "https://github.com/waittim",
+          "sameAs": [
+            "https://orcid.org/0000-0001-8631-7022",
+            "https://www.linkedin.com/in/zekun-wang/"
+          ]
+        }
+      ]
     }
     </script>
     
@@ -69,7 +123,7 @@
                     <img class="h-12 sm:h-16" src="static/images/logo_mask.png" alt="WearMask Logo">
                 </a>
                 <div>
-                    <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask: Real-time Face Mask Detection</h1>
+                    <h1 class="hero-title text-gray-900" data-i18n="hero.title">WearMask: In-browser Face Mask Detection</h1>
                     <p class="text-xs sm:text-sm text-gray-500" data-i18n="hero.subtitle">Real-time face mask detection powered by WebAssembly and NCNN</p>
                 </div>
             </div>
@@ -187,6 +241,16 @@
                         <p data-i18n-html="project.paragraph2">
                             This project is open-sourced on GitHub. Contributions are welcome.
                         </p>
+                        <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg p-3" data-i18n="project.disclaimer">
+                            WearMask is a research and demonstration system, not a medical device or diagnostic tool.
+                        </p>
+                        <div class="flex flex-wrap gap-3 text-sm pt-1">
+                            <a href="about/" class="text-blue-600 hover:underline">About</a>
+                            <a href="research/" class="text-blue-600 hover:underline">Research</a>
+                            <a href="citation/" class="text-blue-600 hover:underline">Citation</a>
+                            <a href="technical-overview/" class="text-blue-600 hover:underline">Technical overview</a>
+                            <a href="limitations/" class="text-blue-600 hover:underline">Limitations</a>
+                        </div>
                     </div>
                 </div>
             </details>
@@ -194,6 +258,14 @@
 
         <!-- Footer -->
         <footer class="footer border-t border-gray-200 mt-12">
+            <div class="max-w-5xl mx-auto px-4 pt-6 pb-2 text-center text-xs text-gray-400 flex flex-wrap justify-center gap-x-4 gap-y-1">
+                <a href="about/" class="hover:text-blue-600">About</a>
+                <a href="research/" class="hover:text-blue-600">Research</a>
+                <a href="citation/" class="hover:text-blue-600">Citation</a>
+                <a href="privacy/" class="hover:text-blue-600">Privacy</a>
+                <a href="limitations/" class="hover:text-blue-600">Limitations</a>
+                <a href="llms.txt" class="hover:text-blue-600">llms.txt</a>
+            </div>
             <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="flex items-center space-x-4">
                     <a href="https://www.nsf.gov/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">

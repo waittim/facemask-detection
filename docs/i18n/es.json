@@ -11,7 +11,7 @@
     }
   },
   "hero": {
-    "title": "WearMask",
+    "title": "WearMask: Detección de mascarilla en el navegador",
     "subtitle": "Detección de mascarilla en tiempo real"
   },
   "status": {
@@ -46,7 +46,8 @@
     "label": "Proyecto",
     "title": "Resumen del proyecto",
     "paragraph1": "WearMask (Web-based Efficient AI Recognition of Masks) es un proyecto de aprendizaje profundo basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> y desplegado mediante <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
-    "paragraph2": "Todo el contenido está disponible en <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>. También puedes visitar <a href=\"https://arxiv.org/abs/2101.00784\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a> y mi <a href=\"https://waittim.github.io/2020/11/27/mask-detection/\" target=\"_blank\" rel=\"noopener noreferrer\">blog</a>. Si encuentras resultados incorrectos, envía las capturas a <a href=\"mailto:wearmask.feedback@gmail.com?subject=Incorrect%20case&body=Pon%20tu%20captura%20de%20pantalla%20aqu%C3%AD.\" rel=\"noopener noreferrer\">wearmask.feedback@gmail.com</a>."
+    "paragraph2": "El proyecto está disponible en <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (despliegue)</a> y <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (entrenamiento)</a>. Consulta la <a href=\"research/\" rel=\"noopener noreferrer\">página de investigación</a> y el <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">artículo (DOI)</a>.",
+    "disclaimer": "WearMask es un sistema de investigación y demostración, no un dispositivo médico ni herramienta de diagnóstico."
   },
   "feedback": {
     "button": "Comentarios",
