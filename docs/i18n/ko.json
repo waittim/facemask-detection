@@ -101,7 +101,13 @@
     "snapshotSaved": "스냅샷 저장됨",
     "themeAuto": "테마: 자동(시스템)",
     "themeLight": "테마: 라이트",
-    "themeDark": "테마: 다크"
+    "themeDark": "테마: 다크",
+    "retryCamera": "카메라를 다시 시도하는 중...",
+    "dashboardExpanded": "대시보드가 펼쳐졌습니다",
+    "dashboardCollapsed": "대시보드가 접혔습니다",
+    "detectionPaused": "감지가 일시중지되었습니다",
+    "detectionResumed": "감지를 재개했습니다",
+    "switchingCamera": "카메라를 전환하는 중..."
   },
   "telemetry": {
     "title": "실시간 원격 측정",
@@ -150,6 +156,7 @@
     "res3": "학습 저장소",
     "res4": "연구 논문(DOI)",
     "res5": "기계 판독 프로젝트 정보(JSON)",
+    "res6": "초기 프로젝트 설명 (2020)",
     "disclaimer": "<strong class=\"text-amber-200\">중요:</strong> WearMask는 연구 및 시연 시스템이며 의료 기기 또는 진단 도구가 아닙니다. <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">알려진 제한 사항</a>을 참조하세요."
   },
   "citationPage": {

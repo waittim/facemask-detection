@@ -101,7 +101,13 @@
     "snapshotSaved": "快照已保存",
     "themeAuto": "主题：跟随系统",
     "themeLight": "主题：亮色",
-    "themeDark": "主题：暗色"
+    "themeDark": "主题：暗色",
+    "retryCamera": "正在重试摄像头...",
+    "dashboardExpanded": "已展开仪表盘",
+    "dashboardCollapsed": "已收起仪表盘",
+    "detectionPaused": "检测已暂停",
+    "detectionResumed": "检测已恢复",
+    "switchingCamera": "正在切换摄像头..."
   },
   "telemetry": {
     "title": "实时性能仪表盘",
@@ -150,6 +156,7 @@
     "res3": "训练代码库",
     "res4": "科研论文 (DOI)",
     "res5": "项目事实元数据 (JSON)",
+    "res6": "早期项目详解（2020）",
     "disclaimer": "<strong class=\"text-amber-200\">重要提示：</strong> WearMask 是研究与演示系统，并非医疗器械或诊断工具。参见 <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">已知局限性</a>。"
   },
   "citationPage": {

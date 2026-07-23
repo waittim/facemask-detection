@@ -28,7 +28,7 @@
     <meta name="twitter:description" content="Run AI locally on your device. No installation needed. Protect yourself and others." />
     <meta name="twitter:image" content="https://facemask-detection.com/static/images/social-preview.jpeg" />
     
-    <!-- Early Theme Initialization (Auto / Light / Dark) -->
+    <!-- Early Theme + Language Boot -->
     <script>
     (function() {
         var mode = localStorage.getItem('wearmask.theme') || 'auto';
@@ -45,6 +45,28 @@
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
         }
+
+        var SUPPORTED = ['en','zh','es','fr','de','ja','pt','ko','it','ru'];
+        var BCP = { en:'en', zh:'zh-Hans', es:'es', fr:'fr', de:'de', ja:'ja', pt:'pt', ko:'ko', it:'it', ru:'ru' };
+        function norm(lang) {
+            if (!lang) return null;
+            lang = String(lang).toLowerCase().replace('_', '-');
+            if (SUPPORTED.indexOf(lang) !== -1) return lang;
+            var p = lang.split('-')[0];
+            if (p === 'zh') return 'zh';
+            return SUPPORTED.indexOf(p) !== -1 ? p : null;
+        }
+        var lang = null;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            lang = norm(params.get('lang'));
+            if (lang) localStorage.setItem('wearmask.lang', lang);
+            if (!lang) lang = norm(localStorage.getItem('wearmask.lang'));
+        } catch (e) {}
+        if (!lang) lang = norm(navigator.language || navigator.userLanguage) || 'en';
+        document.documentElement.lang = BCP[lang] || 'en';
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.classList.add('i18n-pending');
     })();
     </script>
 
@@ -92,7 +114,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.0.9">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.1.0">
 
 </head>
 
@@ -142,20 +164,7 @@
                         </svg>
                     </button>
 
-                    <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200">
-                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="en">
-                            <span>English</span>
-                            <span class="lang-check text-cyan-400 hidden">✓</span>
-                        </button>
-                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="es">
-                            <span>Español</span>
-                            <span class="lang-check text-cyan-400 hidden">✓</span>
-                        </button>
-                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="zh">
-                            <span>中文</span>
-                            <span class="lang-check text-cyan-400 hidden">✓</span>
-                        </button>
-                    </div>
+                    <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200 lang-dropdown-scroll" role="listbox" aria-labelledby="lang-dropdown-btn"></div>
                 </div>
             </div>
         </div>
@@ -171,11 +180,11 @@
             </div>
         </div>
 
-        <!-- Main Workspace Grid: Left Video Stage | Right Real-time Telemetry -->
-        <div id="workspace-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-8 transition-all duration-300">
+        <!-- Main Workspace Grid: Left Video Stage | Right Real-time Telemetry (2:1) -->
+        <div id="workspace-grid" class="workspace-grid mb-8">
             
-            <!-- Video Stage Container (Lg: 8 cols) -->
-            <div id="video-col" class="lg:col-span-8 flex flex-col items-center transition-all duration-300">
+            <!-- Video Stage Container -->
+            <div id="video-col" class="video-col flex flex-col items-center">
                 <div id="video-stage" class="video-stage w-full max-w-2xl mx-auto relative overflow-hidden">
                     <!-- Loading Overlay -->
                     <div id="loading-overlay" class="loading-overlay">
@@ -244,7 +253,7 @@
 
                     <span class="ctrl-sep" aria-hidden="true"></span>
 
-                    <button id="btn-toggle-telemetry" type="button" class="ctrl-btn active" title="Toggle Dashboard">
+                    <button id="btn-toggle-telemetry" type="button" class="ctrl-btn active" title="Toggle Dashboard" aria-expanded="true" aria-controls="telemetry-col">
                         <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
@@ -253,8 +262,8 @@
                 </div>
             </div>
 
-            <!-- Telemetry Dashboard Sidebar (Lg: 4 cols) -->
-            <div id="telemetry-col" class="lg:col-span-4 flex flex-col space-y-4 transition-all duration-300">
+            <!-- Telemetry Dashboard Sidebar (~1/3 on large screens) -->
+            <div id="telemetry-col" class="telemetry-col flex flex-col space-y-4" aria-hidden="false">
                 <div class="glass-panel rounded-2xl p-5 border border-white/10">
                     <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
                         <div class="flex items-center space-x-2">
@@ -445,250 +454,13 @@
 
 
     
-    <!-- Internationalization Script -->
     <script>
-    (function() {
-        const SUPPORTED_LANGS = ['en', 'es', 'zh'];
-        const DEFAULT_LANG = 'en';
-        const STORAGE_KEY = 'wearmask.lang';
-        const langButtonsSelector = '[data-switch-lang]';
-
-        const currentLang = detectLanguage();
-        document.documentElement.lang = currentLang === 'zh' ? 'zh' : currentLang;
-
-        const translationsPromise = loadTranslations(currentLang);
-
-        ready(function() {
-            initLanguageButtons();
-            updateLanguageButtons(currentLang);
-            initChromeFlagsCopy();
-
-            translationsPromise.then(function(data) {
-                applyTranslations(data || {});
-                syncChromeFlagsCopyTips(data || {});
-                document.body.classList.remove('i18n-loading');
-                initializeDetection(data || {});
-            }).catch(function(err) {
-                console.error('Failed to load translations', err);
-                document.body.classList.remove('i18n-loading');
-                initializeDetection({});
-            });
-        });
-
-        function syncChromeFlagsCopyTips(dict) {
-            var copyLabel = getValue(dict, 'setup.copyFlags') || 'Copy';
-            var copiedLabel = getValue(dict, 'setup.copiedFlags') || 'Copied!';
-            document.querySelectorAll('.chrome-flags-code').forEach(function(el) {
-                el.setAttribute('data-tip', copyLabel);
-                el.setAttribute('data-tip-copied', copiedLabel);
-                el.setAttribute('aria-label', copyLabel + ' chrome://flags');
-            });
-        }
-
-        function copyTextToClipboard(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                return navigator.clipboard.writeText(text);
-            }
-            return new Promise(function(resolve, reject) {
-                var textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.setAttribute('readonly', '');
-                textarea.style.position = 'fixed';
-                textarea.style.top = '-9999px';
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    var ok = document.execCommand('copy');
-                    document.body.removeChild(textarea);
-                    if (ok) resolve();
-                    else reject(new Error('Copy command failed'));
-                } catch (err) {
-                    document.body.removeChild(textarea);
-                    reject(err);
-                }
-            });
-        }
-
-        function initChromeFlagsCopy() {
-            document.addEventListener('click', function(e) {
-                var target = e.target.closest('.chrome-flags-code');
-                if (!target) return;
-                e.preventDefault();
-                copyChromeFlags(target);
-            });
-
-            document.addEventListener('keydown', function(e) {
-                var target = e.target.closest('.chrome-flags-code');
-                if (!target) return;
-                if (e.key !== 'Enter' && e.key !== ' ') return;
-                e.preventDefault();
-                copyChromeFlags(target);
-            });
-        }
-
-        function copyChromeFlags(el) {
-            if (el.classList.contains('is-copied')) return;
-            copyTextToClipboard('chrome://flags').then(function() {
-                el.classList.add('is-copied');
-                setTimeout(function() {
-                    el.classList.remove('is-copied');
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Failed to copy chrome://flags', err);
-            });
-        }
-
-        function detectLanguage() {
-            const params = new URLSearchParams(window.location.search);
-            const urlLang = normalizeLang(params.get('lang'));
-            if (urlLang) {
-                localStorage.setItem(STORAGE_KEY, urlLang);
-                return urlLang;
-            }
-            const stored = normalizeLang(localStorage.getItem(STORAGE_KEY));
-            if (stored) return stored;
-            const nav = normalizeLang(navigator.language || navigator.userLanguage);
-            if (nav) return nav;
-            return DEFAULT_LANG;
-        }
-
-        function normalizeLang(lang) {
-            if (!lang) return null;
-            lang = lang.toLowerCase();
-            if (lang.startsWith('zh')) return 'zh';
-            if (lang.startsWith('es')) return 'es';
-            if (lang.startsWith('en')) return 'en';
-            return SUPPORTED_LANGS.includes(lang) ? lang : null;
-        }
-
-        function loadTranslations(lang) {
-            return fetch('i18n/' + lang + '.json?v=' + Date.now())
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error('Failed to load translations');
-                    }
-                    return response.json();
-                })
-                .then(function(data) {
-                    if (data && data.page) {
-                        if (data.page.title) document.title = data.page.title;
-                        if (data.page.description) {
-                            var meta = document.querySelector('meta[name="description"]');
-                            if (meta) meta.setAttribute('content', data.page.description);
-                        }
-                    }
-                    return data;
-                });
-        }
-
-        function applyTranslations(dict) {
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var value = getValue(dict, el.getAttribute('data-i18n'));
-                if (value !== undefined && value !== null) {
-                    el.textContent = value;
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-                var value = getValue(dict, el.getAttribute('data-i18n-html'));
-                if (value !== undefined && value !== null) {
-                    el.innerHTML = value;
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-attr]').forEach(function(el) {
-                var mappings = el.getAttribute('data-i18n-attr').split('|');
-                mappings.forEach(function(mapping) {
-                    var parts = mapping.split(':');
-                    if (parts.length !== 2) return;
-                    var attr = parts[0].trim();
-                    var key = parts[1].trim();
-                    var value = getValue(dict, key);
-                    if (attr && value !== undefined && value !== null) {
-                        el.setAttribute(attr, value);
-                    }
-                });
-            });
-        }
-
-        function getValue(obj, path) {
-            if (!obj || !path) return undefined;
-            return path.split('.').reduce(function(acc, key) {
-                return acc && acc[key] !== undefined ? acc[key] : undefined;
-            }, obj);
-        }
-
-        const LANG_DISPLAY_NAMES = {
-            'en': 'English',
-            'es': 'Español',
-            'zh': '中文'
-        };
-
-        function initLanguageButtons() {
-            var dropdownBtn = document.getElementById('lang-dropdown-btn');
-            var dropdownMenu = document.getElementById('lang-dropdown-menu');
-            var optionBtns = document.querySelectorAll('.lang-option-btn');
-
-            if (dropdownBtn && dropdownMenu) {
-                dropdownBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    var isOpen = !dropdownMenu.classList.contains('hidden');
-                    dropdownMenu.classList.toggle('hidden', isOpen);
-                    dropdownBtn.setAttribute('aria-expanded', !isOpen);
-                });
-
-                document.addEventListener('click', function(e) {
-                    if (!dropdownMenu.classList.contains('hidden') && !dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                        dropdownMenu.classList.add('hidden');
-                        dropdownBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            optionBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var selectedLang = btn.getAttribute('data-lang');
-                    if (selectedLang) {
-                        switchLanguage(selectedLang);
-                        if (dropdownMenu) dropdownMenu.classList.add('hidden');
-                    }
-                });
-            });
-        }
-
-        function updateLanguageButtons(lang) {
-            var labelEl = document.getElementById('lang-current-label');
-            if (labelEl) {
-                labelEl.textContent = LANG_DISPLAY_NAMES[lang] || 'English';
-            }
-            document.querySelectorAll('.lang-option-btn').forEach(function(btn) {
-                var isActive = btn.getAttribute('data-lang') === lang;
-                var check = btn.querySelector('.lang-check');
-                if (check) check.classList.toggle('hidden', !isActive);
-                btn.classList.toggle('font-bold', isActive);
-                btn.classList.toggle('text-cyan-400', isActive);
-            });
-        }
-
-        function switchLanguage(lang) {
-            if (!SUPPORTED_LANGS.includes(lang)) return;
-            if (lang === currentLang) return;
-            localStorage.setItem(STORAGE_KEY, lang);
-            var url = new URL(window.location.href);
-            url.searchParams.set('lang', lang);
-            window.location.href = url.toString();
-        }
-
-        function ready(fn) {
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', fn);
-            } else {
-                fn();
-            }
-        }
-    })();
+    window.WearMaskOnI18nReady = function(dict) {
+        initializeDetection(dict || {});
+    };
     </script>
-    
+    <script src="static/js/i18n.js?v=3.1.0"></script>
+    <script src="static/js/site-common.js?v=3.1.0"></script>
     <script src="static/js/vendor/wasmFeatureDetect.js?version=2.0.3"></script>
     
     <!-- AI Detection & Telemetry Engine -->
@@ -1018,12 +790,12 @@
                         iconPause.classList.add('hidden');
                         iconPlay.classList.remove('hidden');
                         if (labelPause) labelPause.textContent = resolveTranslation('controls.resume', 'Resume');
-                        showToast('Detection stream paused');
+                        showToast(resolveTranslation('toast.detectionPaused', 'Detection paused'));
                     } else {
                         iconPlay.classList.add('hidden');
                         iconPause.classList.remove('hidden');
                         if (labelPause) labelPause.textContent = resolveTranslation('controls.pause', 'Pause');
-                        showToast('Detection stream resumed');
+                        showToast(resolveTranslation('toast.detectionResumed', 'Detection resumed'));
                     }
                 });
             }
@@ -1034,7 +806,7 @@
                 btnFlip.addEventListener('click', function() {
                     currentFacingMode = (currentFacingMode === 'user') ? 'environment' : 'user';
                     initializeStream();
-                    showToast('Switching camera...');
+                    showToast(resolveTranslation('toast.switchingCamera', 'Switching camera...'));
                 });
             }
 
@@ -1043,7 +815,7 @@
             if (btnRetryCamera) {
                 btnRetryCamera.addEventListener('click', function() {
                     initializeStream();
-                    showToast('Retrying camera stream...');
+                    showToast(resolveTranslation('toast.retryCamera', 'Retrying camera...'));
                 });
             }
 
@@ -1057,15 +829,14 @@
                     link.download = 'wearmask_snapshot_' + Date.now() + '.png';
                     link.href = canvas.toDataURL('image/png');
                     link.click();
-                    showToast('Snapshot saved!');
+                    showToast(resolveTranslation('toast.snapshotSaved', 'Snapshot saved'));
                 });
             }
 
-            // Dashboard Toggle & Collapsing Logic
+            // Dashboard Toggle & Collapsing Logic (proportional 2:1 grid animation)
             var btnToggleTelemetry = document.getElementById('btn-toggle-telemetry');
             var btnCloseTelemetry = document.getElementById('btn-close-telemetry');
             var workspaceGrid = document.getElementById('workspace-grid');
-            var videoCol = document.getElementById('video-col');
             var telemetryCol = document.getElementById('telemetry-col');
 
             var isTelemetryVisible = localStorage.getItem('wearmask.telemetry_visible') !== 'false';
@@ -1073,105 +844,40 @@
             function applyTelemetryVisibility(visible) {
                 isTelemetryVisible = visible;
                 localStorage.setItem('wearmask.telemetry_visible', visible ? 'true' : 'false');
-                
-                if (btnToggleTelemetry) btnToggleTelemetry.classList.toggle('active', visible);
 
-                if (!telemetryCol || !videoCol || !workspaceGrid) return;
-
-                if (visible) {
-                    telemetryCol.classList.remove('hidden');
-                    videoCol.className = 'lg:col-span-8 flex flex-col items-center transition-all duration-300';
-                    workspaceGrid.className = 'grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-8 transition-all duration-300';
-                } else {
-                    telemetryCol.classList.add('hidden');
-                    videoCol.className = 'lg:col-span-12 flex flex-col items-center justify-center transition-all duration-300';
-                    workspaceGrid.className = 'grid grid-cols-1 items-center justify-center gap-6 mb-8 transition-all duration-300';
+                if (btnToggleTelemetry) {
+                    btnToggleTelemetry.classList.toggle('active', visible);
+                    btnToggleTelemetry.setAttribute('aria-expanded', visible ? 'true' : 'false');
                 }
+
+                if (!telemetryCol || !workspaceGrid) return;
+
+                workspaceGrid.classList.toggle('is-telemetry-collapsed', !visible);
+                telemetryCol.setAttribute('aria-hidden', visible ? 'false' : 'true');
             }
 
-            // Apply initial state
+            // Apply initial state without animating on first paint
+            if (workspaceGrid) workspaceGrid.classList.add('no-transition');
             applyTelemetryVisibility(isTelemetryVisible);
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    if (workspaceGrid) workspaceGrid.classList.remove('no-transition');
+                });
+            });
 
             if (btnToggleTelemetry) {
                 btnToggleTelemetry.addEventListener('click', function() {
                     applyTelemetryVisibility(!isTelemetryVisible);
-                    showToast(isTelemetryVisible ? 'Dashboard expanded' : 'Dashboard collapsed');
+                    showToast(isTelemetryVisible
+                        ? resolveTranslation('toast.dashboardExpanded', 'Dashboard expanded')
+                        : resolveTranslation('toast.dashboardCollapsed', 'Dashboard collapsed'));
                 });
             }
 
             if (btnCloseTelemetry) {
                 btnCloseTelemetry.addEventListener('click', function() {
                     applyTelemetryVisibility(false);
-                    showToast('Dashboard collapsed');
-                });
-            }
-
-            // Single-Button 3-Mode Theme Cycling (Auto -> Light -> Dark)
-            var btnThemeCycle = document.getElementById('btn-theme-cycle');
-            var iconAuto = document.getElementById('theme-icon-auto');
-            var iconLight = document.getElementById('theme-icon-light');
-            var iconDark = document.getElementById('theme-icon-dark');
-
-            var THEME_MODES = ['auto', 'light', 'dark'];
-
-            function applyThemeMode(mode) {
-                var isDark = false;
-                if (mode === 'auto') {
-                    isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                } else {
-                    isDark = mode === 'dark';
-                }
-
-                var htmlEl = document.documentElement;
-                if (isDark) {
-                    htmlEl.classList.remove('light');
-                    htmlEl.classList.add('dark');
-                } else {
-                    htmlEl.classList.remove('dark');
-                    htmlEl.classList.add('light');
-                }
-
-                localStorage.setItem('wearmask.theme', mode);
-                updateThemeIconUI(mode);
-            }
-
-            function updateThemeIconUI(mode) {
-                if (iconAuto) iconAuto.classList.toggle('hidden', mode !== 'auto');
-                if (iconLight) iconLight.classList.toggle('hidden', mode !== 'light');
-                if (iconDark) iconDark.classList.toggle('hidden', mode !== 'dark');
-
-                if (btnThemeCycle) {
-                    if (mode === 'auto') btnThemeCycle.title = 'System Theme (Click to switch)';
-                    else if (mode === 'light') btnThemeCycle.title = 'Light Mode (Click to switch)';
-                    else if (mode === 'dark') btnThemeCycle.title = 'Dark Mode (Click to switch)';
-                }
-            }
-
-            var currentMode = localStorage.getItem('wearmask.theme') || 'auto';
-            applyThemeMode(currentMode);
-
-            // Listen to OS system color scheme changes when in 'auto' mode
-            if (window.matchMedia) {
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-                    if ((localStorage.getItem('wearmask.theme') || 'auto') === 'auto') {
-                        applyThemeMode('auto');
-                    }
-                });
-            }
-
-            if (btnThemeCycle) {
-                btnThemeCycle.addEventListener('click', function() {
-                    var current = localStorage.getItem('wearmask.theme') || 'auto';
-                    var idx = THEME_MODES.indexOf(current);
-                    var nextMode = THEME_MODES[(idx + 1) % THEME_MODES.length];
-                    applyThemeMode(nextMode);
-
-                    var toastLabels = {
-                        'auto': 'System theme enabled',
-                        'light': 'Light mode enabled',
-                        'dark': 'Dark mode enabled'
-                    };
-                    showToast(toastLabels[nextMode]);
+                    showToast(resolveTranslation('toast.dashboardCollapsed', 'Dashboard collapsed'));
                 });
             }
         }
@@ -1201,6 +907,9 @@
         }
 
         function resolveTranslation(path, fallback) {
+            if (window.WearMaskI18n) {
+                return WearMaskI18n.t(path, fallback);
+            }
             if (!translations || !path) return fallback;
             var value = path.split('.').reduce(function(acc, key) {
                 return acc && acc[key] !== undefined ? acc[key] : undefined;

@@ -101,7 +101,13 @@
     "snapshotSaved": "スナップショットを保存しました",
     "themeAuto": "テーマ: 自動（システム）",
     "themeLight": "テーマ: ライト",
-    "themeDark": "テーマ: ダーク"
+    "themeDark": "テーマ: ダーク",
+    "retryCamera": "カメラを再試行しています...",
+    "dashboardExpanded": "ダッシュボードを展開しました",
+    "dashboardCollapsed": "ダッシュボードを折りたたみました",
+    "detectionPaused": "検出を一時停止しました",
+    "detectionResumed": "検出を再開しました",
+    "switchingCamera": "カメラを切り替えています..."
   },
   "telemetry": {
     "title": "リアルタイムテレメトリ",
@@ -150,6 +156,7 @@
     "res3": "学習リポジトリ",
     "res4": "研究論文（DOI）",
     "res5": "機械可読プロジェクト情報（JSON）",
+    "res6": "初期プロジェクト解説（2020）",
     "disclaimer": "<strong class=\"text-amber-200\">重要:</strong> WearMask は研究・デモンストレーションシステムであり、医療機器または診断ツールではありません。<a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">既知の制限事項</a>をご覧ください。"
   },
   "citationPage": {

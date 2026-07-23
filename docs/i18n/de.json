@@ -101,7 +101,13 @@
     "snapshotSaved": "Schnappschuss gespeichert",
     "themeAuto": "Design: Automatisch (System)",
     "themeLight": "Design: Hell",
-    "themeDark": "Design: Dunkel"
+    "themeDark": "Design: Dunkel",
+    "retryCamera": "Kamera wird erneut versucht...",
+    "dashboardExpanded": "Dashboard geöffnet",
+    "dashboardCollapsed": "Dashboard geschlossen",
+    "detectionPaused": "Erkennung pausiert",
+    "detectionResumed": "Erkennung fortgesetzt",
+    "switchingCamera": "Kamera wird gewechselt..."
   },
   "telemetry": {
     "title": "Echtzeit-Telemetrie",
@@ -150,6 +156,7 @@
     "res3": "Trainings-Repository",
     "res4": "Forschungsarbeit (DOI)",
     "res5": "Maschinenlesbare Projektdaten (JSON)",
+    "res6": "Frühe Projektbeschreibung (2020)",
     "disclaimer": "<strong class=\"text-amber-200\">Wichtig:</strong> WearMask ist ein Forschungs- und Demonstrationssystem, kein Medizinprodukt oder Diagnosewerkzeug. Siehe <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">bekannte Einschränkungen</a>."
   },
   "citationPage": {

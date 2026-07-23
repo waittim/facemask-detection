@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark" data-i18n-title-key="aboutPage.title">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +9,12 @@
     <link rel="icon" type="image/svg+xml" href="../static/images/logo_mask_v2.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.4">
-
-    <!-- Early Theme Initialization -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.1.0">
+    <!-- Early Theme + Language Boot -->
     <script>
     (function() {
         var mode = localStorage.getItem('wearmask.theme') || 'auto';
-        var isDark = false;
-        if (mode === 'auto') {
-            isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        } else {
-            isDark = mode === 'dark';
-        }
+        var isDark = mode === 'dark' || (mode === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
         if (isDark) {
             document.documentElement.classList.remove('light');
             document.documentElement.classList.add('dark');
@@ -28,10 +22,31 @@
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
         }
+        var SUPPORTED = ['en','zh','es','fr','de','ja','pt','ko','it','ru'];
+        var BCP = { en:'en', zh:'zh-Hans', es:'es', fr:'fr', de:'de', ja:'ja', pt:'pt', ko:'ko', it:'it', ru:'ru' };
+        function norm(lang) {
+            if (!lang) return null;
+            lang = String(lang).toLowerCase().replace('_', '-');
+            if (SUPPORTED.indexOf(lang) !== -1) return lang;
+            var p = lang.split('-')[0];
+            if (p === 'zh') return 'zh';
+            return SUPPORTED.indexOf(p) !== -1 ? p : null;
+        }
+        var lang = null;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            lang = norm(params.get('lang'));
+            if (lang) localStorage.setItem('wearmask.lang', lang);
+            if (!lang) lang = norm(localStorage.getItem('wearmask.lang'));
+        } catch (e) {}
+        if (!lang) lang = norm(navigator.language || navigator.userLanguage) || 'en';
+        document.documentElement.lang = BCP[lang] || 'en';
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.classList.add('i18n-pending');
     })();
     </script>
 </head>
-<body class="relative min-h-screen flex flex-col justify-between">
+<body class="i18n-loading relative min-h-screen flex flex-col justify-between">
     <div class="bg-glow-container">
         <div class="bg-glow-1"></div>
         <div class="bg-glow-2"></div>
@@ -73,20 +88,7 @@
                         </svg>
                     </button>
 
-                    <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200">
-                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="en">
-                            <span>English</span>
-                            <span class="lang-check text-cyan-400 hidden">✓</span>
-                        </button>
-                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="es">
-                            <span>Español</span>
-                            <span class="lang-check text-cyan-400 hidden">✓</span>
-                        </button>
-                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="zh">
-                            <span>中文</span>
-                            <span class="lang-check text-cyan-400 hidden">✓</span>
-                        </button>
-                    </div>
+                                        <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200 lang-dropdown-scroll" role="listbox" aria-labelledby="lang-dropdown-btn"></div>
                 </div>
             </div>
         </div>
@@ -170,11 +172,12 @@
             <section class="space-y-3">
                 <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q6_title">Related resources</h2>
                 <ul class="list-disc list-inside space-y-2 text-cyan-400">
-                    <li><a href="../index.html" class="hover:underline" data-i18n="nav.liveDemo">Live demo</a></li>
-                    <li><a href="https://github.com/waittim/facemask-detection" class="hover:underline">Deployment repository</a> (this project)</li>
-                    <li><a href="https://github.com/waittim/mask-detector" class="hover:underline">Training repository</a></li>
-                    <li><a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="hover:underline">Research paper (DOI)</a></li>
-                    <li><a href="../project.json" class="hover:underline">Machine-readable project facts (JSON)</a></li>
+                    <li><a href="../index.html" class="hover:underline" data-i18n="aboutPage.res1">Live demo</a></li>
+                    <li><a href="https://github.com/waittim/facemask-detection" class="hover:underline" data-i18n="aboutPage.res2">Deployment repository (this project)</a></li>
+                    <li><a href="https://github.com/waittim/mask-detector" class="hover:underline" data-i18n="aboutPage.res3">Training repository</a></li>
+                    <li><a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="hover:underline" data-i18n="aboutPage.res4">Research paper (DOI)</a></li>
+                    <li><a href="https://www.zekun.blog/2020/12/01/mask-detection-report/" target="_blank" rel="noopener noreferrer" class="hover:underline" data-i18n="aboutPage.res6">Early project write-up (2020)</a></li>
+                    <li><a href="../project.json" class="hover:underline" data-i18n="aboutPage.res5">Machine-readable project facts (JSON)</a></li>
                 </ul>
             </section>
 
@@ -194,6 +197,7 @@
             <a href="../privacy/" class="text-cyan-400 hover:underline" data-i18n="nav.privacy">Privacy & Limitations</a>
         </div>
     </footer>
-    <script src="../static/js/site-common.js"></script>
+    <script src="../static/js/i18n.js?v=3.1.0"></script>
+    <script src="../static/js/site-common.js?v=3.1.0"></script>
 </body>
 </html>

@@ -1,18 +1,25 @@
-/* WearMask Site-Wide Shared Interactions (Theme & i18n Dropdown & Subpage Translation) */
+/* WearMask site-wide shared interactions: theme cycle + i18n bootstrap */
 (function() {
-    var THEME_MODES = ['auto', 'light', 'dark'];
-    var LANG_DISPLAY_NAMES = {
-        'en': 'English',
-        'es': 'Español',
-        'zh': '中文'
-    };
+    'use strict';
 
-    function initSiteControls() {
-        // Theme Cycling Logic
+    var THEME_MODES = ['auto', 'light', 'dark'];
+
+    function initTheme() {
         var btnThemeCycle = document.getElementById('btn-theme-cycle');
         var iconAuto = document.getElementById('theme-icon-auto');
         var iconLight = document.getElementById('theme-icon-light');
         var iconDark = document.getElementById('theme-icon-dark');
+
+        function themeTitle(mode) {
+            if (window.WearMaskI18n) {
+                if (mode === 'auto') return WearMaskI18n.t('toast.themeAuto', 'System Theme (Click to switch)');
+                if (mode === 'light') return WearMaskI18n.t('toast.themeLight', 'Light Mode (Click to switch)');
+                if (mode === 'dark') return WearMaskI18n.t('toast.themeDark', 'Dark Mode (Click to switch)');
+            }
+            if (mode === 'auto') return 'System Theme (Click to switch)';
+            if (mode === 'light') return 'Light Mode (Click to switch)';
+            return 'Dark Mode (Click to switch)';
+        }
 
         function applyThemeMode(mode) {
             var isDark = false;
@@ -31,142 +38,150 @@
                 htmlEl.classList.add('light');
             }
 
-            localStorage.setItem('wearmask.theme', mode);
+            try { localStorage.setItem('wearmask.theme', mode); } catch (e) {}
             if (iconAuto) iconAuto.classList.toggle('hidden', mode !== 'auto');
             if (iconLight) iconLight.classList.toggle('hidden', mode !== 'light');
             if (iconDark) iconDark.classList.toggle('hidden', mode !== 'dark');
 
             if (btnThemeCycle) {
-                if (mode === 'auto') btnThemeCycle.title = 'System Theme (Click to switch)';
-                else if (mode === 'light') btnThemeCycle.title = 'Light Mode (Click to switch)';
-                else if (mode === 'dark') btnThemeCycle.title = 'Dark Mode (Click to switch)';
+                var title = themeTitle(mode);
+                btnThemeCycle.title = title;
+                btnThemeCycle.setAttribute('aria-label', title);
             }
         }
 
-        var currentMode = localStorage.getItem('wearmask.theme') || 'auto';
+        var currentMode = 'auto';
+        try { currentMode = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
         applyThemeMode(currentMode);
 
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-                if ((localStorage.getItem('wearmask.theme') || 'auto') === 'auto') {
-                    applyThemeMode('auto');
-                }
+                var mode = 'auto';
+                try { mode = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
+                if (mode === 'auto') applyThemeMode('auto');
             });
         }
 
         if (btnThemeCycle) {
             btnThemeCycle.addEventListener('click', function() {
-                var current = localStorage.getItem('wearmask.theme') || 'auto';
+                var current = 'auto';
+                try { current = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
                 var idx = THEME_MODES.indexOf(current);
                 var nextMode = THEME_MODES[(idx + 1) % THEME_MODES.length];
                 applyThemeMode(nextMode);
+
+                var toast = document.getElementById('toast-msg');
+                if (toast && window.WearMaskI18n) {
+                    var key = nextMode === 'auto' ? 'toast.themeAuto'
+                        : (nextMode === 'light' ? 'toast.themeLight' : 'toast.themeDark');
+                    toast.textContent = WearMaskI18n.t(key, themeTitle(nextMode));
+                    toast.classList.add('show');
+                    setTimeout(function() { toast.classList.remove('show'); }, 2500);
+                }
             });
         }
+    }
 
-        // Detect Language
-        var params = new URLSearchParams(window.location.search);
-        var urlLang = params.get('lang');
-        var currentLang = 'en';
-
-        if (urlLang && ['en', 'es', 'zh'].indexOf(urlLang) !== -1) {
-            currentLang = urlLang;
-            localStorage.setItem('wearmask.lang', currentLang);
-        } else {
-            var storedLang = localStorage.getItem('wearmask.lang');
-            if (storedLang && ['en', 'es', 'zh'].indexOf(storedLang) !== -1) {
-                currentLang = storedLang;
-            } else {
-                var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-                if (browserLang.indexOf('zh') === 0) currentLang = 'zh';
-                else if (browserLang.indexOf('es') === 0) currentLang = 'es';
-                else currentLang = 'en';
+    function resolveI18nBasePath() {
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++) {
+            var src = scripts[i].getAttribute('src') || '';
+            if (src.indexOf('site-common.js') !== -1 || src.indexOf('i18n.js') !== -1) {
+                if (src.indexOf('../') !== -1) return '../i18n/';
+                return 'i18n/';
             }
         }
+        var path = window.location.pathname || '';
+        if (/\/(about|privacy|technical-overview|research|citation|limitations)(\/|$)/.test(path)) {
+            return '../i18n/';
+        }
+        return 'i18n/';
+    }
 
-        // Language Dropdown Logic
-        var dropdownBtn = document.getElementById('lang-dropdown-btn');
-        var dropdownMenu = document.getElementById('lang-dropdown-menu');
-        var optionBtns = document.querySelectorAll('.lang-option-btn');
-        var currentLabel = document.getElementById('lang-current-label');
-
-        if (currentLabel) currentLabel.textContent = LANG_DISPLAY_NAMES[currentLang] || 'English';
-
-        optionBtns.forEach(function(btn) {
-            var isActive = btn.getAttribute('data-lang') === currentLang;
-            var check = btn.querySelector('.lang-check');
-            if (check) check.classList.toggle('hidden', !isActive);
-            btn.classList.toggle('font-bold', isActive);
-            btn.classList.toggle('text-cyan-400', isActive);
-
-            btn.addEventListener('click', function() {
-                var selectedLang = btn.getAttribute('data-lang');
-                if (selectedLang) {
-                    localStorage.setItem('wearmask.lang', selectedLang);
-                    var url = new URL(window.location.href);
-                    url.searchParams.set('lang', selectedLang);
-                    window.location.href = url.toString();
+    function initChromeFlagsCopy() {
+        function copyTextToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+            return new Promise(function(resolve, reject) {
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    var ok = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (ok) resolve();
+                    else reject(new Error('Copy command failed'));
+                } catch (err) {
+                    document.body.removeChild(textarea);
+                    reject(err);
                 }
             });
+        }
+
+        function syncTips() {
+            var copyLabel = window.WearMaskI18n ? WearMaskI18n.t('setup.copyFlags', 'Copy') : 'Copy';
+            var copiedLabel = window.WearMaskI18n ? WearMaskI18n.t('setup.copiedFlags', 'Copied!') : 'Copied!';
+            document.querySelectorAll('.chrome-flags-code').forEach(function(el) {
+                el.setAttribute('data-tip', copyLabel);
+                el.setAttribute('data-tip-copied', copiedLabel);
+                el.setAttribute('aria-label', copyLabel + ' chrome://flags');
+            });
+        }
+
+        function copyChromeFlags(el) {
+            if (el.classList.contains('is-copied')) return;
+            copyTextToClipboard('chrome://flags').then(function() {
+                el.classList.add('is-copied');
+                setTimeout(function() {
+                    el.classList.remove('is-copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy chrome://flags', err);
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            var target = e.target.closest && e.target.closest('.chrome-flags-code');
+            if (!target) return;
+            e.preventDefault();
+            copyChromeFlags(target);
         });
 
-        if (dropdownBtn && dropdownMenu) {
-            dropdownBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                var isOpen = !dropdownMenu.classList.contains('hidden');
-                dropdownMenu.classList.toggle('hidden', isOpen);
-                dropdownBtn.setAttribute('aria-expanded', !isOpen);
-            });
+        document.addEventListener('keydown', function(e) {
+            var target = e.target.closest && e.target.closest('.chrome-flags-code');
+            if (!target) return;
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            copyChromeFlags(target);
+        });
 
-            document.addEventListener('click', function(e) {
-                if (!dropdownMenu.classList.contains('hidden') && !dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                    dropdownMenu.classList.add('hidden');
-                    dropdownBtn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
+        return syncTips;
+    }
 
-        // Dynamic i18n Translation for Subpages
-        var isSubpage = document.querySelector('script[src*="../static/js/site-common.js"]') !== null;
-        var fetchPath = isSubpage ? '../i18n/' + currentLang + '.json' : 'i18n/' + currentLang + '.json';
-
-        fetch(fetchPath)
-            .then(function(res) { return res.json(); })
-            .then(function(dict) {
-                if (!dict) return;
-                applyDictionary(dict);
-            })
-            .catch(function(err) {
-                console.warn('Failed to load subpage i18n dictionary:', err);
-            });
-
-        function getNestedValue(obj, path) {
-            return path.split('.').reduce(function(acc, key) {
-                return acc && acc[key] !== undefined ? acc[key] : undefined;
-            }, obj);
-        }
-
-        function applyDictionary(data) {
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                var val = getNestedValue(data, key);
-                if (val !== undefined && val !== null && typeof val === 'string') {
-                    el.textContent = val;
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-html');
-                var val = getNestedValue(data, key);
-                if (val !== undefined && val !== null && typeof val === 'string') {
-                    el.innerHTML = val;
+    function init() {
+        initTheme();
+        var syncChromeTips = initChromeFlagsCopy();
+        if (window.WearMaskI18n) {
+            WearMaskI18n.init({
+                basePath: resolveI18nBasePath(),
+                onReady: function(dict, lang) {
+                    syncChromeTips();
+                    if (typeof window.WearMaskOnI18nReady === 'function') {
+                        window.WearMaskOnI18nReady(dict, lang);
+                    }
                 }
             });
         }
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSiteControls);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        initSiteControls();
+        init();
     }
 })();

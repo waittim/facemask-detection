@@ -101,7 +101,13 @@
     "snapshotSaved": "Снимок сохранён",
     "themeAuto": "Тема: Авто (система)",
     "themeLight": "Тема: Светлая",
-    "themeDark": "Тема: Тёмная"
+    "themeDark": "Тема: Тёмная",
+    "retryCamera": "Повторная попытка камеры...",
+    "dashboardExpanded": "Панель развёрнута",
+    "dashboardCollapsed": "Панель свёрнута",
+    "detectionPaused": "Обнаружение приостановлено",
+    "detectionResumed": "Обнаружение возобновлено",
+    "switchingCamera": "Переключение камеры..."
   },
   "telemetry": {
     "title": "Телеметрия в реальном времени",
@@ -150,6 +156,7 @@
     "res3": "Репозиторий обучения",
     "res4": "Исследовательская статья (DOI)",
     "res5": "Машиночитаемые данные проекта (JSON)",
+    "res6": "Раннее описание проекта (2020)",
     "disclaimer": "<strong class=\"text-amber-200\">Важно:</strong> WearMask — исследовательская и демонстрационная система, не медицинское устройство и не диагностический инструмент. См. <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">известные ограничения</a>."
   },
   "citationPage": {

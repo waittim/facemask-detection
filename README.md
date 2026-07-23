@@ -174,7 +174,7 @@ emmake make
 ## Features
 
 - Real-time face mask detection using WebAssembly
-- Multi-language support (English, Spanish, Chinese)
+- Multi-language support (English, Chinese, Spanish, French, German, Japanese, Portuguese, Korean, Italian, Russian)
 - Fully client-side processing (privacy-first)
 - Responsive design for desktop and mobile
 
