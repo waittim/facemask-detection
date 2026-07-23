@@ -61,13 +61,13 @@
                     </svg>
                 </button>
 
-                <div id="lang-dropdown-wrapper" class="relative inline-block text-left">
-                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center space-x-1.5 text-xs font-medium" title="Change Language" aria-expanded="false" aria-haspopup="true">
-                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="lang-dropdown-wrapper" class="relative inline-block text-left shrink-0">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="true">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
-                        <span id="lang-current-label">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span id="lang-current-label" class="whitespace-nowrap">English</span>
+                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -92,16 +92,14 @@
     </nav>
 
     <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1 items-center">
             <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
-            <span>/</span>
+            <span class="text-gray-600">/</span>
             <span class="text-white font-medium" data-i18n="nav.about">About</span>
-            <span class="hidden sm:inline text-gray-600">|</span>
-            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical overview</a>
-            <a href="../research/" class="hover:text-cyan-400" data-i18n="nav.research">Research</a>
-            <a href="../citation/" class="hover:text-cyan-400" data-i18n="nav.citation">Citation</a>
-            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy</a>
-            <a href="../limitations/" class="hover:text-cyan-400" data-i18n="nav.limitations">Limitations</a>
+            <span class="text-gray-600">/</span>
+            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <span class="text-gray-600">/</span>
+            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
         </nav>
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
@@ -186,11 +184,11 @@
 
     <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
         <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
-            <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">Source code</a>
+            <a href="https://github.com/waittim/facemask-detection" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">Source code</a>
             <span>·</span>
-            <a href="../citation/" class="text-cyan-400 hover:underline">Citation</a>
+            <a href="../technical-overview/" class="text-cyan-400 hover:underline" data-i18n="nav.technicalOverview">Technical & Research</a>
             <span>·</span>
-            <a href="../llms.txt" class="text-cyan-400 hover:underline">llms.txt</a>
+            <a href="../privacy/" class="text-cyan-400 hover:underline" data-i18n="nav.privacy">Privacy & Limitations</a>
         </div>
     </footer>
     <script src="../static/js/site-common.js"></script>

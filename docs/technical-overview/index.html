@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Overview | WearMask</title>
-    <meta name="description" content="Technical pipeline for WearMask: YOLO-Fastest, NCNN, C++, WebAssembly, and browser-based real-time face mask detection." />
+    <title>Technical Overview & Research | WearMask</title>
+    <meta name="description" content="Technical architecture, peer-reviewed paper, and citation info for WearMask: YOLO-Fastest, NCNN, C++, WebAssembly, and browser-based face mask detection." />
     <link rel="canonical" href="https://facemask-detection.com/technical-overview/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -30,6 +30,28 @@
         }
     })();
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
+      "author": [
+        {"@type": "Person", "name": "Zekun Wang", "sameAs": "https://orcid.org/0000-0001-8631-7022"},
+        {"@type": "Person", "name": "Pengwei Wang"},
+        {"@type": "Person", "name": "Peter C. Louis"},
+        {"@type": "Person", "name": "Lee E. Wheless"},
+        {"@type": "Person", "name": "Yuankai Huo"}
+      ],
+      "datePublished": "2023",
+      "isPartOf": {
+        "@type": "PublicationVolume",
+        "volumeNumber": 35,
+        "issueNumber": 11
+      },
+      "identifier": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+      "sameAs": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229"
+    }
+    </script>
 </head>
 <body class="relative min-h-screen flex flex-col justify-between">
     <div class="bg-glow-container">
@@ -45,7 +67,7 @@
             </a>
             
             <div class="flex items-center space-x-2">
-                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex">
+                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex" data-i18n="nav.liveDemo">
                     ← Live demo
                 </a>
 
@@ -61,13 +83,13 @@
                     </svg>
                 </button>
 
-                <div id="lang-dropdown-wrapper" class="relative inline-block text-left">
-                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center space-x-1.5 text-xs font-medium" title="Change Language" aria-expanded="false" aria-haspopup="true">
-                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="lang-dropdown-wrapper" class="relative inline-block text-left shrink-0">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="true">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
-                        <span id="lang-current-label">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span id="lang-current-label" class="whitespace-nowrap">English</span>
+                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -92,25 +114,28 @@
     </nav>
 
     <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-cyan-400">About</a>
-            <span>/</span>
-            <span class="text-white font-medium">Technical overview</span>
-            <span class="hidden sm:inline text-gray-600">|</span>
-            <a href="../research/" class="hover:text-cyan-400">Research</a>
-            <a href="../citation/" class="hover:text-cyan-400">Citation</a>
-            <a href="../privacy/" class="hover:text-cyan-400">Privacy</a>
-            <a href="../limitations/" class="hover:text-cyan-400">Limitations</a>
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1 items-center">
+            <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
+            <span class="text-gray-600">/</span>
+            <a href="../about/" class="hover:text-cyan-400" data-i18n="nav.about">About</a>
+            <span class="text-gray-600">/</span>
+            <span class="text-white font-medium" data-i18n="nav.technicalOverview">Technical & Research</span>
+            <span class="text-gray-600">/</span>
+            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
         </nav>
 
-        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-10 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="techPage.title">Technical Overview</h1>
-                <p class="text-gray-400" data-i18n="techPage.subtitle">End-to-end architecture of the WearMask browser deployment and training pipeline.</p>
+                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="techPage.title">Technical Overview & Research</h1>
+                <p class="text-gray-400" data-i18n="techPage.subtitle">End-to-end architecture of the WearMask browser deployment, C++ WebAssembly pipeline, and published research paper.</p>
             </header>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec1_title">Core AI Pipeline</h2>
+            <!-- Technical Architecture -->
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <span data-i18n="techPage.sec1_title">Core AI Pipeline</span>
+                </h2>
                 <p data-i18n="techPage.sec1_body">
                     WearMask combines YOLO-Fastest with Tencent NCNN framework compiled into WebAssembly for high-speed client-side C++ execution.
                 </p>
@@ -124,15 +149,8 @@
   → canvas rendering</pre>
             </section>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec2_title">Hardware Acceleration</h2>
-                <p data-i18n="techPage.sec2_body">
-                    Leverages WebAssembly SIMD and multi-threading for fast real-time inference on modern CPUs.
-                </p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec2_title">Training and conversion pipeline</h2>
+            <section class="space-y-4">
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec2_title">Training & Model Conversion Pipeline</h2>
                 <p data-i18n-html="techPage.sec2_desc">Model training and conversion are implemented in the <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> repository:</p>
                 <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">PyTorch training (YOLO-Fastest)
   → Darknet weights (.weights)
@@ -143,45 +161,94 @@
   → WebAssembly (.wasm + .js + .data)</pre>
             </section>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec3_title">Core technologies</h2>
+            <section class="space-y-4">
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec3_title">Core Technologies</h2>
                 <dl class="grid sm:grid-cols-2 gap-4">
-                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech1_k">Model</dt><dd data-i18n="techPage.tech1_v">YOLO-Fastest (object detection)</dd></div>
-                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech2_k">Training</dt><dd data-i18n="techPage.tech2_v">PyTorch (mask-detector)</dd></div>
-                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech3_k">Inference engine</dt><dd data-i18n-html="techPage.tech3_v"><a href="https://github.com/Tencent/ncnn" class="text-cyan-400 hover:underline">NCNN</a></dd></div>
-                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech4_k">Browser runtime</dt><dd data-i18n-html="techPage.tech4_v"><a href="https://webassembly.org/" class="text-cyan-400 hover:underline">WebAssembly</a> via Emscripten</dd></div>
-                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech5_k">Frontend</dt><dd data-i18n="techPage.tech5_v">HTML, CSS, JavaScript</dd></div>
-                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech6_k">Deployment</dt><dd data-i18n="techPage.tech6_v">GitHub Pages (static hosting)</dd></div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech1_k">Model</dt><dd data-i18n="techPage.tech1_v">YOLO-Fastest (object detection)</dd></div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech2_k">Training</dt><dd data-i18n="techPage.tech2_v">PyTorch (mask-detector)</dd></div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech3_k">Inference Engine</dt><dd data-i18n-html="techPage.tech3_v"><a href="https://github.com/Tencent/ncnn" class="text-cyan-400 hover:underline">NCNN</a></dd></div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech4_k">Browser Runtime</dt><dd data-i18n-html="techPage.tech4_v"><a href="https://webassembly.org/" class="text-cyan-400 hover:underline">WebAssembly</a> via Emscripten</dd></div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech5_k">Frontend</dt><dd data-i18n="techPage.tech5_v">HTML, CSS, JavaScript</dd></div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech6_k">Deployment</dt><dd data-i18n="techPage.tech6_v">GitHub Pages (static hosting)</dd></div>
                 </dl>
             </section>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec4_title">Detection classes</h2>
-                <ul class="list-disc list-inside space-y-1">
-                    <li data-i18n="techPage.cls1">Background</li>
-                    <li data-i18n="techPage.cls2">No Mask</li>
-                    <li data-i18n="techPage.cls3">Mask</li>
-                </ul>
+            <!-- Peer-Reviewed Research Section -->
+            <section id="research" class="space-y-4 pt-4 border-t border-white/10">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span data-i18n="researchPage.sec1_title">Peer-Reviewed Publication</span>
+                </h2>
+                <div class="bg-slate-950/60 border border-white/10 rounded-2xl p-5 space-y-3">
+                    <p class="font-semibold text-cyan-300 text-base leading-snug" data-i18n="researchPage.paperName">
+                        WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19
+                    </p>
+                    <p data-i18n-html="researchPage.authors">
+                        <strong class="text-white">Authors:</strong>
+                        <a href="https://orcid.org/0000-0001-8631-7022" class="text-cyan-400 hover:underline">Zekun Wang</a>,
+                        Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo
+                    </p>
+                    <p data-i18n-html="researchPage.journal">
+                        <strong class="text-white">Journal:</strong> Electronic Imaging, Volume 35, Issue 11, 2023
+                    </p>
+                    <p data-i18n-html="researchPage.doi">
+                        <strong class="text-white">DOI:</strong>
+                        <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">10.2352/EI.2023.35.11.HPCI-229</a>
+                    </p>
+                </div>
             </section>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec5_title">Source code locations</h2>
-                <ul class="list-disc list-inside space-y-2 text-cyan-400">
-                    <li data-i18n-html="techPage.src1"><strong class="text-white">C++ inference:</strong> <a href="https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp" class="hover:underline">src/yolo.cpp</a></li>
-                    <li data-i18n-html="techPage.src2"><strong class="text-white">HTML / CSS UI:</strong> <a href="https://github.com/waittim/facemask-detection/blob/master/docs/index.html" class="hover:underline">docs/index.html</a></li>
-                    <li data-i18n-html="techPage.src3"><strong class="text-white">Training scripts:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">mask-detector</a></li>
-                </ul>
+            <!-- Citation (BibTeX) Section -->
+            <section id="citation" class="space-y-4 pt-4 border-t border-white/10">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <span data-i18n="citationPage.bibtexTitle">BibTeX Citation</span>
+                    </h2>
+                    <button id="btn-copy-bibtex" type="button" class="text-xs bg-white/10 hover:bg-white/20 text-cyan-300 px-3 py-1.5 rounded-lg border border-white/10 transition flex items-center space-x-1">
+                        <span>Copy BibTeX</span>
+                    </button>
+                </div>
+                <pre id="bibtex-code" class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto leading-relaxed">@article{wang2023wearmask,
+  title={WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19},
+  author={Wang, Zekun and Wang, Pengwei and Louis, Peter C and Wheless, Lee E and Huo, Yuankai},
+  journal={Electronic Imaging},
+  volume={35},
+  number={11},
+  pages={229--1},
+  year={2023},
+  publisher={Society for Imaging Science and Technology},
+  doi={10.2352/EI.2023.35.11.HPCI-229}
+}</pre>
             </section>
         </article>
     </main>
 
     <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
         <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
-            <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">Source code</a>
+            <a href="https://github.com/waittim/facemask-detection" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">Source code</a>
             <span>·</span>
-            <a href="../about/" class="text-cyan-400 hover:underline">About</a>
+            <a href="../about/" class="text-cyan-400 hover:underline" data-i18n="nav.about">About</a>
+            <span>·</span>
+            <a href="../privacy/" class="text-cyan-400 hover:underline" data-i18n="nav.privacy">Privacy & Limitations</a>
         </div>
     </footer>
+
     <script src="../static/js/site-common.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var copyBtn = document.getElementById('btn-copy-bibtex');
+        var bibtexCode = document.getElementById('bibtex-code');
+        if (copyBtn && bibtexCode) {
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(bibtexCode.textContent.trim()).then(function() {
+                    var originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<span class="text-emerald-400">✓ Copied!</span>';
+                    setTimeout(function() { copyBtn.innerHTML = originalText; }, 2000);
+                });
+            });
+        }
+    });
+    </script>
 </body>
 </html>

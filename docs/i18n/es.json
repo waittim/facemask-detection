@@ -37,16 +37,16 @@
   },
   "privacy": {
     "label": "Privacidad",
-    "title": "Declaración de privacidad",
+    "title": "Privacidad y Limitaciones",
     "body": "Todo se ejecuta completamente dentro de tu navegador mediante WebAssembly. Ninguna imagen o video sale de tu dispositivo y no se guardan datos en ningún servidor. Puedes desconectar Internet una vez iniciada la detección.",
-    "linkText": "Leer la declaración de servicio completa →",
-    "linkHref": "privacy/statement.html?lang=es"
+    "linkText": "Leer privacidad y servicio →",
+    "linkHref": "privacy/"
   },
   "project": {
     "label": "Proyecto",
     "title": "Descripción del proyecto",
     "paragraph1": "WearMask (Web-based Efficient AI Recognition of Masks) es un proyecto de aprendizaje profundo basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a>, y desplegado mediante <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
-    "paragraph2": "Este proyecto es de código abierto en <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (despliegue)</a> y <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (entrenamiento)</a>. Consulta la <a href=\"research/\" rel=\"noopener noreferrer\">página de investigación</a> y el <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">artículo (DOI)</a>.",
+    "paragraph2": "Este proyecto es de código abierto en <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (despliegue)</a> y <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (entrenamiento)</a>. Consulta <a href=\"technical-overview/#research\" rel=\"noopener noreferrer\">Técnica e Investigación</a> y el <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">artículo (DOI)</a>.",
     "disclaimer": "WearMask es un sistema de investigación y demostración, no un dispositivo médico ni una herramienta de diagnóstico."
   },
   "feedback": {
@@ -101,11 +101,8 @@
   "nav": {
     "home": "Inicio",
     "about": "Acerca de",
-    "technicalOverview": "Arquitectura técnica",
-    "research": "Investigación",
-    "citation": "Cita",
-    "privacy": "Privacidad",
-    "limitations": "Limitaciones",
+    "technicalOverview": "Técnica e Investigación",
+    "privacy": "Privacidad y Limitaciones",
     "liveDemo": "Demostración en vivo"
   },
   "aboutPage": {
@@ -236,6 +233,23 @@
     "sec5_title": "Ubicación del código fuente",
     "src1": "<strong class=\"text-white\">Inferencia C++:</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp\" class=\"hover:underline\">src/yolo.cpp</a>",
     "src2": "<strong class=\"text-white\">Interfaz HTML / CSS:</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/docs/index.html\" class=\"hover:underline\">docs/index.html</a>",
-    "src3": "<strong class=\"text-white\">Scripts de entrenamiento:</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">mask-detector/modeling</a>"
+    "src3": "<strong class=\"text-white\">Scripts de entrenamiento:</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">mask-detector</a>"
+  },
+  "statement": {
+    "title": "Declaración Completa del Servicio",
+    "heroTitle": "Declaración Completa del Servicio",
+    "heroDesc": "Al utilizar el servicio de detección WearMask, usted acepta los siguientes términos. Si no está de acuerdo, deje de usar este servicio inmediatamente.",
+    "sec1_title": "1. Contenido del Servicio",
+    "sec1_body": "Este servicio se proporciona como una página web. Simplemente abra la página para acceder a la detección y alertas de mascarillas en tiempo real basadas en IA.",
+    "sec2_title": "2. Protección de Privacidad",
+    "sec2_1_title": "2.1 Recopilación de Datos",
+    "sec2_1_body": "Para proporcionar la detección, debe autorizar el acceso a la cámara. WearMask analiza los fotogramas localmente en su dispositivo y nunca recopila datos de reconocimiento facial.",
+    "sec2_2_title": "2.2 Almacenamiento y Protección",
+    "sec2_2_body": "Impulsado por WebAssembly, todos los cálculos se realizan localmente en su navegador. No subimos videos, imágenes ni audio a servidores. Sus datos nunca salen de su dispositivo.",
+    "sec3_title": "3. Declaración y Garantía",
+    "sec3_body": "Usted acepta utilizar este servicio de conformidad con las leyes aplicables y es responsable de sus fuentes de contenido. WearMask proporciona esta herramienta técnica basada en sus instrucciones y no es responsable de las consecuencias legales derivadas de su uso.",
+    "sec4_title": "4. Aviso y Actualizaciones",
+    "sec4_body": "Podemos actualizar esta declaración para cumplir con requisitos políticos o de servicio. Por favor, revise esta página regularmente para obtener la información más reciente.",
+    "metaUpdated": "Última actualización: 1 de noviembre de 2025"
   }
 }

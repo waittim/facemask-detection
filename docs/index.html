@@ -134,13 +134,13 @@
                 </button>
 
                 <!-- Language Dropdown Menu (Unified theme-toggle-btn Style) -->
-                <div id="lang-dropdown-wrapper" class="relative inline-block text-left">
-                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center space-x-1.5 text-xs font-medium" title="Change Language" aria-expanded="false" aria-haspopup="true">
-                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="lang-dropdown-wrapper" class="relative inline-block text-left shrink-0">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="true">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
-                        <span id="lang-current-label">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span id="lang-current-label" class="whitespace-nowrap">English</span>
+                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -343,10 +343,10 @@
         <!-- 3-Column Glassmorphism Feature Cards Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-16 sm:mt-20 mb-16">
             <!-- Setup Guide Card -->
-            <div class="glass-panel rounded-2xl px-8 py-7 flex flex-col justify-between border border-white/10 hover:border-cyan-500/30 transition shadow-lg">
+            <div class="glass-panel rounded-2xl px-7 sm:px-8 pt-6 sm:pt-6.5 pb-8 sm:pb-9 flex flex-col justify-between border border-white/10 hover:border-cyan-500/30 transition shadow-lg">
                 <div>
                     <div class="flex items-center space-x-3 mb-5">
-                        <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-3 py-1 rounded-lg text-xs font-bold" data-i18n="setup.label">Setup</span>
+                        <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-3 py-1 rounded-lg text-xs font-bold shrink-0" data-i18n="setup.label">Setup</span>
                         <h3 class="font-bold text-base text-white tracking-wide" data-i18n="setup.title">How to get the best experience?</h3>
                     </div>
                     <ul class="space-y-3 text-xs text-gray-300 list-disc pl-5 leading-relaxed">
@@ -356,37 +356,32 @@
                         <li data-i18n="setup.steps.3">Safari on iOS is supported but may run at a lower frame rate.</li>
                     </ul>
                 </div>
-                <div class="pt-4 mt-5 border-t border-white/5">
-                    <p class="text-[11px] text-gray-400" data-i18n="setup.note">
-                        Frame rate depends on your device CPU.
-                    </p>
-                </div>
             </div>
 
             <!-- Privacy Statement Card -->
-            <div class="glass-panel rounded-2xl px-8 py-7 flex flex-col justify-between border border-white/10 hover:border-emerald-500/30 transition shadow-lg">
+            <div class="glass-panel rounded-2xl px-7 sm:px-8 pt-6 sm:pt-6.5 pb-8 sm:pb-9 flex flex-col justify-between border border-white/10 hover:border-emerald-500/30 transition shadow-lg">
                 <div>
                     <div class="flex items-center space-x-3 mb-5">
-                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg text-xs font-bold" data-i18n="privacy.label">Privacy</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg text-xs font-bold shrink-0" data-i18n="privacy.label">Privacy</span>
                         <h3 class="font-bold text-base text-white tracking-wide" data-i18n="privacy.title">Privacy statement</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed mb-5 px-1" data-i18n="privacy.body">
                         Everything runs fully inside your browser via WebAssembly. No images or video leave your device.
                     </p>
                 </div>
-                <div class="pt-4 border-t border-white/5">
+                <div class="pt-4 border-t border-white/10 mt-5">
                     <a class="text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-medium inline-flex items-center gap-1" target="_parent" rel="noopener noreferrer"
                        data-i18n="privacy.linkText" data-i18n-attr="href:privacy.linkHref">
-                        Read the full service statement →
+                        Read privacy & service statement →
                     </a>
                 </div>
             </div>
 
             <!-- Project Overview Card -->
-            <div class="glass-panel rounded-2xl px-8 py-7 flex flex-col justify-between border border-white/10 hover:border-indigo-500/30 transition shadow-lg">
+            <div class="glass-panel rounded-2xl px-7 sm:px-8 pt-6 sm:pt-6.5 pb-8 sm:pb-9 flex flex-col justify-between border border-white/10 hover:border-indigo-500/30 transition shadow-lg">
                 <div>
                     <div class="flex items-center space-x-3 mb-5">
-                        <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-lg text-xs font-bold" data-i18n="project.label">Project</span>
+                        <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-lg text-xs font-bold shrink-0" data-i18n="project.label">Project</span>
                         <h3 class="font-bold text-base text-white tracking-wide" data-i18n="project.title">Project overview</h3>
                     </div>
                     <div class="space-y-3.5 text-xs text-gray-300 leading-relaxed mb-5">
@@ -396,14 +391,14 @@
                         <p data-i18n-html="project.paragraph2">
                             This project is open-sourced on GitHub. Contributions are welcome.
                         </p>
-                        <p class="text-[11px] text-amber-300 bg-amber-950/40 border border-amber-500/30 rounded-xl px-4 py-3 mt-2 leading-relaxed" data-i18n="project.disclaimer">
+                        <p class="text-[11px] text-amber-300 bg-amber-950/40 border border-amber-500/30 rounded-xl px-4 py-2.5 mt-3 leading-relaxed" data-i18n="project.disclaimer">
                             WearMask is a research and demonstration system, not a medical device or diagnostic tool.
                         </p>
                     </div>
                 </div>
-                <div class="pt-4 border-t border-white/5">
-                    <a href="research/" class="text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-medium inline-flex items-center gap-1">
-                        Explore research paper & details →
+                <div class="pt-4 border-t border-white/10 mt-5">
+                    <a href="technical-overview/#research" class="text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-medium inline-flex items-center gap-1" data-i18n="nav.technicalOverview">
+                        Technical & Research →
                     </a>
                 </div>
             </div>
@@ -415,11 +410,9 @@
     <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-400 mb-6">
-                <a href="about/" class="hover:text-cyan-400 transition">About</a>
-                <a href="research/" class="hover:text-cyan-400 transition">Research</a>
-                <a href="citation/" class="hover:text-cyan-400 transition">Citation</a>
-                <a href="privacy/" class="hover:text-cyan-400 transition">Privacy</a>
-                <a href="limitations/" class="hover:text-cyan-400 transition">Limitations</a>
+                <a href="about/" class="hover:text-cyan-400 transition" data-i18n="nav.about">About</a>
+                <a href="technical-overview/" class="hover:text-cyan-400 transition" data-i18n="nav.technicalOverview">Technical & Research</a>
+                <a href="privacy/" class="hover:text-cyan-400 transition" data-i18n="nav.privacy">Privacy & Limitations</a>
                 <a href="llms.txt" class="hover:text-cyan-400 transition">llms.txt</a>
             </div>
             

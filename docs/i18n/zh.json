@@ -37,16 +37,16 @@
   },
   "privacy": {
     "label": "隐私",
-    "title": "隐私声明",
+    "title": "隐私与已知局限",
     "body": "该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。",
-    "linkText": "查看完整的服务声明 →",
-    "linkHref": "privacy/statement.html?lang=zh"
+    "linkText": "查看隐私与服务声明 →",
+    "linkHref": "privacy/"
   },
   "project": {
     "label": "项目",
     "title": "项目简介",
     "paragraph1": "WearMask（Web-based Efficient AI Recognition of Masks） 是一个基于 <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a> 的深度学习项目，采用 <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> 训练，通过 <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> 和 <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a> 实现浏览器端实时运行。",
-    "paragraph2": "项目已在 <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub（部署）</a> 和 <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub（训练）</a> 开源。请参阅 <a href=\"research/\" rel=\"noopener noreferrer\">研究页面</a> 和 <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">论文（DOI）</a>。",
+    "paragraph2": "项目已在 <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub（部署）</a> 和 <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub（训练）</a> 开源。请参阅 <a href=\"technical-overview/#research\" rel=\"noopener noreferrer\">技术架构与论文</a> 和 <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">论文（DOI）</a>。",
     "disclaimer": "WearMask 是研究与演示系统，并非医疗器械或诊断工具。"
   },
   "feedback": {
@@ -101,11 +101,8 @@
   "nav": {
     "home": "首页",
     "about": "关于项目",
-    "technicalOverview": "技术架构",
-    "research": "科研论文",
-    "citation": "引用指南",
-    "privacy": "隐私声明",
-    "limitations": "已知局限性",
+    "technicalOverview": "技术架构与论文",
+    "privacy": "隐私与已知局限",
     "liveDemo": "实时体验"
   },
   "aboutPage": {
@@ -237,5 +234,22 @@
     "src1": "<strong class=\"text-white\">C++ 推理包装逻辑：</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp\" class=\"hover:underline\">src/yolo.cpp</a>",
     "src2": "<strong class=\"text-white\">HTML / CSS 界面：</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/docs/index.html\" class=\"hover:underline\">docs/index.html</a>",
     "src3": "<strong class=\"text-white\">模型训练脚本：</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">mask-detector/modeling</a>"
+  },
+  "statement": {
+    "title": "服务声明（完整条款）",
+    "heroTitle": "完整服务与法律声明",
+    "heroDesc": "当您使用 WearMask 口罩检测服务，即表示您已阅读并同意以下内容。如不同意，请立即停止使用本服务。",
+    "sec1_title": "1. 服务内容",
+    "sec1_body": "本服务以网页形式提供。您只需打开页面，即可获得基于 AI 的实时口罩佩戴检测与提醒功能。",
+    "sec2_title": "2. 隐私保护",
+    "sec2_1_title": "2.1 数据采集",
+    "sec2_1_body": "为提供检测服务，您需授权网页调用摄像头。WearMask 仅在您的设备本地分析画面特征，绝不采集人脸识别信息。",
+    "sec2_2_title": "2.2 数据存储与保护",
+    "sec2_2_body": "本服务基于 WebAssembly 技术，所有计算均在浏览器本地完成。我们不会将任何视频、图像或音频上传至服务器，真正做到数据不出设备。",
+    "sec3_title": "3. 声明与保证",
+    "sec3_body": "您应保证使用本服务符合相关法律法规，并对内容来源及获取的合规性负责。WearMask 仅按您的指令提供技术工具，不对您使用该工具产生的后果负责。",
+    "sec4_title": "4. 通知与修订",
+    "sec4_body": "为满足政策或服务需求，我们可能更新本声明并在网站发布最新内容。请定期查阅以了解最新信息。",
+    "metaUpdated": "更新日期：2025年11月1日"
   }
 }

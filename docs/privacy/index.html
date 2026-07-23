@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy | WearMask</title>
-    <meta name="description" content="WearMask privacy model: all face mask detection runs locally in the browser. No camera images or video are uploaded to a server." />
+    <title>Privacy & Limitations | WearMask</title>
+    <meta name="description" content="Privacy commitment and system limitations for WearMask: 100% in-browser WebAssembly processing with zero server data telemetry." />
     <link rel="canonical" href="https://facemask-detection.com/privacy/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,7 +45,7 @@
             </a>
             
             <div class="flex items-center space-x-2">
-                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex">
+                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex" data-i18n="nav.liveDemo">
                     ← Live demo
                 </a>
 
@@ -61,13 +61,13 @@
                     </svg>
                 </button>
 
-                <div id="lang-dropdown-wrapper" class="relative inline-block text-left">
-                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center space-x-1.5 text-xs font-medium" title="Change Language" aria-expanded="false" aria-haspopup="true">
-                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="lang-dropdown-wrapper" class="relative inline-block text-left shrink-0">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="true">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
-                        <span id="lang-current-label">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span id="lang-current-label" class="whitespace-nowrap">English</span>
+                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -92,43 +92,51 @@
     </nav>
 
     <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-cyan-400">About</a>
-            <a href="../technical-overview/" class="hover:text-cyan-400">Technical overview</a>
-            <a href="../research/" class="hover:text-cyan-400">Research</a>
-            <a href="../citation/" class="hover:text-cyan-400">Citation</a>
-            <span>/</span>
-            <span class="text-white font-medium">Privacy</span>
-            <span class="hidden sm:inline text-gray-600">|</span>
-            <a href="../limitations/" class="hover:text-cyan-400">Limitations</a>
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1 items-center">
+            <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
+            <span class="text-gray-600">/</span>
+            <a href="../about/" class="hover:text-cyan-400" data-i18n="nav.about">About</a>
+            <span class="text-gray-600">/</span>
+            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <span class="text-gray-600">/</span>
+            <span class="text-white font-medium" data-i18n="nav.privacy">Privacy & Limitations</span>
         </nav>
 
-        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-10 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="privacyPage.title">Privacy Model</h1>
-                <p class="text-gray-400" data-i18n="privacyPage.subtitle">How WearMask handles camera data and user privacy.</p>
+                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="privacyPage.title">Privacy & Limitations</h1>
+                <p class="text-gray-400" data-i18n="privacyPage.subtitle">How WearMask handles camera data, user privacy commitments, and known system boundaries.</p>
             </header>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec1_title">Client-side processing</h2>
+            <!-- Privacy Commitments Section -->
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span data-i18n="privacyPage.sec1_title">100% Client-Side Privacy Model</span>
+                </h2>
                 <p data-i18n="privacyPage.sec1_body">
                     WearMask performs all face mask detection entirely inside your web browser using WebAssembly.
                     Camera frames are processed locally on your device. No images, video, or detection results
                     are uploaded to a WearMask application server.
                 </p>
+                <div class="grid sm:grid-cols-3 gap-3 pt-2">
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                        <strong class="text-white text-xs block" data-i18n="privacyPage.sec2_title">Zero Image Storage</strong>
+                        <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item1">Camera images or video are never stored or uploaded remotely.</span>
+                    </div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                        <strong class="text-white text-xs block">No Backend Tracking</strong>
+                        <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item2">Detection results are never transmitted to backend databases.</span>
+                    </div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                        <strong class="text-white text-xs block">No Account Required</strong>
+                        <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item3">No registration, sign-in, or personal identification needed.</span>
+                    </div>
+                </div>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec2_title">What is not collected</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li data-i18n="privacyPage.sec2_item1">Camera images or video are not stored or uploaded.</li>
-                    <li data-i18n="privacyPage.sec2_item2">Mask-wearing detection results are not sent to a backend.</li>
-                    <li data-i18n="privacyPage.sec2_item3">No user accounts or personal identification is required.</li>
-                </ul>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec3_title">Offline operation</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec3_title">Offline Operation</h2>
                 <p data-i18n="privacyPage.sec3_body">
                     After the WebAssembly model files are loaded, detection can continue even if you disconnect
                     from the internet. The initial page load requires network access to download the application
@@ -136,21 +144,113 @@
                 </p>
             </section>
 
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec4_title">Full service statement</h2>
-                <p data-i18n-html="privacyPage.sec4_body">
-                    For the complete legal service statement (available in English, Spanish, and Chinese), see:
-                    <a href="statement.html" class="text-cyan-400 hover:underline">Privacy service statement</a>
-                </p>
+            <!-- Limitations Section -->
+            <section id="limitations" class="space-y-4 pt-4 border-t border-white/10">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <span data-i18n="limitationsPage.title">System Limitations & Scope</span>
+                </h2>
+                
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-xs sm:text-sm text-amber-200" data-i18n-html="limitationsPage.disclaimer">
+                    <strong class="text-amber-200">Non-Medical Device Disclaimer:</strong> WearMask is a research prototype and public demonstration project. It is not a medical device or diagnostic tool and must not be used for medical diagnosis or safety enforcement.
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-base font-semibold text-white" data-i18n="limitationsPage.sec1_title">Detection Accuracy & Edge Cases</h3>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-gray-300">
+                        <li data-i18n="limitationsPage.sec1_item1">Detection performance depends on camera resolution, lighting, and frame rates.</li>
+                        <li data-i18n="limitationsPage.sec1_item2">Low light, heavy shadows, or strong backlighting may reduce accuracy.</li>
+                        <li data-i18n="limitationsPage.sec1_item3">Extreme side angles, small faces, or heavy physical occlusions may cause missed detections.</li>
+                        <li data-i18n="limitationsPage.sec1_item4">The model evaluates visual mask presence, not medical filter rating or seal tightness.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-base font-semibold text-white" data-i18n="limitationsPage.sec2_title">Browser & Hardware Dependencies</h3>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-gray-300">
+                        <li data-i18n="limitationsPage.sec2_item1">Inference speed varies across devices depending on CPU capabilities.</li>
+                        <li data-i18n="limitationsPage.sec2_item2">Modern Chrome with WebAssembly SIMD and multi-threading provides optimal performance.</li>
+                        <li data-i18n="limitationsPage.sec2_item3">iOS Safari is supported but may yield lower frame rates on older devices.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Full Service Statement Section -->
+            <section id="statement" class="space-y-4 pt-4 border-t border-white/10">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1.001 1.001 0 01.707.293l5.414 5.414a1.001 1.001 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <span data-i18n="statement.title">Full Legal Service Statement</span>
+                </h2>
+                
+                <details class="accordion-card group bg-slate-950/60 border border-white/10 rounded-2xl p-5 overflow-hidden transition-all duration-300">
+                    <summary class="cursor-pointer flex items-center justify-between font-semibold text-white text-base select-none">
+                        <span class="text-cyan-300 flex items-center gap-2">
+                            <span data-i18n="statement.heroTitle">Service Statement (Terms & Legal Privacy)</span>
+                        </span>
+                        <span class="text-xs text-cyan-400 group-open:hidden">Expand ↓</span>
+                        <span class="text-xs text-cyan-400 hidden group-open:inline">Collapse ↑</span>
+                    </summary>
+                    
+                    <div class="mt-5 space-y-6 text-xs sm:text-sm text-gray-300 border-t border-white/10 pt-4 leading-relaxed">
+                        <p class="text-gray-400 italic" data-i18n="statement.heroDesc">
+                            By using the WearMask detection service, you agree to the following terms. If you do not agree, please stop using this service immediately.
+                        </p>
+
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec1_title">1. Service Content</h3>
+                            <p data-i18n="statement.sec1_body">
+                                This service is provided as a web page. Simply open the page to access AI-based real-time mask detection and alerts.
+                            </p>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec2_title">2. Privacy Protection</h3>
+                            
+                            <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_1_title">2.1 Data Collection</h4>
+                                <p data-i18n="statement.sec2_1_body">
+                                    To provide detection, you must authorize camera access. WearMask analyzes video frames locally on your device and never collects facial recognition data.
+                                </p>
+                            </div>
+
+                            <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_2_title">2.2 Data Storage & Protection</h4>
+                                <p data-i18n="statement.sec2_2_body">
+                                    Powered by WebAssembly, all computations are performed locally in your browser. We do not upload any video, images, or audio to servers. Your data never leaves your device.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec3_title">3. Declaration & Warranty</h3>
+                            <p data-i18n="statement.sec3_body">
+                                You agree to use this service in compliance with applicable laws and are responsible for your content sources. WearMask provides this technical tool based on your instructions and is not liable for legal consequences arising from your use.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec4_title">4. Notice & Updates</h3>
+                            <p data-i18n="statement.sec4_body">
+                                We may update this statement to meet policy or service requirements. Please check this page regularly for the latest information.
+                            </p>
+                        </div>
+
+                        <div class="pt-2 text-right">
+                            <span class="text-xs text-gray-500 italic" data-i18n="statement.metaUpdated">Last updated: November 1, 2025</span>
+                        </div>
+                    </div>
+                </details>
             </section>
         </article>
     </main>
 
     <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
         <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
-            <a href="statement.html" class="text-cyan-400 hover:underline">Full statement</a>
+            <a href="#statement" class="text-cyan-400 hover:underline" data-i18n="statement.title">Full Statement</a>
             <span>·</span>
-            <a href="../limitations/" class="text-cyan-400 hover:underline">Limitations</a>
+            <a href="../technical-overview/" class="text-cyan-400 hover:underline" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <span>·</span>
+            <a href="../about/" class="text-cyan-400 hover:underline" data-i18n="nav.about">About</a>
         </div>
     </footer>
     <script src="../static/js/site-common.js"></script>

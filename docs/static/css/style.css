@@ -375,6 +375,8 @@ details.accordion-card[open] .accordion-chevron {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .language-switcher button:hover,
@@ -650,6 +652,31 @@ html.light .language-switcher button.lang-active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#lang-dropdown-btn {
+  height: 2.25rem;
+  padding: 0 0.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.375rem !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+  box-sizing: border-box !important;
+}
+
+#lang-dropdown-btn svg {
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+
+#lang-current-label {
+  white-space: nowrap !important;
+  display: inline-block !important;
 }
 
 .theme-toggle-btn:hover {
@@ -793,13 +820,86 @@ html.light footer {
   border-top-color: #e2e8f0 !important;
 }
 
-html.light .bg-slate-950\/80 {
-  background-color: #f1f5f9 !important;
+/* Light Mode Overrides for Cards, Containers & Layout Blocks */
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/90,
+html.light .bg-slate-950\/95,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/95 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .bg-white\/5,
+html.light .bg-white\/10 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
 }
 
 html.light .border-white\/5,
 html.light .border-white\/10 {
   border-color: #e2e8f0 !important;
+}
+
+/* Light Mode High-Contrast Typography & Link Colors */
+html.light .text-cyan-400 {
+  color: #0284c7 !important;
+}
+
+html.light .text-cyan-300 {
+  color: #0369a1 !important;
+}
+
+html.light a.text-cyan-400:hover,
+html.light a.text-cyan-300:hover,
+html.light .hover\:text-cyan-400:hover,
+html.light .hover\:text-cyan-300:hover {
+  color: #0c4a6e !important;
+}
+
+/* Light Mode Overrides for Code Blocks & BibTeX Citation */
+html.light pre,
+html.light code,
+html.light #bibtex-code {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light pre.text-cyan-300,
+html.light pre .text-cyan-300,
+html.light #bibtex-code.text-cyan-300 {
+  color: #0369a1 !important;
+}
+
+html.light #btn-copy-bibtex {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0284c7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+html.light #btn-copy-bibtex:hover {
+  background-color: #f1f5f9 !important;
+  color: #0369a1 !important;
+  border-color: #94a3b8 !important;
+}
+
+/* Amber Disclaimer & Warning Banners in Light Mode */
+html.light .bg-amber-500\/10 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+html.light .border-amber-500\/20,
+html.light .border-amber-500\/30 {
+  border-color: #fde68a !important;
+}
+
+html.light .text-amber-200 {
+  color: #92400e !important;
 }
 
 html.light .bg-glow-1 {
@@ -808,6 +908,46 @@ html.light .bg-glow-1 {
 
 html.light .bg-glow-2 {
   background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(248, 250, 252, 0) 70%);
+}
+
+/* Light Mode Overlays (Camera Permission Error & Model Loading) */
+html.light #camera-error-overlay {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+html.light #camera-error-overlay h3 {
+  color: #0f172a !important;
+}
+
+html.light #camera-error-overlay p {
+  color: #334155 !important;
+}
+
+html.light #camera-error-overlay .w-12 {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+html.light .loading-overlay {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+html.light .loading-overlay .text-cyan-300 {
+  color: #0284c7 !important;
+}
+
+html.light .loading-overlay .text-gray-400 {
+  color: #64748b !important;
+}
+
+html.light .loading-overlay .spinner {
+  border-color: rgba(2, 132, 199, 0.18);
+  border-top-color: #0284c7;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.25);
 }
 
 /* ==========================================================================
