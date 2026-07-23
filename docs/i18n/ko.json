@@ -1,0 +1,279 @@
+{
+  "page": {
+    "title": "WearMask: 마스크 검출 | 브라우저 내 실시간 AI",
+    "description": "무료 브라우저 내 마스크 검출기. 태블릿 하나만으로 마스크 검출 AI를 사용할 수 있습니다. 소규모 사업장과 공공장소를 위해 설계되었으며, COVID-19에 함께 맞서 봅시다."
+  },
+  "language": {
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文",
+      "fr": "Français",
+      "de": "Deutsch",
+      "ja": "日本語",
+      "pt": "Português",
+      "ko": "한국어",
+      "it": "Italiano",
+      "ru": "Русский"
+    }
+  },
+  "hero": {
+    "title": "WearMask",
+    "subtitle": "실시간 얼굴 마스크 검출"
+  },
+  "status": {
+    "loading": "로딩 중..."
+  },
+  "overlay": {
+    "initializing": "AI 모델 초기화 중..."
+  },
+  "tips": {
+    "highlight": "팁:",
+    "message": "바이러스 입자를 차단하려면 코와 입을 완전히 가리세요."
+  },
+  "setup": {
+    "label": "설정",
+    "title": "최상의 경험을 위한 방법",
+    "steps": [
+      "최신 Chrome 브라우저를 실행합니다.",
+      "<code class=\"chrome-flags-code\" role=\"button\" tabindex=\"0\">chrome://flags</code>를 열고 WebAssembly 관련 기능을 모두 활성화합니다.",
+      "Chrome을 재시작하고 이 페이지를 열어 카메라 접근을 허용합니다.",
+      "프레임 속도는 기기 CPU에 따라 달라집니다. iOS Safari도 지원되지만 더 낮은 프레임 속도로 실행될 수 있습니다."
+    ],
+    "copyFlags": "복사",
+    "copiedFlags": "복사됨",
+    "note": ""
+  },
+  "privacy": {
+    "label": "개인정보",
+    "title": "개인정보 및 제한 사항",
+    "body": "모든 처리는 WebAssembly를 통해 브라우저 내에서 완전히 실행됩니다. 이미지나 동영상이 기기 밖으로 전송되지 않으며 서버에 데이터가 저장되지 않습니다. 검출이 시작된 후 인터넷을 끊어도 됩니다.",
+    "disclaimer": "연구 및 시연 목적 전용 — 의료 기기 또는 진단 도구가 아닙니다.",
+    "linkText": "개인정보 및 서비스 약관 읽기 →",
+    "linkHref": "privacy/"
+  },
+  "project": {
+    "label": "프로젝트",
+    "title": "프로젝트 개요",
+    "paragraph1": "WearMask는 <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a> 기반의 브라우저 내 실시간 얼굴 마스크 검출기로, <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a>로 학습하고 <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> 및 <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>로 로컬 실행됩니다.",
+    "paragraph2": "<a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">배포</a> 및 <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">학습</a> 코드베이스는 오픈 소스이며, <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">동료 심사 논문</a>이 있습니다.",
+    "linkText": "기술 및 연구 →"
+  },
+  "feedback": {
+    "button": "피드백",
+    "buttonTitle": "오검출 사례를 보고하거나 개발자와 연락하세요.",
+    "mailto": "mailto:wearmask.feedback@gmail.com?subject=%ED%94%BC%EB%93%9C%EB%B0%B1&body=%EC%98%A4%EC%8B%9D%EB%8F%99%20%EA%B2%B0%EA%B3%BC%EC%9D%98%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%EC%9D%B4%20%EC%9E%88%EB%8B%A4%EB%A9%B4%20%EC%97%AC%EA%B8%B0%EC%97%90%20%EB%B6%99%EC%97%AC%20%EB%84%A3%EC%96%B4%20%EC%A3%BC%EC%84%B8%EC%9A%94."
+  },
+  "modal": {
+    "title": "카메라 권한 필요",
+    "body": "마스크 검출을 시작하려면 브라우저 설정에서 카메라 접근을 허용한 후 이 페이지를 새로고침하세요.",
+    "button": "페이지 새로고침"
+  },
+  "detection": {
+    "labels": [
+      "background",
+      "마스크 없음",
+      "마스크 착용"
+    ],
+    "status": {
+      "welcome": "환영합니다!",
+      "maskWarning": "마스크를 착용해 주세요!"
+    }
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "Vanderbilt University"
+  },
+  "controls": {
+    "pause": "일시정지",
+    "resume": "재개",
+    "switchCamera": "카메라 전환",
+    "snapshot": "스냅샷",
+    "toggleTelemetry": "대시보드"
+  },
+  "theme": {
+    "dark": "다크",
+    "light": "라이트",
+    "auto": "자동",
+    "cycleTitle": "테마 전환"
+  },
+  "toast": {
+    "snapshotSaved": "스냅샷 저장됨",
+    "themeAuto": "테마: 자동(시스템)",
+    "themeLight": "테마: 라이트",
+    "themeDark": "테마: 다크"
+  },
+  "telemetry": {
+    "title": "실시간 원격 측정",
+    "fps": "FPS",
+    "latency": "추론 지연",
+    "detectedFaces": "검출된 얼굴",
+    "maskCount": "마스크 착용",
+    "noMaskCount": "마스크 없음",
+    "acceleration": "하드웨어 가속",
+    "simdActive": "SIMD 활성화",
+    "simdInactive": "SIMD 표준",
+    "threads": "멀티스레드",
+    "engine": "엔진"
+  },
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "technicalOverview": "기술 및 연구",
+    "privacy": "개인정보 및 제한 사항",
+    "liveDemo": "라이브 데모"
+  },
+  "aboutPage": {
+    "title": "WearMask 소개 | 브라우저 내 얼굴 마스크 검출",
+    "heading": "WearMask: 브라우저 내 얼굴 마스크 검출",
+    "intro": "WearMask는 웹 브라우저 내에서 완전히 실행되는 오픈 소스 실시간 얼굴 마스크 검출 시스템입니다. 이 프로젝트는 다음 논문으로도 발표되었습니다: <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>.",
+    "q1_title": "WearMask란?",
+    "q1_body": "WearMask(Web-based Efficient AI Recognition of Masks)는 웹캠 영상 속 사람이 얼굴 마스크를 착용했는지 검출합니다. 클라우드 비전 서비스와 달리 모든 추론은 사용자 기기에서 수행됩니다. 카메라 이미지나 동영상이 애플리케이션 서버로 업로드되지 않습니다.",
+    "q2_title": "클라우드 비전과 어떻게 다른가?",
+    "q2_item1": "<strong class=\"text-white\">개인정보:</strong> 카메라 데이터는 브라우저를 벗어나지 않습니다.",
+    "q2_item2": "<strong class=\"text-white\">서버리스:</strong> 백엔드 GPU 또는 추론 API가 필요하지 않습니다.",
+    "q2_item3": "<strong class=\"text-white\">엣지 컴퓨팅:</strong> WebAssembly를 통해 사용자 CPU에서 검출이 실행됩니다.",
+    "q2_item4": "<strong class=\"text-white\">오픈 소스:</strong> 배포 및 학습 코드가 공개되어 있습니다.",
+    "q3_title": "완전 로컬 추론이란?",
+    "q3_body": "WebAssembly 모델이 로드된 후 검출은 브라우저 내 각 비디오 프레임에서 실행됩니다. 애플리케이션은 이미지, 동영상, 검출 결과를 WearMask 서버로 전송하지 않습니다. 모델 로드 후 인터넷을 끊어도 검출은 계속 작동합니다.",
+    "q4_title": "저자 및 기관",
+    "q4_author": "<strong class=\"text-white\">제1저자:</strong> <a href=\"https://github.com/waittim\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a> (<a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">ORCID</a> · <a href=\"https://www.linkedin.com/in/zekun-wang/\" class=\"text-cyan-400 hover:underline\">LinkedIn</a>)",
+    "q4_inst": "<strong class=\"text-white\">기관:</strong> <a href=\"https://www.vanderbilt.edu/datascience/\" class=\"text-cyan-400 hover:underline\">Vanderbilt University Data Science Institute</a>",
+    "q4_support": "본 연구는 미국 National Science Foundation의 부분 지원을 받았습니다.",
+    "q5_title": "프로젝트 타임라인",
+    "q5_item1": "<strong class=\"text-white\">최초 공개:</strong> 2020년 11월(브라우저 데모 및 오픈 소스 코드)",
+    "q5_item2": "<strong class=\"text-white\">연구 논문 발표:</strong> 2023년(Electronic Imaging)",
+    "q5_item3": "<strong class=\"text-white\">UI 현대화 및 원격 측정:</strong> 2026년 7월",
+    "q6_title": "관련 리소스",
+    "res1": "라이브 데모",
+    "res2": "배포 저장소(본 프로젝트)",
+    "res3": "학습 저장소",
+    "res4": "연구 논문(DOI)",
+    "res5": "기계 판독 프로젝트 정보(JSON)",
+    "disclaimer": "<strong class=\"text-amber-200\">중요:</strong> WearMask는 연구 및 시연 시스템이며 의료 기기 또는 진단 도구가 아닙니다. <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">알려진 제한 사항</a>을 참조하세요."
+  },
+  "citationPage": {
+    "title": "WearMask 인용 방법",
+    "subtitle": "WearMask 연구 논문 및 소프트웨어의 권장 인용 형식.",
+    "paperTitle": "연구 논문(권장)",
+    "paperDesc": "WearMask 시스템, 방법 또는 연구 기여를 논할 때 동료 심사 논문을 인용하세요:",
+    "paperCitation": "Wang, Z., Wang, P., Louis, P. C., Wheless, L. E., & Huo, Y. (2023). WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19. <em>Electronic Imaging</em>, 35(11). https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+    "bibtexTitle": "BibTeX",
+    "softwareTitle": "소프트웨어 저장소",
+    "softwareDesc": "구현 코드를 재사용하거나 논의할 때 해당 저장소도 참조하세요:",
+    "repoDeploy": "브라우저 배포:",
+    "repoTrain": "학습 및 데이터:",
+    "metaTitle": "기계 판독 메타데이터"
+  },
+  "limitationsPage": {
+    "title": "알려진 제한 사항",
+    "subtitle": "WearMask 시스템의 중요한 경계 및 제약.",
+    "disclaimer": "<strong class=\"text-amber-200\">의료 기기가 아닙니다.</strong> WearMask는 연구 프로토타입 및 공개 시연입니다. 독립적 검증 없이 의료 진단, 임상 의사결정 또는 규제 준수에 사용해서는 안 됩니다.",
+    "sec1_title": "검출 정확도",
+    "sec1_item1": "성능은 카메라 품질, 해상도 및 프레임 속도에 따라 달라집니다.",
+    "sec1_item2": "조명 부족, 역광 또는 강한 그림자는 정확도를 낮춥니다.",
+    "sec1_item3": "작은 얼굴, 극단적 자세 또는 부분 가림은 누락되거나 오분류될 수 있습니다.",
+    "sec1_item4": "모델은 시각적 마스크 착용 패턴을 검출하며 의료적 효과나 밀착도를 검증하지 않습니다.",
+    "sec2_title": "브라우저 및 하드웨어",
+    "sec2_item1": "프레임 속도는 CPU, 브라우저 및 기기에 따라 크게 다릅니다.",
+    "sec2_item2": "최상의 성능을 위해 WebAssembly SIMD 및 스레드를 지원하는 최신 Chrome이 필요합니다.",
+    "sec2_item3": "iOS Safari는 지원되지만 일반적으로 더 낮은 프레임 속도로 실행됩니다.",
+    "sec2_item4": "WebAssembly를 지원하지 않는 구형 브라우저에서는 데모를 실행할 수 없습니다.",
+    "sec3_title": "사용 범위",
+    "sec3_item1": "연구, 교육 및 시연 목적으로 설계되었습니다.",
+    "sec3_item2": "고위험 공중보건 집행용으로 검증되지 않았습니다.",
+    "sec3_item3": "시각적 검출을 넘어 마스크 유형(N95, 수술용, 천)이나 적절한 덮개를 검증하지 않습니다.",
+    "sec3_item4": "실제 환경에서 위양성 또는 위음성이 발생할 수 있습니다.",
+    "sec4_title": "모델 및 데이터",
+    "sec4_item1": "특정 데이터셋으로 학습되었으며 모든 인구 및 환경으로의 일반화는 보장되지 않습니다.",
+    "sec4_item2": "모델 가중치 및 아키텍처는 2020–2023년 연구를 반영하며 지속적 재학습은 제공되지 않습니다."
+  },
+  "privacyPage": {
+    "title": "개인정보 및 제한 사항",
+    "subtitle": "WearMask의 카메라 데이터 처리, 개인정보 약속 및 알려진 시스템 경계.",
+    "sec1_title": "클라이언트 측 처리",
+    "sec1_body": "WearMask는 WebAssembly를 사용하여 모든 얼굴 마스크 검출을 웹 브라우저 내에서 완전히 수행합니다. 카메라 프레임은 기기에서 로컬로 처리됩니다. 이미지, 동영상 또는 검출 결과가 WearMask 애플리케이션 서버로 업로드되지 않습니다.",
+    "sec2_title": "수집하지 않는 데이터",
+    "sec2_card1_title": "이미지 저장 없음",
+    "sec2_card2_title": "백엔드 추적 없음",
+    "sec2_card3_title": "계정 불필요",
+    "sec2_item1": "카메라 이미지나 동영상은 저장되거나 원격 업로드되지 않습니다.",
+    "sec2_item2": "검출 결과는 백엔드 데이터베이스로 전송되지 않습니다.",
+    "sec2_item3": "등록, 로그인 또는 개인 식별이 필요하지 않습니다.",
+    "sec3_title": "오프라인 작동",
+    "sec3_body": "WebAssembly 모델 파일이 로드된 후 인터넷을 끊어도 검출을 계속할 수 있습니다. 초기 페이지 로드에는 애플리케이션 및 모델 자산 다운로드를 위한 네트워크 접근이 필요합니다.",
+    "sec4_title": "전체 서비스 약관",
+    "sec4_body": "전체 법적 서비스 약관(여러 언어로 제공)은 다음을 참조하세요: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">개인정보 서비스 약관</a>"
+  },
+  "researchPage": {
+    "title": "연구",
+    "subtitle": "WearMask 시스템의 동료 심사 출판물 및 관련 오픈 소스 리소스.",
+    "sec1_title": "논문",
+    "paperName": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
+    "authors": "<strong class=\"text-white\">저자:</strong> <a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a>, Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo",
+    "journal": "<strong class=\"text-white\">저널:</strong> Electronic Imaging, Volume 35, Issue 11, 2023",
+    "doi": "<strong class=\"text-white\">DOI:</strong> <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" class=\"text-cyan-400 hover:underline\">10.2352/EI.2023.35.11.HPCI-229</a>",
+    "sec2_title": "초록 요약",
+    "abstractText": "WearMask는 YOLO-Fastest, NCNN 및 WebAssembly를 사용하여 웹 브라우저 내에서 완전히 실행되는 경량 얼굴 마스크 검출 시스템을 제시합니다. 이 설계는 서버리스 엣지 컴퓨팅을 가능하게 하며, 카메라 데이터를 원격 서버로 업로드하지 않고 클라이언트 기기에서 추론이 수행됩니다. 이 접근 방식은 COVID-19 팬데믹 기간 및 이후 공공 마스크 검출 시나리오에서 개인정보 보호 및 저비용 배포를 지원합니다.",
+    "sec3_title": "오픈 리소스",
+    "res1": "<strong class=\"text-white\">라이브 애플리케이션:</strong> <a href=\"https://facemask-detection.com/\" class=\"hover:underline\">facemask-detection.com</a>",
+    "res2": "<strong class=\"text-white\">배포 코드:</strong> <a href=\"https://github.com/waittim/facemask-detection\" class=\"hover:underline\">github.com/waittim/facemask-detection</a>",
+    "res3": "<strong class=\"text-white\">학습 코드:</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">github.com/waittim/mask-detector</a>",
+    "res4": "<strong class=\"text-white\">데이터셋:</strong> <a href=\"https://github.com/waittim/mask-detector/tree/master/modeling/data\" class=\"hover:underline\">mask-detector/modeling/data</a>",
+    "res5": "<strong class=\"text-white\">모델 아키텍처:</strong> YOLO-Fastest",
+    "sec4_title": "실험 재현",
+    "step1": "<a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a>를 클론하고 Python 3.8 종속성을 설치합니다.",
+    "step2": "학습하거나 사전 학습 가중치(<code>best.pt</code> / <code>best.weights</code>)를 사용합니다.",
+    "step3": "저장소 README에 따라 PyTorch → Darknet → NCNN → 최적화 NCNN으로 변환합니다.",
+    "step4": "<a href=\"https://github.com/waittim/facemask-detection\" class=\"text-cyan-400 hover:underline\">facemask-detection</a>에서 C++ WebAssembly 모듈을 빌드합니다.",
+    "step5": "GitHub Pages로 배포하거나 <code>python3 scripts/server.py</code>로 로컬 실행합니다."
+  },
+  "techPage": {
+    "title": "기술 개요",
+    "subtitle": "WearMask 브라우저 배포 및 학습 파이프라인의 엔드투엔드 아키텍처.",
+    "sec1_title": "브라우저 추론 파이프라인",
+    "sec1_body": "WearMask는 YOLO-Fastest와 Tencent NCNN 프레임워크를 WebAssembly로 컴파일하여 고속 클라이언트 측 C++ 실행을 구현합니다.",
+    "sec2_title": "학습 및 변환 파이프라인",
+    "sec2_desc": "모델 학습 및 변환은 <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a> 저장소에 구현되어 있습니다:",
+    "sec3_title": "핵심 기술",
+    "tech1_k": "모델",
+    "tech1_v": "YOLO-Fastest(객체 검출)",
+    "tech2_k": "학습",
+    "tech2_v": "PyTorch (mask-detector)",
+    "tech3_k": "추론 엔진",
+    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
+    "tech4_k": "브라우저 런타임",
+    "tech4_v": "<a href=\"https://webassembly.org/\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via Emscripten",
+    "tech5_k": "프론트엔드",
+    "tech5_v": "HTML, CSS, JavaScript",
+    "tech6_k": "배포",
+    "tech6_v": "GitHub Pages(정적 호스팅)",
+    "sec4_title": "검출 클래스",
+    "cls1": "Background",
+    "cls2": "마스크 없음",
+    "cls3": "마스크 착용",
+    "sec5_title": "소스 코드 위치",
+    "src1": "<strong class=\"text-white\">C++ 추론:</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp\" class=\"hover:underline\">src/yolo.cpp</a>",
+    "src2": "<strong class=\"text-white\">HTML / CSS UI:</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/docs/index.html\" class=\"hover:underline\">docs/index.html</a>",
+    "src3": "<strong class=\"text-white\">학습 스크립트:</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">mask-detector</a>"
+  },
+  "statement": {
+    "title": "전체 법적 서비스 약관",
+    "heroTitle": "전체 법적 서비스 약관",
+    "heroDesc": "WearMask 검출 서비스를 사용하면 다음 약관에 동의하는 것으로 간주됩니다. 동의하지 않으면 즉시 서비스 사용을 중단하세요.",
+    "expand": "펼치기 ↓",
+    "collapse": "접기 ↑",
+    "sec1_title": "1. 서비스 내용",
+    "sec1_body": "본 서비스는 웹 페이지로 제공됩니다. 페이지를 열면 AI 기반 실시간 마스크 검출 및 알림에 접근할 수 있습니다.",
+    "sec2_title": "2. 개인정보 보호",
+    "sec2_1_title": "2.1 데이터 수집",
+    "sec2_1_body": "검출을 제공하려면 카메라 접근을 허용해야 합니다. WearMask는 기기에서 비디오 프레임을 로컬로 분석하며 얼굴 인식 데이터를 수집하지 않습니다.",
+    "sec2_2_title": "2.2 데이터 저장 및 보호",
+    "sec2_2_body": "WebAssembly로 구동되며 모든 계산은 브라우저 내에서 로컬로 수행됩니다. 동영상, 이미지, 오디오를 서버에 업로드하지 않습니다. 데이터는 기기를 벗어나지 않습니다.",
+    "sec3_title": "3. 선언 및 보증",
+    "sec3_body": "적용 법률을 준수하여 본 서비스를 사용하는 것에 동의하며 콘텐츠 출처에 대한 책임을 집니다. WearMask는 지시에 따라 이 기술 도구를 제공하며 사용으로 인한 법적 결과에 대해 책임지지 않습니다.",
+    "sec4_title": "4. 고지 및 업데이트",
+    "sec4_body": "정책 또는 서비스 요구 사항을 충족하기 위해 본 약관을 업데이트할 수 있습니다. 최신 정보는 이 페이지를 정기적으로 확인하세요.",
+    "metaUpdated": "최종 업데이트: 2025년 11월 1일"
+  }
+}

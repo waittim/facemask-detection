@@ -7,7 +7,14 @@
     "options": {
       "en": "English",
       "es": "Español",
-      "zh": "中文"
+      "zh": "中文",
+      "fr": "Français",
+      "de": "Deutsch",
+      "ja": "日本語",
+      "pt": "Português",
+      "ko": "한국어",
+      "it": "Italiano",
+      "ru": "Русский"
     }
   },
   "hero": {
@@ -86,7 +93,15 @@
   },
   "theme": {
     "dark": "暗色模式",
-    "light": "亮色模式"
+    "light": "亮色模式",
+    "auto": "跟随系统",
+    "cycleTitle": "切换主题"
+  },
+  "toast": {
+    "snapshotSaved": "快照已保存",
+    "themeAuto": "主题：跟随系统",
+    "themeLight": "主题：亮色",
+    "themeDark": "主题：暗色"
   },
   "telemetry": {
     "title": "实时性能仪表盘",
@@ -188,7 +203,7 @@
     "sec3_title": "支持完全断网运行",
     "sec3_body": "在 WebAssembly 模型文件初始加载完成后，即使断开网络连接，检测依然可以在本地顺畅运行。",
     "sec4_title": "完整服务声明",
-    "sec4_body": "查看完整的法律服务声明（提供英文、西班牙语和中文版本）：<a href=\"#statement\" class=\"text-cyan-400 hover:underline\">隐私与服务声明 →</a>"
+    "sec4_body": "查看完整的法律服务声明（提供多种语言版本）：<a href=\"#statement\" class=\"text-cyan-400 hover:underline\">隐私与服务声明 →</a>"
   },
   "researchPage": {
     "title": "科研论文与成果",

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" role="img" aria-label="WearMask">
+  <title>WearMask</title>
+  <!-- Top/bottom tapers both dy=8. Straps: C-rings on vertical sides only. -->
+  <path fill="#9AA6B2"
+        d="M20 20.5A14.5 14.5 0 0 0 20 49.5v-7.5
+           A7 7 0 0 1 20 28V20.5z"/>
+  <path fill="#9AA6B2"
+        d="M76 20.5A14.5 14.5 0 0 1 76 49.5v-7.5
+           A7 7 0 0 0 76 28V20.5z"/>
+  <path fill="#E8EEF4" d="M48 12.5 20 20.5v29L48 57.5 76 49.5v-29L48 12.5z"/>
+  <path fill="#38BDF8" d="M20 31.2h56v5.2H20z"/>
+</svg>

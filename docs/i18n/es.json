@@ -7,7 +7,14 @@
     "options": {
       "en": "English",
       "es": "Español",
-      "zh": "中文"
+      "zh": "中文",
+      "fr": "Français",
+      "de": "Deutsch",
+      "ja": "日本語",
+      "pt": "Português",
+      "ko": "한국어",
+      "it": "Italiano",
+      "ru": "Русский"
     }
   },
   "hero": {
@@ -86,7 +93,15 @@
   },
   "theme": {
     "dark": "Oscuro",
-    "light": "Claro"
+    "light": "Claro",
+    "auto": "Automático",
+    "cycleTitle": "Cambiar tema"
+  },
+  "toast": {
+    "snapshotSaved": "Captura guardada",
+    "themeAuto": "Tema: Automático (sistema)",
+    "themeLight": "Tema: Claro",
+    "themeDark": "Tema: Oscuro"
   },
   "telemetry": {
     "title": "Telemetría en tiempo real",
@@ -135,7 +150,7 @@
     "res3": "Repositorio de entrenamiento",
     "res4": "Artículo científico (DOI)",
     "res5": "Datos del proyecto en JSON",
-    "disclaimer": "<strong class=\"text-amber-200\">Importante:</strong> WearMask es un sistema de investigación y demostración, no un dispositivo médico ni una herramienta de diagnóstico."
+    "disclaimer": "<strong class=\"text-amber-200\">Importante:</strong> WearMask es un sistema de investigación y demostración, no un dispositivo médico ni una herramienta de diagnóstico. Consulta las <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">limitaciones conocidas</a>."
   },
   "citationPage": {
     "title": "Cómo citar WearMask",
@@ -188,7 +203,7 @@
     "sec3_title": "Funcionamiento sin conexión",
     "sec3_body": "Una vez cargados los archivos del modelo WebAssembly, la detección puede continuar incluso si te desconectas de Internet.",
     "sec4_title": "Declaración de servicio completa",
-    "sec4_body": "Para ver la declaración legal completa (disponible en inglés, español y chino), consulta: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Declaración de servicio de privacidad →</a>"
+    "sec4_body": "Para la declaración legal completa (disponible en varios idiomas), consulta: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Declaración de servicio de privacidad</a>"
   },
   "researchPage": {
     "title": "Investigación y publicaciones",

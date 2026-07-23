@@ -7,7 +7,14 @@
     "options": {
       "en": "English",
       "es": "Español",
-      "zh": "中文"
+      "zh": "中文",
+      "fr": "Français",
+      "de": "Deutsch",
+      "ja": "日本語",
+      "pt": "Português",
+      "ko": "한국어",
+      "it": "Italiano",
+      "ru": "Русский"
     }
   },
   "hero": {
@@ -86,7 +93,15 @@
   },
   "theme": {
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "auto": "Auto",
+    "cycleTitle": "Cycle theme"
+  },
+  "toast": {
+    "snapshotSaved": "Snapshot saved",
+    "themeAuto": "Theme: Auto (system)",
+    "themeLight": "Theme: Light",
+    "themeDark": "Theme: Dark"
   },
   "telemetry": {
     "title": "Real-time Telemetry",
@@ -188,7 +203,7 @@
     "sec3_title": "Offline operation",
     "sec3_body": "After the WebAssembly model files are loaded, detection can continue even if you disconnect from the internet. The initial page load requires network access to download the application and model assets.",
     "sec4_title": "Full service statement",
-    "sec4_body": "For the complete legal service statement (available in English, Spanish, and Chinese), see: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Privacy service statement</a>"
+    "sec4_body": "For the complete legal service statement (available in multiple languages), see: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Privacy service statement</a>"
   },
   "researchPage": {
     "title": "Research",
