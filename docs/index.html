@@ -183,7 +183,7 @@
             
             <!-- Video Stage Container (Lg: 8 cols) -->
             <div id="video-col" class="lg:col-span-8 flex flex-col items-center transition-all duration-300">
-                <div id="video-stage" class="video-stage w-full max-w-2xl mx-auto">
+                <div id="video-stage" class="video-stage w-full max-w-2xl mx-auto relative overflow-hidden">
                     <!-- Loading Overlay -->
                     <div id="loading-overlay" class="loading-overlay">
                         <div class="text-center">
@@ -193,6 +193,25 @@
                         </div>
                     </div>
                     
+                    <!-- Camera Error Stage Overlay (In-Place Warning) -->
+                    <div id="camera-error-overlay" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex flex-col items-center justify-center p-6 text-center">
+                        <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-3">
+                            <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1" data-i18n="modal.title">Camera access required</h3>
+                        <p class="text-xs text-gray-300 max-w-xs mb-4 leading-relaxed" data-i18n="modal.body">
+                            To start mask detection, allow your browser to access the camera in its settings.
+                        </p>
+                        <button id="btn-retry-camera" type="button" class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-2 px-4 rounded-xl text-xs transition shadow-lg flex items-center space-x-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                            <span data-i18n="modal.button">Retry Camera</span>
+                        </button>
+                    </div>
+
                     <!-- Canvas Drawing Overlay -->
                     <canvas id="canvas" width="640" height="480"></canvas>
                     <video autoplay muted playsinline id="video"></video>
@@ -436,23 +455,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-msg" class="toast-msg">Snapshot saved!</div>
 
-    <!-- Camera Permission Error Modal -->
-    <div id="camera-error-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="glass-panel rounded-2xl p-6 max-w-md w-full border border-red-500/30 shadow-2xl">
-            <div class="flex items-center mb-4">
-                <svg class="w-7 h-7 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                </svg>
-                <h3 class="text-lg font-bold text-white" data-i18n="modal.title">Camera permission required</h3>
-            </div>
-            <p class="text-gray-300 text-sm mb-6 leading-relaxed" data-i18n="modal.body">
-                To start mask detection, allow your browser to access the camera in its settings, then refresh this page.
-            </p>
-            <button onclick="location.reload()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-lg" data-i18n="modal.button">
-                Refresh page
-            </button>
-        </div>
-    </div>
+
     
     <!-- Internationalization Script -->
     <script>
@@ -970,6 +973,15 @@
                 });
             }
 
+            // Retry Camera Button Handler
+            var btnRetryCamera = document.getElementById('btn-retry-camera');
+            if (btnRetryCamera) {
+                btnRetryCamera.addEventListener('click', function() {
+                    initializeStream();
+                    showToast('Retrying camera stream...');
+                });
+            }
+
             // Snapshot Button
             var btnSnapshot = document.getElementById('btn-snapshot');
             if (btnSnapshot) {
@@ -1110,12 +1122,12 @@
         }
 
         function toggleCameraModal(success) {
-            var modal = document.getElementById('camera-error-modal');
-            if (!modal) return;
+            var overlay = document.getElementById('camera-error-overlay');
+            if (!overlay) return;
             if (success) {
-                modal.classList.add('hidden');
+                overlay.classList.add('hidden');
             } else {
-                modal.classList.remove('hidden');
+                overlay.classList.remove('hidden');
             }
         }
 
