@@ -133,10 +133,32 @@
                     </svg>
                 </button>
 
-                <div class="language-switcher nav-language flex items-center space-x-1 p-1 rounded-xl bg-slate-900/60 border border-white/10">
-                    <button type="button" class="lang-btn" data-switch-lang="en" data-i18n="language.options.en">English</button>
-                    <button type="button" class="lang-btn" data-switch-lang="es" data-i18n="language.options.es">Español</button>
-                    <button type="button" class="lang-btn" data-switch-lang="zh" data-i18n="language.options.zh">中文</button>
+                <!-- Language Dropdown Menu -->
+                <div id="lang-dropdown-wrapper" class="relative">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-gray-300 hover:text-white transition text-xs font-medium" title="Change language" aria-expanded="false" aria-haspopup="true">
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                        <span id="lang-current-label">English</span>
+                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+
+                    <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200">
+                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="en">
+                            <span>English</span>
+                            <span class="lang-check text-cyan-400 hidden">✓</span>
+                        </button>
+                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="es">
+                            <span>Español</span>
+                            <span class="lang-check text-cyan-400 hidden">✓</span>
+                        </button>
+                        <button type="button" class="lang-option-btn w-full text-left px-3.5 py-2 text-xs text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition" data-lang="zh">
+                            <span>中文</span>
+                            <span class="lang-check text-cyan-400 hidden">✓</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -553,19 +575,55 @@
             }, obj);
         }
 
+        const LANG_DISPLAY_NAMES = {
+            'en': 'English',
+            'es': 'Español',
+            'zh': '中文'
+        };
+
         function initLanguageButtons() {
-            document.querySelectorAll(langButtonsSelector).forEach(function(btn) {
+            var dropdownBtn = document.getElementById('lang-dropdown-btn');
+            var dropdownMenu = document.getElementById('lang-dropdown-menu');
+            var optionBtns = document.querySelectorAll('.lang-option-btn');
+
+            if (dropdownBtn && dropdownMenu) {
+                dropdownBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var isOpen = !dropdownMenu.classList.contains('hidden');
+                    dropdownMenu.classList.toggle('hidden', isOpen);
+                    dropdownBtn.setAttribute('aria-expanded', !isOpen);
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!dropdownMenu.classList.contains('hidden') && !dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.add('hidden');
+                        dropdownBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            optionBtns.forEach(function(btn) {
                 btn.addEventListener('click', function() {
-                    switchLanguage(btn.getAttribute('data-switch-lang'));
+                    var selectedLang = btn.getAttribute('data-lang');
+                    if (selectedLang) {
+                        switchLanguage(selectedLang);
+                        if (dropdownMenu) dropdownMenu.classList.add('hidden');
+                    }
                 });
             });
         }
 
         function updateLanguageButtons(lang) {
-            document.querySelectorAll(langButtonsSelector).forEach(function(btn) {
-                var isActive = btn.getAttribute('data-switch-lang') === lang;
-                btn.classList.toggle('lang-active', isActive);
-                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            var labelEl = document.getElementById('lang-current-label');
+            if (labelEl) {
+                labelEl.textContent = LANG_DISPLAY_NAMES[lang] || 'English';
+            }
+            document.querySelectorAll('.lang-option-btn').forEach(function(btn) {
+                var isActive = btn.getAttribute('data-lang') === lang;
+                var check = btn.querySelector('.lang-check');
+                if (check) check.classList.toggle('hidden', !isActive);
+                btn.classList.toggle('font-bold', isActive);
+                btn.classList.toggle('text-cyan-400', isActive);
             });
         }
 

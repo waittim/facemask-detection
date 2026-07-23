@@ -609,6 +609,22 @@ html.light .toast-msg {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* Language Dropdown Overlay in Light Mode */
+html.light #lang-dropdown-menu {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .lang-option-btn {
+  color: #334155 !important;
+}
+
+html.light .lang-option-btn:hover {
+  color: #0f172a !important;
+  background: #f1f5f9 !important;
+}
+
 /* Footer & Background Glows in Light Mode */
 html.light footer {
   background-color: #f1f5f9 !important;
