@@ -312,12 +312,14 @@ video {
   }
 }
 
-/* Workspace grid: video : telemetry ≈ 2 : 1, animated collapse */
+/* Workspace: video : telemetry ≈ 2 : 1, flex-based smooth collapse */
 .workspace-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  --ws-duration: 0.32s;
+  --ws-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .workspace-grid .video-col,
@@ -325,23 +327,34 @@ video {
   min-width: 0;
 }
 
+.workspace-grid .video-col {
+  width: 100%;
+}
+
+.workspace-grid .video-stage {
+  max-width: 42rem;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    max-width var(--ws-duration) var(--ws-ease);
+}
+
 .workspace-grid .telemetry-col {
   overflow: hidden;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity var(--ws-duration) var(--ws-ease),
+    flex-basis var(--ws-duration) var(--ws-ease),
+    width var(--ws-duration) var(--ws-ease),
+    max-width var(--ws-duration) var(--ws-ease),
+    visibility 0s linear 0s;
 }
 
 .workspace-grid.is-telemetry-collapsed .telemetry-col {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  max-height: 0;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  align-self: start;
 }
 
 @media (max-width: 1023px) {
@@ -352,28 +365,61 @@ video {
 
 @media (min-width: 1024px) {
   .workspace-grid {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    column-gap: 1.5rem;
-    row-gap: 1.5rem;
-    transition:
-      grid-template-columns 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-      column-gap 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: gap var(--ws-duration) var(--ws-ease);
+  }
+
+  .workspace-grid .video-col {
+    flex: 1 1 0%;
+  }
+
+  .workspace-grid .telemetry-col {
+    flex: 0 0 33.333%;
+    width: 33.333%;
+    max-width: 33.333%;
   }
 
   .workspace-grid.is-telemetry-collapsed {
-    grid-template-columns: minmax(0, 1fr) 0fr;
-    column-gap: 0;
+    gap: 0;
+  }
+
+  .workspace-grid.is-telemetry-collapsed .video-stage {
+    max-width: min(56rem, 100%);
+  }
+
+  .workspace-grid.is-telemetry-collapsed .telemetry-col {
+    position: absolute;
+    top: 0;
+    right: 0;
+    flex: 0 0 0;
+    flex-basis: 0;
+    width: 0;
+    max-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transition:
+      opacity var(--ws-duration) var(--ws-ease),
+      flex-basis var(--ws-duration) var(--ws-ease),
+      width var(--ws-duration) var(--ws-ease),
+      max-width var(--ws-duration) var(--ws-ease),
+      visibility 0s linear var(--ws-duration);
   }
 }
 
 .workspace-grid.no-transition,
-.workspace-grid.no-transition .telemetry-col {
+.workspace-grid.no-transition .telemetry-col,
+.workspace-grid.no-transition .video-stage {
   transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .workspace-grid,
-  .workspace-grid .telemetry-col {
+  .workspace-grid .telemetry-col,
+  .workspace-grid .video-stage {
     transition: none !important;
   }
 }

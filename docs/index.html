@@ -185,7 +185,7 @@
             
             <!-- Video Stage Container -->
             <div id="video-col" class="video-col flex flex-col items-center">
-                <div id="video-stage" class="video-stage w-full max-w-2xl mx-auto relative overflow-hidden">
+                <div id="video-stage" class="video-stage w-full mx-auto relative overflow-hidden">
                     <!-- Loading Overlay -->
                     <div id="loading-overlay" class="loading-overlay">
                         <div class="text-center">
@@ -763,13 +763,13 @@
 
             if (noMaskCount > 0) {
                 remindElement.className = 'status-pill status-warn inline-flex items-center space-x-3';
-                if (stageElement) stageElement.className = 'video-stage w-full max-w-2xl mx-auto status-nomask';
+                if (stageElement) stageElement.className = 'video-stage w-full mx-auto status-nomask';
             } else if (maskCount > 0) {
                 remindElement.className = 'status-pill status-ok inline-flex items-center space-x-3';
-                if (stageElement) stageElement.className = 'video-stage w-full max-w-2xl mx-auto status-mask';
+                if (stageElement) stageElement.className = 'video-stage w-full mx-auto status-mask';
             } else {
                 remindElement.className = 'status-pill status-neutral inline-flex items-center space-x-3';
-                if (stageElement) stageElement.className = 'video-stage w-full max-w-2xl mx-auto';
+                if (stageElement) stageElement.className = 'video-stage w-full mx-auto';
             }
 
             remindElement.innerHTML = '<span>' + statusText + '</span>';
