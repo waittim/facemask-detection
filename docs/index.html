@@ -321,86 +321,86 @@
 
         </div>
 
-        <!-- Accordion Information Cards -->
-        <div class="space-y-4 max-w-4xl mx-auto mb-10">
-            <!-- Setup Guide Accordion -->
-            <details class="accordion-card shadow-sm fade-in" open>
-                <summary class="flex items-center justify-between px-6 py-4">
-                    <div class="flex items-center space-x-3">
+        <!-- Spacious Section Divider -->
+        <div class="mt-16 sm:mt-20 mb-10 pt-8 border-t border-white/10">
+            <div class="flex items-center justify-center space-x-3 text-center">
+                <span class="h-px w-12 bg-cyan-500/30"></span>
+                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">System Guide & Information</span>
+                <span class="h-px w-12 bg-cyan-500/30"></span>
+            </div>
+        </div>
+
+        <!-- 3-Column Glassmorphism Feature Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
+            <!-- Setup Guide Card -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between border border-white/10 hover:border-cyan-500/30 transition shadow-lg">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
                         <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-3 py-1 rounded-lg text-xs font-bold" data-i18n="setup.label">Setup</span>
-                        <span class="font-bold text-base sm:text-lg text-white" data-i18n="setup.title">How to get the best experience?</span>
+                        <h3 class="font-bold text-base text-white tracking-wide" data-i18n="setup.title">How to get the best experience?</h3>
                     </div>
-                    <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </summary>
-                <div class="px-6 pb-5 pt-2 border-t border-white/5">
-                    <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside">
+                    <ul class="space-y-2.5 text-xs text-gray-300 list-disc list-inside leading-relaxed">
                         <li data-i18n="setup.steps.0">Launch the latest Chrome browser for best performance.</li>
                         <li data-i18n="setup.steps.1">Open chrome://flags and enable WebAssembly features if needed.</li>
                         <li data-i18n="setup.steps.2">Restart Chrome, open this page, and allow camera access.</li>
                         <li data-i18n="setup.steps.3">Safari on iOS is supported but may run at a lower frame rate.</li>
                     </ul>
-                    <p class="mt-3 text-xs text-gray-400" data-i18n="setup.note">
+                </div>
+                <div class="pt-4 mt-4 border-t border-white/5">
+                    <p class="text-[11px] text-gray-400" data-i18n="setup.note">
                         Frame rate depends on your device CPU.
                     </p>
                 </div>
-            </details>
+            </div>
 
-            <!-- Privacy Statement Accordion -->
-            <details class="accordion-card shadow-sm fade-in" open>
-                <summary class="flex items-center justify-between px-6 py-4">
-                    <div class="flex items-center space-x-3">
+            <!-- Privacy Statement Card -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between border border-white/10 hover:border-emerald-500/30 transition shadow-lg">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
                         <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg text-xs font-bold" data-i18n="privacy.label">Privacy</span>
-                        <span class="font-bold text-base sm:text-lg text-white" data-i18n="privacy.title">Privacy statement</span>
+                        <h3 class="font-bold text-base text-white tracking-wide" data-i18n="privacy.title">Privacy statement</h3>
                     </div>
-                    <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </summary>
-                <div class="px-6 pb-5 pt-2 border-t border-white/5">
-                    <p class="text-sm text-gray-300 leading-relaxed mb-3" data-i18n="privacy.body">
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4" data-i18n="privacy.body">
                         Everything runs fully inside your browser via WebAssembly. No images or video leave your device.
                     </p>
-                    <a class="text-cyan-400 hover:text-cyan-300 hover:underline text-sm inline-flex items-center gap-1" target="_parent" rel="noopener noreferrer"
+                </div>
+                <div class="pt-4 border-t border-white/5">
+                    <a class="text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-medium inline-flex items-center gap-1" target="_parent" rel="noopener noreferrer"
                        data-i18n="privacy.linkText" data-i18n-attr="href:privacy.linkHref">
                         Read the full service statement →
                     </a>
                 </div>
-            </details>
+            </div>
 
-            <!-- Project Overview Accordion -->
-            <details class="accordion-card shadow-sm fade-in" open>
-                <summary class="flex items-center justify-between px-6 py-4">
-                    <div class="flex items-center space-x-3">
+            <!-- Project Overview Card -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between border border-white/10 hover:border-indigo-500/30 transition shadow-lg">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
                         <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-lg text-xs font-bold" data-i18n="project.label">Project</span>
-                        <span class="font-bold text-base sm:text-lg text-white" data-i18n="project.title">Project overview</span>
+                        <h3 class="font-bold text-base text-white tracking-wide" data-i18n="project.title">Project overview</h3>
                     </div>
-                    <svg class="accordion-chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </summary>
-                <div class="px-6 pb-5 pt-2 border-t border-white/5">
-                    <div class="space-y-3 text-sm text-gray-300">
+                    <div class="space-y-3 text-xs text-gray-300 leading-relaxed mb-4">
                         <p data-i18n-html="project.paragraph1">
                             WearMask is a deep learning project based on Yolo-Fastest and NCNN. It's lightweight and runs entirely in your browser via WebAssembly.
                         </p>
                         <p data-i18n-html="project.paragraph2">
                             This project is open-sourced on GitHub. Contributions are welcome.
                         </p>
-                        <p class="text-xs text-amber-300 bg-amber-950/40 border border-amber-500/30 rounded-xl p-3" data-i18n="project.disclaimer">
+                        <p class="text-[11px] text-amber-300 bg-amber-950/40 border border-amber-500/30 rounded-xl p-2.5" data-i18n="project.disclaimer">
                             WearMask is a research and demonstration system, not a medical device or diagnostic tool.
                         </p>
-                        <div class="flex flex-wrap gap-4 text-xs font-medium pt-2 text-cyan-400">
-                            <a href="about/" class="hover:underline">About</a>
-                            <a href="research/" class="hover:underline">Research Paper</a>
-                            <a href="citation/" class="hover:underline">Citation</a>
-                            <a href="technical-overview/" class="hover:underline">Technical overview</a>
-                            <a href="limitations/" class="hover:underline">Limitations</a>
-                        </div>
                     </div>
                 </div>
-            </details>
+                <div class="pt-4 border-t border-white/5">
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[11px] font-medium text-cyan-400">
+                        <a href="about/" class="hover:underline">About</a>
+                        <a href="research/" class="hover:underline">Paper</a>
+                        <a href="citation/" class="hover:underline">Citation</a>
+                        <a href="technical-overview/" class="hover:underline">Tech Overview</a>
+                        <a href="limitations/" class="hover:underline">Limitations</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>

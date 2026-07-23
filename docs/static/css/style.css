@@ -977,6 +977,7 @@ html.light .bg-glow-2 {
 
 @media (min-width: 1024px) {
   .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
   .lg\:col-span-12 { grid-column: span 12 / span 12 !important; }
   .lg\:col-span-8 { grid-column: span 8 / span 8 !important; }
   .lg\:col-span-4 { grid-column: span 4 / span 4 !important; }
