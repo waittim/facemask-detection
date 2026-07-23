@@ -108,37 +108,47 @@
                 <p class="text-gray-400" data-i18n="limitationsPage.subtitle">Important boundaries and constraints of the WearMask system.</p>
             </header>
 
-            <aside class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 text-amber-300" data-i18n="limitationsPage.sec1_body">
+            <aside class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 text-amber-300" data-i18n-html="limitationsPage.disclaimer">
                 <strong class="text-amber-200">Not a medical device.</strong> WearMask is a research prototype and public demonstration.
                 It must not be used for medical diagnosis, clinical decision-making, or regulatory compliance
                 without independent validation.
             </aside>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="limitationsPage.sec2_title">Detection accuracy</h2>
-                <p data-i18n="limitationsPage.sec2_body">Performance depends on camera quality, resolution, ambient lighting, and facial angles.</p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="limitationsPage.sec3_title">CPU Hardware Dependency</h2>
-                <p data-i18n="limitationsPage.sec3_body">Because WebAssembly relies on client-side CPU execution, frame rates vary significantly across different mobile and desktop processors.</p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Scope of use</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="limitationsPage.sec1_title">Detection accuracy</h2>
                 <ul class="list-disc list-inside space-y-2">
-                    <li>Designed for research, education, and demonstration purposes.</li>
-                    <li>Not validated for high-stakes public health enforcement.</li>
-                    <li>Does not verify mask type (N95, surgical, cloth) or proper coverage beyond visual detection.</li>
-                    <li>May produce false positives or false negatives in real-world conditions.</li>
+                    <li data-i18n="limitationsPage.sec1_item1">Performance depends on camera quality, resolution, and frame rate.</li>
+                    <li data-i18n="limitationsPage.sec1_item2">Poor lighting, backlighting, or heavy shadows reduce accuracy.</li>
+                    <li data-i18n="limitationsPage.sec1_item3">Small faces, extreme poses, or partial occlusion may be missed or misclassified.</li>
+                    <li data-i18n="limitationsPage.sec1_item4">The model detects visual mask-wearing patterns, not medical effectiveness or fit.</li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Model and data</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="limitationsPage.sec2_title">Browser and hardware</h2>
                 <ul class="list-disc list-inside space-y-2">
-                    <li>Trained on a specific dataset; generalization to all populations and environments is not guaranteed.</li>
-                    <li>Model weights and architecture reflect 2020–2023 research; no continuous retraining is provided.</li>
+                    <li data-i18n="limitationsPage.sec2_item1">Frame rate varies significantly across CPUs, browsers, and devices.</li>
+                    <li data-i18n="limitationsPage.sec2_item2">Best performance requires modern Chrome with WebAssembly SIMD and threads support.</li>
+                    <li data-i18n="limitationsPage.sec2_item3">Safari on iOS is supported but typically runs at a lower frame rate.</li>
+                    <li data-i18n="limitationsPage.sec2_item4">Older browsers without WebAssembly support cannot run the demo.</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-bold text-white" data-i18n="limitationsPage.sec3_title">Scope of use</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li data-i18n="limitationsPage.sec3_item1">Designed for research, education, and demonstration purposes.</li>
+                    <li data-i18n="limitationsPage.sec3_item2">Not validated for high-stakes public health enforcement.</li>
+                    <li data-i18n="limitationsPage.sec3_item3">Does not verify mask type (N95, surgical, cloth) or proper coverage beyond visual detection.</li>
+                    <li data-i18n="limitationsPage.sec3_item4">May produce false positives or false negatives in real-world conditions.</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-bold text-white" data-i18n="limitationsPage.sec4_title">Model and data</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li data-i18n="limitationsPage.sec4_item1">Trained on a specific dataset; generalization to all populations and environments is not guaranteed.</li>
+                    <li data-i18n="limitationsPage.sec4_item2">Model weights and architecture reflect 2020–2023 research; no continuous retraining is provided.</li>
                 </ul>
             </section>
         </article>

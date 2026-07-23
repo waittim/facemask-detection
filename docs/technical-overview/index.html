@@ -132,8 +132,8 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Training and conversion pipeline</h2>
-                <p>Model training and conversion are implemented in the <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> repository:</p>
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec2_title">Training and conversion pipeline</h2>
+                <p data-i18n-html="techPage.sec2_desc">Model training and conversion are implemented in the <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> repository:</p>
                 <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">PyTorch training (YOLO-Fastest)
   → Darknet weights (.weights)
   → NCNN model (.param + .bin)
@@ -144,32 +144,32 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Core technologies</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec3_title">Core technologies</h2>
                 <dl class="grid sm:grid-cols-2 gap-4">
-                    <div><dt class="font-semibold text-white">Model</dt><dd>YOLO-Fastest (object detection)</dd></div>
-                    <div><dt class="font-semibold text-white">Training</dt><dd>PyTorch (mask-detector)</dd></div>
-                    <div><dt class="font-semibold text-white">Inference engine</dt><dd><a href="https://github.com/Tencent/ncnn" class="text-cyan-400 hover:underline">NCNN</a></dd></div>
-                    <div><dt class="font-semibold text-white">Browser runtime</dt><dd><a href="https://webassembly.org/" class="text-cyan-400 hover:underline">WebAssembly</a> via Emscripten</dd></div>
-                    <div><dt class="font-semibold text-white">Frontend</dt><dd>HTML, CSS, JavaScript</dd></div>
-                    <div><dt class="font-semibold text-white">Deployment</dt><dd>GitHub Pages (static hosting)</dd></div>
+                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech1_k">Model</dt><dd data-i18n="techPage.tech1_v">YOLO-Fastest (object detection)</dd></div>
+                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech2_k">Training</dt><dd data-i18n="techPage.tech2_v">PyTorch (mask-detector)</dd></div>
+                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech3_k">Inference engine</dt><dd data-i18n-html="techPage.tech3_v"><a href="https://github.com/Tencent/ncnn" class="text-cyan-400 hover:underline">NCNN</a></dd></div>
+                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech4_k">Browser runtime</dt><dd data-i18n-html="techPage.tech4_v"><a href="https://webassembly.org/" class="text-cyan-400 hover:underline">WebAssembly</a> via Emscripten</dd></div>
+                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech5_k">Frontend</dt><dd data-i18n="techPage.tech5_v">HTML, CSS, JavaScript</dd></div>
+                    <div><dt class="font-semibold text-white" data-i18n="techPage.tech6_k">Deployment</dt><dd data-i18n="techPage.tech6_v">GitHub Pages (static hosting)</dd></div>
                 </dl>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Detection classes</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec4_title">Detection classes</h2>
                 <ul class="list-disc list-inside space-y-1">
-                    <li>Background</li>
-                    <li>No Mask</li>
-                    <li>Mask</li>
+                    <li data-i18n="techPage.cls1">Background</li>
+                    <li data-i18n="techPage.cls2">No Mask</li>
+                    <li data-i18n="techPage.cls3">Mask</li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Source code locations</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec5_title">Source code locations</h2>
                 <ul class="list-disc list-inside space-y-2 text-cyan-400">
-                    <li><strong class="text-white">C++ inference:</strong> <a href="https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp" class="hover:underline">src/yolo.cpp</a></li>
-                    <li><strong class="text-white">WebAssembly model:</strong> <code>docs/static/model/</code></li>
-                    <li><strong class="text-white">Training scripts:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">mask-detector</a></li>
+                    <li data-i18n-html="techPage.src1"><strong class="text-white">C++ inference:</strong> <a href="https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp" class="hover:underline">src/yolo.cpp</a></li>
+                    <li data-i18n-html="techPage.src2"><strong class="text-white">HTML / CSS UI:</strong> <a href="https://github.com/waittim/facemask-detection/blob/master/docs/index.html" class="hover:underline">docs/index.html</a></li>
+                    <li data-i18n-html="techPage.src3"><strong class="text-white">Training scripts:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">mask-detector</a></li>
                 </ul>
             </section>
         </article>

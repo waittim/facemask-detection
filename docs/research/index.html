@@ -133,20 +133,26 @@
 
             <section class="space-y-3">
                 <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec1_title">Paper</h2>
-                <p class="font-semibold text-cyan-300 text-base">
+                <p class="font-semibold text-cyan-300 text-base" data-i18n="researchPage.paperName">
                     WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19
                 </p>
-                <p data-i18n-html="researchPage.pubInfo">
-                    Published in Electronic Imaging 2023.
+                <p data-i18n-html="researchPage.authors">
+                    <strong class="text-white">Authors:</strong>
+                    <a href="https://orcid.org/0000-0001-8631-7022" class="text-cyan-400 hover:underline">Zekun Wang</a>,
+                    Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo
+                </p>
+                <p data-i18n-html="researchPage.journal">
+                    <strong class="text-white">Journal:</strong> Electronic Imaging, Volume 35, Issue 11, 2023
+                </p>
+                <p data-i18n-html="researchPage.doi">
+                    <strong class="text-white">DOI:</strong>
+                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-cyan-400 hover:underline">10.2352/EI.2023.35.11.HPCI-229</a>
                 </p>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec1_title">Abstract summary</h2>
-                <p data-i18n="researchPage.sec1_body">
-                    WearMask presents a lightweight, serverless edge computing framework for real-time face mask detection directly inside standard web browsers.
-                </p>
-            </section>
+                <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec2_title">Abstract summary</h2>
+                <p data-i18n="researchPage.abstractText">
                     WearMask presents a lightweight face mask detection system that runs entirely in the web browser
                     using YOLO-Fastest, NCNN, and WebAssembly. The design enables serverless edge computing:
                     inference happens on the client device without uploading camera data to a remote server.
@@ -156,30 +162,25 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Open resources</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec3_title">Open resources</h2>
                 <ul class="list-disc list-inside space-y-2 text-cyan-400">
-                    <li><strong class="text-white">Live application:</strong> <a href="https://facemask-detection.com/" class="hover:underline">facemask-detection.com</a></li>
-                    <li><strong class="text-white">Deployment code:</strong> <a href="https://github.com/waittim/facemask-detection" class="hover:underline">github.com/waittim/facemask-detection</a></li>
-                    <li><strong class="text-white">Training code:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">github.com/waittim/mask-detector</a></li>
-                    <li><strong class="text-white">Dataset:</strong> <a href="https://github.com/waittim/mask-detector/tree/master/modeling/data" class="hover:underline">mask-detector/modeling/data</a></li>
-                    <li><strong class="text-white">Model architecture:</strong> YOLO-Fastest</li>
+                    <li data-i18n-html="researchPage.res1"><strong class="text-white">Live application:</strong> <a href="https://facemask-detection.com/" class="hover:underline">facemask-detection.com</a></li>
+                    <li data-i18n-html="researchPage.res2"><strong class="text-white">Deployment code:</strong> <a href="https://github.com/waittim/facemask-detection" class="hover:underline">github.com/waittim/facemask-detection</a></li>
+                    <li data-i18n-html="researchPage.res3"><strong class="text-white">Training code:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">github.com/waittim/mask-detector</a></li>
+                    <li data-i18n-html="researchPage.res4"><strong class="text-white">Dataset:</strong> <a href="https://github.com/waittim/mask-detector/tree/master/modeling/data" class="hover:underline">mask-detector/modeling/data</a></li>
+                    <li data-i18n-html="researchPage.res5"><strong class="text-white">Model architecture:</strong> YOLO-Fastest</li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Reproducing experiments</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec4_title">Reproducing experiments</h2>
                 <ol class="list-decimal list-inside space-y-2">
-                    <li>Clone <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> and install Python 3.8 dependencies.</li>
-                    <li>Train or use pretrained weights (<code>best.pt</code> / <code>best.weights</code>).</li>
-                    <li>Convert PyTorch → Darknet → NCNN → optimized NCNN following the repository README.</li>
-                    <li>Build the C++ WebAssembly module from <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">facemask-detection</a>.</li>
-                    <li>Deploy via GitHub Pages or run locally with <code>python3 scripts/server.py</code>.</li>
+                    <li data-i18n-html="researchPage.step1">Clone <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> and install Python 3.8 dependencies.</li>
+                    <li data-i18n-html="researchPage.step2">Train or use pretrained weights (<code>best.pt</code> / <code>best.weights</code>).</li>
+                    <li data-i18n-html="researchPage.step3">Convert PyTorch → Darknet → NCNN → optimized NCNN following the repository README.</li>
+                    <li data-i18n-html="researchPage.step4">Build the C++ WebAssembly module from <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">facemask-detection</a>.</li>
+                    <li data-i18n-html="researchPage.step5">Deploy via GitHub Pages or run locally with <code>python3 scripts/server.py</code>.</li>
                 </ol>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Citation</h2>
-                <p>See the dedicated <a href="../citation/" class="text-cyan-400 hover:underline">citation page</a> for BibTeX and preferred reference format.</p>
             </section>
         </article>
     </main>
