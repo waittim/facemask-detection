@@ -1211,10 +1211,27 @@ html.light .bg-glow-2 {
 }
 
 /* Light Mode Overlays (Camera Permission Error & Model Loading) */
+html.light .video-stage {
+  /* Avoid dark-mode vignette: black inset shadow shows as a ring around light overlays */
+  background: #f1f5f9;
+  border-color: rgba(14, 165, 233, 0.35);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+html.light .video-stage.status-mask {
+  border-color: #059669;
+  box-shadow: 0 10px 28px rgba(16, 185, 129, 0.18);
+}
+
+html.light .video-stage.status-nomask {
+  border-color: #dc2626;
+  box-shadow: 0 10px 28px rgba(239, 68, 68, 0.18);
+}
+
 html.light #camera-error-overlay {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background-color: #f8fafc !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 html.light #camera-error-overlay h3 {
@@ -1225,15 +1242,42 @@ html.light #camera-error-overlay p {
   color: #334155 !important;
 }
 
-html.light #camera-error-overlay .w-12 {
+html.light #camera-error-overlay .w-12,
+html.light #camera-error-overlay .camera-error-icon {
   background-color: rgba(239, 68, 68, 0.08) !important;
   border-color: rgba(239, 68, 68, 0.25) !important;
 }
 
 html.light .loading-overlay {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background: #f8fafc !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Keep primary CTA buttons high-contrast in light mode */
+html.light #btn-retry-camera,
+html.light .floating-feedback a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #1d4ed8, #0e7490) !important;
+  border: 1px solid rgba(14, 116, 144, 0.45) !important;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.28), 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light #btn-retry-camera:hover,
+html.light .floating-feedback a:hover {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #1e40af, #0f766e) !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34), 0 4px 12px rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light #btn-retry-camera,
+html.light #btn-retry-camera *,
+html.light .floating-feedback a,
+html.light .floating-feedback a * {
+  color: #ffffff !important;
 }
 
 html.light .loading-overlay .text-cyan-300 {
@@ -1283,7 +1327,21 @@ html.light .loading-overlay .spinner {
 /* Logo sizing fix */
 .h-10 { height: 2.5rem; max-height: 2.5rem; }
 .h-12 { height: 3rem; max-height: 3rem; }
+.w-12 { width: 3rem; max-width: 3rem; }
 .w-auto { width: auto; }
+
+/* Camera permission warning icon — keep a true square, not a vertical pill */
+.camera-error-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 0.75rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
 
 /* Gaps & Spacing */
 .gap-1 { gap: 0.25rem; }
