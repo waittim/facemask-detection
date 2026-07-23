@@ -695,6 +695,40 @@ html.light .language-switcher button.lang-active {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
+/* Floating Feedback Action Button */
+.floating-feedback {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.floating-feedback a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 0.65rem 1.15rem !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(135deg, #2563eb, #0891b2) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(6, 182, 212, 0.4) !important;
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.35), 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  width: auto !important;
+  white-space: nowrap !important;
+}
+
+.floating-feedback a:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 14px 30px rgba(6, 182, 212, 0.45), 0 6px 15px rgba(0, 0, 0, 0.4) !important;
+  background: linear-gradient(135deg, #1d4ed8, #0e7490) !important;
+}
+
 /* Toast Notifications in Light Mode */
 html.light .toast-msg {
   background: #ffffff;
