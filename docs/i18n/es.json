@@ -41,6 +41,7 @@
     "label": "Privacidad",
     "title": "Privacidad y Limitaciones",
     "body": "Todo se ejecuta completamente dentro de tu navegador mediante WebAssembly. Ninguna imagen o video sale de tu dispositivo y no se guardan datos en ningún servidor. Puedes desconectar Internet una vez iniciada la detección.",
+    "disclaimer": "Solo para investigación y demostración: no es un dispositivo médico ni una herramienta de diagnóstico.",
     "linkText": "Leer privacidad y servicio →",
     "linkHref": "privacy/"
   },
@@ -49,7 +50,6 @@
     "title": "Descripción del proyecto",
     "paragraph1": "WearMask es un detector de mascarillas en tiempo real en el navegador, basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> y ejecutado localmente con <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
     "paragraph2": "El código de <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">despliegue</a> y de <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">entrenamiento</a> es de código abierto, con un <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">artículo revisado por pares</a>.",
-    "disclaimer": "Solo para investigación y demostración: no es un dispositivo médico ni una herramienta de diagnóstico.",
     "linkText": "Técnica e Investigación →"
   },
   "feedback": {

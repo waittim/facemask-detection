@@ -41,6 +41,7 @@
     "label": "隐私",
     "title": "隐私与已知局限",
     "body": "该口罩检测程序完全在您浏览器内运行，不会保存任何数据或上传任何内容到服务器。您甚至可以在开始运行后切断网络连接。",
+    "disclaimer": "仅供研究与演示，并非医疗器械或诊断工具。",
     "linkText": "查看隐私与服务声明 →",
     "linkHref": "privacy/"
   },
@@ -49,7 +50,6 @@
     "title": "项目简介",
     "paragraph1": "WearMask 是浏览器端实时口罩检测项目：基于 <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a>，由 <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> 训练，经 <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> 与 <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a> 在本地完成推理。",
     "paragraph2": "<a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">部署代码</a>与<a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">训练代码</a>均已开源，并有<a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">同行评审论文</a>发表。",
-    "disclaimer": "仅供研究与演示，并非医疗器械或诊断工具。",
     "linkText": "技术架构与论文 →"
   },
   "feedback": {
@@ -122,7 +122,7 @@
     "q3_title": "完全本地推理意味着什么？",
     "q3_body": "在页面加载 WebAssembly 模型后，检测会在浏览器内部对每帧画面实时运行。即使在加载完成后切断网络连接，口罩检测依然可以正常工作。",
     "q4_title": "作者与研究机构",
-    "q4_author": "<strong class=\"text-white\">第一作者：</strong> <a href=\"https://github.com/waittim\" class=\"text-cyan-400 hover:underline\">王泽坤 (Zekun Wang)</a> (<a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">ORCID</a> · <a href=\"https://www.linkedin.com/in/zekun-wang/\" class=\"text-cyan-400 hover:underline\">LinkedIn</a>)",
+    "q4_author": "<strong class=\"text-white\">第一作者：</strong> <a href=\"https://github.com/waittim\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a> (<a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">ORCID</a> · <a href=\"https://www.linkedin.com/in/zekun-wang/\" class=\"text-cyan-400 hover:underline\">LinkedIn</a>)",
     "q4_inst": "<strong class=\"text-white\">研究机构：</strong> <a href=\"https://www.vanderbilt.edu/datascience/\" class=\"text-cyan-400 hover:underline\">范德堡大学数据科学研究院 (Vanderbilt University)</a>",
     "q4_support": "本研究获得美国国家科学基金会 (NSF) 部分资助。",
     "q5_title": "项目时间线",
@@ -195,7 +195,7 @@
     "subtitle": "WearMask 系统的同行评审论文与相关开源科研资源。",
     "sec1_title": "学术论文",
     "paperName": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
-    "authors": "<strong class=\"text-white\">作者团队：</strong> <a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">王泽坤 (Zekun Wang)</a>, 汪鹏威, Peter C. Louis, Lee E. Wheless, 霍元凯",
+    "authors": "<strong class=\"text-white\">作者团队：</strong> <a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a>, Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo",
     "journal": "<strong class=\"text-white\">发表期刊/会议：</strong> Electronic Imaging, Volume 35, Issue 11, 2023",
     "doi": "<strong class=\"text-white\">DOI：</strong> <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" class=\"text-cyan-400 hover:underline\">10.2352/EI.2023.35.11.HPCI-229</a>",
     "sec2_title": "论文摘要",
