@@ -120,7 +120,11 @@
     "simdActive": "SIMD activé",
     "simdInactive": "SIMD standard",
     "threads": "Multithread",
-    "engine": "Moteur"
+    "engine": "Moteur",
+    "perfMode": "Lecture fluide",
+    "perfModeDesc": "Découple rendu vidéo et inférence pour réduire les saccades.",
+    "perfModeOn": "Mode fluide activé",
+    "perfModeOff": "Mode fluide désactivé"
   },
   "nav": {
     "home": "Accueil",

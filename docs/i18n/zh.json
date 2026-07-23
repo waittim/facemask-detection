@@ -120,7 +120,11 @@
     "simdActive": "SIMD 已启用",
     "simdInactive": "SIMD 标准模式",
     "threads": "多线程",
-    "engine": "推理引擎"
+    "engine": "推理引擎",
+    "perfMode": "流畅播放",
+    "perfModeDesc": "解耦视频渲染与推理，减轻卡顿。",
+    "perfModeOn": "已开启流畅模式",
+    "perfModeOff": "已关闭流畅模式"
   },
   "nav": {
     "home": "首页",

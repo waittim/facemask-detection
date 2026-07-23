@@ -120,7 +120,11 @@
     "simdActive": "SIMD aktiviert",
     "simdInactive": "SIMD Standard",
     "threads": "Multithreading",
-    "engine": "Engine"
+    "engine": "Engine",
+    "perfMode": "Flüssige Wiedergabe",
+    "perfModeDesc": "Video und Inferenz entkoppeln, Ruckler reduzieren.",
+    "perfModeOn": "Flüssigmodus aktiviert",
+    "perfModeOff": "Flüssigmodus deaktiviert"
   },
   "nav": {
     "home": "Start",

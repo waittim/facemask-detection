@@ -120,7 +120,11 @@
     "simdActive": "SIMD Enabled",
     "simdInactive": "SIMD Standard",
     "threads": "Multi-Threads",
-    "engine": "Engine"
+    "engine": "Engine",
+    "perfMode": "Smooth Playback",
+    "perfModeDesc": "Decouple video rendering from inference to reduce stutter.",
+    "perfModeOn": "Smooth mode enabled",
+    "perfModeOff": "Smooth mode disabled"
   },
   "nav": {
     "home": "Home",

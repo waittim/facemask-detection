@@ -120,7 +120,11 @@
     "simdActive": "SIMD 有効",
     "simdInactive": "SIMD 標準",
     "threads": "マルチスレッド",
-    "engine": "エンジン"
+    "engine": "エンジン",
+    "perfMode": "スムーズ再生",
+    "perfModeDesc": "描画と推論を分離し、カクつきを軽減。",
+    "perfModeOn": "スムーズモードを有効にしました",
+    "perfModeOff": "スムーズモードを無効にしました"
   },
   "nav": {
     "home": "ホーム",

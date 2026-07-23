@@ -120,7 +120,11 @@
     "simdActive": "SIMD 활성화",
     "simdInactive": "SIMD 표준",
     "threads": "멀티스레드",
-    "engine": "엔진"
+    "engine": "엔진",
+    "perfMode": "부드러운 재생",
+    "perfModeDesc": "렌더링과 추론을 분리해 끊김을 줄입니다.",
+    "perfModeOn": "부드러운 모드 켜짐",
+    "perfModeOff": "부드러운 모드 꺼짐"
   },
   "nav": {
     "home": "홈",

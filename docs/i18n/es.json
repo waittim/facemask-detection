@@ -120,7 +120,11 @@
     "simdActive": "SIMD Activado",
     "simdInactive": "SIMD Estándar",
     "threads": "Multihilo",
-    "engine": "Motor AI"
+    "engine": "Motor AI",
+    "perfMode": "Reproducción fluida",
+    "perfModeDesc": "Desacopla renderizado e inferencia para reducir tirones.",
+    "perfModeOn": "Modo fluido activado",
+    "perfModeOff": "Modo fluido desactivado"
   },
   "nav": {
     "home": "Inicio",

@@ -120,7 +120,11 @@
     "simdActive": "SIMD ativado",
     "simdInactive": "SIMD padrão",
     "threads": "Multithread",
-    "engine": "Motor"
+    "engine": "Motor",
+    "perfMode": "Reprodução suave",
+    "perfModeDesc": "Desacopla renderização e inferência para reduzir travamentos.",
+    "perfModeOn": "Modo suave ativado",
+    "perfModeOff": "Modo suave desativado"
   },
   "nav": {
     "home": "Início",

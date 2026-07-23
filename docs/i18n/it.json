@@ -120,7 +120,11 @@
     "simdActive": "SIMD attivo",
     "simdInactive": "SIMD standard",
     "threads": "Multithread",
-    "engine": "Motore"
+    "engine": "Motore",
+    "perfMode": "Riproduzione fluida",
+    "perfModeDesc": "Separa rendering e inferenza per ridurre gli scatti.",
+    "perfModeOn": "Modalità fluida attivata",
+    "perfModeOff": "Modalità fluida disattivata"
   },
   "nav": {
     "home": "Home",
