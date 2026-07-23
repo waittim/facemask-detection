@@ -601,6 +601,40 @@ html.light .language-switcher button.lang-active {
   color: #ffffff !important;
 }
 
+/* Custom Language Select Dropdown */
+.lang-select-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0.75rem;
+  padding: 0.45rem 2.2rem 0.45rem 0.85rem;
+  color: #9ca3af;
+  background-color: rgba(15, 23, 42, 0.6);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2322d3ee'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  background-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.lang-select-btn:hover {
+  color: #f3f4f6;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.lang-select-btn option {
+  background-color: #0f172a;
+  color: #f3f4f6;
+  padding: 0.5rem;
+}
+
 /* Toast Notifications in Light Mode */
 html.light .toast-msg {
   background: #ffffff;
@@ -609,20 +643,24 @@ html.light .toast-msg {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Language Dropdown Overlay in Light Mode */
-html.light #lang-dropdown-menu {
-  background: #ffffff !important;
+/* Language Dropdown Select in Light Mode */
+html.light .lang-select-btn {
+  color: #475569 !important;
+  background-color: #ffffff !important;
   border-color: #cbd5e1 !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230284c7'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-html.light .lang-option-btn {
-  color: #334155 !important;
-}
-
-html.light .lang-option-btn:hover {
+html.light .lang-select-btn:hover {
   color: #0f172a !important;
-  background: #f1f5f9 !important;
+  background-color: #f8fafc !important;
+  border-color: #94a3b8 !important;
+}
+
+html.light .lang-select-btn option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
 }
 
 /* Footer & Background Glows in Light Mode */
