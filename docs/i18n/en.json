@@ -11,7 +11,7 @@
     }
   },
   "hero": {
-    "title": "WearMask: In-browser Face Mask Detection",
+    "title": "WearMask",
     "subtitle": "Real-time face mask detection"
   },
   "status": {
@@ -29,11 +29,13 @@
     "title": "How to get the best experience?",
     "steps": [
       "Launch the latest Chrome browser.",
-      "Open chrome://flags and enable all WebAssembly features.",
+      "Open <code class=\"chrome-flags-code\" role=\"button\" tabindex=\"0\">chrome://flags</code> and enable all WebAssembly features.",
       "Restart Chrome, open this page, and allow camera access.",
-      "Safari on iOS is supported but may run at a lower frame rate."
+      "Frame rate depends on your device CPU. Safari on iOS is supported but may run at a lower frame rate."
     ],
-    "note": "Frame rate depends on your device CPU."
+    "copyFlags": "Copy",
+    "copiedFlags": "Copied!",
+    "note": ""
   },
   "privacy": {
     "label": "Privacy",
@@ -45,9 +47,10 @@
   "project": {
     "label": "Project",
     "title": "Project overview",
-    "paragraph1": "WearMask (Web-based Efficient AI Recognition of Masks) is a deep learning project based on <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, trained with <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a>, and deployed through <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> and <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
-    "paragraph2": "This project is open-sourced on <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (deployment)</a> and <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (training)</a>. See <a href=\"technical-overview/#research\" rel=\"noopener noreferrer\">Technical & Research</a> and the <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">paper (DOI)</a>.",
-    "disclaimer": "WearMask is a research and demonstration system, not a medical device or diagnostic tool."
+    "paragraph1": "WearMask is a real-time, in-browser face mask detector built on <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a>, trained with <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a>, and run locally via <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> and <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
+    "paragraph2": "Both the <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">deployment</a> and <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">training</a> codebases are open source, with a <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">peer-reviewed paper</a>.",
+    "disclaimer": "For research and demonstration only — not a medical device or diagnostic tool.",
+    "linkText": "Technical & Research →"
   },
   "feedback": {
     "button": "Feedback",
@@ -108,7 +111,7 @@
   "aboutPage": {
     "title": "About WearMask | In-browser Face Mask Detection",
     "heading": "WearMask: In-browser Face Mask Detection",
-    "intro": "WearMask is an open-source, real-time face mask detection system that runs entirely inside a web browser. The project is also published as <em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>.",
+    "intro": "WearMask is an open-source, real-time face mask detection system that runs entirely inside a web browser. The project is also published as <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>.",
     "q1_title": "What is WearMask?",
     "q1_body": "WearMask (Web-based Efficient AI Recognition of Masks) detects whether people in a webcam feed appear to be wearing a face mask. Unlike cloud-based vision services, all inference happens on the user's device. No camera images or video are uploaded to an application server.",
     "q2_title": "How is it different from cloud vision?",
@@ -132,7 +135,7 @@
     "res3": "Training repository",
     "res4": "Research paper (DOI)",
     "res5": "Machine-readable project facts (JSON)",
-    "disclaimer": "<strong class=\"text-amber-200\">Important:</strong> WearMask is a research and demonstration system, not a medical device or diagnostic tool. See <a href=\"../limitations/\" class=\"underline text-amber-200\">known limitations</a>."
+    "disclaimer": "<strong class=\"text-amber-200\">Important:</strong> WearMask is a research and demonstration system, not a medical device or diagnostic tool. See <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">known limitations</a>."
   },
   "citationPage": {
     "title": "How to Cite WearMask",
@@ -171,18 +174,21 @@
     "sec4_item2": "Model weights and architecture reflect 2020–2023 research; no continuous retraining is provided."
   },
   "privacyPage": {
-    "title": "Privacy Model",
-    "subtitle": "How WearMask handles camera data and user privacy.",
+    "title": "Privacy & Limitations",
+    "subtitle": "How WearMask handles camera data, user privacy commitments, and known system boundaries.",
     "sec1_title": "Client-side processing",
     "sec1_body": "WearMask performs all face mask detection entirely inside your web browser using WebAssembly. Camera frames are processed locally on your device. No images, video, or detection results are uploaded to a WearMask application server.",
     "sec2_title": "What is not collected",
-    "sec2_item1": "Camera images or video are not stored or uploaded.",
-    "sec2_item2": "Mask-wearing detection results are not sent to a backend.",
-    "sec2_item3": "No user accounts or personal identification is required.",
+    "sec2_card1_title": "Zero image storage",
+    "sec2_card2_title": "No backend tracking",
+    "sec2_card3_title": "No account required",
+    "sec2_item1": "Camera images or video are never stored or uploaded remotely.",
+    "sec2_item2": "Detection results are never transmitted to backend databases.",
+    "sec2_item3": "No registration, sign-in, or personal identification is needed.",
     "sec3_title": "Offline operation",
     "sec3_body": "After the WebAssembly model files are loaded, detection can continue even if you disconnect from the internet. The initial page load requires network access to download the application and model assets.",
     "sec4_title": "Full service statement",
-    "sec4_body": "For the complete legal service statement (available in English, Spanish, and Chinese), see: <a href=\"statement.html\" class=\"text-cyan-400 hover:underline\">Privacy service statement</a>"
+    "sec4_body": "For the complete legal service statement (available in English, Spanish, and Chinese), see: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Privacy service statement</a>"
   },
   "researchPage": {
     "title": "Research",
@@ -211,6 +217,7 @@
     "title": "Technical Overview",
     "subtitle": "End-to-end architecture of the WearMask browser deployment and training pipeline.",
     "sec1_title": "Browser inference pipeline",
+    "sec1_body": "WearMask combines YOLO-Fastest with Tencent NCNN framework compiled into WebAssembly for high-speed client-side C++ execution.",
     "sec2_title": "Training and conversion pipeline",
     "sec2_desc": "Model training and conversion are implemented in the <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a> repository:",
     "sec3_title": "Core technologies",
@@ -239,6 +246,8 @@
     "title": "Full Legal Service Statement",
     "heroTitle": "Full Legal Service Statement",
     "heroDesc": "By using the WearMask detection service, you agree to the following terms. If you do not agree, please stop using this service immediately.",
+    "expand": "Expand ↓",
+    "collapse": "Collapse ↑",
     "sec1_title": "1. Service Content",
     "sec1_body": "This service is provided as a web page. Simply open the page to access AI-based real-time mask detection and alerts.",
     "sec2_title": "2. Privacy Protection",

@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.4">
 
     <!-- Early Theme Initialization -->
     <script>
@@ -46,7 +46,8 @@
             
             <div class="flex items-center space-x-2">
                 <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex">
-                    ← Live demo
+                    <span aria-hidden="true">←</span>
+                    <span data-i18n="nav.liveDemo">Live demo</span>
                 </a>
 
                 <button id="btn-theme-cycle" type="button" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
@@ -67,7 +68,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                         <span id="lang-current-label" class="whitespace-nowrap">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -92,15 +93,17 @@
     </nav>
 
     <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1 items-center">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
             <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
-            <span class="text-gray-600">/</span>
+            <span class="text-gray-600" aria-hidden="true">/</span>
             <span class="text-white font-medium" data-i18n="nav.about">About</span>
-            <span class="text-gray-600">/</span>
-            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
-            <span class="text-gray-600">/</span>
-            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
         </nav>
+
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-6">
+            <span class="text-cyan-400 font-medium" data-i18n="nav.about">About</span>
+            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
+        </div>
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
@@ -108,7 +111,7 @@
                 <p class="text-gray-400" data-i18n-html="aboutPage.intro">
                     WearMask is an open-source, real-time face mask detection system that runs entirely inside a web browser.
                     The project is also published as
-                    <em class="text-cyan-300">WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>.
+                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:underline"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>.
                 </p>
             </header>
 

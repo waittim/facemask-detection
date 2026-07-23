@@ -43,8 +43,8 @@ except Exception as e:
     port = 8889
     httpd = http.server.HTTPServer(('127.0.0.1', port), handler)
 
-print(f"🚀 WearMask Server running at http://127.0.0.1:{port}")
-print("💡 Tip: If using proxy software (Clash/V2Ray/Charles), ensure 127.0.0.1 is in your proxy bypass list.")
+print(f"WearMask Server running at http://127.0.0.1:{port}")
+print("Tip: If using proxy software (Clash/V2Ray/Charles), ensure 127.0.0.1 is in your proxy bypass list.")
 print("Press Ctrl+C to stop the server\n")
 
 try:

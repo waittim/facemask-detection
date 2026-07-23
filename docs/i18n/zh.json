@@ -11,8 +11,8 @@
     }
   },
   "hero": {
-    "title": "WearMask：浏览器端口罩检测",
-    "subtitle": "实时口罩检测"
+    "title": "WearMask",
+    "subtitle": "浏览器端实时口罩检测"
   },
   "status": {
     "loading": "加载中..."
@@ -29,11 +29,13 @@
     "title": "如何获得最佳体验？",
     "steps": [
       "启动最新版 Chrome 浏览器。",
-      "在地址栏输入 chrome://flags 并打开，启用所有 WebAssembly 相关功能。",
+      "打开 <code class=\"chrome-flags-code\" role=\"button\" tabindex=\"0\">chrome://flags</code>，启用所有 WebAssembly 相关功能。",
       "重启 Chrome，打开本页面并允许开启摄像头。",
-      "iOS 暂时只能使用 Safari，检测帧率可能较低。"
+      "检测帧率取决于您的设备 CPU。iOS 暂时只能使用 Safari，检测帧率可能较低。"
     ],
-    "note": "检测帧率取决于您的设备 CPU。"
+    "copyFlags": "复制",
+    "copiedFlags": "已复制",
+    "note": ""
   },
   "privacy": {
     "label": "隐私",
@@ -45,9 +47,10 @@
   "project": {
     "label": "项目",
     "title": "项目简介",
-    "paragraph1": "WearMask（Web-based Efficient AI Recognition of Masks） 是一个基于 <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a> 的深度学习项目，采用 <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> 训练，通过 <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> 和 <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a> 实现浏览器端实时运行。",
-    "paragraph2": "项目已在 <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub（部署）</a> 和 <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub（训练）</a> 开源。请参阅 <a href=\"technical-overview/#research\" rel=\"noopener noreferrer\">技术架构与论文</a> 和 <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">论文（DOI）</a>。",
-    "disclaimer": "WearMask 是研究与演示系统，并非医疗器械或诊断工具。"
+    "paragraph1": "WearMask 是浏览器端实时口罩检测项目：基于 <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a>，由 <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> 训练，经 <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> 与 <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a> 在本地完成推理。",
+    "paragraph2": "<a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">部署代码</a>与<a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">训练代码</a>均已开源，并有<a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">同行评审论文</a>发表。",
+    "disclaimer": "仅供研究与演示，并非医疗器械或诊断工具。",
+    "linkText": "技术架构与论文 →"
   },
   "feedback": {
     "button": "反馈",
@@ -108,7 +111,7 @@
   "aboutPage": {
     "title": "关于 WearMask | 浏览器端实时口罩检测",
     "heading": "WearMask：浏览器端实时口罩检测",
-    "intro": "WearMask 是一个开源、实时的口罩检测系统，完全在 Web 浏览器内运行。项目学术论文已发表于：<em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>。",
+    "intro": "WearMask 是一个开源、实时的口罩检测系统，完全在 Web 浏览器内运行。项目学术论文已发表于：<a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>。",
     "q1_title": "什么是 WearMask？",
     "q1_body": "WearMask (Web-based Efficient AI Recognition of Masks) 用于检测摄像头画面中的人员是否佩戴口罩。与云端视觉 AI 不同，所有推理均在用户设备上本地完成，绝不会上传任何图像或视频到服务器。",
     "q2_title": "它与云端视觉 AI 有何不同？",
@@ -132,7 +135,7 @@
     "res3": "训练代码库",
     "res4": "科研论文 (DOI)",
     "res5": "项目事实元数据 (JSON)",
-    "disclaimer": "<strong class=\"text-amber-200\">重要提示：</strong> WearMask 是研究与演示系统，并非医疗器械或诊断工具。参见 <a href=\"../limitations/\" class=\"underline text-amber-200\">已知局限性</a>。"
+    "disclaimer": "<strong class=\"text-amber-200\">重要提示：</strong> WearMask 是研究与演示系统，并非医疗器械或诊断工具。参见 <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">已知局限性</a>。"
   },
   "citationPage": {
     "title": "如何引用 WearMask",
@@ -171,18 +174,21 @@
     "sec4_item2": "模型权重与架构体现 2020-2023 年的研究成果，不提供持续在线增量训练。"
   },
   "privacyPage": {
-    "title": "隐私与安全模型",
-    "subtitle": "WearMask 如何在保护用户隐私前提下处理摄像头数据。",
+    "title": "隐私与已知局限",
+    "subtitle": "WearMask 如何处理摄像头数据、隐私承诺，以及已知系统边界。",
     "sec1_title": "100% 客户端本地处理",
     "sec1_body": "WearMask 使用 WebAssembly 完全在您的 Web 浏览器内部执行所有口罩检测。摄像头帧在您的设备本地处理，绝不会将任何图像、视频或检测结果上传到 WearMask 服务器。",
     "sec2_title": "不收集任何敏感数据",
+    "sec2_card1_title": "零图像存储",
+    "sec2_card2_title": "无后端追踪",
+    "sec2_card3_title": "无需注册账号",
     "sec2_item1": "摄像头图像与视频流绝不进行本地存储或远程上传。",
     "sec2_item2": "口罩佩戴检测结果不会发送到后端数据库。",
     "sec2_item3": "无需注册任何用户账号，不收集个人身份信息。",
     "sec3_title": "支持完全断网运行",
     "sec3_body": "在 WebAssembly 模型文件初始加载完成后，即使断开网络连接，检测依然可以在本地顺畅运行。",
     "sec4_title": "完整服务声明",
-    "sec4_body": "查看完整的法律服务声明（提供英文、西班牙语和中文版本）：<a href=\"statement.html\" class=\"text-cyan-400 hover:underline\">隐私与服务声明 →</a>"
+    "sec4_body": "查看完整的法律服务声明（提供英文、西班牙语和中文版本）：<a href=\"#statement\" class=\"text-cyan-400 hover:underline\">隐私与服务声明 →</a>"
   },
   "researchPage": {
     "title": "科研论文与成果",
@@ -211,6 +217,7 @@
     "title": "技术架构概述",
     "subtitle": "WearMask 浏览器部署与训练管线的端到端架构设计。",
     "sec1_title": "浏览器端推理管线",
+    "sec1_body": "WearMask 将 YOLO-Fastest 与腾讯 NCNN 框架编译为 WebAssembly，实现高速的客户端 C++ 推理。",
     "sec2_title": "模型训练与转换管线",
     "sec2_desc": "模型训练与转换实现于 <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a> 开源仓库：",
     "sec3_title": "核心关键技术",
@@ -220,7 +227,7 @@
     "tech2_v": "PyTorch (mask-detector)",
     "tech3_k": "推理引擎",
     "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" class=\"text-cyan-400 hover:underline\">腾讯 NCNN</a>",
-    "tech4_k": "浏览器运行时",
+    "tech4_k": "浏览器运行环境",
     "tech4_v": "基于 Emscripten 的 <a href=\"https://webassembly.org/\" class=\"text-cyan-400 hover:underline\">WebAssembly</a>",
     "tech5_k": "前端 UI 界面",
     "tech5_v": "HTML, CSS, JavaScript",
@@ -239,6 +246,8 @@
     "title": "服务声明（完整条款）",
     "heroTitle": "完整服务与法律声明",
     "heroDesc": "当您使用 WearMask 口罩检测服务，即表示您已阅读并同意以下内容。如不同意，请立即停止使用本服务。",
+    "expand": "展开 ↓",
+    "collapse": "收起 ↑",
     "sec1_title": "1. 服务内容",
     "sec1_body": "本服务以网页形式提供。您只需打开页面，即可获得基于 AI 的实时口罩佩戴检测与提醒功能。",
     "sec2_title": "2. 隐私保护",

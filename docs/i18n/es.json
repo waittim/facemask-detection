@@ -11,7 +11,7 @@
     }
   },
   "hero": {
-    "title": "WearMask: Detección de mascarillas en el navegador",
+    "title": "WearMask",
     "subtitle": "Detección de mascarillas en tiempo real"
   },
   "status": {
@@ -29,11 +29,13 @@
     "title": "¿Cómo obtener la mejor experiencia?",
     "steps": [
       "Abre el navegador Chrome más reciente.",
-      "Abre chrome://flags y habilita todas las funciones de WebAssembly.",
+      "Abre <code class=\"chrome-flags-code\" role=\"button\" tabindex=\"0\">chrome://flags</code> y habilita todas las funciones de WebAssembly.",
       "Reinicia Chrome, abre esta página y permite el acceso a la cámara.",
-      "Safari en iOS es compatible pero puede ejecutarse a menor velocidad de fotogramas."
+      "La velocidad de fotogramas depende de la CPU de tu dispositivo. Safari en iOS es compatible pero puede ejecutarse a menor velocidad de fotogramas."
     ],
-    "note": "La velocidad de fotogramas depende de la CPU de tu dispositivo."
+    "copyFlags": "Copiar",
+    "copiedFlags": "¡Copiado!",
+    "note": ""
   },
   "privacy": {
     "label": "Privacidad",
@@ -45,9 +47,10 @@
   "project": {
     "label": "Proyecto",
     "title": "Descripción del proyecto",
-    "paragraph1": "WearMask (Web-based Efficient AI Recognition of Masks) es un proyecto de aprendizaje profundo basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">Yolo-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a>, y desplegado mediante <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
-    "paragraph2": "Este proyecto es de código abierto en <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (despliegue)</a> y <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub (entrenamiento)</a>. Consulta <a href=\"technical-overview/#research\" rel=\"noopener noreferrer\">Técnica e Investigación</a> y el <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">artículo (DOI)</a>.",
-    "disclaimer": "WearMask es un sistema de investigación y demostración, no un dispositivo médico ni una herramienta de diagnóstico."
+    "paragraph1": "WearMask es un detector de mascarillas en tiempo real en el navegador, basado en <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a>, entrenado con <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> y ejecutado localmente con <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> y <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
+    "paragraph2": "El código de <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">despliegue</a> y de <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">entrenamiento</a> es de código abierto, con un <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">artículo revisado por pares</a>.",
+    "disclaimer": "Solo para investigación y demostración: no es un dispositivo médico ni una herramienta de diagnóstico.",
+    "linkText": "Técnica e Investigación →"
   },
   "feedback": {
     "button": "Comentarios",
@@ -108,7 +111,7 @@
   "aboutPage": {
     "title": "Acerca de WearMask | Detección de mascarillas en el navegador",
     "heading": "WearMask: Detección de mascarillas faciales en el navegador",
-    "intro": "WearMask es un sistema de detección de mascarillas de código abierto y en tiempo real que se ejecuta completamente dentro del navegador. Publicado como: <em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>.",
+    "intro": "WearMask es un sistema de detección de mascarillas de código abierto y en tiempo real que se ejecuta completamente dentro del navegador. Publicado como: <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>.",
     "q1_title": "¿Qué es WearMask?",
     "q1_body": "WearMask (Web-based Efficient AI Recognition of Masks) detecta si las personas en una cámara web llevan mascarilla. A diferencia de los servicios de visión en la nube, toda la inferencia ocurre localmente en el dispositivo del usuario.",
     "q2_title": "¿En qué se diferencia de la visión en la nube?",
@@ -171,18 +174,21 @@
     "sec4_item2": "Los pesos del modelo reflejan la investigación de 2020-2023; no hay reentrenamiento continuo."
   },
   "privacyPage": {
-    "title": "Modelo de privacidad",
-    "subtitle": "Cómo WearMask protege la privacidad con procesamiento 100% local.",
+    "title": "Privacidad y Limitaciones",
+    "subtitle": "Cómo WearMask maneja los datos de la cámara, el compromiso de privacidad y los límites conocidos del sistema.",
     "sec1_title": "Procesamiento en el cliente",
     "sec1_body": "WearMask realiza toda la detección de mascarillas dentro de tu navegador web usando WebAssembly. Los fotogramas de la cámara se procesan localmente en tu dispositivo. No se envían imágenes, video ni resultados a ningún servidor.",
     "sec2_title": "Lo que no se recopila",
+    "sec2_card1_title": "Sin almacenamiento de imágenes",
+    "sec2_card2_title": "Sin seguimiento en servidor",
+    "sec2_card3_title": "Sin cuenta requerida",
     "sec2_item1": "No se almacenan ni suben imágenes o videos de la cámara.",
     "sec2_item2": "Los resultados de detección no se envían a ningún servidor.",
     "sec2_item3": "No se requieren cuentas de usuario ni identificación personal.",
     "sec3_title": "Funcionamiento sin conexión",
     "sec3_body": "Una vez cargados los archivos del modelo WebAssembly, la detección puede continuar incluso si te desconectas de Internet.",
     "sec4_title": "Declaración de servicio completa",
-    "sec4_body": "Para ver la declaración legal completa (disponible en inglés, español y chino), consulta: <a href=\"statement.html\" class=\"text-cyan-400 hover:underline\">Declaración de servicio de privacidad →</a>"
+    "sec4_body": "Para ver la declaración legal completa (disponible en inglés, español y chino), consulta: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Declaración de servicio de privacidad →</a>"
   },
   "researchPage": {
     "title": "Investigación y publicaciones",
@@ -211,6 +217,7 @@
     "title": "Arquitectura técnica",
     "subtitle": "Arquitectura, modelos y tecnologías que impulsan WearMask.",
     "sec1_title": "Flujo de inferencia en el navegador",
+    "sec1_body": "WearMask combina YOLO-Fastest con el framework NCNN de Tencent compilado a WebAssembly para una ejecución C++ de alta velocidad en el cliente.",
     "sec2_title": "Flujo de entrenamiento y conversión",
     "sec2_desc": "El entrenamiento y conversión del modelo se implementan en el repositorio <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a>:",
     "sec3_title": "Tecnologías clave",
@@ -239,6 +246,8 @@
     "title": "Declaración Completa del Servicio",
     "heroTitle": "Declaración Completa del Servicio",
     "heroDesc": "Al utilizar el servicio de detección WearMask, usted acepta los siguientes términos. Si no está de acuerdo, deje de usar este servicio inmediatamente.",
+    "expand": "Expandir ↓",
+    "collapse": "Contraer ↑",
     "sec1_title": "1. Contenido del Servicio",
     "sec1_body": "Este servicio se proporciona como una página web. Simplemente abra la página para acceder a la detección y alertas de mascarillas en tiempo real basadas en IA.",
     "sec2_title": "2. Protección de Privacidad",

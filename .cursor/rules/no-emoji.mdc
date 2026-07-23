@@ -1,0 +1,10 @@
+---
+description: Do not use emoji anywhere in this project
+alwaysApply: true
+---
+
+# No Emoji
+
+Do not use any emoji characters in this project — including source code, docs, HTML/CSS/JS, i18n strings, commit messages drafted for this repo, comments, CLI output, and UI copy.
+
+Prefer plain text, typographic symbols that are not emoji (when already established), or CSS/SVG for status and decoration.

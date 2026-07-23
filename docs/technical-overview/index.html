@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.4">
 
     <!-- Early Theme Initialization -->
     <script>
@@ -67,8 +67,9 @@
             </a>
             
             <div class="flex items-center space-x-2">
-                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex" data-i18n="nav.liveDemo">
-                    ← Live demo
+                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex">
+                    <span aria-hidden="true">←</span>
+                    <span data-i18n="nav.liveDemo">Live demo</span>
                 </a>
 
                 <button id="btn-theme-cycle" type="button" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
@@ -89,7 +90,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                         <span id="lang-current-label" class="whitespace-nowrap">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -114,15 +115,17 @@
     </nav>
 
     <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1 items-center">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
             <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
-            <span class="text-gray-600">/</span>
-            <a href="../about/" class="hover:text-cyan-400" data-i18n="nav.about">About</a>
-            <span class="text-gray-600">/</span>
+            <span class="text-gray-600" aria-hidden="true">/</span>
             <span class="text-white font-medium" data-i18n="nav.technicalOverview">Technical & Research</span>
-            <span class="text-gray-600">/</span>
-            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
         </nav>
+
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-6">
+            <a href="../about/" class="hover:text-cyan-400" data-i18n="nav.about">About</a>
+            <span class="text-cyan-400 font-medium" data-i18n="nav.technicalOverview">Technical & Research</span>
+            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
+        </div>
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-10 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
@@ -133,7 +136,7 @@
             <!-- Technical Architecture -->
             <section class="space-y-4">
                 <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
-                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                     <span data-i18n="techPage.sec1_title">Core AI Pipeline</span>
                 </h2>
                 <p data-i18n="techPage.sec1_body">
@@ -150,7 +153,10 @@
             </section>
 
             <section class="space-y-4">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec2_title">Training & Model Conversion Pipeline</h2>
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    <span data-i18n="techPage.sec2_title">Training & Model Conversion Pipeline</span>
+                </h2>
                 <p data-i18n-html="techPage.sec2_desc">Model training and conversion are implemented in the <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> repository:</p>
                 <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">PyTorch training (YOLO-Fastest)
   → Darknet weights (.weights)
@@ -162,7 +168,10 @@
             </section>
 
             <section class="space-y-4">
-                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec3_title">Core Technologies</h2>
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    <span data-i18n="techPage.sec3_title">Core Technologies</span>
+                </h2>
                 <dl class="grid sm:grid-cols-2 gap-4">
                     <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech1_k">Model</dt><dd data-i18n="techPage.tech1_v">YOLO-Fastest (object detection)</dd></div>
                     <div class="bg-white/5 border border-white/5 rounded-xl p-3.5"><dt class="font-semibold text-white mb-1" data-i18n="techPage.tech2_k">Training</dt><dd data-i18n="techPage.tech2_v">PyTorch (mask-detector)</dd></div>

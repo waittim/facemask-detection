@@ -92,7 +92,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.0.0">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.0.4">
 
 </head>
 
@@ -110,11 +110,11 @@
                 <a href="https://facemask-detection.com" class="group flex items-center space-x-3">
                     <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="static/images/logo_mask.png" alt="WearMask Logo">
                     <div>
-                        <div class="flex items-center space-x-2">
-                            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white" data-i18n="hero.title">WearMask</h1>
-                            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">v2.1 EDGE AI</span>
+                        <div class="flex items-center space-x-2 min-w-0">
+                            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white shrink-0" data-i18n="hero.title">WearMask</h1>
+                            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">v2.1</span>
                         </div>
-                        <p class="text-xs text-gray-400 hidden sm:block" data-i18n="hero.subtitle">Real-time face mask detection powered by WebAssembly & NCNN</p>
+                        <p class="text-xs text-gray-400 hidden sm:block truncate max-w-md" data-i18n="hero.subtitle">Real-time face mask detection</p>
                     </div>
                 </a>
             </div>
@@ -140,7 +140,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                         <span id="lang-current-label" class="whitespace-nowrap">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -167,13 +167,9 @@
     <!-- Main Content Workspace -->
     <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-grow">
         
-        <!-- Primary Status Indicator Banner -->
-        <div class="text-center mb-6 sm:mb-8 fade-in">
+        <!-- Primary Status Indicator Banner (hidden while video overlay handles initial load) -->
+        <div id="status-banner" class="text-center mb-6 sm:mb-8 fade-in hidden">
             <div id="remind" class="status-pill status-neutral inline-flex items-center space-x-3">
-                <svg class="animate-spin h-6 w-6 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
                 <span data-i18n="status.loading">Loading AI Model...</span>
             </div>
         </div>
@@ -194,17 +190,17 @@
                     </div>
                     
                     <!-- Camera Error Stage Overlay (In-Place Warning) -->
-                    <div id="camera-error-overlay" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex flex-col items-center justify-center p-6 text-center">
-                        <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-3">
+                    <div id="camera-error-overlay" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex flex-col items-center justify-center p-4 sm:p-6 text-center overflow-y-auto">
+                        <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-3 shrink-0">
                             <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                             </svg>
                         </div>
                         <h3 class="text-base font-bold text-white mb-1" data-i18n="modal.title">Camera access required</h3>
-                        <p class="text-xs text-gray-300 max-w-xs mb-4 leading-relaxed" data-i18n="modal.body">
-                            To start mask detection, allow your browser to access the camera in its settings.
+                        <p class="text-xs text-gray-300 max-w-[16rem] sm:max-w-xs mb-4 leading-relaxed break-words" data-i18n="modal.body">
+                            To start mask detection, allow your browser to access the camera in its settings, then refresh this page.
                         </p>
-                        <button id="btn-retry-camera" type="button" class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-2 px-4 rounded-xl text-xs transition shadow-lg flex items-center space-x-1.5">
+                        <button id="btn-retry-camera" type="button" class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-2 px-4 rounded-xl text-xs transition shadow-lg flex items-center space-x-1.5 shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                             </svg>
@@ -218,7 +214,7 @@
                 </div>
 
                 <!-- Floating Interactive Controls Toolbar -->
-                <div class="control-bar flex items-center space-x-2 mt-4">
+                <div class="control-bar mt-4">
                     <button id="btn-pause" type="button" class="ctrl-btn" title="Pause / Resume Stream">
                         <svg id="icon-pause" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -227,35 +223,35 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span id="label-pause" data-i18n="controls.pause">Pause</span>
+                        <span id="label-pause" class="ctrl-label" data-i18n="controls.pause">Pause</span>
                     </button>
 
-                    <span class="h-4 w-px bg-white/10"></span>
+                    <span class="ctrl-sep" aria-hidden="true"></span>
 
                     <button id="btn-flip" type="button" class="ctrl-btn" title="Switch Camera">
                         <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
-                        <span data-i18n="controls.switchCamera">Flip Camera</span>
+                        <span class="ctrl-label" data-i18n="controls.switchCamera">Flip Camera</span>
                     </button>
 
-                    <span class="h-4 w-px bg-white/10"></span>
+                    <span class="ctrl-sep" aria-hidden="true"></span>
 
                     <button id="btn-snapshot" type="button" class="ctrl-btn" title="Take Detection Snapshot">
                         <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <span data-i18n="controls.snapshot">Snapshot</span>
+                        <span class="ctrl-label" data-i18n="controls.snapshot">Snapshot</span>
                     </button>
 
-                    <span class="h-4 w-px bg-white/10"></span>
+                    <span class="ctrl-sep" aria-hidden="true"></span>
 
                     <button id="btn-toggle-telemetry" type="button" class="ctrl-btn active" title="Toggle Dashboard">
                         <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
-                        <span data-i18n="controls.toggleTelemetry">Dashboard</span>
+                        <span class="ctrl-label" data-i18n="controls.toggleTelemetry">Dashboard</span>
                     </button>
                 </div>
             </div>
@@ -291,7 +287,7 @@
                         <!-- Latency Card -->
                         <div class="metric-card">
                             <div class="text-xs text-gray-400 font-medium mb-1" data-i18n="telemetry.latency">Inference Latency</div>
-                            <div id="metric-latency" class="metric-value cyan">-- ms</div>
+                            <div id="metric-latency" class="metric-value cyan">--</div>
                         </div>
                     </div>
 
@@ -340,37 +336,39 @@
 
         </div>
 
-        <!-- 3-Column Glassmorphism Feature Cards Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-16 sm:mt-20 mb-16">
+        <!-- 3-Column Feature Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-14 sm:mt-16 mb-12 feature-cards">
             <!-- Setup Guide Card -->
-            <div class="glass-panel rounded-2xl px-7 sm:px-8 pt-6 sm:pt-6.5 pb-8 sm:pb-9 flex flex-col justify-between border border-white/10 hover:border-cyan-500/30 transition shadow-lg">
-                <div>
-                    <div class="flex items-center space-x-3 mb-5">
-                        <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-3 py-1 rounded-lg text-xs font-bold shrink-0" data-i18n="setup.label">Setup</span>
-                        <h3 class="font-bold text-base text-white tracking-wide" data-i18n="setup.title">How to get the best experience?</h3>
+            <div class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-cyan-500/30 transition shadow-lg">
+                <div class="feature-card-body">
+                    <div class="feature-card-header">
+                        <span class="feature-card-label bg-cyan-500/10 text-cyan-400 border-cyan-500/20" data-i18n="setup.label">Setup</span>
+                        <h3 class="feature-card-title" data-i18n="setup.title">How to get the best experience?</h3>
                     </div>
-                    <ul class="space-y-3 text-xs text-gray-300 list-disc pl-5 leading-relaxed">
+                    <ul class="feature-card-list">
                         <li data-i18n="setup.steps.0">Launch the latest Chrome browser for best performance.</li>
-                        <li data-i18n="setup.steps.1">Open chrome://flags and enable WebAssembly features if needed.</li>
+                        <li>
+                            <span data-i18n-html="setup.steps.1">Open <code class="chrome-flags-code" role="button" tabindex="0" data-tip="Copy" data-tip-copied="Copied!" aria-label="Copy chrome://flags">chrome://flags</code> and enable all WebAssembly features.</span>
+                        </li>
                         <li data-i18n="setup.steps.2">Restart Chrome, open this page, and allow camera access.</li>
-                        <li data-i18n="setup.steps.3">Safari on iOS is supported but may run at a lower frame rate.</li>
+                        <li data-i18n="setup.steps.3">Frame rate depends on your device CPU. Safari on iOS is supported but may run at a lower frame rate.</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Privacy Statement Card -->
-            <div class="glass-panel rounded-2xl px-7 sm:px-8 pt-6 sm:pt-6.5 pb-8 sm:pb-9 flex flex-col justify-between border border-white/10 hover:border-emerald-500/30 transition shadow-lg">
-                <div>
-                    <div class="flex items-center space-x-3 mb-5">
-                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg text-xs font-bold shrink-0" data-i18n="privacy.label">Privacy</span>
-                        <h3 class="font-bold text-base text-white tracking-wide" data-i18n="privacy.title">Privacy statement</h3>
+            <div class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-emerald-500/30 transition shadow-lg">
+                <div class="feature-card-body">
+                    <div class="feature-card-header">
+                        <span class="feature-card-label bg-emerald-500/10 text-emerald-400 border-emerald-500/20" data-i18n="privacy.label">Privacy</span>
+                        <h3 class="feature-card-title" data-i18n="privacy.title">Privacy statement</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed mb-5 px-1" data-i18n="privacy.body">
+                    <p class="feature-card-text" data-i18n="privacy.body">
                         Everything runs fully inside your browser via WebAssembly. No images or video leave your device.
                     </p>
                 </div>
-                <div class="pt-4 border-t border-white/10 mt-5">
-                    <a class="text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-medium inline-flex items-center gap-1" target="_parent" rel="noopener noreferrer"
+                <div class="feature-card-footer">
+                    <a class="feature-card-link text-cyan-400 hover:text-cyan-300" target="_parent" rel="noopener noreferrer"
                        data-i18n="privacy.linkText" data-i18n-attr="href:privacy.linkHref">
                         Read privacy & service statement →
                     </a>
@@ -378,26 +376,26 @@
             </div>
 
             <!-- Project Overview Card -->
-            <div class="glass-panel rounded-2xl px-7 sm:px-8 pt-6 sm:pt-6.5 pb-8 sm:pb-9 flex flex-col justify-between border border-white/10 hover:border-indigo-500/30 transition shadow-lg">
-                <div>
-                    <div class="flex items-center space-x-3 mb-5">
-                        <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-lg text-xs font-bold shrink-0" data-i18n="project.label">Project</span>
-                        <h3 class="font-bold text-base text-white tracking-wide" data-i18n="project.title">Project overview</h3>
+            <div class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-indigo-500/30 transition shadow-lg">
+                <div class="feature-card-body">
+                    <div class="feature-card-header">
+                        <span class="feature-card-label bg-indigo-500/10 text-indigo-400 border-indigo-500/20" data-i18n="project.label">Project</span>
+                        <h3 class="feature-card-title" data-i18n="project.title">Project overview</h3>
                     </div>
-                    <div class="space-y-3.5 text-xs text-gray-300 leading-relaxed mb-5">
+                    <div class="feature-card-copy">
                         <p data-i18n-html="project.paragraph1">
-                            WearMask is a deep learning project based on Yolo-Fastest and NCNN. It's lightweight and runs entirely in your browser via WebAssembly.
+                            WearMask is a real-time, in-browser face mask detector built on YOLO-Fastest, trained with PyTorch, and run locally via NCNN and WebAssembly.
                         </p>
                         <p data-i18n-html="project.paragraph2">
-                            This project is open-sourced on GitHub. Contributions are welcome.
+                            Both the deployment and training codebases are open source, with a peer-reviewed paper.
                         </p>
-                        <p class="text-[11px] text-amber-300 bg-amber-950/40 border border-amber-500/30 rounded-xl px-4 py-2.5 mt-3 leading-relaxed" data-i18n="project.disclaimer">
-                            WearMask is a research and demonstration system, not a medical device or diagnostic tool.
+                        <p class="feature-card-disclaimer" data-i18n="project.disclaimer">
+                            For research and demonstration only — not a medical device or diagnostic tool.
                         </p>
                     </div>
                 </div>
-                <div class="pt-4 border-t border-white/10 mt-5">
-                    <a href="technical-overview/#research" class="text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-medium inline-flex items-center gap-1" data-i18n="nav.technicalOverview">
+                <div class="feature-card-footer">
+                    <a href="technical-overview/#research" class="feature-card-link text-cyan-400 hover:text-cyan-300" data-i18n="project.linkText">
                         Technical & Research →
                     </a>
                 </div>
@@ -466,9 +464,11 @@
         ready(function() {
             initLanguageButtons();
             updateLanguageButtons(currentLang);
+            initChromeFlagsCopy();
 
             translationsPromise.then(function(data) {
                 applyTranslations(data || {});
+                syncChromeFlagsCopyTips(data || {});
                 document.body.classList.remove('i18n-loading');
                 initializeDetection(data || {});
             }).catch(function(err) {
@@ -477,6 +477,69 @@
                 initializeDetection({});
             });
         });
+
+        function syncChromeFlagsCopyTips(dict) {
+            var copyLabel = getValue(dict, 'setup.copyFlags') || 'Copy';
+            var copiedLabel = getValue(dict, 'setup.copiedFlags') || 'Copied!';
+            document.querySelectorAll('.chrome-flags-code').forEach(function(el) {
+                el.setAttribute('data-tip', copyLabel);
+                el.setAttribute('data-tip-copied', copiedLabel);
+                el.setAttribute('aria-label', copyLabel + ' chrome://flags');
+            });
+        }
+
+        function copyTextToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+            return new Promise(function(resolve, reject) {
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    var ok = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (ok) resolve();
+                    else reject(new Error('Copy command failed'));
+                } catch (err) {
+                    document.body.removeChild(textarea);
+                    reject(err);
+                }
+            });
+        }
+
+        function initChromeFlagsCopy() {
+            document.addEventListener('click', function(e) {
+                var target = e.target.closest('.chrome-flags-code');
+                if (!target) return;
+                e.preventDefault();
+                copyChromeFlags(target);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                var target = e.target.closest('.chrome-flags-code');
+                if (!target) return;
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                e.preventDefault();
+                copyChromeFlags(target);
+            });
+        }
+
+        function copyChromeFlags(el) {
+            if (el.classList.contains('is-copied')) return;
+            copyTextToClipboard('chrome://flags').then(function() {
+                el.classList.add('is-copied');
+                setTimeout(function() {
+                    el.classList.remove('is-copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy chrome://flags', err);
+            });
+        }
 
         function detectLanguage() {
             const params = new URLSearchParams(window.location.search);
@@ -660,9 +723,20 @@
         Module.onRuntimeInitialized = function() {
             wasmModuleLoaded = true;
             var loadingOverlay = document.getElementById('loading-overlay');
+            var statusBanner = document.getElementById('status-banner');
+            var remindElement = document.getElementById('remind');
+            var cameraError = document.getElementById('camera-error-overlay');
             if (loadingOverlay) {
                 setTimeout(function() {
                     loadingOverlay.classList.add('hidden');
+                    var cameraBlocked = cameraError && !cameraError.classList.contains('hidden');
+                    if (statusBanner && !cameraBlocked) {
+                        if (remindElement) {
+                            remindElement.className = 'status-pill status-neutral inline-flex items-center space-x-3';
+                            remindElement.innerHTML = '<span>' + detectionStatus.welcome + '</span>';
+                        }
+                        statusBanner.classList.remove('hidden');
+                    }
                 }, 300);
             }
             for (var i = 0; i < wasmModuleLoadedCallbacks.length; i++) {
@@ -910,18 +984,19 @@
 
         function updateStatus(remind_ctx, maskCount, noMaskCount) {
             var remindElement = document.getElementById('remind');
+            var statusBanner = document.getElementById('status-banner');
             var stageElement = document.getElementById('video-stage');
             if (!remindElement) return;
+
+            if (statusBanner) statusBanner.classList.remove('hidden');
 
             var statusText = remind_ctx || loadingLabel;
 
             if (noMaskCount > 0) {
                 remindElement.className = 'status-pill status-warn inline-flex items-center space-x-3';
-                statusText = '⚠️ ' + statusText;
                 if (stageElement) stageElement.className = 'video-stage w-full max-w-2xl mx-auto status-nomask';
             } else if (maskCount > 0) {
                 remindElement.className = 'status-pill status-ok inline-flex items-center space-x-3';
-                statusText = '✓ ' + statusText;
                 if (stageElement) stageElement.className = 'video-stage w-full max-w-2xl mx-auto status-mask';
             } else {
                 remindElement.className = 'status-pill status-neutral inline-flex items-center space-x-3';
@@ -1116,11 +1191,15 @@
 
         function toggleCameraModal(success) {
             var overlay = document.getElementById('camera-error-overlay');
+            var statusBanner = document.getElementById('status-banner');
+            var loadingOverlay = document.getElementById('loading-overlay');
             if (!overlay) return;
             if (success) {
                 overlay.classList.add('hidden');
             } else {
                 overlay.classList.remove('hidden');
+                if (loadingOverlay) loadingOverlay.classList.add('hidden');
+                if (statusBanner) statusBanner.classList.add('hidden');
             }
         }
 

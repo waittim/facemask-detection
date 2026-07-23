@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.4">
 
     <!-- Early Theme Initialization -->
     <script>
@@ -45,8 +45,9 @@
             </a>
             
             <div class="flex items-center space-x-2">
-                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex" data-i18n="nav.liveDemo">
-                    ← Live demo
+                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex">
+                    <span aria-hidden="true">←</span>
+                    <span data-i18n="nav.liveDemo">Live demo</span>
                 </a>
 
                 <button id="btn-theme-cycle" type="button" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
@@ -67,7 +68,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                         <span id="lang-current-label" class="whitespace-nowrap">English</span>
-                        <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
@@ -92,15 +93,17 @@
     </nav>
 
     <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1 items-center">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
             <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
-            <span class="text-gray-600">/</span>
-            <a href="../about/" class="hover:text-cyan-400" data-i18n="nav.about">About</a>
-            <span class="text-gray-600">/</span>
-            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
-            <span class="text-gray-600">/</span>
+            <span class="text-gray-600" aria-hidden="true">/</span>
             <span class="text-white font-medium" data-i18n="nav.privacy">Privacy & Limitations</span>
         </nav>
+
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-6">
+            <a href="../about/" class="hover:text-cyan-400" data-i18n="nav.about">About</a>
+            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <span class="text-cyan-400 font-medium" data-i18n="nav.privacy">Privacy & Limitations</span>
+        </div>
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-10 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
@@ -111,7 +114,7 @@
             <!-- Privacy Commitments Section -->
             <section class="space-y-4">
                 <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
-                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     <span data-i18n="privacyPage.sec1_title">100% Client-Side Privacy Model</span>
                 </h2>
                 <p data-i18n="privacyPage.sec1_body">
@@ -119,24 +122,28 @@
                     Camera frames are processed locally on your device. No images, video, or detection results
                     are uploaded to a WearMask application server.
                 </p>
-                <div class="grid sm:grid-cols-3 gap-3 pt-2">
+                <h3 class="text-base font-semibold text-white pt-1" data-i18n="privacyPage.sec2_title">What is not collected</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                     <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
-                        <strong class="text-white text-xs block" data-i18n="privacyPage.sec2_title">Zero Image Storage</strong>
+                        <strong class="text-white text-xs block" data-i18n="privacyPage.sec2_card1_title">Zero image storage</strong>
                         <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item1">Camera images or video are never stored or uploaded remotely.</span>
                     </div>
                     <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
-                        <strong class="text-white text-xs block">No Backend Tracking</strong>
+                        <strong class="text-white text-xs block" data-i18n="privacyPage.sec2_card2_title">No backend tracking</strong>
                         <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item2">Detection results are never transmitted to backend databases.</span>
                     </div>
                     <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
-                        <strong class="text-white text-xs block">No Account Required</strong>
-                        <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item3">No registration, sign-in, or personal identification needed.</span>
+                        <strong class="text-white text-xs block" data-i18n="privacyPage.sec2_card3_title">No account required</strong>
+                        <span class="text-xs text-gray-400" data-i18n="privacyPage.sec2_item3">No registration, sign-in, or personal identification is needed.</span>
                     </div>
                 </div>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec3_title">Offline Operation</h2>
+                <h2 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+                    <span data-i18n="privacyPage.sec3_title">Offline Operation</span>
+                </h2>
                 <p data-i18n="privacyPage.sec3_body">
                     After the WebAssembly model files are loaded, detection can continue even if you disconnect
                     from the internet. The initial page load requires network access to download the application
@@ -187,8 +194,8 @@
                         <span class="text-cyan-300 flex items-center gap-2">
                             <span data-i18n="statement.heroTitle">Service Statement (Terms & Legal Privacy)</span>
                         </span>
-                        <span class="text-xs text-cyan-400 group-open:hidden">Expand ↓</span>
-                        <span class="text-xs text-cyan-400 hidden group-open:inline">Collapse ↑</span>
+                        <span class="text-xs text-cyan-400 group-open:hidden shrink-0 ml-3" data-i18n="statement.expand">Expand ↓</span>
+                        <span class="text-xs text-cyan-400 hidden group-open:inline shrink-0 ml-3" data-i18n="statement.collapse">Collapse ↑</span>
                     </summary>
                     
                     <div class="mt-5 space-y-6 text-xs sm:text-sm text-gray-300 border-t border-white/10 pt-4 leading-relaxed">
