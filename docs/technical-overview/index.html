@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,41 +8,48 @@
     <link rel="canonical" href="https://facemask-detection.com/technical-overview/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
+<body class="relative min-h-screen flex flex-col justify-between">
+    <div class="bg-glow-container">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-50 py-3">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            <a href="../index.html" class="flex items-center space-x-3 group">
+                <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="../static/images/logo_mask.png" alt="WearMask Logo">
+                <span class="text-xl font-bold text-white tracking-tight">WearMask</span>
             </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
+            <a href="../index.html" class="text-sm text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                ← Live demo
+            </a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-blue-600">About</a>
+    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
+            <a href="../about/" class="hover:text-cyan-400">About</a>
             <span>/</span>
-            <span class="text-gray-900 font-medium">Technical overview</span>
-            <span class="hidden sm:inline text-gray-300">|</span>
-            <a href="../research/" class="hover:text-blue-600">Research</a>
-            <a href="../citation/" class="hover:text-blue-600">Citation</a>
-            <a href="../privacy/" class="hover:text-blue-600">Privacy</a>
-            <a href="../limitations/" class="hover:text-blue-600">Limitations</a>
+            <span class="text-white font-medium">Technical overview</span>
+            <span class="hidden sm:inline text-gray-600">|</span>
+            <a href="../research/" class="hover:text-cyan-400">Research</a>
+            <a href="../citation/" class="hover:text-cyan-400">Citation</a>
+            <a href="../privacy/" class="hover:text-cyan-400">Privacy</a>
+            <a href="../limitations/" class="hover:text-cyan-400">Limitations</a>
         </nav>
 
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Technical Overview</h1>
-                <p>End-to-end architecture of the WearMask browser deployment and training pipeline.</p>
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+            <header class="space-y-3 border-b border-white/10 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white">Technical Overview</h1>
+                <p class="text-gray-400">End-to-end architecture of the WearMask browser deployment and training pipeline.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Browser inference pipeline</h2>
-                <pre class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs sm:text-sm overflow-x-auto">Camera frame
+                <h2 class="text-lg font-bold text-white">Browser inference pipeline</h2>
+                <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">Camera frame
   → browser &lt;canvas&gt;
   → C++ preprocessing (Emscripten)
   → WebAssembly runtime
@@ -53,9 +60,9 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Training and conversion pipeline</h2>
-                <p>Model training and conversion are implemented in the <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">mask-detector</a> repository:</p>
-                <pre class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs sm:text-sm overflow-x-auto">PyTorch training (YOLO-Fastest)
+                <h2 class="text-lg font-bold text-white">Training and conversion pipeline</h2>
+                <p>Model training and conversion are implemented in the <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> repository:</p>
+                <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">PyTorch training (YOLO-Fastest)
   → Darknet weights (.weights)
   → NCNN model (.param + .bin)
   → NCNN optimize (yolo-fastest-opt)
@@ -65,19 +72,19 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Core technologies</h2>
+                <h2 class="text-lg font-bold text-white">Core technologies</h2>
                 <dl class="grid sm:grid-cols-2 gap-4">
-                    <div><dt class="font-semibold text-gray-900">Model</dt><dd>YOLO-Fastest (object detection)</dd></div>
-                    <div><dt class="font-semibold text-gray-900">Training</dt><dd>PyTorch (mask-detector)</dd></div>
-                    <div><dt class="font-semibold text-gray-900">Inference engine</dt><dd><a href="https://github.com/Tencent/ncnn" class="text-blue-600 hover:underline">NCNN</a></dd></div>
-                    <div><dt class="font-semibold text-gray-900">Browser runtime</dt><dd><a href="https://webassembly.org/" class="text-blue-600 hover:underline">WebAssembly</a> via Emscripten</dd></div>
-                    <div><dt class="font-semibold text-gray-900">Frontend</dt><dd>HTML, CSS, JavaScript</dd></div>
-                    <div><dt class="font-semibold text-gray-900">Deployment</dt><dd>GitHub Pages (static hosting)</dd></div>
+                    <div><dt class="font-semibold text-white">Model</dt><dd>YOLO-Fastest (object detection)</dd></div>
+                    <div><dt class="font-semibold text-white">Training</dt><dd>PyTorch (mask-detector)</dd></div>
+                    <div><dt class="font-semibold text-white">Inference engine</dt><dd><a href="https://github.com/Tencent/ncnn" class="text-cyan-400 hover:underline">NCNN</a></dd></div>
+                    <div><dt class="font-semibold text-white">Browser runtime</dt><dd><a href="https://webassembly.org/" class="text-cyan-400 hover:underline">WebAssembly</a> via Emscripten</dd></div>
+                    <div><dt class="font-semibold text-white">Frontend</dt><dd>HTML, CSS, JavaScript</dd></div>
+                    <div><dt class="font-semibold text-white">Deployment</dt><dd>GitHub Pages (static hosting)</dd></div>
                 </dl>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Detection classes</h2>
+                <h2 class="text-lg font-bold text-white">Detection classes</h2>
                 <ul class="list-disc list-inside space-y-1">
                     <li>Background</li>
                     <li>No Mask</li>
@@ -86,20 +93,21 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Source code locations</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>C++ inference: <a href="https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp" class="text-blue-600 hover:underline">src/yolo.cpp</a></li>
-                    <li>WebAssembly model: <code>docs/static/model/</code></li>
-                    <li>Training scripts: <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">mask-detector</a></li>
+                <h2 class="text-lg font-bold text-white">Source code locations</h2>
+                <ul class="list-disc list-inside space-y-2 text-cyan-400">
+                    <li><strong class="text-white">C++ inference:</strong> <a href="https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp" class="hover:underline">src/yolo.cpp</a></li>
+                    <li><strong class="text-white">WebAssembly model:</strong> <code>docs/static/model/</code></li>
+                    <li><strong class="text-white">Training scripts:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">mask-detector</a></li>
                 </ul>
             </section>
         </article>
     </main>
 
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">Source code</a>
-            · <a href="../citation/" class="text-blue-600 hover:underline">Citation</a>
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
+            <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">Source code</a>
+            <span>·</span>
+            <a href="../about/" class="text-cyan-400 hover:underline">About</a>
         </div>
     </footer>
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,42 +8,49 @@
     <link rel="canonical" href="https://facemask-detection.com/citation/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
+<body class="relative min-h-screen flex flex-col justify-between">
+    <div class="bg-glow-container">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-50 py-3">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            <a href="../index.html" class="flex items-center space-x-3 group">
+                <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="../static/images/logo_mask.png" alt="WearMask Logo">
+                <span class="text-xl font-bold text-white tracking-tight">WearMask</span>
             </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
+            <a href="../index.html" class="text-sm text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                ← Live demo
+            </a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-blue-600">About</a>
-            <a href="../technical-overview/" class="hover:text-blue-600">Technical overview</a>
-            <a href="../research/" class="hover:text-blue-600">Research</a>
+    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
+            <a href="../about/" class="hover:text-cyan-400">About</a>
+            <a href="../technical-overview/" class="hover:text-cyan-400">Technical overview</a>
+            <a href="../research/" class="hover:text-cyan-400">Research</a>
             <span>/</span>
-            <span class="text-gray-900 font-medium">Citation</span>
-            <span class="hidden sm:inline text-gray-300">|</span>
-            <a href="../privacy/" class="hover:text-blue-600">Privacy</a>
-            <a href="../limitations/" class="hover:text-blue-600">Limitations</a>
+            <span class="text-white font-medium">Citation</span>
+            <span class="hidden sm:inline text-gray-600">|</span>
+            <a href="../privacy/" class="hover:text-cyan-400">Privacy</a>
+            <a href="../limitations/" class="hover:text-cyan-400">Limitations</a>
         </nav>
 
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">How to Cite WearMask</h1>
-                <p>Preferred citation formats for the WearMask research paper and software.</p>
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+            <header class="space-y-3 border-b border-white/10 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white">How to Cite WearMask</h1>
+                <p class="text-gray-400">Preferred citation formats for the WearMask research paper and software.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Research paper (preferred)</h2>
+                <h2 class="text-lg font-bold text-white">Research paper (preferred)</h2>
                 <p>When discussing the WearMask system, methods, or research contributions, cite the peer-reviewed paper:</p>
-                <blockquote class="border-l-4 border-blue-500 pl-4 text-gray-600 italic">
+                <blockquote class="border-l-4 border-cyan-500 pl-4 text-cyan-200 italic bg-cyan-950/20 py-2 rounded-r-lg">
                     Wang, Z., Wang, P., Louis, P. C., Wheless, L. E., &amp; Huo, Y. (2023).
                     WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19.
                     <em>Electronic Imaging</em>, 35(11).
@@ -52,8 +59,8 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">BibTeX</h2>
-                <pre class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs sm:text-sm overflow-x-auto">@article{
+                <h2 class="text-lg font-bold text-white">BibTeX</h2>
+                <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">@article{
     wang_wang_louis_wheless_huo_2023,
     title={WearMask: Fast in-browser face mask detection with serverless edge computing for covid-19},
     volume={35},
@@ -66,47 +73,46 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Software repositories</h2>
+                <h2 class="text-lg font-bold text-white">Software repositories</h2>
                 <p>When reusing or discussing implementation code, also reference the relevant repository:</p>
-                <ul class="list-disc list-inside space-y-2">
+                <ul class="list-disc list-inside space-y-2 text-cyan-400">
                     <li>
-                        <strong>Browser deployment:</strong>
-                        <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">github.com/waittim/facemask-detection</a>
+                        <strong class="text-white">Browser deployment:</strong>
+                        <a href="https://github.com/waittim/facemask-detection" class="hover:underline">github.com/waittim/facemask-detection</a>
                     </li>
                     <li>
-                        <strong>Training and data:</strong>
-                        <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">github.com/waittim/mask-detector</a>
+                        <strong class="text-white">Training and data:</strong>
+                        <a href="https://github.com/waittim/mask-detector" class="hover:underline">github.com/waittim/mask-detector</a>
                     </li>
-                </ul>
-                <p>
-                    Prefer citing a specific release or commit hash rather than a moving <code>master</code> branch
-                    when reproducibility matters.
-                </p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Machine-readable metadata</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><a href="https://github.com/waittim/facemask-detection/blob/master/CITATION.cff" class="text-blue-600 hover:underline">CITATION.cff</a> (GitHub "Cite this repository")</li>
-                    <li><a href="https://github.com/waittim/facemask-detection/blob/master/codemeta.json" class="text-blue-600 hover:underline">codemeta.json</a></li>
-                    <li><a href="../project.json" class="text-blue-600 hover:underline">project.json</a></li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">DOI</h2>
+                <h2 class="text-lg font-bold text-white">Machine-readable metadata</h2>
+                <ul class="list-disc list-inside space-y-2 text-cyan-400">
+                    <li><a href="https://github.com/waittim/facemask-detection/blob/master/CITATION.cff" class="hover:underline">CITATION.cff</a> (GitHub "Cite this repository")</li>
+                    <li><a href="https://github.com/waittim/facemask-detection/blob/master/codemeta.json" class="hover:underline">codemeta.json</a></li>
+                    <li><a href="../project.json" class="hover:underline">project.json</a></li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-bold text-white">DOI</h2>
                 <p>
                     Paper DOI:
-                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-blue-600 hover:underline font-mono">10.2352/EI.2023.35.11.HPCI-229</a>
+                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-cyan-400 hover:underline font-mono">10.2352/EI.2023.35.11.HPCI-229</a>
                 </p>
             </section>
         </article>
     </main>
 
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">Source code</a>
-            · <a href="../research/" class="text-blue-600 hover:underline">Research</a>
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
+            <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">Source code</a>
+            <span>·</span>
+            <a href="../citation/" class="text-cyan-400 hover:underline">Citation</a>
+            <span>·</span>
+            <a href="../llms.txt" class="text-cyan-400 hover:underline">llms.txt</a>
         </div>
     </footer>
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,8 @@
     <link rel="canonical" href="https://facemask-detection.com/research/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,56 +33,63 @@
     }
     </script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
+<body class="relative min-h-screen flex flex-col justify-between">
+    <div class="bg-glow-container">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-50 py-3">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            <a href="../index.html" class="flex items-center space-x-3 group">
+                <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="../static/images/logo_mask.png" alt="WearMask Logo">
+                <span class="text-xl font-bold text-white tracking-tight">WearMask</span>
             </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
+            <a href="../index.html" class="text-sm text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                ← Live demo
+            </a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-blue-600">About</a>
-            <a href="../technical-overview/" class="hover:text-blue-600">Technical overview</a>
+    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
+            <a href="../about/" class="hover:text-cyan-400">About</a>
+            <a href="../technical-overview/" class="hover:text-cyan-400">Technical overview</a>
             <span>/</span>
-            <span class="text-gray-900 font-medium">Research</span>
-            <span class="hidden sm:inline text-gray-300">|</span>
-            <a href="../citation/" class="hover:text-blue-600">Citation</a>
-            <a href="../privacy/" class="hover:text-blue-600">Privacy</a>
-            <a href="../limitations/" class="hover:text-blue-600">Limitations</a>
+            <span class="text-white font-medium">Research</span>
+            <span class="hidden sm:inline text-gray-600">|</span>
+            <a href="../citation/" class="hover:text-cyan-400">Citation</a>
+            <a href="../privacy/" class="hover:text-cyan-400">Privacy</a>
+            <a href="../limitations/" class="hover:text-cyan-400">Limitations</a>
         </nav>
 
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Research</h1>
-                <p>Peer-reviewed publication and associated open-source resources for the WearMask system.</p>
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+            <header class="space-y-3 border-b border-white/10 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white">Research</h1>
+                <p class="text-gray-400">Peer-reviewed publication and associated open-source resources for the WearMask system.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Paper</h2>
-                <p class="font-medium text-gray-900">
+                <h2 class="text-lg font-bold text-white">Paper</h2>
+                <p class="font-semibold text-cyan-300 text-base">
                     WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19
                 </p>
                 <p>
-                    <strong>Authors:</strong>
-                    <a href="https://orcid.org/0000-0001-8631-7022" class="text-blue-600 hover:underline">Zekun Wang</a>,
+                    <strong class="text-white">Authors:</strong>
+                    <a href="https://orcid.org/0000-0001-8631-7022" class="text-cyan-400 hover:underline">Zekun Wang</a>,
                     Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo
                 </p>
                 <p>
-                    <strong>Journal:</strong> Electronic Imaging, Volume 35, Issue 11, 2023
+                    <strong class="text-white">Journal:</strong> Electronic Imaging, Volume 35, Issue 11, 2023
                 </p>
                 <p>
-                    <strong>DOI:</strong>
-                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-blue-600 hover:underline">10.2352/EI.2023.35.11.HPCI-229</a>
+                    <strong class="text-white">DOI:</strong>
+                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-cyan-400 hover:underline">10.2352/EI.2023.35.11.HPCI-229</a>
                 </p>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Abstract summary</h2>
+                <h2 class="text-lg font-bold text-white">Abstract summary</h2>
                 <p>
                     WearMask presents a lightweight face mask detection system that runs entirely in the web browser
                     using YOLO-Fastest, NCNN, and WebAssembly. The design enables serverless edge computing:
@@ -93,48 +100,39 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Open resources</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Live application:</strong> <a href="https://facemask-detection.com/" class="text-blue-600 hover:underline">facemask-detection.com</a></li>
-                    <li><strong>Deployment code:</strong> <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">github.com/waittim/facemask-detection</a></li>
-                    <li><strong>Training code:</strong> <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">github.com/waittim/mask-detector</a></li>
-                    <li><strong>Dataset:</strong> <a href="https://github.com/waittim/mask-detector/tree/master/modeling/data" class="text-blue-600 hover:underline">mask-detector/modeling/data</a></li>
-                    <li><strong>Model architecture:</strong> YOLO-Fastest</li>
+                <h2 class="text-lg font-bold text-white">Open resources</h2>
+                <ul class="list-disc list-inside space-y-2 text-cyan-400">
+                    <li><strong class="text-white">Live application:</strong> <a href="https://facemask-detection.com/" class="hover:underline">facemask-detection.com</a></li>
+                    <li><strong class="text-white">Deployment code:</strong> <a href="https://github.com/waittim/facemask-detection" class="hover:underline">github.com/waittim/facemask-detection</a></li>
+                    <li><strong class="text-white">Training code:</strong> <a href="https://github.com/waittim/mask-detector" class="hover:underline">github.com/waittim/mask-detector</a></li>
+                    <li><strong class="text-white">Dataset:</strong> <a href="https://github.com/waittim/mask-detector/tree/master/modeling/data" class="hover:underline">mask-detector/modeling/data</a></li>
+                    <li><strong class="text-white">Model architecture:</strong> YOLO-Fastest</li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Reproducing experiments</h2>
+                <h2 class="text-lg font-bold text-white">Reproducing experiments</h2>
                 <ol class="list-decimal list-inside space-y-2">
-                    <li>Clone <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">mask-detector</a> and install Python 3.8 dependencies.</li>
+                    <li>Clone <a href="https://github.com/waittim/mask-detector" class="text-cyan-400 hover:underline">mask-detector</a> and install Python 3.8 dependencies.</li>
                     <li>Train or use pretrained weights (<code>best.pt</code> / <code>best.weights</code>).</li>
                     <li>Convert PyTorch → Darknet → NCNN → optimized NCNN following the repository README.</li>
-                    <li>Build the C++ WebAssembly module from <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">facemask-detection</a>.</li>
+                    <li>Build the C++ WebAssembly module from <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">facemask-detection</a>.</li>
                     <li>Deploy via GitHub Pages or run locally with <code>python3 scripts/server.py</code>.</li>
                 </ol>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Contributions</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>End-to-end browser deployment of YOLO-Fastest via NCNN and WebAssembly</li>
-                    <li>Serverless edge inference architecture with no camera data upload</li>
-                    <li>Open-source training pipeline, dataset, and live demonstration</li>
-                    <li>Multi-language web interface (English, Spanish, Chinese)</li>
-                </ul>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Citation</h2>
-                <p>See the dedicated <a href="../citation/" class="text-blue-600 hover:underline">citation page</a> for BibTeX and preferred reference format.</p>
+                <h2 class="text-lg font-bold text-white">Citation</h2>
+                <p>See the dedicated <a href="../citation/" class="text-cyan-400 hover:underline">citation page</a> for BibTeX and preferred reference format.</p>
             </section>
         </article>
     </main>
 
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">Source code</a>
-            · <a href="../citation/" class="text-blue-600 hover:underline">Citation</a>
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
+            <a href="https://github.com/waittim/facemask-detection" class="text-cyan-400 hover:underline">Source code</a>
+            <span>·</span>
+            <a href="../citation/" class="text-cyan-400 hover:underline">Citation</a>
         </div>
     </footer>
 </body>

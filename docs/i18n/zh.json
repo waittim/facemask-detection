@@ -73,6 +73,26 @@
   "footer": {
     "name": "Zekun Wang",
     "org": "范德堡大学"
+  },
+  "controls": {
+    "pause": "暂停检测",
+    "resume": "继续检测",
+    "switchCamera": "切换摄像头",
+    "snapshot": "快照截图",
+    "toggleTelemetry": "性能面板"
+  },
+  "telemetry": {
+    "title": "实时性能仪表盘",
+    "fps": "帧率 (FPS)",
+    "latency": "推理延迟",
+    "detectedFaces": "人脸检测结果",
+    "maskCount": "已戴口罩",
+    "noMaskCount": "未戴口罩",
+    "acceleration": "硬件加速",
+    "simdActive": "SIMD 已启用",
+    "simdInactive": "SIMD 标准模式",
+    "threads": "多线程",
+    "engine": "推理引擎"
   }
 }
 

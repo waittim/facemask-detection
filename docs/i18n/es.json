@@ -73,6 +73,26 @@
   "footer": {
     "name": "Zekun Wang",
     "org": "Universidad Vanderbilt"
+  },
+  "controls": {
+    "pause": "Pausar",
+    "resume": "Reanudar",
+    "switchCamera": "Cambiar Cámara",
+    "snapshot": "Capturar",
+    "toggleTelemetry": "Panel"
+  },
+  "telemetry": {
+    "title": "Telemetría en Tiempo Real",
+    "fps": "FPS",
+    "latency": "Latencia de Inferencia",
+    "detectedFaces": "Rostros Detectados",
+    "maskCount": "Con Mascarilla",
+    "noMaskCount": "Sin Mascarilla",
+    "acceleration": "Aceleración de Hardware",
+    "simdActive": "SIMD Habilitado",
+    "simdInactive": "SIMD Estándar",
+    "threads": "Multihilo",
+    "engine": "Motor AI"
   }
 }
 

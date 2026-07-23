@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,45 +8,52 @@
     <link rel="canonical" href="https://facemask-detection.com/limitations/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
+<body class="relative min-h-screen flex flex-col justify-between">
+    <div class="bg-glow-container">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-50 py-3">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            <a href="../index.html" class="flex items-center space-x-3 group">
+                <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="../static/images/logo_mask.png" alt="WearMask Logo">
+                <span class="text-xl font-bold text-white tracking-tight">WearMask</span>
             </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
+            <a href="../index.html" class="text-sm text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                ← Live demo
+            </a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-blue-600">About</a>
-            <a href="../technical-overview/" class="hover:text-blue-600">Technical overview</a>
-            <a href="../research/" class="hover:text-blue-600">Research</a>
-            <a href="../citation/" class="hover:text-blue-600">Citation</a>
-            <a href="../privacy/" class="hover:text-blue-600">Privacy</a>
+    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
+            <a href="../about/" class="hover:text-cyan-400">About</a>
+            <a href="../technical-overview/" class="hover:text-cyan-400">Technical overview</a>
+            <a href="../research/" class="hover:text-cyan-400">Research</a>
+            <a href="../citation/" class="hover:text-cyan-400">Citation</a>
+            <a href="../privacy/" class="hover:text-cyan-400">Privacy</a>
             <span>/</span>
-            <span class="text-gray-900 font-medium">Limitations</span>
+            <span class="text-white font-medium">Limitations</span>
         </nav>
 
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Known Limitations</h1>
-                <p>Important boundaries and constraints of the WearMask system.</p>
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+            <header class="space-y-3 border-b border-white/10 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white">Known Limitations</h1>
+                <p class="text-gray-400">Important boundaries and constraints of the WearMask system.</p>
             </header>
 
-            <aside class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900">
-                <strong>Not a medical device.</strong> WearMask is a research prototype and public demonstration.
+            <aside class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 text-amber-300">
+                <strong class="text-amber-200">Not a medical device.</strong> WearMask is a research prototype and public demonstration.
                 It must not be used for medical diagnosis, clinical decision-making, or regulatory compliance
                 without independent validation.
             </aside>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Detection accuracy</h2>
+                <h2 class="text-lg font-bold text-white">Detection accuracy</h2>
                 <ul class="list-disc list-inside space-y-2">
                     <li>Performance depends on camera quality, resolution, and frame rate.</li>
                     <li>Poor lighting, backlighting, or heavy shadows reduce accuracy.</li>
@@ -56,7 +63,7 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Browser and hardware</h2>
+                <h2 class="text-lg font-bold text-white">Browser and hardware</h2>
                 <ul class="list-disc list-inside space-y-2">
                     <li>Frame rate varies significantly across CPUs, browsers, and devices.</li>
                     <li>Best performance requires modern Chrome with WebAssembly SIMD and threads support.</li>
@@ -66,7 +73,7 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Scope of use</h2>
+                <h2 class="text-lg font-bold text-white">Scope of use</h2>
                 <ul class="list-disc list-inside space-y-2">
                     <li>Designed for research, education, and demonstration purposes.</li>
                     <li>Not validated for high-stakes public health enforcement.</li>
@@ -76,7 +83,7 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Model and data</h2>
+                <h2 class="text-lg font-bold text-white">Model and data</h2>
                 <ul class="list-disc list-inside space-y-2">
                     <li>Trained on a specific dataset; generalization to all populations and environments is not guaranteed.</li>
                     <li>Model weights and architecture reflect 2020–2023 research; no continuous retraining is provided.</li>
@@ -85,10 +92,11 @@
         </article>
     </main>
 
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="../about/" class="text-blue-600 hover:underline">About</a>
-            · <a href="../privacy/" class="text-blue-600 hover:underline">Privacy</a>
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
+            <a href="../about/" class="text-cyan-400 hover:underline">About</a>
+            <span>·</span>
+            <a href="../privacy/" class="text-cyan-400 hover:underline">Privacy</a>
         </div>
     </footer>
 </body>

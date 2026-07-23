@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +8,47 @@
     <link rel="canonical" href="https://facemask-detection.com/privacy/" />
     <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.0.0">
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
+<body class="relative min-h-screen flex flex-col justify-between">
+    <div class="bg-glow-container">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-50 py-3">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            <a href="../index.html" class="flex items-center space-x-3 group">
+                <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="../static/images/logo_mask.png" alt="WearMask Logo">
+                <span class="text-xl font-bold text-white tracking-tight">WearMask</span>
             </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
+            <a href="../index.html" class="text-sm text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                ← Live demo
+            </a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-blue-600">About</a>
-            <a href="../technical-overview/" class="hover:text-blue-600">Technical overview</a>
-            <a href="../research/" class="hover:text-blue-600">Research</a>
-            <a href="../citation/" class="hover:text-blue-600">Citation</a>
+    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
+            <a href="../about/" class="hover:text-cyan-400">About</a>
+            <a href="../technical-overview/" class="hover:text-cyan-400">Technical overview</a>
+            <a href="../research/" class="hover:text-cyan-400">Research</a>
+            <a href="../citation/" class="hover:text-cyan-400">Citation</a>
             <span>/</span>
-            <span class="text-gray-900 font-medium">Privacy</span>
-            <a href="../limitations/" class="hover:text-blue-600">Limitations</a>
+            <span class="text-white font-medium">Privacy</span>
+            <span class="hidden sm:inline text-gray-600">|</span>
+            <a href="../limitations/" class="hover:text-cyan-400">Limitations</a>
         </nav>
 
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Privacy Model</h1>
-                <p>How WearMask handles camera data and user privacy.</p>
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+            <header class="space-y-3 border-b border-white/10 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white">Privacy Model</h1>
+                <p class="text-gray-400">How WearMask handles camera data and user privacy.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Client-side processing</h2>
+                <h2 class="text-lg font-bold text-white">Client-side processing</h2>
                 <p>
                     WearMask performs all face mask detection entirely inside your web browser using WebAssembly.
                     Camera frames are processed locally on your device. No images, video, or detection results
@@ -49,7 +57,7 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">What is not collected</h2>
+                <h2 class="text-lg font-bold text-white">What is not collected</h2>
                 <ul class="list-disc list-inside space-y-2">
                     <li>Camera images or video are not stored or uploaded.</li>
                     <li>Mask-wearing detection results are not sent to a backend.</li>
@@ -58,7 +66,7 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Offline operation</h2>
+                <h2 class="text-lg font-bold text-white">Offline operation</h2>
                 <p>
                     After the WebAssembly model files are loaded, detection can continue even if you disconnect
                     from the internet. The initial page load requires network access to download the application
@@ -67,19 +75,20 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Full service statement</h2>
+                <h2 class="text-lg font-bold text-white">Full service statement</h2>
                 <p>
                     For the complete legal service statement (available in English, Spanish, and Chinese), see:
-                    <a href="statement.html" class="text-blue-600 hover:underline">Privacy service statement</a>
+                    <a href="statement.html" class="text-cyan-400 hover:underline">Privacy service statement</a>
                 </p>
             </section>
         </article>
     </main>
 
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="statement.html" class="text-blue-600 hover:underline">Full statement</a>
-            · <a href="../limitations/" class="text-blue-600 hover:underline">Limitations</a>
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
+            <a href="statement.html" class="text-cyan-400 hover:underline">Full statement</a>
+            <span>·</span>
+            <a href="../limitations/" class="text-cyan-400 hover:underline">Limitations</a>
         </div>
     </footer>
 </body>
