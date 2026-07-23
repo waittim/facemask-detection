@@ -359,14 +359,14 @@ details.accordion-card[open] .accordion-chevron {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Language Switcher & Theme Switcher Segmented Controls */
+/* Language Switcher & Theme Cycle Button */
 .language-switcher button,
-.theme-switcher button {
-  border-radius: 0.5rem;
-  padding: 0.35rem 0.65rem;
+.theme-toggle-btn {
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.6rem;
   color: #9ca3af;
-  background: transparent;
-  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
@@ -377,13 +377,14 @@ details.accordion-card[open] .accordion-chevron {
 }
 
 .language-switcher button:hover,
-.theme-switcher button:hover {
+.theme-toggle-btn:hover {
   color: #f3f4f6;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
-.language-switcher button.lang-active,
-.theme-switcher button.theme-active {
+.language-switcher button.lang-active {
   background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
   color: #ffffff !important;
   font-weight: 600;

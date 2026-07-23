@@ -119,25 +119,19 @@
                 </a>
             </div>
 
-            <!-- Header Actions: Theme Switcher (Icons Only: Auto, Light, Dark) + Language Switcher -->
+            <!-- Header Actions: Single Theme Cycling Button + Language Switcher -->
             <div class="flex items-center space-x-3">
-                <div class="theme-switcher flex items-center space-x-1 p-1 rounded-xl bg-slate-900/60 border border-white/10" role="radiogroup" aria-label="Theme selector">
-                    <button id="theme-btn-auto" type="button" class="theme-btn" title="Auto (System Default)" aria-label="Auto (System Default)">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </button>
-                    <button id="theme-btn-light" type="button" class="theme-btn" title="Light Mode" aria-label="Light Mode">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </button>
-                    <button id="theme-btn-dark" type="button" class="theme-btn" title="Dark Mode" aria-label="Dark Mode">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                        </svg>
-                    </button>
-                </div>
+                <button id="btn-theme-cycle" type="button" class="theme-toggle-btn" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
+                    <svg id="theme-icon-auto" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <svg id="theme-icon-light" class="w-4 h-4 text-amber-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg id="theme-icon-dark" class="w-4 h-4 text-indigo-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
 
                 <div class="language-switcher nav-language flex items-center space-x-1 p-1 rounded-xl bg-slate-900/60 border border-white/10">
                     <button type="button" class="lang-btn" data-switch-lang="en" data-i18n="language.options.en">English</button>
@@ -990,10 +984,13 @@
                 });
             }
 
-            // 3-Mode Theme Switcher System (Auto, Light, Dark)
-            var btnAuto = document.getElementById('theme-btn-auto');
-            var btnLight = document.getElementById('theme-btn-light');
-            var btnDark = document.getElementById('theme-btn-dark');
+            // Single-Button 3-Mode Theme Cycling (Auto -> Light -> Dark)
+            var btnThemeCycle = document.getElementById('btn-theme-cycle');
+            var iconAuto = document.getElementById('theme-icon-auto');
+            var iconLight = document.getElementById('theme-icon-light');
+            var iconDark = document.getElementById('theme-icon-dark');
+
+            var THEME_MODES = ['auto', 'light', 'dark'];
 
             function applyThemeMode(mode) {
                 var isDark = false;
@@ -1013,10 +1010,19 @@
                 }
 
                 localStorage.setItem('wearmask.theme', mode);
+                updateThemeIconUI(mode);
+            }
 
-                if (btnAuto) btnAuto.classList.toggle('theme-active', mode === 'auto');
-                if (btnLight) btnLight.classList.toggle('theme-active', mode === 'light');
-                if (btnDark) btnDark.classList.toggle('theme-active', mode === 'dark');
+            function updateThemeIconUI(mode) {
+                if (iconAuto) iconAuto.classList.toggle('hidden', mode !== 'auto');
+                if (iconLight) iconLight.classList.toggle('hidden', mode !== 'light');
+                if (iconDark) iconDark.classList.toggle('hidden', mode !== 'dark');
+
+                if (btnThemeCycle) {
+                    if (mode === 'auto') btnThemeCycle.title = 'System Theme (Click to switch)';
+                    else if (mode === 'light') btnThemeCycle.title = 'Light Mode (Click to switch)';
+                    else if (mode === 'dark') btnThemeCycle.title = 'Dark Mode (Click to switch)';
+                }
             }
 
             var currentMode = localStorage.getItem('wearmask.theme') || 'auto';
@@ -1031,9 +1037,21 @@
                 });
             }
 
-            if (btnAuto) btnAuto.addEventListener('click', function() { applyThemeMode('auto'); showToast('System theme enabled'); });
-            if (btnLight) btnLight.addEventListener('click', function() { applyThemeMode('light'); showToast('Light mode enabled'); });
-            if (btnDark) btnDark.addEventListener('click', function() { applyThemeMode('dark'); showToast('Dark mode enabled'); });
+            if (btnThemeCycle) {
+                btnThemeCycle.addEventListener('click', function() {
+                    var current = localStorage.getItem('wearmask.theme') || 'auto';
+                    var idx = THEME_MODES.indexOf(current);
+                    var nextMode = THEME_MODES[(idx + 1) % THEME_MODES.length];
+                    applyThemeMode(nextMode);
+
+                    var toastLabels = {
+                        'auto': 'System theme enabled',
+                        'light': 'Light mode enabled',
+                        'dark': 'Dark mode enabled'
+                    };
+                    showToast(toastLabels[nextMode]);
+                });
+            }
         }
 
         function showToast(msg) {
