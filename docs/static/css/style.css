@@ -359,35 +359,35 @@ details.accordion-card[open] .accordion-chevron {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Language Switcher & Theme Toggle Buttons */
+/* Language Switcher & Theme Switcher Segmented Controls */
 .language-switcher button,
-.theme-toggle-btn {
-  border-radius: 0.75rem;
-  padding: 0.35rem 0.85rem;
+.theme-switcher button {
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.65rem;
   color: #9ca3af;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  border: 1px solid transparent;
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
 }
 
 .language-switcher button:hover,
-.theme-toggle-btn:hover {
+.theme-switcher button:hover {
   color: #f3f4f6;
   background: rgba(255, 255, 255, 0.08);
 }
 
-.language-switcher button.lang-active {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #ffffff;
+.language-switcher button.lang-active,
+.theme-switcher button.theme-active {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
   font-weight: 600;
-  border-color: rgba(96, 165, 250, 0.4);
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.35);
 }
 
 /* Toast Notifications */
