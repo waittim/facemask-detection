@@ -432,7 +432,7 @@ details.accordion-card[open] .accordion-chevron {
 }
 
 /* ==========================================================================
-   LIGHT MODE OVERRIDES
+   LIGHT MODE OVERRIDES (Comprehensive Clean Light Palette)
    ========================================================================== */
 html.light body {
   background-color: #f8fafc;
@@ -440,38 +440,56 @@ html.light body {
 }
 
 html.light .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 html.light .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
 }
 
-html.light .metric-card {
-  background: rgba(241, 245, 249, 0.85);
-  border: 1px solid rgba(203, 213, 225, 0.7);
+/* Light Mode Typography Overrides */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light .text-white {
+  color: #0f172a !important;
 }
 
-html.light .metric-value {
-  color: #0f172a;
+html.light .text-gray-300,
+html.light .text-gray-400 {
+  color: #475569 !important;
 }
 
-html.light details.accordion-card {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(203, 213, 225, 0.8);
+/* Status Pill in Light Mode */
+html.light .status-pill.status-neutral {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
 }
 
-html.light details.accordion-card:hover {
-  background: rgba(255, 255, 255, 0.98);
+html.light .status-pill.status-ok {
+  background: #d1fae5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
 }
 
+html.light .status-pill.status-warn {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.15);
+}
+
+/* Video Controls Toolbar in Light Mode */
 html.light .control-bar {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(203, 213, 225, 0.8);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 html.light .ctrl-btn {
@@ -480,55 +498,137 @@ html.light .ctrl-btn {
 
 html.light .ctrl-btn:hover {
   color: #0f172a;
-  background: rgba(0, 0, 0, 0.05);
+  background: #f1f5f9;
 }
 
 html.light .ctrl-btn.active {
   color: #0284c7;
-  background: rgba(2, 132, 199, 0.1);
-  border-color: rgba(2, 132, 199, 0.3);
+  background: #e0f2fe;
+  border-color: #bae6fd;
 }
 
+/* Telemetry Metric Cards in Light Mode */
+html.light .metric-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+html.light .metric-value {
+  color: #0f172a;
+}
+
+html.light .metric-value.cyan {
+  color: #0284c7;
+  text-shadow: none;
+}
+
+html.light .metric-value.green {
+  color: #059669;
+  text-shadow: none;
+}
+
+html.light .metric-value.red {
+  color: #dc2626;
+  text-shadow: none;
+}
+
+/* Detected Faces Sub-cards (Masked / No Mask) */
+html.light .bg-emerald-950\/40 {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+}
+
+html.light .text-emerald-400 {
+  color: #047857 !important;
+}
+
+html.light .bg-rose-950\/40 {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+}
+
+html.light .text-rose-400 {
+  color: #be123c !important;
+}
+
+/* Protective Advice & Disclaimer Banners */
+html.light .bg-blue-950\/30 {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+}
+
+html.light .text-blue-300 {
+  color: #1e40af !important;
+}
+
+html.light .bg-amber-950\/40 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+html.light .text-amber-300 {
+  color: #92400e !important;
+}
+
+/* Accordion Cards in Light Mode */
+html.light details.accordion-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+html.light details.accordion-card:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+/* Language & Theme Toggle Buttons */
 html.light .language-switcher button,
 html.light .theme-toggle-btn {
   color: #475569;
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 html.light .language-switcher button:hover,
 html.light .theme-toggle-btn:hover {
   color: #0f172a;
-  background: rgba(0, 0, 0, 0.08);
+  background: #e2e8f0;
 }
 
-html.light .text-white {
-  color: #0f172a !important;
+html.light .language-switcher button.lang-active {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff !important;
 }
 
-html.light .text-gray-300 {
-  color: #334155 !important;
+/* Toast Notifications in Light Mode */
+html.light .toast-msg {
+  background: #ffffff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-html.light .text-gray-400 {
-  color: #64748b !important;
+/* Footer & Background Glows in Light Mode */
+html.light footer {
+  background-color: #f1f5f9 !important;
+  border-top-color: #e2e8f0 !important;
 }
 
 html.light .bg-slate-950\/80 {
-  background-color: rgba(248, 250, 252, 0.95);
+  background-color: #f1f5f9 !important;
 }
 
 html.light .border-white\/5,
 html.light .border-white\/10 {
-  border-color: rgba(203, 213, 225, 0.7);
+  border-color: #e2e8f0 !important;
 }
 
 html.light .bg-glow-1 {
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(248, 250, 252, 0) 70%);
 }
 
 html.light .bg-glow-2 {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(248, 250, 252, 0) 70%);
 }
 
 /* ==========================================================================
