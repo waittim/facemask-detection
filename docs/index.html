@@ -10,6 +10,7 @@
     <link rel="icon" type="image/svg+xml" href="static/images/logo_mask_v2.svg">
     <link rel="canonical" href="https://facemask-detection.com/" />
     <link rel="alternate" type="application/json" href="project.json" title="WearMask project metadata" />
+    <link rel="alternate" type="text/plain" href="llms.txt" title="WearMask LLM / agent index" />
     
     <meta name="description" content="WearMask is a real-time face mask detection system that runs entirely in your browser via WebAssembly. No server upload. Powered by YOLO-Fastest and NCNN." />
     <meta name="keywords" content="face mask detection, browser ai, webassembly, ncnn, yolo, privacy ai, real-time detection" />
@@ -76,6 +77,58 @@
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "Person",
+          "@id": "https://facemask-detection.com/#zekun-wang",
+          "name": "Zekun Wang",
+          "url": "https://github.com/waittim",
+          "sameAs": [
+            "https://orcid.org/0000-0001-8631-7022",
+            "https://github.com/waittim",
+            "https://www.linkedin.com/in/zekun-wang/"
+          ]
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://facemask-detection.com/#source",
+          "name": "WearMask",
+          "codeRepository": "https://github.com/waittim/facemask-detection",
+          "url": "https://facemask-detection.com/",
+          "description": "Official WearMask browser deployment: C++, NCNN, WebAssembly, and static site for in-browser face mask detection.",
+          "programmingLanguage": ["C++", "JavaScript", "HTML", "CSS"],
+          "runtimePlatform": ["Web Browser", "WebAssembly"],
+          "license": "https://spdx.org/licenses/MIT",
+          "author": { "@id": "https://facemask-detection.com/#zekun-wang" },
+          "isBasedOn": { "@id": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229" },
+          "sameAs": [
+            "https://github.com/waittim/facemask-detection",
+            "https://github.com/waittim/mask-detector"
+          ]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "@id": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+          "headline": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
+          "datePublished": "2023",
+          "identifier": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+          "sameAs": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+          "author": [
+            { "@id": "https://facemask-detection.com/#zekun-wang" },
+            { "@type": "Person", "name": "Pengwei Wang" },
+            { "@type": "Person", "name": "Peter C. Louis" },
+            { "@type": "Person", "name": "Lee E. Wheless" },
+            { "@type": "Person", "name": "Yuankai Huo" }
+          ],
+          "isPartOf": {
+            "@type": "PublicationVolume",
+            "volumeNumber": "35",
+            "issueNumber": "11",
+            "isPartOf": {
+              "@type": "Periodical",
+              "name": "Electronic Imaging"
+            }
+          }
+        },
+        {
           "@type": "WebApplication",
           "@id": "https://facemask-detection.com/#application",
           "name": "WearMask",
@@ -86,7 +139,7 @@
           "isAccessibleForFree": true,
           "browserRequirements": "Requires JavaScript, WebAssembly, and camera permission",
           "softwareHelp": {
-            "@id": "https://facemask-detection.com/about/#page"
+            "@id": "https://facemask-detection.com/about/"
           },
           "author": {
             "@id": "https://facemask-detection.com/#zekun-wang"
@@ -95,7 +148,8 @@
             "@id": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229"
           },
           "sameAs": [
-            "https://github.com/waittim/facemask-detection"
+            "https://github.com/waittim/facemask-detection",
+            "https://facemask-detection.com/#source"
           ]
         }
       ]
@@ -114,7 +168,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.1.2">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.1.5">
 
 </head>
 
@@ -127,19 +181,19 @@
 
     <!-- Navigation Bar -->
     <nav class="glass-nav sticky top-0 z-50 py-3">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="brand-block flex items-center space-x-3">
-                <a href="https://facemask-detection.com" class="group flex items-center space-x-3">
-                    <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="static/images/logo_mask_v2.svg" alt="WearMask Logo">
-                    <div>
-                        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white" data-i18n="hero.title">WearMask</h1>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2">
+            <div class="brand-block flex items-center space-x-3 min-w-0">
+                <a href="https://facemask-detection.com" class="group flex items-center space-x-3 min-w-0">
+                    <img class="h-10 sm:h-12 w-auto shrink-0 transition-transform group-hover:scale-105" src="static/images/logo_mask_v2.svg" alt="WearMask Logo">
+                    <div class="min-w-0">
+                        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white truncate" data-i18n="hero.title">WearMask</h1>
                         <p class="text-xs text-gray-400 hidden sm:block truncate max-w-md" data-i18n="hero.subtitle">Real-time face mask detection</p>
                     </div>
                 </a>
             </div>
 
             <!-- Header Actions: Single Theme Cycling Button + Language Dropdown Menu -->
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 shrink-0">
                 <button id="btn-theme-cycle" type="button" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
                     <svg id="theme-icon-auto" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -171,7 +225,7 @@
     </nav>
 
     <!-- Main Content Workspace -->
-    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-grow">
+    <main class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-grow">
         
         <!-- Primary Status Indicator Banner (hidden while video overlay handles initial load) -->
         <div id="status-banner" class="text-center mb-6 sm:mb-8 fade-in hidden">
@@ -354,15 +408,20 @@
 
         </div>
 
-        <!-- 3-Column Feature Cards -->
+        <!-- 3-Column Feature Cards (collapsible) -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-14 sm:mt-16 mb-12 feature-cards">
             <!-- Setup Guide Card -->
-            <div class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-cyan-500/30 transition shadow-lg">
-                <div class="feature-card-body">
+            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-cyan-500/30 transition shadow-lg group" open>
+                <summary class="feature-card-summary">
                     <div class="feature-card-header">
                         <span class="feature-card-label bg-cyan-500/10 text-cyan-400 border-cyan-500/20" data-i18n="setup.label">Setup</span>
                         <h3 class="feature-card-title" data-i18n="setup.title">How to get the best experience?</h3>
                     </div>
+                    <svg class="feature-card-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </summary>
+                <div class="feature-card-body">
                     <ul class="feature-card-list">
                         <li data-i18n="setup.steps.0">Launch the latest Chrome browser for best performance.</li>
                         <li>
@@ -372,15 +431,20 @@
                         <li data-i18n="setup.steps.3">Frame rate depends on your device CPU. Safari on iOS is supported but may run at a lower frame rate.</li>
                     </ul>
                 </div>
-            </div>
+            </details>
 
             <!-- Privacy Statement Card -->
-            <div class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-emerald-500/30 transition shadow-lg">
-                <div class="feature-card-body">
+            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-emerald-500/30 transition shadow-lg group" open>
+                <summary class="feature-card-summary">
                     <div class="feature-card-header">
                         <span class="feature-card-label bg-emerald-500/10 text-emerald-400 border-emerald-500/20" data-i18n="privacy.label">Privacy</span>
                         <h3 class="feature-card-title" data-i18n="privacy.title">Privacy statement</h3>
                     </div>
+                    <svg class="feature-card-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </summary>
+                <div class="feature-card-body">
                     <p class="feature-card-text" data-i18n="privacy.body">
                         Everything runs fully inside your browser via WebAssembly. No images or video leave your device.
                     </p>
@@ -394,15 +458,20 @@
                         Read privacy & service statement →
                     </a>
                 </div>
-            </div>
+            </details>
 
             <!-- Project Overview Card -->
-            <div class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-indigo-500/30 transition shadow-lg">
-                <div class="feature-card-body">
+            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-indigo-500/30 transition shadow-lg group" open>
+                <summary class="feature-card-summary">
                     <div class="feature-card-header">
                         <span class="feature-card-label bg-indigo-500/10 text-indigo-400 border-indigo-500/20" data-i18n="project.label">Project</span>
                         <h3 class="feature-card-title" data-i18n="project.title">Project overview</h3>
                     </div>
+                    <svg class="feature-card-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </summary>
+                <div class="feature-card-body">
                     <div class="feature-card-copy">
                         <p data-i18n-html="project.paragraph1">
                             WearMask is a real-time, in-browser face mask detector built on YOLO-Fastest, trained with PyTorch, and run locally via NCNN and WebAssembly.
@@ -417,7 +486,7 @@
                         Technical & Research →
                     </a>
                 </div>
-            </div>
+            </details>
         </div>
 
     </main>
