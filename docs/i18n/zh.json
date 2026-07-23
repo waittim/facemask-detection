@@ -81,6 +81,10 @@
     "snapshot": "快照截图",
     "toggleTelemetry": "性能面板"
   },
+  "theme": {
+    "dark": "暗色模式",
+    "light": "亮色模式"
+  },
   "telemetry": {
     "title": "实时性能仪表盘",
     "fps": "帧率 (FPS)",

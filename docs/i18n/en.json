@@ -81,6 +81,10 @@
     "snapshot": "Snapshot",
     "toggleTelemetry": "Dashboard"
   },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  },
   "telemetry": {
     "title": "Real-time Telemetry",
     "fps": "FPS",

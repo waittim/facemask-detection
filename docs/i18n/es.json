@@ -81,6 +81,10 @@
     "snapshot": "Capturar",
     "toggleTelemetry": "Panel"
   },
+  "theme": {
+    "dark": "Oscuro",
+    "light": "Claro"
+  },
   "telemetry": {
     "title": "Telemetría en Tiempo Real",
     "fps": "FPS",

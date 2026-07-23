@@ -15,6 +15,7 @@ html, body {
   color: #f3f4f6;
   overflow-x: hidden;
   line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Link reset to prevent default blue underlines */
@@ -358,8 +359,9 @@ details.accordion-card[open] .accordion-chevron {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Language Switcher */
-.language-switcher button {
+/* Language Switcher & Theme Toggle Buttons */
+.language-switcher button,
+.theme-toggle-btn {
   border-radius: 0.75rem;
   padding: 0.35rem 0.85rem;
   color: #9ca3af;
@@ -369,9 +371,13 @@ details.accordion-card[open] .accordion-chevron {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.language-switcher button:hover {
+.language-switcher button:hover,
+.theme-toggle-btn:hover {
   color: #f3f4f6;
   background: rgba(255, 255, 255, 0.08);
 }
@@ -423,6 +429,106 @@ details.accordion-card[open] .accordion-chevron {
 .footer-logo:hover {
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES
+   ========================================================================== */
+html.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+html.light .glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+html.light .metric-card {
+  background: rgba(241, 245, 249, 0.85);
+  border: 1px solid rgba(203, 213, 225, 0.7);
+}
+
+html.light .metric-value {
+  color: #0f172a;
+}
+
+html.light details.accordion-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+}
+
+html.light details.accordion-card:hover {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+html.light .control-bar {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+html.light .ctrl-btn {
+  color: #475569;
+}
+
+html.light .ctrl-btn:hover {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html.light .ctrl-btn.active {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+html.light .language-switcher button,
+html.light .theme-toggle-btn {
+  color: #475569;
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light .language-switcher button:hover,
+html.light .theme-toggle-btn:hover {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-gray-300 {
+  color: #334155 !important;
+}
+
+html.light .text-gray-400 {
+  color: #64748b !important;
+}
+
+html.light .bg-slate-950\/80 {
+  background-color: rgba(248, 250, 252, 0.95);
+}
+
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: rgba(203, 213, 225, 0.7);
+}
+
+html.light .bg-glow-1 {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+html.light .bg-glow-2 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
 /* ==========================================================================
@@ -561,7 +667,7 @@ details.accordion-card[open] .accordion-chevron {
 .italic { font-style: italic; }
 
 /* Text Colors */
-.text-white { color: #ffffff !important; }
+.text-white { color: #ffffff; }
 .text-gray-300 { color: #d1d5db; }
 .text-gray-400 { color: #9ca3af; }
 .text-gray-600 { color: #4b5563; }
