@@ -110,6 +110,7 @@ body.i18n-loading {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  padding: 1.75rem 2rem;
 }
 
 .glass-nav {
@@ -871,11 +872,21 @@ html.light .bg-glow-2 {
 .p-4 { padding: 1rem; }
 .p-5 { padding: 1.25rem; }
 .p-6 { padding: 1.5rem; }
+.p-7 { padding: 1.75rem; }
+.p-8 { padding: 2rem; }
 
 .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
 .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
 .px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
 .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-7 { padding-left: 1.75rem; padding-right: 1.75rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+
+.pl-4 { padding-left: 1rem; }
+.pl-5 { padding-left: 1.25rem; }
+.pl-6 { padding-left: 1.5rem; }
 
 .py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
 .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
@@ -883,6 +894,7 @@ html.light .bg-glow-2 {
 .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
 .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
 .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-7 { padding-top: 1.75rem; padding-bottom: 1.75rem; }
 .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
 
 .mb-0\.5 { margin-bottom: 0.125rem; }
