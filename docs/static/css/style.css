@@ -635,12 +635,101 @@ html.light .language-switcher button.lang-active {
   padding: 0.5rem;
 }
 
+/* Unified Header Action Buttons & Language Dropdown Menu */
+.theme-toggle-btn {
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+  color: #f3f4f6;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Custom Glassmorphism Dropdown Menu Container */
+#lang-dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  width: 9rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  padding: 0.25rem 0;
+  z-index: 999;
+}
+
+.lang-option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  color: #d1d5db;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.lang-option-btn:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 /* Toast Notifications in Light Mode */
 html.light .toast-msg {
   background: #ffffff;
   color: #0284c7;
   border: 1px solid #bae6fd;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Overrides for Unified Buttons & Dropdown */
+html.light .theme-toggle-btn {
+  color: #475569 !important;
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+html.light .theme-toggle-btn:hover {
+  color: #0f172a !important;
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+}
+
+html.light #lang-dropdown-menu {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .lang-option-btn {
+  color: #334155 !important;
+}
+
+html.light .lang-option-btn:hover {
+  color: #0f172a !important;
+  background: #f1f5f9 !important;
 }
 
 /* Language Dropdown Select in Light Mode */
