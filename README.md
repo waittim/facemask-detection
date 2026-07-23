@@ -1,8 +1,7 @@
 # WearMask
 
 > A privacy-first, real-time face mask detection system that runs entirely
-> inside the web browser using YOLO-Fastest, NCNN, WebAssembly, and
-> serverless edge inference.
+> in the web browser using YOLO-Fastest, NCNN, C++, and WebAssembly.
 
 [Live Demo](https://facemask-detection.com/) |
 [Research Paper](https://doi.org/10.2352/EI.2023.35.11.HPCI-229) |
@@ -24,9 +23,8 @@ preparation, evaluation, and conversion workflows.
 - **Input:** Webcam video frames
 - **Output:** Face bounding boxes and mask classifications (Mask / No Mask)
 - **Server upload:** None
-- **Languages:** English, Spanish, Chinese
-- **Research paper:** WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19
-- **DOI:** [10.2352/EI.2023.35.11.HPCI-229](https://doi.org/10.2352/EI.2023.35.11.HPCI-229)
+- **Languages:** English, Chinese, Spanish, French, German, Japanese, Portuguese, Korean, Italian, Russian
+- **Research paper:** [WearMask (2023)](https://doi.org/10.2352/EI.2023.35.11.HPCI-229)
 
 ## What WearMask does
 
@@ -43,6 +41,14 @@ diagnostic tool.
 - **Serverless edge computing:** No GPU server or backend inference required.
 - **Accessibility:** Works from a URL without installation.
 - **Low deployment cost:** Static hosting via GitHub Pages.
+
+## Features
+
+- Real-time face mask detection via WebAssembly
+- Real-time telemetry dashboard (FPS, inference latency, detection counts)
+- 10-language UI via shared i18n module
+- Fully client-side processing (privacy-first)
+- Responsive design for desktop and mobile
 
 ## Architecture
 
@@ -86,7 +92,7 @@ The website and both repositories describe the same WearMask research system.
 - Model architecture: YOLO-Fastest
 - Training framework: PyTorch (see `mask-detector`)
 - Training data: [`mask-detector/modeling/data`](https://github.com/waittim/mask-detector/tree/master/modeling/data)
-- Deployed weights: `docs/static/model/` (NCNN optimized, compiled to WebAssembly)
+- Deployed weights: `docs/static/model/` (pre-built NCNN assets compiled to WebAssembly)
 
 ## Privacy model
 
@@ -113,9 +119,11 @@ facemask-detection/
 │   ├── citation/         # Citation instructions
 │   ├── technical-overview/
 │   ├── limitations/
-│   ├── privacy/
+│   ├── privacy/          # Privacy policy and legal service statement
 │   ├── static/           # CSS, JS, images, WebAssembly model files
-│   ├── i18n/             # Internationalization files
+│   │   ├── js/           # site-common.js, i18n.js
+│   │   └── model/        # yolo.wasm, yolo.js, yolo.data
+│   ├── i18n/             # Locale dictionaries (10 languages)
 │   ├── llms.txt          # LLM-oriented project index
 │   ├── project.json      # Machine-readable project facts
 │   ├── sitemap.xml
@@ -123,45 +131,54 @@ facemask-detection/
 ├── src/                  # C++ source code
 │   ├── yolo.cpp
 │   ├── CMakeLists.txt
-│   ├── ncnn/
+│   ├── ncnn/             # Pre-built NCNN WebAssembly libraries
 │   └── ios/
 ├── CITATION.cff          # GitHub citation metadata
 ├── codemeta.json         # Research software metadata
 └── scripts/
-    └── server.py         # Local development server
+    └── server.py         # Local development server (recommended)
 ```
 
 ## Usage
 
-### Method 1: GitHub Pages (Production)
+### Live demo (production)
 
-1. Configure GitHub Pages to serve from the `docs/` directory.
-2. Visit https://facemask-detection.com
+Visit https://facemask-detection.com — no installation required.
 
-### Method 2: Run Locally (Development)
+### Run locally (recommended for development)
 
 ```bash
 python3 scripts/server.py
 ```
 
-Then open http://localhost:8888
+Then open http://127.0.0.1:8888 (falls back to port 8889 if 8888 is in use).
 
-**Note:** For best performance, use Chrome with WebAssembly features enabled.
+This server sets the COOP/COEP headers required for WebAssembly threading.
+Use the latest Chrome for best performance.
 
-### Method 3: Manual Server
+### GitHub Pages (fork / maintainer setup)
+
+To deploy your own fork, configure GitHub Pages to serve from the `docs/` directory.
+
+### Manual static server (limited)
 
 ```bash
 cd docs
 python3 -m http.server 8888
 ```
 
+This works for basic static preview but does **not** set COOP/COEP headers.
+WebAssembly features may fail; prefer `scripts/server.py` instead.
+
 ## Building from Source
 
-To rebuild the WebAssembly files from C++ source:
+Pre-built WebAssembly artifacts are already in `docs/static/model/`. Most users
+do not need to rebuild.
 
-1. Install Emscripten SDK
-2. Navigate to `src/` directory
-3. Run CMake build:
+To rebuild from C++ source:
+
+1. Install the [Emscripten SDK](https://emscripten.org/docs/getting_started/downloads.html)
+2. Build in `src/` (NCNN WebAssembly libraries are bundled under `src/ncnn/`):
 
 ```bash
 cd src
@@ -169,14 +186,7 @@ emcmake cmake .
 emmake make
 ```
 
-4. Copy generated `.wasm`, `.js`, and `.data` files to `docs/static/model/`
-
-## Features
-
-- Real-time face mask detection using WebAssembly
-- Multi-language support (English, Spanish, Chinese)
-- Fully client-side processing (privacy-first)
-- Responsive design for desktop and mobile
+3. Copy the generated `yolo.wasm`, `yolo.js`, and `yolo.data` to `docs/static/model/`
 
 ## Research paper
 
@@ -224,9 +234,9 @@ Zekun Wang — [GitHub](https://github.com/waittim) | [ORCID](https://orcid.org/
 
 Vanderbilt University Data Science Institute
 
-## GitHub repository settings (recommended)
+## For maintainers
 
-Update the repository **About** section on GitHub:
+Suggested GitHub repository **About** settings:
 
 - **Description:** Privacy-first real-time face mask detection in the browser using YOLO-Fastest, NCNN, C++, and WebAssembly.
 - **Website:** https://facemask-detection.com/

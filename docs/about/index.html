@@ -1,53 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark" data-i18n-title-key="aboutPage.title">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About WearMask | In-browser Face Mask Detection</title>
     <meta name="description" content="WearMask is a privacy-first, real-time face mask detection research system that runs entirely inside the web browser using YOLO-Fastest, NCNN, and WebAssembly." />
     <link rel="canonical" href="https://facemask-detection.com/about/" />
-    <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
+    <link rel="icon" type="image/svg+xml" href="../static/images/logo_mask_v2.svg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.1.5">
+    <!-- Early Theme + Language Boot -->
+    <script>
+    (function() {
+        var mode = localStorage.getItem('wearmask.theme') || 'auto';
+        var isDark = mode === 'dark' || (mode === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+        }
+        var SUPPORTED = ['en','zh','es','fr','de','ja','pt','ko','it','ru'];
+        var BCP = { en:'en', zh:'zh-Hans', es:'es', fr:'fr', de:'de', ja:'ja', pt:'pt', ko:'ko', it:'it', ru:'ru' };
+        function norm(lang) {
+            if (!lang) return null;
+            lang = String(lang).toLowerCase().replace('_', '-');
+            if (SUPPORTED.indexOf(lang) !== -1) return lang;
+            var p = lang.split('-')[0];
+            if (p === 'zh') return 'zh';
+            return SUPPORTED.indexOf(p) !== -1 ? p : null;
+        }
+        var lang = null;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            lang = norm(params.get('lang'));
+            if (lang) localStorage.setItem('wearmask.lang', lang);
+            if (!lang) lang = norm(localStorage.getItem('wearmask.lang'));
+        } catch (e) {}
+        if (!lang) lang = norm(navigator.language || navigator.userLanguage) || 'en';
+        document.documentElement.lang = BCP[lang] || 'en';
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.classList.add('i18n-pending');
+    })();
+    </script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
+<body class="i18n-loading relative min-h-screen flex flex-col justify-between">
+    <div class="bg-glow-container">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-50 py-3">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            <a href="../index.html" class="flex items-center space-x-3 group">
+                <img class="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" src="../static/images/logo_mask_v2.svg" alt="WearMask Logo">
+                <span class="text-xl font-bold text-white tracking-tight">WearMask</span>
             </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
+            
+            <div class="flex items-center space-x-2">
+                <a href="../index.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 mr-2 hidden sm:inline-flex">
+                    <span aria-hidden="true">←</span>
+                    <span data-i18n="nav.liveDemo">Live demo</span>
+                </a>
+
+                <button id="btn-theme-cycle" type="button" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
+                    <svg id="theme-icon-auto" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <svg id="theme-icon-light" class="w-4 h-4 text-amber-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg id="theme-icon-dark" class="w-4 h-4 text-indigo-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+
+                <div id="lang-dropdown-wrapper" class="relative inline-block text-left shrink-0">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="true">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                        <span id="lang-current-label" class="whitespace-nowrap">English</span>
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+
+                                        <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200 lang-dropdown-scroll" role="listbox" aria-labelledby="lang-dropdown-btn"></div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../index.html" class="hover:text-blue-600">Home</a>
-            <span>/</span>
-            <span class="text-gray-900 font-medium">About</span>
-            <span class="hidden sm:inline text-gray-300">|</span>
-            <a href="../technical-overview/" class="hover:text-blue-600">Technical overview</a>
-            <a href="../research/" class="hover:text-blue-600">Research</a>
-            <a href="../citation/" class="hover:text-blue-600">Citation</a>
-            <a href="../privacy/" class="hover:text-blue-600">Privacy</a>
-            <a href="../limitations/" class="hover:text-blue-600">Limitations</a>
+    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
+            <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
+            <span class="text-gray-600" aria-hidden="true">/</span>
+            <span class="text-white font-medium" data-i18n="nav.about">About</span>
         </nav>
 
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">WearMask: In-browser Face Mask Detection</h1>
-                <p class="text-gray-600">
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-6">
+            <span class="text-cyan-400 font-medium" data-i18n="nav.about">About</span>
+            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
+        </div>
+
+        <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
+            <header class="space-y-3 border-b border-white/10 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="aboutPage.heading">WearMask: In-browser Face Mask Detection</h1>
+                <p class="text-gray-400" data-i18n-html="aboutPage.intro">
                     WearMask is an open-source, real-time face mask detection system that runs entirely inside a web browser.
                     The project is also published as
-                    <em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>.
+                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:underline"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>.
                 </p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">What is WearMask?</h2>
-                <p>
+                <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q1_title">What is WearMask?</h2>
+                <p data-i18n="aboutPage.q1_body">
                     WearMask (Web-based Efficient AI Recognition of Masks) detects whether people in a webcam feed appear to be
                     wearing a face mask. Unlike cloud-based vision services, all inference happens on the user's device.
                     No camera images or video are uploaded to an application server.
@@ -55,18 +127,18 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">How is it different from cloud vision?</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q2_title">How is it different from cloud vision?</h2>
                 <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Privacy:</strong> Camera data never leaves the browser.</li>
-                    <li><strong>Serverless:</strong> No backend GPU or inference API is required.</li>
-                    <li><strong>Edge computing:</strong> Detection runs on the user's CPU via WebAssembly.</li>
-                    <li><strong>Open source:</strong> Deployment and training code are publicly available.</li>
+                    <li data-i18n-html="aboutPage.q2_item1"><strong class="text-white">Privacy:</strong> Camera data never leaves the browser.</li>
+                    <li data-i18n-html="aboutPage.q2_item2"><strong class="text-white">Serverless:</strong> No backend GPU or inference API is required.</li>
+                    <li data-i18n-html="aboutPage.q2_item3"><strong class="text-white">Edge computing:</strong> Detection runs on the user's CPU via WebAssembly.</li>
+                    <li data-i18n-html="aboutPage.q2_item4"><strong class="text-white">Open source:</strong> Deployment and training code are publicly available.</li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">What does fully local inference mean?</h2>
-                <p>
+                <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q3_title">What does fully local inference mean?</h2>
+                <p data-i18n="aboutPage.q3_body">
                     After the page loads the WebAssembly model, detection runs on each video frame inside the browser.
                     The application does not send images, video, or detection results to a WearMask server.
                     You can disconnect from the internet after the model has loaded and detection will continue to work.
@@ -74,53 +146,58 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Author and institution</h2>
-                <p>
-                    <strong>Primary author:</strong>
-                    <a href="https://github.com/waittim" class="text-blue-600 hover:underline">Zekun Wang</a>
-                    (<a href="https://orcid.org/0000-0001-8631-7022" class="text-blue-600 hover:underline">ORCID</a>
-                    · <a href="https://www.linkedin.com/in/zekun-wang/" class="text-blue-600 hover:underline">LinkedIn</a>)
+                <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q4_title">Author and institution</h2>
+                <p data-i18n-html="aboutPage.q4_author">
+                    <strong class="text-white">Primary author:</strong>
+                    <a href="https://github.com/waittim" class="text-cyan-400 hover:underline">Zekun Wang</a>
+                    (<a href="https://orcid.org/0000-0001-8631-7022" class="text-cyan-400 hover:underline">ORCID</a>
+                    · <a href="https://www.linkedin.com/in/zekun-wang/" class="text-cyan-400 hover:underline">LinkedIn</a>)
                 </p>
-                <p>
-                    <strong>Institution:</strong>
-                    <a href="https://www.vanderbilt.edu/datascience/" class="text-blue-600 hover:underline">Vanderbilt University Data Science Institute</a>
+                <p data-i18n-html="aboutPage.q4_inst">
+                    <strong class="text-white">Institution:</strong>
+                    <a href="https://www.vanderbilt.edu/datascience/" class="text-cyan-400 hover:underline">Vanderbilt University Data Science Institute</a>
                 </p>
-                <p>Research supported in part by the U.S. National Science Foundation.</p>
+                <p data-i18n="aboutPage.q4_support">Research supported in part by the U.S. National Science Foundation.</p>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Project timeline</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q5_title">Project timeline</h2>
                 <ul class="list-disc list-inside space-y-2">
-                    <li><strong>First public release:</strong> November 2020 (browser demo and open-source code)</li>
-                    <li><strong>Research paper published:</strong> 2023 (Electronic Imaging)</li>
-                    <li><strong>Last updated:</strong> July 2026</li>
+                    <li data-i18n-html="aboutPage.q5_item1"><strong class="text-white">First public release:</strong> November 2020 (browser demo and open-source code)</li>
+                    <li data-i18n-html="aboutPage.q5_item2"><strong class="text-white">Research paper published:</strong> 2023 (Electronic Imaging)</li>
+                    <li data-i18n-html="aboutPage.q5_item3"><strong class="text-white">UI Modernization & Telemetry:</strong> July 2026</li>
                 </ul>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Related resources</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><a href="../index.html" class="text-blue-600 hover:underline">Live demo</a></li>
-                    <li><a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">Deployment repository</a> (this project)</li>
-                    <li><a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">Training repository</a></li>
-                    <li><a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-blue-600 hover:underline">Research paper (DOI)</a></li>
-                    <li><a href="../project.json" class="text-blue-600 hover:underline">Machine-readable project facts (JSON)</a></li>
+                <h2 class="text-lg font-bold text-white" data-i18n="aboutPage.q6_title">Related resources</h2>
+                <ul class="list-disc list-inside space-y-2 text-cyan-400">
+                    <li><a href="../index.html" class="hover:underline" data-i18n="aboutPage.res1">Live demo</a></li>
+                    <li><a href="https://github.com/waittim/facemask-detection" class="hover:underline" data-i18n="aboutPage.res2">Deployment repository (this project)</a></li>
+                    <li><a href="https://github.com/waittim/mask-detector" class="hover:underline" data-i18n="aboutPage.res3">Training repository</a></li>
+                    <li><a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="hover:underline" data-i18n="aboutPage.res4">Research paper (DOI)</a></li>
+                    <li><a href="https://www.zekun.blog/2020/12/01/mask-detection-report/" target="_blank" rel="noopener noreferrer" class="hover:underline" data-i18n="aboutPage.res6">Early project write-up (2020)</a></li>
+                    <li><a href="../project.json" class="hover:underline" data-i18n="aboutPage.res5">Machine-readable project facts (JSON)</a></li>
                 </ul>
             </section>
 
-            <aside class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900">
-                <strong>Important:</strong> WearMask is a research and demonstration system, not a medical device or diagnostic tool.
-                See <a href="../limitations/" class="underline">known limitations</a>.
+            <aside class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 text-amber-300" data-i18n-html="aboutPage.disclaimer">
+                <strong class="text-amber-200">Important:</strong> WearMask is a research and demonstration system, not a medical device or diagnostic tool.
+                See <a href="../limitations/" class="underline text-amber-200">known limitations</a>.
             </aside>
         </article>
     </main>
 
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">Source code</a>
-            · <a href="../citation/" class="text-blue-600 hover:underline">Citation</a>
-            · <a href="../llms.txt" class="text-blue-600 hover:underline">llms.txt</a>
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-xs text-gray-400 text-center space-x-4">
+            <a href="../about/" class="text-cyan-400 hover:underline" data-i18n="nav.about" aria-current="page">About</a>
+            <span>·</span>
+            <a href="../technical-overview/" class="text-cyan-400 hover:underline" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <span>·</span>
+            <a href="../privacy/" class="text-cyan-400 hover:underline" data-i18n="nav.privacy">Privacy & Limitations</a>
         </div>
     </footer>
+    <script src="../static/js/i18n.js?v=3.1.0"></script>
+    <script src="../static/js/site-common.js?v=3.1.0"></script>
 </body>
 </html>

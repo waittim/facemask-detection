@@ -14,11 +14,22 @@
   "runtime": "WebAssembly",
   "processing": "fully client-side",
   "uploads_camera_data": false,
-  "languages": ["English", "Spanish", "Chinese"],
+  "languages": [
+    "English",
+    "Chinese",
+    "Spanish",
+    "French",
+    "German",
+    "Japanese",
+    "Portuguese",
+    "Korean",
+    "Italian",
+    "Russian"
+  ],
   "author": {
     "name": "Zekun Wang",
     "orcid": "https://orcid.org/0000-0001-8631-7022"
   },
   "license": "MIT",
-  "last_updated": "2026-07-12"
+  "last_updated": "2026-07-23"
 }

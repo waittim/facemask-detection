@@ -2,140 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research | WearMask</title>
-    <meta name="description" content="WearMask research paper, authors, DOI, dataset, training code, and deployment resources for face mask detection in the browser." />
-    <link rel="canonical" href="https://facemask-detection.com/research/" />
-    <link rel="icon" type="image/png" href="../static/images/logo_mask.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=2.0.5">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ScholarlyArticle",
-      "headline": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
-      "author": [
-        {"@type": "Person", "name": "Zekun Wang", "sameAs": "https://orcid.org/0000-0001-8631-7022"},
-        {"@type": "Person", "name": "Pengwei Wang"},
-        {"@type": "Person", "name": "Peter C. Louis"},
-        {"@type": "Person", "name": "Lee E. Wheless"},
-        {"@type": "Person", "name": "Yuankai Huo"}
-      ],
-      "datePublished": "2023",
-      "isPartOf": {
-        "@type": "PublicationVolume",
-        "volumeNumber": 35,
-        "issueNumber": 11
-      },
-      "identifier": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
-      "sameAs": "https://doi.org/10.2352/EI.2023.35.11.HPCI-229"
-    }
+    <meta http-equiv="refresh" content="0; url=../technical-overview/#research">
+    <link rel="canonical" href="https://facemask-detection.com/technical-overview/#research" />
+    <script>
+        var params = window.location.search;
+        window.location.replace('../technical-overview/#research' + params);
     </script>
+    <title>Redirecting to Technical Overview & Research...</title>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-            <a href="../index.html" class="flex items-center space-x-3">
-                <img class="h-10 sm:h-12" src="../static/images/logo_mask.png" alt="WearMask Logo">
-                <span class="text-xl font-bold text-gray-900">WearMask</span>
-            </a>
-            <a href="../index.html" class="text-sm text-blue-600 hover:underline font-semibold">← Live demo</a>
-        </div>
-    </nav>
-
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
-        <nav class="text-sm text-gray-500 mb-8 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="../about/" class="hover:text-blue-600">About</a>
-            <a href="../technical-overview/" class="hover:text-blue-600">Technical overview</a>
-            <span>/</span>
-            <span class="text-gray-900 font-medium">Research</span>
-            <span class="hidden sm:inline text-gray-300">|</span>
-            <a href="../citation/" class="hover:text-blue-600">Citation</a>
-            <a href="../privacy/" class="hover:text-blue-600">Privacy</a>
-            <a href="../limitations/" class="hover:text-blue-600">Limitations</a>
-        </nav>
-
-        <article class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8 text-sm text-gray-700 leading-relaxed">
-            <header class="space-y-3 border-b border-gray-100 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Research</h1>
-                <p>Peer-reviewed publication and associated open-source resources for the WearMask system.</p>
-            </header>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Paper</h2>
-                <p class="font-medium text-gray-900">
-                    WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19
-                </p>
-                <p>
-                    <strong>Authors:</strong>
-                    <a href="https://orcid.org/0000-0001-8631-7022" class="text-blue-600 hover:underline">Zekun Wang</a>,
-                    Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo
-                </p>
-                <p>
-                    <strong>Journal:</strong> Electronic Imaging, Volume 35, Issue 11, 2023
-                </p>
-                <p>
-                    <strong>DOI:</strong>
-                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-blue-600 hover:underline">10.2352/EI.2023.35.11.HPCI-229</a>
-                </p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Abstract summary</h2>
-                <p>
-                    WearMask presents a lightweight face mask detection system that runs entirely in the web browser
-                    using YOLO-Fastest, NCNN, and WebAssembly. The design enables serverless edge computing:
-                    inference happens on the client device without uploading camera data to a remote server.
-                    This approach supports privacy-preserving, low-cost deployment for public-facing mask detection
-                    scenarios during the COVID-19 pandemic and beyond.
-                </p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Open resources</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Live application:</strong> <a href="https://facemask-detection.com/" class="text-blue-600 hover:underline">facemask-detection.com</a></li>
-                    <li><strong>Deployment code:</strong> <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">github.com/waittim/facemask-detection</a></li>
-                    <li><strong>Training code:</strong> <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">github.com/waittim/mask-detector</a></li>
-                    <li><strong>Dataset:</strong> <a href="https://github.com/waittim/mask-detector/tree/master/modeling/data" class="text-blue-600 hover:underline">mask-detector/modeling/data</a></li>
-                    <li><strong>Model architecture:</strong> YOLO-Fastest</li>
-                </ul>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Reproducing experiments</h2>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>Clone <a href="https://github.com/waittim/mask-detector" class="text-blue-600 hover:underline">mask-detector</a> and install Python 3.8 dependencies.</li>
-                    <li>Train or use pretrained weights (<code>best.pt</code> / <code>best.weights</code>).</li>
-                    <li>Convert PyTorch → Darknet → NCNN → optimized NCNN following the repository README.</li>
-                    <li>Build the C++ WebAssembly module from <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">facemask-detection</a>.</li>
-                    <li>Deploy via GitHub Pages or run locally with <code>python3 scripts/server.py</code>.</li>
-                </ol>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Contributions</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>End-to-end browser deployment of YOLO-Fastest via NCNN and WebAssembly</li>
-                    <li>Serverless edge inference architecture with no camera data upload</li>
-                    <li>Open-source training pipeline, dataset, and live demonstration</li>
-                    <li>Multi-language web interface (English, Spanish, Chinese)</li>
-                </ul>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-gray-900">Citation</h2>
-                <p>See the dedicated <a href="../citation/" class="text-blue-600 hover:underline">citation page</a> for BibTeX and preferred reference format.</p>
-            </section>
-        </article>
-    </main>
-
-    <footer class="border-t border-gray-200 bg-white mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500 text-center">
-            <a href="https://github.com/waittim/facemask-detection" class="text-blue-600 hover:underline">Source code</a>
-            · <a href="../citation/" class="text-blue-600 hover:underline">Citation</a>
-        </div>
-    </footer>
+<body>
+    <p>If you are not redirected automatically, <a href="../technical-overview/#research">click here</a>.</p>
 </body>
 </html>

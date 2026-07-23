@@ -1,0 +1,290 @@
+{
+  "page": {
+    "title": "WearMask: Обнаружение масок | ИИ в реальном времени в браузере",
+    "description": "Бесплатный детектор масок в браузере. Достаточно планшета, чтобы получить ИИ для обнаружения масок! Создан для малого бизнеса и общественных мест — вместе против COVID-19."
+  },
+  "language": {
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文",
+      "fr": "Français",
+      "de": "Deutsch",
+      "ja": "日本語",
+      "pt": "Português",
+      "ko": "한국어",
+      "it": "Italiano",
+      "ru": "Русский"
+    }
+  },
+  "hero": {
+    "title": "WearMask",
+    "subtitle": "Обнаружение масок в реальном времени"
+  },
+  "status": {
+    "loading": "Загрузка..."
+  },
+  "overlay": {
+    "initializing": "Инициализация модели ИИ..."
+  },
+  "tips": {
+    "highlight": "Совет:",
+    "message": "Полностью закрывайте нос и рот, чтобы блокировать вирусные частицы."
+  },
+  "setup": {
+    "label": "Настройка",
+    "title": "Как получить лучший опыт?",
+    "steps": [
+      "Запустите последнюю версию браузера Chrome.",
+      "Откройте <code class=\"chrome-flags-code\" role=\"button\" tabindex=\"0\">chrome://flags</code> и включите все функции WebAssembly.",
+      "Перезапустите Chrome, откройте эту страницу и разрешите доступ к камере.",
+      "Частота кадров зависит от CPU вашего устройства. Safari на iOS поддерживается, но может работать с более низкой частотой кадров."
+    ],
+    "copyFlags": "Копировать",
+    "copiedFlags": "Скопировано!",
+    "note": ""
+  },
+  "privacy": {
+    "label": "Конфиденциальность",
+    "title": "Конфиденциальность и ограничения",
+    "body": "Все выполняется полностью в вашем браузере через WebAssembly. Изображения и видео не покидают устройство, данные не сохраняются на сервере. Вы можете отключить интернет после начала обнаружения.",
+    "disclaimer": "Только для исследований и демонстрации — не медицинское устройство и не диагностический инструмент.",
+    "linkText": "Прочитать заявление о конфиденциальности и сервисе →",
+    "linkHref": "privacy/"
+  },
+  "project": {
+    "label": "Проект",
+    "title": "Обзор проекта",
+    "paragraph1": "WearMask — детектор масок в реальном времени в браузере на базе <a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\">YOLO-Fastest</a>, обученный с <a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch</a> и выполняемый локально через <a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\">NCNN</a> и <a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WebAssembly</a>.",
+    "paragraph2": "Код <a href=\"https://github.com/waittim/facemask-detection\" target=\"_blank\" rel=\"noopener noreferrer\">развертывания</a> и <a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\">обучения</a> с открытым исходным кодом, есть <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\">рецензируемая статья</a>.",
+    "linkText": "Техника и исследования →"
+  },
+  "feedback": {
+    "button": "Обратная связь",
+    "buttonTitle": "Сообщите об ошибках или свяжитесь с разработчиком.",
+    "mailto": "mailto:wearmask.feedback@gmail.com?subject=%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B2%D1%8F%D0%B7%D1%8C&body=%D0%95%D1%81%D0%BB%D0%B8%20%D0%B5%D1%81%D1%82%D1%8C%20%D1%81%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B0,%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C."
+  },
+  "modal": {
+    "title": "Требуется разрешение камеры",
+    "body": "Чтобы начать обнаружение масок, разрешите доступ к камере в настройках браузера и обновите эту страницу.",
+    "button": "Обновить страницу"
+  },
+  "detection": {
+    "labels": [
+      "background",
+      "Без маски",
+      "С маской"
+    ],
+    "status": {
+      "welcome": "Добро пожаловать!",
+      "maskWarning": "Пожалуйста, наденьте маску!"
+    }
+  },
+  "footer": {
+    "name": "Zekun Wang",
+    "org": "Vanderbilt University"
+  },
+  "controls": {
+    "pause": "Пауза",
+    "resume": "Продолжить",
+    "switchCamera": "Сменить камеру",
+    "snapshot": "Снимок",
+    "toggleTelemetry": "Панель"
+  },
+  "theme": {
+    "dark": "Тёмная",
+    "light": "Светлая",
+    "auto": "Авто",
+    "cycleTitle": "Переключить тему"
+  },
+  "toast": {
+    "snapshotSaved": "Снимок сохранён",
+    "themeAuto": "Тема: Авто (система)",
+    "themeLight": "Тема: Светлая",
+    "themeDark": "Тема: Тёмная",
+    "retryCamera": "Повторная попытка камеры...",
+    "dashboardExpanded": "Панель развёрнута",
+    "dashboardCollapsed": "Панель свёрнута",
+    "detectionPaused": "Обнаружение приостановлено",
+    "detectionResumed": "Обнаружение возобновлено",
+    "switchingCamera": "Переключение камеры..."
+  },
+  "telemetry": {
+    "title": "Телеметрия в реальном времени",
+    "fps": "FPS",
+    "latency": "Задержка инференса",
+    "detectedFaces": "Обнаруженные лица",
+    "maskCount": "С маской",
+    "noMaskCount": "Без маски",
+    "acceleration": "Аппаратное ускорение",
+    "simdActive": "SIMD включён",
+    "simdInactive": "SIMD стандарт",
+    "threads": "Многопоточность",
+    "engine": "Движок",
+    "perfMode": "Плавное воспроизведение",
+    "perfModeDesc": "Отделяет отрисовку от инференса, меньше рывков.",
+    "perfModeOn": "Плавный режим включён",
+    "perfModeOff": "Плавный режим выключен"
+  },
+  "nav": {
+    "home": "Главная",
+    "about": "О проекте",
+    "technicalOverview": "Техника и исследования",
+    "privacy": "Конфиденциальность и ограничения",
+    "liveDemo": "Живая демонстрация"
+  },
+  "aboutPage": {
+    "title": "О WearMask | Обнаружение масок в браузере",
+    "heading": "WearMask: обнаружение масок в браузере",
+    "intro": "WearMask — система обнаружения масок в реальном времени с открытым исходным кодом, работающая полностью в веб-браузере. Проект также опубликован как <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\"><em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em></a>.",
+    "q1_title": "Что такое WearMask?",
+    "q1_body": "WearMask (Web-based Efficient AI Recognition of Masks) определяет, носят ли люди на видеопотоке веб-камеры маску. В отличие от облачных сервисов компьютерного зрения, весь инференс выполняется на устройстве пользователя. Изображения и видео с камеры не загружаются на сервер приложения.",
+    "q2_title": "Чем отличается от облачного зрения?",
+    "q2_item1": "<strong class=\"text-white\">Конфиденциальность:</strong> Данные камеры никогда не покидают браузер.",
+    "q2_item2": "<strong class=\"text-white\">Без сервера:</strong> Не требуется backend GPU или API инференса.",
+    "q2_item3": "<strong class=\"text-white\">Edge computing:</strong> Обнаружение выполняется на CPU пользователя через WebAssembly.",
+    "q2_item4": "<strong class=\"text-white\">Open source:</strong> Код развертывания и обучения общедоступен.",
+    "q3_title": "Что означает полностью локальный инференс?",
+    "q3_body": "После загрузки модели WebAssembly обнаружение выполняется для каждого кадра видео внутри браузера. Приложение не отправляет изображения, видео или результаты обнаружения на сервер WearMask. Вы можете отключиться от интернета после загрузки модели, и обнаружение продолжит работать.",
+    "q4_title": "Автор и организация",
+    "q4_author": "<strong class=\"text-white\">Основной автор:</strong> <a href=\"https://github.com/waittim\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a> (<a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">ORCID</a> · <a href=\"https://www.linkedin.com/in/zekun-wang/\" class=\"text-cyan-400 hover:underline\">LinkedIn</a>)",
+    "q4_inst": "<strong class=\"text-white\">Организация:</strong> <a href=\"https://www.vanderbilt.edu/datascience/\" class=\"text-cyan-400 hover:underline\">Vanderbilt University Data Science Institute</a>",
+    "q4_support": "Исследование частично поддержано U.S. National Science Foundation.",
+    "q5_title": "Хронология проекта",
+    "q5_item1": "<strong class=\"text-white\">Первый публичный релиз:</strong> ноябрь 2020 (браузерная демо и открытый код)",
+    "q5_item2": "<strong class=\"text-white\">Опубликована исследовательская статья:</strong> 2023 (Electronic Imaging)",
+    "q5_item3": "<strong class=\"text-white\">Модернизация UI и телеметрия:</strong> июль 2026",
+    "q6_title": "Связанные ресурсы",
+    "res1": "Живая демонстрация",
+    "res2": "Репозиторий развертывания (этот проект)",
+    "res3": "Репозиторий обучения",
+    "res4": "Исследовательская статья (DOI)",
+    "res5": "Машиночитаемые данные проекта (JSON)",
+    "res6": "Раннее описание проекта (2020)",
+    "disclaimer": "<strong class=\"text-amber-200\">Важно:</strong> WearMask — исследовательская и демонстрационная система, не медицинское устройство и не диагностический инструмент. См. <a href=\"../privacy/#limitations\" class=\"underline text-amber-200\">известные ограничения</a>."
+  },
+  "citationPage": {
+    "title": "Как цитировать WearMask",
+    "subtitle": "Рекомендуемые форматы цитирования исследовательской статьи и программного обеспечения WearMask.",
+    "paperTitle": "Исследовательская статья (предпочтительно)",
+    "paperDesc": "При обсуждении системы WearMask, методов или исследовательского вклада цитируйте рецензируемую статью:",
+    "paperCitation": "Wang, Z., Wang, P., Louis, P. C., Wheless, L. E., & Huo, Y. (2023). WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19. <em>Electronic Imaging</em>, 35(11). https://doi.org/10.2352/EI.2023.35.11.HPCI-229",
+    "bibtexTitle": "BibTeX",
+    "softwareTitle": "Программные репозитории",
+    "softwareDesc": "При повторном использовании или обсуждении кода реализации также указывайте соответствующий репозиторий:",
+    "repoDeploy": "Развертывание в браузере:",
+    "repoTrain": "Обучение и данные:",
+    "metaTitle": "Машиночитаемые метаданные"
+  },
+  "limitationsPage": {
+    "title": "Известные ограничения",
+    "subtitle": "Важные границы и ограничения системы WearMask.",
+    "disclaimer": "<strong class=\"text-amber-200\">Не медицинское устройство.</strong> WearMask — исследовательский прототип и публичная демонстрация. Не используйте для медицинской диагностики, клинических решений или нормативного соответствия без независимой валидации.",
+    "sec1_title": "Точность обнаружения",
+    "sec1_item1": "Производительность зависит от качества, разрешения и частоты кадров камеры.",
+    "sec1_item2": "Плохое освещение, контровой свет или сильные тени снижают точность.",
+    "sec1_item3": "Маленькие лица, экстремальные позы или частичное перекрытие могут быть пропущены или неверно классифицированы.",
+    "sec1_item4": "Модель обнаруживает визуальные паттерны ношения маски, а не медицинскую эффективность или плотность прилегания.",
+    "sec2_title": "Браузер и оборудование",
+    "sec2_item1": "Частота кадров значительно варьируется в зависимости от CPU, браузера и устройства.",
+    "sec2_item2": "Лучшая производительность требует современного Chrome с поддержкой WebAssembly SIMD и threads.",
+    "sec2_item3": "Safari на iOS поддерживается, но обычно работает с более низкой частотой кадров.",
+    "sec2_item4": "Старые браузеры без поддержки WebAssembly не могут запустить демо.",
+    "sec3_title": "Область применения",
+    "sec3_item1": "Предназначено для исследований, образования и демонстрации.",
+    "sec3_item2": "Не валидировано для высокорисковых сценариев общественного здравоохранения.",
+    "sec3_item3": "Не проверяет тип маски (N95, хирургическая, тканевая) или правильность покрытия помимо визуального обнаружения.",
+    "sec3_item4": "Может давать ложноположительные или ложноотрицательные результаты в реальных условиях.",
+    "sec4_title": "Модель и данные",
+    "sec4_item1": "Обучена на конкретном наборе данных; обобщение на все популяции и среды не гарантируется.",
+    "sec4_item2": "Веса и архитектура модели отражают исследования 2020–2023; непрерывное переобучение не предоставляется."
+  },
+  "privacyPage": {
+    "title": "Конфиденциальность и ограничения",
+    "subtitle": "Как WearMask обрабатывает данные камеры, обязательства по конфиденциальности и известные границы системы.",
+    "sec1_title": "Клиентская обработка",
+    "sec1_body": "WearMask выполняет всё обнаружение масок полностью в вашем веб-браузере с использованием WebAssembly. Кадры камеры обрабатываются локально на вашем устройстве. Изображения, видео или результаты обнаружения не загружаются на сервер приложения WearMask.",
+    "sec2_title": "Что не собирается",
+    "sec2_card1_title": "Без хранения изображений",
+    "sec2_card2_title": "Без backend-отслеживания",
+    "sec2_card3_title": "Аккаунт не требуется",
+    "sec2_item1": "Изображения или видео с камеры никогда не сохраняются и не загружаются удалённо.",
+    "sec2_item2": "Результаты обнаружения никогда не передаются в backend-базы данных.",
+    "sec2_item3": "Регистрация, вход или личная идентификация не требуются.",
+    "sec3_title": "Офлайн-работа",
+    "sec3_body": "После загрузки файлов модели WebAssembly обнаружение может продолжаться даже при отключении от интернета. Для первоначальной загрузки страницы требуется сеть для скачивания приложения и ресурсов модели.",
+    "sec4_title": "Полное заявление о сервисе",
+    "sec4_body": "Полное юридическое заявление (доступно на нескольких языках) см.: <a href=\"#statement\" class=\"text-cyan-400 hover:underline\">Заявление о конфиденциальности сервиса</a>"
+  },
+  "researchPage": {
+    "title": "Исследования",
+    "subtitle": "Рецензируемая публикация и связанные ресурсы с открытым исходным кодом для системы WearMask.",
+    "sec1_title": "Статья",
+    "paperName": "WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19",
+    "authors": "<strong class=\"text-white\">Авторы:</strong> <a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a>, Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo",
+    "journal": "<strong class=\"text-white\">Журнал:</strong> Electronic Imaging, Volume 35, Issue 11, 2023",
+    "doi": "<strong class=\"text-white\">DOI:</strong> <a href=\"https://doi.org/10.2352/EI.2023.35.11.HPCI-229\" class=\"text-cyan-400 hover:underline\">10.2352/EI.2023.35.11.HPCI-229</a>",
+    "sec2_title": "Краткое содержание abstract",
+    "abstractText": "WearMask представляет лёгкую систему обнаружения масок, работающую полностью в веб-браузере с YOLO-Fastest, NCNN и WebAssembly. Архитектура обеспечивает serverless edge computing: инференс выполняется на клиентском устройстве без загрузки данных камеры на удалённый сервер. Этот подход поддерживает конфиденциальное и недорогое развертывание для публичных сценариев обнаружения масок во время пандемии COVID-19 и после неё.",
+    "sec3_title": "Открытые ресурсы",
+    "res1": "<strong class=\"text-white\">Живое приложение:</strong> <a href=\"https://facemask-detection.com/\" class=\"hover:underline\">facemask-detection.com</a>",
+    "res2": "<strong class=\"text-white\">Код развертывания:</strong> <a href=\"https://github.com/waittim/facemask-detection\" class=\"hover:underline\">github.com/waittim/facemask-detection</a>",
+    "res3": "<strong class=\"text-white\">Код обучения:</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">github.com/waittim/mask-detector</a>",
+    "res4": "<strong class=\"text-white\">Набор данных:</strong> <a href=\"https://github.com/waittim/mask-detector/tree/master/modeling/data\" class=\"hover:underline\">mask-detector/modeling/data</a>",
+    "res5": "<strong class=\"text-white\">Архитектура модели:</strong> YOLO-Fastest",
+    "sec4_title": "Воспроизведение экспериментов",
+    "step1": "Клонируйте <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a> и установите зависимости Python 3.8.",
+    "step2": "Обучите или используйте предобученные веса (<code>best.pt</code> / <code>best.weights</code>).",
+    "step3": "Конвертируйте PyTorch → Darknet → NCNN → оптимизированный NCNN по README репозитория.",
+    "step4": "Соберите C++ WebAssembly модуль из <a href=\"https://github.com/waittim/facemask-detection\" class=\"text-cyan-400 hover:underline\">facemask-detection</a>.",
+    "step5": "Разверните через GitHub Pages или запустите локально с <code>python3 scripts/server.py</code>."
+  },
+  "techPage": {
+    "title": "Технический обзор",
+    "subtitle": "Сквозная архитектура браузерного развертывания WearMask и pipeline обучения.",
+    "sec1_title": "Pipeline инференса в браузере",
+    "sec1_body": "WearMask объединяет YOLO-Fastest с фреймворком NCNN от Tencent, скомпилированным в WebAssembly для быстрого клиентского выполнения C++.",
+    "sec2_title": "Pipeline обучения и конвертации",
+    "sec2_desc": "Обучение и конвертация модели реализованы в репозитории <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a>:",
+    "sec3_title": "Ключевые технологии",
+    "tech1_k": "Модель",
+    "tech1_v": "YOLO-Fastest (обнаружение объектов)",
+    "tech2_k": "Обучение",
+    "tech2_v": "PyTorch (mask-detector)",
+    "tech3_k": "Движок инференса",
+    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
+    "tech4_k": "Браузерная среда",
+    "tech4_v": "<a href=\"https://webassembly.org/\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via Emscripten",
+    "tech5_k": "Frontend",
+    "tech5_v": "HTML, CSS, JavaScript",
+    "tech6_k": "Развертывание",
+    "tech6_v": "GitHub Pages (статический хостинг)",
+    "sec4_title": "Классы обнаружения",
+    "cls1": "Background",
+    "cls2": "Без маски",
+    "cls3": "С маской",
+    "sec5_title": "Расположение исходного кода",
+    "src1": "<strong class=\"text-white\">C++ инференс:</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/src/yolo.cpp\" class=\"hover:underline\">src/yolo.cpp</a>",
+    "src2": "<strong class=\"text-white\">HTML / CSS UI:</strong> <a href=\"https://github.com/waittim/facemask-detection/blob/master/docs/index.html\" class=\"hover:underline\">docs/index.html</a>",
+    "src3": "<strong class=\"text-white\">Скрипты обучения:</strong> <a href=\"https://github.com/waittim/mask-detector\" class=\"hover:underline\">mask-detector</a>"
+  },
+  "statement": {
+    "title": "Полное юридическое заявление о сервисе",
+    "heroTitle": "Полное юридическое заявление о сервисе",
+    "heroDesc": "Используя сервис обнаружения WearMask, вы соглашаетесь со следующими условиями. Если не согласны, немедленно прекратите использование сервиса.",
+    "expand": "Развернуть ↓",
+    "collapse": "Свернуть ↑",
+    "sec1_title": "1. Содержание сервиса",
+    "sec1_body": "Сервис предоставляется как веб-страница. Просто откройте страницу для доступа к обнаружению масок в реальном времени и оповещениям на основе ИИ.",
+    "sec2_title": "2. Защита конфиденциальности",
+    "sec2_1_title": "2.1 Сбор данных",
+    "sec2_1_body": "Для обнаружения необходимо разрешить доступ к камере. WearMask анализирует видеокадры локально на вашем устройстве и никогда не собирает данные распознавания лиц.",
+    "sec2_2_title": "2.2 Хранение и защита данных",
+    "sec2_2_body": "На базе WebAssembly все вычисления выполняются локально в браузере. Мы не загружаем видео, изображения или аудио на серверы. Ваши данные никогда не покидают устройство.",
+    "sec3_title": "3. Заявление и гарантия",
+    "sec3_body": "Вы соглашаетесь использовать сервис в соответствии с применимым законодательством и несёте ответственность за источники контента. WearMask предоставляет этот технический инструмент по вашим указаниям и не несёт ответственности за правовые последствия вашего использования.",
+    "sec4_title": "4. Уведомление и обновления",
+    "sec4_body": "Мы можем обновлять это заявление для соответствия политике или требованиям сервиса. Регулярно проверяйте эту страницу для получения актуальной информации.",
+    "metaUpdated": "Последнее обновление: 1 ноября 2025"
+  }
+}
