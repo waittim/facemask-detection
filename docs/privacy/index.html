@@ -105,13 +105,13 @@
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white">Privacy Model</h1>
-                <p class="text-gray-400">How WearMask handles camera data and user privacy.</p>
+                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="privacyPage.title">Privacy Statement</h1>
+                <p class="text-gray-400" data-i18n="privacyPage.subtitle">How WearMask handles camera data and user privacy.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Client-side processing</h2>
-                <p>
+                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec1_title">Client-side processing</h2>
+                <p data-i18n="privacyPage.sec1_body">
                     WearMask performs all face mask detection entirely inside your web browser using WebAssembly.
                     Camera frames are processed locally on your device. No images, video, or detection results
                     are uploaded to a WearMask application server.
@@ -119,28 +119,10 @@
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">What is not collected</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Camera images or video are not stored or uploaded.</li>
-                    <li>Mask-wearing detection results are not sent to a backend.</li>
-                    <li>No user accounts or personal identification is required.</li>
-                </ul>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Offline operation</h2>
-                <p>
+                <h2 class="text-lg font-bold text-white" data-i18n="privacyPage.sec2_title">Offline operation</h2>
+                <p data-i18n="privacyPage.sec2_body">
                     After the WebAssembly model files are loaded, detection can continue even if you disconnect
-                    from the internet. The initial page load requires network access to download the application
-                    and model assets.
-                </p>
-            </section>
-
-            <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Full service statement</h2>
-                <p>
-                    For the complete legal service statement (available in English, Spanish, and Chinese), see:
-                    <a href="statement.html" class="text-cyan-400 hover:underline">Privacy service statement</a>
+                    from the internet.
                 </p>
             </section>
         </article>

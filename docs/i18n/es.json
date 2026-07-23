@@ -97,6 +97,82 @@
     "simdInactive": "SIMD Estándar",
     "threads": "Multihilo",
     "engine": "Motor AI"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "technicalOverview": "Arquitectura técnica",
+    "research": "Investigación",
+    "citation": "Cita",
+    "privacy": "Privacidad",
+    "limitations": "Limitaciones",
+    "liveDemo": "Demostración en vivo"
+  },
+  "aboutPage": {
+    "title": "Acerca de WearMask | Detección de mascarillas en el navegador",
+    "heading": "WearMask: Detección de mascarillas faciales en el navegador",
+    "intro": "WearMask es un sistema de detección de mascarillas de código abierto y en tiempo real que se ejecuta completamente dentro del navegador. Publicado como: <em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>.",
+    "q1_title": "¿Qué es WearMask?",
+    "q1_body": "WearMask (Web-based Efficient AI Recognition of Masks) detecta si las personas en una cámara web llevan mascarilla. A diferencia de los servicios de visión en la nube, toda la inferencia ocurre localmente en el dispositivo del usuario.",
+    "q2_title": "¿En qué se diferencia de la visión en la nube?",
+    "q2_item1": "<strong>Privacidad:</strong> Los datos de la cámara nunca salen del navegador.",
+    "q2_item2": "<strong>Sin servidor:</strong> No se requiere GPU de servidor ni API de inferencia.",
+    "q2_item3": "<strong>Computación en el borde:</strong> Ejecución eficiente en la CPU mediante WebAssembly.",
+    "q2_item4": "<strong>Código abierto:</strong> El código de despliegue y entrenamiento es público.",
+    "q3_title": "¿Qué significa la inferencia totalmente local?",
+    "q3_body": "Una vez cargado el modelo WebAssembly, la detección se ejecuta en cada fotograma dentro del navegador. Puedes desconectarte de Internet y la detección seguirá funcionando.",
+    "q4_title": "Autor e institución",
+    "q4_author": "<strong>Autor principal:</strong> <a href=\"https://github.com/waittim\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a> (<a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">ORCID</a> · <a href=\"https://www.linkedin.com/in/zekun-wang/\" class=\"text-cyan-400 hover:underline\">LinkedIn</a>)",
+    "q4_inst": "<strong>Institución:</strong> <a href=\"https://www.vanderbilt.edu/datascience/\" class=\"text-cyan-400 hover:underline\">Instituto de Ciencia de Datos de la Universidad de Vanderbilt</a>",
+    "q4_support": "Investigación respaldada en parte por la Fundación Nacional de Ciencias de EE. UU.",
+    "q5_title": "Línea de tiempo del proyecto",
+    "q5_item1": "<strong>Primer lanzamiento público:</strong> Noviembre de 2020",
+    "q5_item2": "<strong>Artículo científico publicado:</strong> 2023 (Electronic Imaging)",
+    "q5_item3": "<strong>Modernización de UI y telemetría:</strong> Julio de 2026",
+    "q6_title": "Recursos relacionados",
+    "disclaimer": "<strong>Importante:</strong> WearMask es un sistema de investigación y demostración, no un dispositivo médico ni una herramienta de diagnóstico."
+  },
+  "citationPage": {
+    "title": "Cómo citar WearMask",
+    "subtitle": "Formatos de cita recomendados para el artículo científico y el software de WearMask.",
+    "paperTitle": "Artículo científico",
+    "paperCitation": "Zekun Wang, Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo, \"WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19,\" <em>Proc. SPIE 12476, High-Performance Computing and Artificial Intelligence Applications</em>, 2023.",
+    "bibtexTitle": "Entrada BibTeX",
+    "softwareTitle": "Repositorios de software",
+    "repoDeploy": "Repositorio de despliegue (WebAssembly + NCNN)",
+    "repoTrain": "Repositorio de entrenamiento (PyTorch + Yolo-Fastest)"
+  },
+  "limitationsPage": {
+    "title": "Limitaciones conocidas",
+    "subtitle": "Restricciones importantes sobre la precisión del modelo y el rendimiento del hardware.",
+    "sec1_title": "1. Sistema exclusivo de investigación",
+    "sec1_body": "WearMask está creado para demostración tecnológica y educativa. No está certificado como dispositivo médico.",
+    "sec2_title": "2. Límites de precisión de detección",
+    "sec2_body": "La precisión depende de la resolución de la cámara, la iluminación ambiental y el ángulo facial.",
+    "sec3_title": "3. Dependencia del hardware de la CPU",
+    "sec3_body": "Debido a que WebAssembly se ejecuta en la CPU del usuario, la velocidad de fotogramas varía según el procesador."
+  },
+  "privacyPage": {
+    "title": "Declaración de privacidad",
+    "subtitle": "Cómo WearMask protege la privacidad con procesamiento 100% local.",
+    "sec1_title": "Sin envío de datos de video",
+    "sec1_body": "Todo el procesamiento de imágenes e inferencia de IA ocurren localmente en la memoria del navegador. No se envía ningún video a servidores.",
+    "sec2_title": "Funcionamiento sin conexión",
+    "sec2_body": "Una vez cargado el modelo WebAssembly, WearMask funciona sin conexión a Internet activa."
+  },
+  "researchPage": {
+    "title": "Investigación y publicaciones",
+    "subtitle": "Detalles académicos e información de publicación de WearMask.",
+    "sec1_title": "Visión general del artículo",
+    "sec1_body": "WearMask presenta un marco ligero de computación en el borde sin servidor para la detección de mascarillas en navegadores estándar.",
+    "pubInfo": "Publicado en Electronic Imaging 2023."
+  },
+  "techPage": {
+    "title": "Arquitectura técnica",
+    "subtitle": "Arquitectura, modelos y tecnologías que impulsan WearMask.",
+    "sec1_title": "Flujo de IA principal",
+    "sec1_body": "WearMask combina YOLO-Fastest con el marco Tencent NCNN compilado en WebAssembly para inferencia C++ rápida en el navegador.",
+    "sec2_title": "Aceleración por hardware",
+    "sec2_body": "Aprovecha WebAssembly SIMD y multihilo para inferencia en tiempo real en CPU modernas."
   }
 }
-

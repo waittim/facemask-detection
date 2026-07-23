@@ -105,12 +105,15 @@
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white">Technical Overview</h1>
-                <p class="text-gray-400">End-to-end architecture of the WearMask browser deployment and training pipeline.</p>
+                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="techPage.title">Technical Overview</h1>
+                <p class="text-gray-400" data-i18n="techPage.subtitle">End-to-end architecture of the WearMask browser deployment and training pipeline.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Browser inference pipeline</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec1_title">Core AI Pipeline</h2>
+                <p data-i18n="techPage.sec1_body">
+                    WearMask combines YOLO-Fastest with Tencent NCNN framework compiled into WebAssembly for high-speed client-side C++ execution.
+                </p>
                 <pre class="bg-slate-950/80 border border-white/10 rounded-xl p-4 text-xs sm:text-sm text-cyan-300 font-mono overflow-x-auto">Camera frame
   → browser &lt;canvas&gt;
   → C++ preprocessing (Emscripten)
@@ -119,6 +122,13 @@
   → YOLO-Fastest decoding
   → bounding boxes and classes (Mask / No Mask)
   → canvas rendering</pre>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-bold text-white" data-i18n="techPage.sec2_title">Hardware Acceleration</h2>
+                <p data-i18n="techPage.sec2_body">
+                    Leverages WebAssembly SIMD and multi-threading for fast real-time inference on modern CPUs.
+                </p>
             </section>
 
             <section class="space-y-3">

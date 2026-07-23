@@ -127,32 +127,26 @@
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white">Research</h1>
-                <p class="text-gray-400">Peer-reviewed publication and associated open-source resources for the WearMask system.</p>
+                <h1 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="researchPage.title">Research</h1>
+                <p class="text-gray-400" data-i18n="researchPage.subtitle">Peer-reviewed publication and associated open-source resources for the WearMask system.</p>
             </header>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Paper</h2>
+                <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec1_title">Paper</h2>
                 <p class="font-semibold text-cyan-300 text-base">
                     WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19
                 </p>
-                <p>
-                    <strong class="text-white">Authors:</strong>
-                    <a href="https://orcid.org/0000-0001-8631-7022" class="text-cyan-400 hover:underline">Zekun Wang</a>,
-                    Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo
-                </p>
-                <p>
-                    <strong class="text-white">Journal:</strong> Electronic Imaging, Volume 35, Issue 11, 2023
-                </p>
-                <p>
-                    <strong class="text-white">DOI:</strong>
-                    <a href="https://doi.org/10.2352/EI.2023.35.11.HPCI-229" class="text-cyan-400 hover:underline">10.2352/EI.2023.35.11.HPCI-229</a>
+                <p data-i18n-html="researchPage.pubInfo">
+                    Published in Electronic Imaging 2023.
                 </p>
             </section>
 
             <section class="space-y-3">
-                <h2 class="text-lg font-bold text-white">Abstract summary</h2>
-                <p>
+                <h2 class="text-lg font-bold text-white" data-i18n="researchPage.sec1_title">Abstract summary</h2>
+                <p data-i18n="researchPage.sec1_body">
+                    WearMask presents a lightweight, serverless edge computing framework for real-time face mask detection directly inside standard web browsers.
+                </p>
+            </section>
                     WearMask presents a lightweight face mask detection system that runs entirely in the web browser
                     using YOLO-Fastest, NCNN, and WebAssembly. The design enables serverless edge computing:
                     inference happens on the client device without uploading camera data to a remote server.

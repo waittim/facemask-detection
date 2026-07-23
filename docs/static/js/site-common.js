@@ -1,4 +1,4 @@
-/* WearMask Site-Wide Shared Interactions (Theme & i18n Dropdown) */
+/* WearMask Site-Wide Shared Interactions (Theme & i18n Dropdown & Subpage Translation) */
 (function() {
     var THEME_MODES = ['auto', 'light', 'dark'];
     var LANG_DISPLAY_NAMES = {
@@ -63,13 +63,32 @@
             });
         }
 
+        // Detect Language
+        var params = new URLSearchParams(window.location.search);
+        var urlLang = params.get('lang');
+        var currentLang = 'en';
+
+        if (urlLang && ['en', 'es', 'zh'].indexOf(urlLang) !== -1) {
+            currentLang = urlLang;
+            localStorage.setItem('wearmask.lang', currentLang);
+        } else {
+            var storedLang = localStorage.getItem('wearmask.lang');
+            if (storedLang && ['en', 'es', 'zh'].indexOf(storedLang) !== -1) {
+                currentLang = storedLang;
+            } else {
+                var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+                if (browserLang.indexOf('zh') === 0) currentLang = 'zh';
+                else if (browserLang.indexOf('es') === 0) currentLang = 'es';
+                else currentLang = 'en';
+            }
+        }
+
         // Language Dropdown Logic
         var dropdownBtn = document.getElementById('lang-dropdown-btn');
         var dropdownMenu = document.getElementById('lang-dropdown-menu');
         var optionBtns = document.querySelectorAll('.lang-option-btn');
         var currentLabel = document.getElementById('lang-current-label');
 
-        var currentLang = localStorage.getItem('wearmask.lang') || 'en';
         if (currentLabel) currentLabel.textContent = LANG_DISPLAY_NAMES[currentLang] || 'English';
 
         optionBtns.forEach(function(btn) {
@@ -102,6 +121,44 @@
                 if (!dropdownMenu.classList.contains('hidden') && !dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
                     dropdownMenu.classList.add('hidden');
                     dropdownBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        // Dynamic i18n Translation for Subpages
+        var isSubpage = document.querySelector('script[src*="../static/js/site-common.js"]') !== null;
+        var fetchPath = isSubpage ? '../i18n/' + currentLang + '.json' : 'i18n/' + currentLang + '.json';
+
+        fetch(fetchPath)
+            .then(function(res) { return res.json(); })
+            .then(function(dict) {
+                if (!dict) return;
+                applyDictionary(dict);
+            })
+            .catch(function(err) {
+                console.warn('Failed to load subpage i18n dictionary:', err);
+            });
+
+        function getNestedValue(obj, path) {
+            return path.split('.').reduce(function(acc, key) {
+                return acc && acc[key] !== undefined ? acc[key] : undefined;
+            }, obj);
+        }
+
+        function applyDictionary(data) {
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                var val = getNestedValue(data, key);
+                if (val !== undefined && val !== null && typeof val === 'string') {
+                    el.textContent = val;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-html');
+                var val = getNestedValue(data, key);
+                if (val !== undefined && val !== null && typeof val === 'string') {
+                    el.innerHTML = val;
                 }
             });
         }

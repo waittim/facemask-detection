@@ -95,8 +95,84 @@
     "acceleration": "Hardware Accel",
     "simdActive": "SIMD Enabled",
     "simdInactive": "SIMD Standard",
-    "threads": "Multi-Threads",
-    "engine": "Engine"
+    "threads": "Multi-Threads"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "technicalOverview": "Technical overview",
+    "research": "Research",
+    "citation": "Citation",
+    "privacy": "Privacy",
+    "limitations": "Limitations",
+    "liveDemo": "Live demo"
+  },
+  "aboutPage": {
+    "title": "About WearMask | In-browser Face Mask Detection",
+    "heading": "WearMask: In-browser Face Mask Detection",
+    "intro": "WearMask is an open-source, real-time face mask detection system that runs entirely inside a web browser. The project is also published as <em>WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19</em>.",
+    "q1_title": "What is WearMask?",
+    "q1_body": "WearMask (Web-based Efficient AI Recognition of Masks) detects whether people in a webcam feed appear to be wearing a face mask. Unlike cloud-based vision services, all inference happens on the user's device. No camera images or video are uploaded to an application server.",
+    "q2_title": "How is it different from cloud vision?",
+    "q2_item1": "<strong>Privacy:</strong> Camera data never leaves the browser.",
+    "q2_item2": "<strong>Serverless:</strong> No backend GPU or inference API is required.",
+    "q2_item3": "<strong>Edge computing:</strong> Detection runs on the user's CPU via WebAssembly.",
+    "q2_item4": "<strong>Open source:</strong> Deployment and training code are publicly available.",
+    "q3_title": "What does fully local inference mean?",
+    "q3_body": "After the page loads the WebAssembly model, detection runs on each video frame inside the browser. The application does not send images, video, or detection results to a WearMask server. You can disconnect from the internet after the model has loaded and detection will continue to work.",
+    "q4_title": "Author and institution",
+    "q4_author": "<strong>Primary author:</strong> <a href=\"https://github.com/waittim\" class=\"text-cyan-400 hover:underline\">Zekun Wang</a> (<a href=\"https://orcid.org/0000-0001-8631-7022\" class=\"text-cyan-400 hover:underline\">ORCID</a> · <a href=\"https://www.linkedin.com/in/zekun-wang/\" class=\"text-cyan-400 hover:underline\">LinkedIn</a>)",
+    "q4_inst": "<strong>Institution:</strong> <a href=\"https://www.vanderbilt.edu/datascience/\" class=\"text-cyan-400 hover:underline\">Vanderbilt University Data Science Institute</a>",
+    "q4_support": "Research supported in part by the U.S. National Science Foundation.",
+    "q5_title": "Project timeline",
+    "q5_item1": "<strong>First public release:</strong> November 2020 (browser demo and open-source code)",
+    "q5_item2": "<strong>Research paper published:</strong> 2023 (Electronic Imaging)",
+    "q5_item3": "<strong>UI Modernization & Telemetry:</strong> July 2026",
+    "q6_title": "Related resources",
+    "disclaimer": "<strong>Important:</strong> WearMask is a research and demonstration system, not a medical device or diagnostic tool."
+  },
+  "citationPage": {
+    "title": "How to Cite WearMask",
+    "subtitle": "Preferred citation formats for the WearMask research paper and software.",
+    "paperTitle": "Research Paper",
+    "paperCitation": "Zekun Wang, Pengwei Wang, Peter C. Louis, Lee E. Wheless, Yuankai Huo, \"WearMask: Fast in-browser face mask detection with serverless edge computing for COVID-19,\" <em>Proc. SPIE 12476, High-Performance Computing and Artificial Intelligence Applications</em>, 2023.",
+    "bibtexTitle": "BibTeX Entry",
+    "softwareTitle": "Software Repositories",
+    "repoDeploy": "Deployment repository (WebAssembly + NCNN web app)",
+    "repoTrain": "Training repository (PyTorch + Yolo-Fastest)"
+  },
+  "limitationsPage": {
+    "title": "Known Limitations",
+    "subtitle": "Important constraints regarding model accuracy, hardware performance, and intended usage scope.",
+    "sec1_title": "1. Research System Only",
+    "sec1_body": "WearMask is built for research, education, and open-source technology demonstration. It is not certified as a medical device or health safety diagnostic tool.",
+    "sec2_title": "2. Detection Accuracy Boundaries",
+    "sec2_body": "Detection accuracy depends on camera resolution, ambient lighting, face orientation, and extreme angles or severe occlusions.",
+    "sec3_title": "3. CPU Hardware Dependency",
+    "sec3_body": "Because WebAssembly relies on client-side CPU execution, frame rates vary significantly across different mobile and desktop processors."
+  },
+  "privacyPage": {
+    "title": "Privacy Statement",
+    "subtitle": "How WearMask protects user privacy through complete client-side processing.",
+    "sec1_title": "Zero Video Data Uploads",
+    "sec1_body": "All image processing and AI inference happen locally inside your browser memory. No camera feeds or snapshot images leave your device.",
+    "sec2_title": "Offline Capable",
+    "sec2_body": "Once the initial WebAssembly model file is cached, WearMask operates seamlessly without an active internet connection."
+  },
+  "researchPage": {
+    "title": "Research Paper & Background",
+    "subtitle": "Academic details and publication info for WearMask.",
+    "sec1_title": "Paper Overview",
+    "sec1_body": "WearMask presents a lightweight, serverless edge computing framework for real-time face mask detection directly inside standard web browsers.",
+    "pubInfo": "Published in Electronic Imaging 2023 (High-Performance Computing and Artificial Intelligence Applications)."
+  },
+  "techPage": {
+    "title": "Technical Overview",
+    "subtitle": "Architecture, models, and technologies driving WearMask.",
+    "sec1_title": "Core AI Pipeline",
+    "sec1_body": "WearMask combines YOLO-Fastest (lightweight object detection) with Tencent NCNN framework compiled into WebAssembly for high-speed client-side C++ execution.",
+    "sec2_title": "Hardware Acceleration",
+    "sec2_body": "Leverages WebAssembly SIMD (Single Instruction Multiple Data) and multi-threading for fast real-time inference on modern CPUs."
   }
 }
 
