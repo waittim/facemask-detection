@@ -7,9 +7,7 @@
     <meta name="description" content="WearMask is a privacy-first, real-time face mask detection research system that runs entirely inside the web browser using YOLO-Fastest, NCNN, and WebAssembly." />
     <link rel="canonical" href="https://facemask-detection.com/about/" />
     <link rel="icon" type="image/svg+xml" href="../static/images/logo_mask_v2.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.1.5">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.2.0">
     <!-- Early Theme + Language Boot -->
     <script>
     (function() {
@@ -65,7 +63,7 @@
                     <span data-i18n="nav.liveDemo">Live demo</span>
                 </a>
 
-                <button id="btn-theme-cycle" type="button" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
+                <button id="btn-theme-cycle" type="button" class="theme-toggle-btn flex items-center justify-center rounded-xl" title="Theme (Auto / Light / Dark)" aria-label="Toggle theme mode">
                     <svg id="theme-icon-auto" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
@@ -78,7 +76,7 @@
                 </button>
 
                 <div id="lang-dropdown-wrapper" class="relative inline-block text-left shrink-0">
-                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="true">
+                    <button id="lang-dropdown-btn" type="button" class="theme-toggle-btn px-3 flex items-center gap-1.5 text-xs font-medium whitespace-nowrap shrink-0" title="Change Language" aria-expanded="false" aria-haspopup="listbox" aria-controls="lang-dropdown-menu">
                         <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
@@ -197,7 +195,8 @@
             <a href="../privacy/" class="text-cyan-400 hover:underline" data-i18n="nav.privacy">Privacy & Limitations</a>
         </div>
     </footer>
-    <script src="../static/js/i18n.js?v=3.1.0"></script>
-    <script src="../static/js/site-common.js?v=3.1.0"></script>
+    <div id="toast-msg" class="toast-msg" role="status" aria-live="polite" aria-atomic="true"></div>
+    <script src="../static/js/i18n.js?v=3.2.0"></script>
+    <script src="../static/js/site-common.js?v=3.2.0"></script>
 </body>
 </html>

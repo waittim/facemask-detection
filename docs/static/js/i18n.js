@@ -4,7 +4,7 @@
 (function(global) {
     'use strict';
 
-    var VERSION = '3.1.0';
+    var VERSION = '3.2.0';
     var STORAGE_KEY = 'wearmask.lang';
     var DEFAULT_LANG = 'en';
     var SITE_ORIGIN = 'https://facemask-detection.com';
@@ -238,6 +238,7 @@
             btn.setAttribute('data-lang', code);
             btn.setAttribute('role', 'option');
             btn.setAttribute('aria-selected', code === lang ? 'true' : 'false');
+            btn.setAttribute('tabindex', '-1');
 
             var label = document.createElement('span');
             label.textContent = LOCALES[code].nativeName;
@@ -280,19 +281,79 @@
         var dropdownMenu = document.getElementById('lang-dropdown-menu');
         if (!dropdownBtn || !dropdownMenu) return;
 
+        function optionButtons() {
+            return Array.prototype.slice.call(dropdownMenu.querySelectorAll('[role="option"]'));
+        }
+
+        function closeMenu(returnFocus) {
+            dropdownMenu.classList.add('hidden');
+            dropdownBtn.setAttribute('aria-expanded', 'false');
+            if (returnFocus) dropdownBtn.focus();
+        }
+
+        function openMenu(focusSelected) {
+            dropdownMenu.classList.remove('hidden');
+            dropdownBtn.setAttribute('aria-expanded', 'true');
+            var options = optionButtons();
+            if (!options.length) return;
+            var selected = dropdownMenu.querySelector('[aria-selected="true"]') || options[0];
+            if (focusSelected) selected.focus();
+        }
+
+        function moveFocus(delta) {
+            var options = optionButtons();
+            if (!options.length) return;
+            var idx = options.indexOf(document.activeElement);
+            if (idx === -1) idx = options.findIndex(function(el) { return el.getAttribute('aria-selected') === 'true'; });
+            if (idx === -1) idx = 0;
+            var next = (idx + delta + options.length) % options.length;
+            options[next].focus();
+        }
+
         dropdownBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             var isOpen = !dropdownMenu.classList.contains('hidden');
-            dropdownMenu.classList.toggle('hidden', isOpen);
-            dropdownBtn.setAttribute('aria-expanded', String(!isOpen));
+            if (isOpen) closeMenu(false);
+            else openMenu(true);
+        });
+
+        dropdownBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openMenu(true);
+            } else if (e.key === 'Escape') {
+                closeMenu(false);
+            }
+        });
+
+        dropdownMenu.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeMenu(true);
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                moveFocus(1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                moveFocus(-1);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                var first = optionButtons()[0];
+                if (first) first.focus();
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                var opts = optionButtons();
+                if (opts.length) opts[opts.length - 1].focus();
+            } else if (e.key === 'Tab') {
+                closeMenu(false);
+            }
         });
 
         document.addEventListener('click', function(e) {
             if (!dropdownMenu.classList.contains('hidden') &&
                 !dropdownBtn.contains(e.target) &&
                 !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.add('hidden');
-                dropdownBtn.setAttribute('aria-expanded', 'false');
+                closeMenu(false);
             }
         });
     }
