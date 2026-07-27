@@ -165,13 +165,14 @@
     gtag('config', 'G-ZJ6JEE5PWX');
     </script>
 
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.2.0">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.2.1">
 
 </head>
 
 <body class="i18n-loading relative min-h-screen flex flex-col justify-between">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Ambient Background Glows -->
-    <div class="bg-glow-container">
+    <div class="bg-glow-container" aria-hidden="true">
         <div class="bg-glow-1"></div>
         <div class="bg-glow-2"></div>
     </div>
@@ -222,7 +223,7 @@
     </nav>
 
     <!-- Main Content Workspace -->
-    <main class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-grow">
+    <main id="main-content" class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-grow" tabindex="-1">
         <h1 class="sr-only">WearMask: In-browser Face Mask Detection</h1>
 
         <!-- Primary Status Indicator Banner (hidden while video overlay handles initial load) -->

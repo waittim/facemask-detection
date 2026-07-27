@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-27T00:30:45Z",
+  "title": "Design System: WearMask",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Signal Cyan",
+        "canonical": "#22d3ee"
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Void Navy",
+        "canonical": "#0b0f19"
+      },
+      "ok": {
+        "role": "semantic",
+        "displayName": "Mask OK",
+        "canonical": "#34d399"
+      },
+      "danger": {
+        "role": "semantic",
+        "displayName": "No Mask / Danger",
+        "canonical": "#ef4444"
+      }
+    },
+    "typographyMeta": {
+      "body": {
+        "displayName": "Body",
+        "purpose": "UI and documentation body copy on the system stack."
+      },
+      "mono": {
+        "displayName": "Mono Metric",
+        "purpose": "Telemetry numbers, code, BibTeX."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel",
+        "value": "0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.05)",
+        "purpose": "Glass panels and feature cards."
+      },
+      {
+        "name": "control-bar",
+        "value": "0 10px 25px rgba(0, 0, 0, 0.5)",
+        "purpose": "Floating detection toolbar."
+      },
+      {
+        "name": "toast",
+        "value": "0 10px 25px rgba(0, 0, 0, 0.6)",
+        "purpose": "Ephemeral status toast."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default state and layout transitions."
+      },
+      {
+        "name": "duration-fast",
+        "value": "0.2s",
+        "purpose": "Control hover and focus transitions."
+      },
+      {
+        "name": "workspace",
+        "value": "0.32s cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Telemetry collapse animation."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Retry camera and feedback actions.",
+      "html": "<button type=\"button\" class=\"bg-gradient-to-r btn-primary\">Retry Camera</button>",
+      "css": ".bg-gradient-to-r,.btn-primary{background:linear-gradient(135deg,var(--wm-primary-from),var(--wm-primary-to));color:#fff;border-radius:var(--wm-radius-md);padding:0.65rem 1.25rem;}"
+    },
+    {
+      "name": "Control Button",
+      "kind": "button",
+      "refersTo": "ctrl-btn",
+      "description": "Pause, flip, snapshot, dashboard on the live stage.",
+      "html": "<button type=\"button\" class=\"ctrl-btn\" aria-label=\"Pause\">Pause</button>",
+      "css": ".ctrl-btn{min-height:var(--wm-touch-min);border-radius:var(--wm-radius-pill);padding:0.55rem 0.95rem;}"
+    },
+    {
+      "name": "Glass Panel",
+      "kind": "card",
+      "refersTo": "glass-panel",
+      "description": "Telemetry and documentation article shells.",
+      "html": "<div class=\"glass-panel rounded-2xl\"></div>",
+      "css": ".glass-panel{background:var(--wm-surface);backdrop-filter:blur(var(--wm-blur));border:1px solid var(--wm-border);border-radius:var(--wm-radius-lg);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Local Edge Instrument",
+    "overview": "WearMask’s interface reads like a compact on-device lab instrument: dark by default, cyan telemetry accents, glass panels, and the live camera stage as the dominant artifact. System fonts prioritize privacy and performance.",
+    "keyCharacteristics": [
+      "Camera stage is the hero",
+      "Cyan live / green OK / red warn",
+      "System UI type + mono metrics",
+      "Glass with blur fallthrough",
+      "AA contrast and 44px touch targets"
+    ],
+    "rules": [
+      {
+        "name": "The Signal Budget Rule",
+        "body": "Cyan is for live state, links, and focus—not large fills.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Webfont Rule",
+        "body": "Do not reintroduce Inter or CDN fonts without an explicit product decision.",
+        "section": "typography"
+      },
+      {
+        "name": "The Blur Budget Rule",
+        "body": "Disable backdrop blur under reduced transparency/motion preferences.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do route new colors through --wm-* tokens",
+      "Do keep detection semantics on green/red",
+      "Do preserve research/demo disclaimer near privacy claims"
+    ],
+    "donts": [
+      "Don't load Tailwind Play CDN or Google Fonts in production",
+      "Don't invent medical efficacy claims",
+      "Don't put marketing card grids in the live demo first viewport"
+    ]
+  }
+}

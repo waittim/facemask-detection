@@ -7,7 +7,7 @@
     <meta name="description" content="Privacy commitment and system limitations for WearMask: 100% in-browser WebAssembly processing with zero server data telemetry." />
     <link rel="canonical" href="https://facemask-detection.com/privacy/" />
     <link rel="icon" type="image/svg+xml" href="../static/images/logo_mask_v2.svg">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.2.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.2.1">
     <!-- Early Theme + Language Boot -->
     <script>
     (function() {
@@ -45,7 +45,8 @@
     </script>
 </head>
 <body class="i18n-loading relative min-h-screen flex flex-col justify-between">
-    <div class="bg-glow-container">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="bg-glow-container" aria-hidden="true">
         <div class="bg-glow-1"></div>
         <div class="bg-glow-2"></div>
     </div>
@@ -92,7 +93,7 @@
         </div>
     </nav>
 
-    <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <main id="main-content" class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full" tabindex="-1">
         <nav class="text-xs sm:text-sm text-gray-400 mb-6 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
             <a href="../index.html" class="hover:text-cyan-400" data-i18n="nav.home">Home</a>
             <span class="text-gray-600" aria-hidden="true">/</span>
