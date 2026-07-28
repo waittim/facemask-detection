@@ -3,21 +3,6 @@
     'use strict';
 
     var THEME_MODES = ['auto', 'light', 'dark'];
-    var toastHideTimer = null;
-
-    function showChromeToast(msg) {
-        var toast = document.getElementById('toast-msg');
-        if (!toast || !msg) return;
-        toast.textContent = msg;
-        // Same-frame feedback: restart from current presentation value
-        toast.classList.remove('show');
-        void toast.offsetWidth;
-        toast.classList.add('show');
-        if (toastHideTimer) clearTimeout(toastHideTimer);
-        toastHideTimer = setTimeout(function() {
-            toast.classList.remove('show');
-        }, 2200);
-    }
 
     function initTheme() {
         var btnThemeCycle = document.getElementById('btn-theme-cycle');
@@ -36,7 +21,7 @@
             return 'Theme: Dark';
         }
 
-        function applyThemeMode(mode, announce) {
+        function applyThemeMode(mode) {
             var isDark = false;
             if (mode === 'auto') {
                 isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -70,10 +55,6 @@
                 btnThemeCycle.setAttribute('data-theme-mode', mode);
             }
 
-            if (announce) {
-                showChromeToast(themeTitle(mode));
-            }
-
             if (reduceMotion) {
                 requestAnimationFrame(function() {
                     htmlEl.style.transition = '';
@@ -83,13 +64,13 @@
 
         var currentMode = 'auto';
         try { currentMode = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
-        applyThemeMode(currentMode, false);
+        applyThemeMode(currentMode);
 
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
                 var mode = 'auto';
                 try { mode = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
-                if (mode === 'auto') applyThemeMode('auto', false);
+                if (mode === 'auto') applyThemeMode('auto');
             });
         }
 
@@ -99,7 +80,7 @@
                 try { current = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
                 var idx = THEME_MODES.indexOf(current);
                 var nextMode = THEME_MODES[(idx + 1) % THEME_MODES.length];
-                applyThemeMode(nextMode, true);
+                applyThemeMode(nextMode);
             });
         }
     }

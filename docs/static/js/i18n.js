@@ -284,8 +284,8 @@
     function openLangMenu(dropdownMenu, dropdownBtn, focusSelected) {
         if (!dropdownMenu || !dropdownBtn) return;
         dropdownMenu.classList.remove('hidden');
-        // Force reflow so enter transition runs from the closed presentation value
-        void dropdownMenu.offsetWidth;
+        // Retarget from the live presentation value — do not force a closed-state reflow
+        // (that causes a jump when interrupting a close mid-flight).
         dropdownMenu.classList.add('is-open');
         dropdownBtn.setAttribute('aria-expanded', 'true');
         var options = Array.prototype.slice.call(dropdownMenu.querySelectorAll('[role="option"]'));

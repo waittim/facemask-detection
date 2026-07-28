@@ -366,7 +366,7 @@ html.light .perf-toggle-input:checked + .perf-toggle-track {
   border-radius: var(--wm-radius-xl);
   overflow: hidden;
   background: #000;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: border-color var(--wm-duration) var(--wm-ease), box-shadow var(--wm-duration) var(--wm-ease);
   border: 2px solid var(--wm-accent-glow);
   box-shadow: 0 10px 25px rgba(56, 189, 248, 0.12), inset 0 0 15px rgba(0,0,0,0.8);
 }
@@ -379,12 +379,6 @@ html.light .perf-toggle-input:checked + .perf-toggle-track {
 .video-stage.status-nomask {
   border-color: var(--wm-danger);
   box-shadow: 0 10px 28px rgba(239, 68, 68, 0.35), inset 0 0 20px rgba(239, 68, 68, 0.15);
-  animation: alertPulse 1.5s 4 alternate ease-in-out;
-}
-
-@keyframes alertPulse {
-  0% { border-color: var(--wm-danger); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3); }
-  100% { border-color: var(--wm-danger-strong); box-shadow: 0 14px 45px rgba(239, 68, 68, 0.55); }
 }
 
 #canvas {
@@ -559,10 +553,11 @@ video {
   }
 }
 
-/* Workspace: video : telemetry ≈ 2 : 1, flex-based smooth collapse */
+/* Workspace: video : telemetry ≈ 2 : 1 — compositor-friendly collapse (transform + opacity) */
 .workspace-grid {
-  --ws-duration: 0.38s;
+  --ws-duration: 0.35s;
   --ws-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -581,20 +576,19 @@ video {
 .workspace-grid .video-stage {
   max-width: 42rem;
   transition:
-    border-color 0.4s ease,
-    box-shadow 0.4s ease,
+    border-color var(--wm-duration) var(--wm-ease),
+    box-shadow var(--wm-duration) var(--wm-ease),
     max-width var(--ws-duration) var(--ws-ease);
 }
 
 .workspace-grid .telemetry-col {
-  overflow: hidden;
   opacity: 1;
   visibility: visible;
+  transform: translateY(0);
+  transform-origin: top center;
   transition:
     opacity var(--ws-duration) var(--ws-ease),
-    flex-basis var(--ws-duration) var(--ws-ease),
-    width var(--ws-duration) var(--ws-ease),
-    max-width var(--ws-duration) var(--ws-ease),
+    transform var(--ws-duration) var(--ws-ease),
     visibility 0s linear 0s;
 }
 
@@ -602,17 +596,26 @@ video {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transform: translateY(0.75rem);
+  transition:
+    opacity var(--ws-duration) var(--ws-ease),
+    transform var(--ws-duration) var(--ws-ease),
+    visibility 0s linear var(--ws-duration);
 }
 
+/* Mobile / tablet: exit down the same path; leave flow via absolute so layout doesn't jump mid-fade */
 @media (max-width: 1023px) {
   .workspace-grid.is-telemetry-collapsed .telemetry-col {
-    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(0.75rem);
   }
 }
 
 @media (min-width: 1024px) {
   .workspace-grid {
-    position: relative;
     flex-direction: row;
     align-items: flex-start;
     gap: 1.5rem;
@@ -627,6 +630,8 @@ video {
     flex: 0 0 33.333%;
     width: 33.333%;
     max-width: 33.333%;
+    transform: translateX(0);
+    transform-origin: top right;
   }
 
   .workspace-grid.is-telemetry-collapsed {
@@ -637,23 +642,16 @@ video {
     max-width: min(56rem, 100%);
   }
 
+  /* Exit to the right (enter from the right) — no width→0 layout tween */
   .workspace-grid.is-telemetry-collapsed .telemetry-col {
     position: absolute;
     top: 0;
     right: 0;
-    flex: 0 0 0;
-    flex-basis: 0;
-    width: 0;
-    max-width: 0;
+    flex: none;
+    width: 33.333%;
+    max-width: min(24rem, 33.333vw);
     margin: 0;
-    padding: 0;
-    overflow: hidden;
-    transition:
-      opacity var(--ws-duration) var(--ws-ease),
-      flex-basis var(--ws-duration) var(--ws-ease),
-      width var(--ws-duration) var(--ws-ease),
-      max-width var(--ws-duration) var(--ws-ease),
-      visibility 0s linear var(--ws-duration);
+    transform: translateX(1.25rem);
   }
 }
 
@@ -671,19 +669,20 @@ video {
   .workspace-grid,
   .workspace-grid .telemetry-col,
   .workspace-grid .video-stage {
-    /* Keep a short opacity cross-fade; drop spatial motion */
+    /* Cross-fade only; drop spatial motion */
     transition:
       opacity 200ms ease,
       visibility 0s linear 0s !important;
+    transform: none !important;
   }
 
   .workspace-grid.is-telemetry-collapsed .telemetry-col {
     transition:
       opacity 200ms ease,
       visibility 0s linear 200ms !important;
+    transform: none !important;
   }
 
-  .video-stage.status-nomask,
   .spinner,
   .animate-ping,
   .live-dot-pulse,
@@ -712,6 +711,7 @@ video {
 
   .lang-dropdown-panel.is-open {
     transform: none !important;
+    filter: none !important;
   }
 
   .ctrl-btn,
@@ -738,8 +738,8 @@ video {
   }
 }
 
-/* Reduce GPU cost: disable blur/glow when user prefers less transparency or motion */
-@media (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce) {
+/* Independent signal: solidify materials only when transparency is reduced */
+@media (prefers-reduced-transparency: reduce) {
   .glass-panel,
   .glass-nav,
   .control-bar,
@@ -747,7 +747,9 @@ video {
   .status-pill,
   .metric-card,
   .site-footer,
-  .lang-dropdown-panel {
+  .lang-dropdown-panel,
+  .toast-msg,
+  #camera-error-overlay {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
@@ -755,11 +757,21 @@ video {
   .glass-panel,
   .metric-card,
   .site-footer,
-  .lang-dropdown-panel {
+  .lang-dropdown-panel,
+  .toast-msg {
     background: var(--wm-surface-solid);
   }
 
-  .glass-nav::after {
+  .glass-nav {
+    background: var(--wm-nav);
+  }
+
+  .control-bar {
+    background: var(--wm-control-bar);
+  }
+
+  .glass-nav::after,
+  .site-footer::before {
     display: none;
   }
 
@@ -889,17 +901,14 @@ video {
 
 .metric-value.cyan {
   color: var(--wm-accent-soft);
-  text-shadow: 0 4px 12px var(--wm-accent-glow);
 }
 
 .metric-value.green {
   color: var(--wm-ok);
-  text-shadow: 0 4px 12px rgba(52, 211, 153, 0.35);
 }
 
 .metric-value.red {
   color: #f87171;
-  text-shadow: 0 4px 12px rgba(248, 113, 113, 0.35);
 }
 
 /* Hardware Accel Badges */
@@ -931,7 +940,7 @@ details.accordion-card {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(17, 24, 39, 0.65);
   backdrop-filter: blur(12px);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color var(--wm-duration-fast) var(--wm-ease), background-color var(--wm-duration-fast) var(--wm-ease);
 }
 
 details.accordion-card:hover {
@@ -954,7 +963,7 @@ details.accordion-card[open] .accordion-chevron {
 }
 
 .accordion-chevron {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--wm-duration) var(--wm-ease), color var(--wm-duration-fast) var(--wm-ease);
 }
 
 /* Language Switcher & Theme Cycle Button */
@@ -1172,17 +1181,14 @@ html.light .metric-value {
 
 html.light .metric-value.cyan {
   color: #0284c7;
-  text-shadow: none;
 }
 
 html.light .metric-value.green {
   color: #059669;
-  text-shadow: none;
 }
 
 html.light .metric-value.red {
   color: #dc2626;
-  text-shadow: none;
 }
 
 /* Detected Faces Sub-cards (Masked / No Mask) */
@@ -1280,7 +1286,10 @@ html.light .language-switcher button.lang-active {
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    color var(--wm-duration-fast) var(--wm-ease),
+    background-color var(--wm-duration-fast) var(--wm-ease),
+    border-color var(--wm-duration-fast) var(--wm-ease);
   outline: none;
 }
 
@@ -1399,12 +1408,10 @@ html.light .language-switcher button.lang-active {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(0.92) translateY(-4px);
-  filter: blur(4px);
+  transform: scale(0.96) translateY(-4px);
   transition:
     opacity var(--wm-duration) var(--wm-ease),
     transform var(--wm-duration) var(--wm-ease),
-    filter var(--wm-duration) var(--wm-ease),
     visibility 0s linear var(--wm-duration);
 }
 
@@ -1414,11 +1421,9 @@ html.light .language-switcher button.lang-active {
   visibility: visible;
   pointer-events: auto;
   transform: scale(1) translateY(0);
-  filter: blur(0);
   transition:
     opacity var(--wm-duration) var(--wm-ease),
     transform var(--wm-duration) var(--wm-ease),
-    filter var(--wm-duration) var(--wm-ease),
     visibility 0s linear 0s;
 }
 
@@ -1470,7 +1475,11 @@ html.light .language-switcher button.lang-active {
   font-weight: 600 !important;
   letter-spacing: 0 !important;
   text-decoration: none !important;
-  transition: background var(--wm-duration-fast) var(--wm-ease), box-shadow var(--wm-duration-fast) var(--wm-ease), transform 100ms ease-out !important;
+  transition:
+    background var(--wm-duration-fast) var(--wm-ease),
+    box-shadow var(--wm-duration-fast) var(--wm-ease),
+    opacity var(--wm-duration-fast) var(--wm-ease),
+    transform 100ms ease-out !important;
   width: auto !important;
   white-space: nowrap !important;
 }
@@ -1478,6 +1487,7 @@ html.light .language-switcher button.lang-active {
 .floating-feedback a:hover {
   box-shadow: 0 14px 30px rgba(6, 182, 212, 0.45), 0 6px 15px rgba(0, 0, 0, 0.4) !important;
   background: linear-gradient(135deg, #1d4ed8, #0e7490) !important;
+  opacity: 0.96;
 }
 
 .floating-feedback a:active {
@@ -1552,7 +1562,7 @@ details.feature-card[open] > summary.feature-card-summary {
   height: 1rem;
   margin-top: 0.2rem;
   color: #9ca3af;
-  transition: transform 0.22s ease, color 0.2s ease;
+  transition: transform var(--wm-duration) var(--wm-ease), color var(--wm-duration-fast) var(--wm-ease);
 }
 
 details.feature-card[open] > summary .feature-card-chevron {
@@ -1596,6 +1606,12 @@ html.light details.feature-card > summary:hover .feature-card-chevron {
   font-weight: 700;
   line-height: 1.3;
   color: #f3f4f6;
+  letter-spacing: -0.015em;
+  font-optical-sizing: auto;
+}
+
+.telemetry-panel-header h2,
+.telemetry-title {
   letter-spacing: -0.015em;
   font-optical-sizing: auto;
 }
@@ -2085,6 +2101,8 @@ html.light .loading-overlay .spinner {
     -webkit-backdrop-filter var(--wm-duration) var(--wm-ease);
   opacity: 1;
   transform: scale(1);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
 }
 
 #camera-error-overlay.hidden {
@@ -2093,6 +2111,8 @@ html.light .loading-overlay .spinner {
   transform: scale(0.98);
   pointer-events: none;
   visibility: hidden;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
 }
 
 /* Camera permission warning icon — keep a true square, not a vertical pill */
@@ -2410,12 +2430,17 @@ html.light .loading-overlay .spinner {
 .brand-block { min-width: 0; }
 
 #btn-close-telemetry {
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  min-width: var(--wm-touch-min);
+  min-height: var(--wm-touch-min);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
+  transition: color var(--wm-duration-fast) var(--wm-ease), background-color var(--wm-duration-fast) var(--wm-ease), transform 100ms ease-out;
+}
+
+#btn-close-telemetry:active {
+  transform: scale(var(--wm-press-scale));
 }
 
 @media (min-width: 640px) {

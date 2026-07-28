@@ -165,7 +165,7 @@
     gtag('config', 'G-ZJ6JEE5PWX');
     </script>
 
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.3.0">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.3.1">
 
 </head>
 
@@ -182,7 +182,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2">
             <div class="brand-block flex items-center space-x-3 min-w-0">
                 <a href="https://facemask-detection.com" class="group flex items-center space-x-3 min-w-0">
-                    <img class="h-10 sm:h-12 w-auto shrink-0 transition-transform group-hover:scale-105" src="static/images/logo_mask_v2.svg" alt="WearMask Logo">
+                    <img class="h-10 sm:h-12 w-auto shrink-0" src="static/images/logo_mask_v2.svg" alt="WearMask Logo">
                     <div class="min-w-0">
                         <p class="text-xl sm:text-2xl font-bold tracking-tight text-white truncate" data-i18n="hero.title">WearMask</p>
                         <p class="text-xs text-gray-400 hidden sm:block truncate max-w-md" data-i18n="hero.subtitle">Real-time face mask detection</p>
@@ -249,7 +249,7 @@
                     </div>
                     
                     <!-- Camera Error Stage Overlay (In-Place Warning) -->
-                    <div id="camera-error-overlay" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex flex-col items-center justify-center p-4 sm:p-6 text-center overflow-y-auto" role="alert">
+                    <div id="camera-error-overlay" class="hidden absolute inset-0 bg-slate-950/90 z-30 flex flex-col items-center justify-center p-4 sm:p-6 text-center overflow-y-auto" role="alert">
                         <div class="camera-error-icon mb-3 shrink-0">
                             <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
@@ -324,7 +324,7 @@
                               <span class="live-dot-pulse absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                               <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
                             </span>
-                            <h2 class="font-bold text-base text-white tracking-wide truncate" data-i18n="telemetry.title">Real-time Telemetry</h2>
+                            <h2 class="font-bold text-base text-white truncate telemetry-title" data-i18n="telemetry.title">Real-time Telemetry</h2>
                         </div>
                         <div class="flex items-center space-x-2 shrink-0">
                             <span class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">LIVE</span>
@@ -520,7 +520,7 @@
 
     <!-- Floating Feedback Action Button -->
     <div class="floating-feedback">
-        <a class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-4 py-3 rounded-full shadow-2xl flex items-center space-x-2 transition-all transform hover:scale-105 border border-cyan-400/30"
+        <a class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-4 py-3 rounded-full shadow-2xl flex items-center space-x-2 border border-cyan-400/30"
            data-i18n-attr="href:feedback.mailto|title:feedback.buttonTitle"
            aria-label="Send feedback">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -722,9 +722,6 @@
                 cachedNoMaskCount = 0;
                 cachedRemindCtx = detectionStatus.welcome;
                 lastStatusKey = '';
-                showToast(performanceModeEnabled
-                    ? resolveTranslation('telemetry.perfModeOn', 'Smooth mode enabled')
-                    : resolveTranslation('telemetry.perfModeOff', 'Smooth mode disabled'));
             });
         }
 
@@ -1075,13 +1072,11 @@
                         iconPlay.classList.remove('hidden');
                         if (labelPause) labelPause.textContent = resolveTranslation('controls.resume', 'Resume');
                         btnPause.setAttribute('aria-label', resolveTranslation('controls.resume', 'Resume'));
-                        showToast(resolveTranslation('toast.detectionPaused', 'Detection paused'));
                     } else {
                         iconPlay.classList.add('hidden');
                         iconPause.classList.remove('hidden');
                         if (labelPause) labelPause.textContent = resolveTranslation('controls.pause', 'Pause');
                         btnPause.setAttribute('aria-label', resolveTranslation('controls.pause', 'Pause'));
-                        showToast(resolveTranslation('toast.detectionResumed', 'Detection resumed'));
                     }
                 });
             }
@@ -1151,16 +1146,12 @@
             if (btnToggleTelemetry) {
                 btnToggleTelemetry.addEventListener('click', function() {
                     applyTelemetryVisibility(!isTelemetryVisible);
-                    showToast(isTelemetryVisible
-                        ? resolveTranslation('toast.dashboardExpanded', 'Dashboard expanded')
-                        : resolveTranslation('toast.dashboardCollapsed', 'Dashboard collapsed'));
                 });
             }
 
             if (btnCloseTelemetry) {
                 btnCloseTelemetry.addEventListener('click', function() {
                     applyTelemetryVisibility(false);
-                    showToast(resolveTranslation('toast.dashboardCollapsed', 'Dashboard collapsed'));
                 });
             }
         }
