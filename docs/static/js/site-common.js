@@ -3,6 +3,21 @@
     'use strict';
 
     var THEME_MODES = ['auto', 'light', 'dark'];
+    var toastHideTimer = null;
+
+    function showChromeToast(msg) {
+        var toast = document.getElementById('toast-msg');
+        if (!toast || !msg) return;
+        toast.textContent = msg;
+        // Same-frame feedback: restart from current presentation value
+        toast.classList.remove('show');
+        void toast.offsetWidth;
+        toast.classList.add('show');
+        if (toastHideTimer) clearTimeout(toastHideTimer);
+        toastHideTimer = setTimeout(function() {
+            toast.classList.remove('show');
+        }, 2200);
+    }
 
     function initTheme() {
         var btnThemeCycle = document.getElementById('btn-theme-cycle');
@@ -12,16 +27,16 @@
 
         function themeTitle(mode) {
             if (window.WearMaskI18n) {
-                if (mode === 'auto') return WearMaskI18n.t('toast.themeAuto', 'System Theme (Click to switch)');
-                if (mode === 'light') return WearMaskI18n.t('toast.themeLight', 'Light Mode (Click to switch)');
-                if (mode === 'dark') return WearMaskI18n.t('toast.themeDark', 'Dark Mode (Click to switch)');
+                if (mode === 'auto') return WearMaskI18n.t('toast.themeAuto', 'Theme: System');
+                if (mode === 'light') return WearMaskI18n.t('toast.themeLight', 'Theme: Light');
+                if (mode === 'dark') return WearMaskI18n.t('toast.themeDark', 'Theme: Dark');
             }
-            if (mode === 'auto') return 'System Theme (Click to switch)';
-            if (mode === 'light') return 'Light Mode (Click to switch)';
-            return 'Dark Mode (Click to switch)';
+            if (mode === 'auto') return 'Theme: System';
+            if (mode === 'light') return 'Theme: Light';
+            return 'Theme: Dark';
         }
 
-        function applyThemeMode(mode) {
+        function applyThemeMode(mode, announce) {
             var isDark = false;
             if (mode === 'auto') {
                 isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -30,6 +45,11 @@
             }
 
             var htmlEl = document.documentElement;
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion) {
+                htmlEl.style.transition = 'none';
+            }
+
             if (isDark) {
                 htmlEl.classList.remove('light');
                 htmlEl.classList.add('dark');
@@ -47,18 +67,29 @@
                 var title = themeTitle(mode);
                 btnThemeCycle.title = title;
                 btnThemeCycle.setAttribute('aria-label', title);
+                btnThemeCycle.setAttribute('data-theme-mode', mode);
+            }
+
+            if (announce) {
+                showChromeToast(themeTitle(mode));
+            }
+
+            if (reduceMotion) {
+                requestAnimationFrame(function() {
+                    htmlEl.style.transition = '';
+                });
             }
         }
 
         var currentMode = 'auto';
         try { currentMode = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
-        applyThemeMode(currentMode);
+        applyThemeMode(currentMode, false);
 
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
                 var mode = 'auto';
                 try { mode = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
-                if (mode === 'auto') applyThemeMode('auto');
+                if (mode === 'auto') applyThemeMode('auto', false);
             });
         }
 
@@ -68,16 +99,7 @@
                 try { current = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
                 var idx = THEME_MODES.indexOf(current);
                 var nextMode = THEME_MODES[(idx + 1) % THEME_MODES.length];
-                applyThemeMode(nextMode);
-
-                var toast = document.getElementById('toast-msg');
-                if (toast && window.WearMaskI18n) {
-                    var key = nextMode === 'auto' ? 'toast.themeAuto'
-                        : (nextMode === 'light' ? 'toast.themeLight' : 'toast.themeDark');
-                    toast.textContent = WearMaskI18n.t(key, themeTitle(nextMode));
-                    toast.classList.add('show');
-                    setTimeout(function() { toast.classList.remove('show'); }, 2500);
-                }
+                applyThemeMode(nextMode, true);
             });
         }
     }
@@ -173,6 +195,12 @@
                     syncChromeTips();
                     if (typeof window.WearMaskOnI18nReady === 'function') {
                         window.WearMaskOnI18nReady(dict, lang);
+                    }
+                },
+                onLangChange: function(dict, lang) {
+                    syncChromeTips();
+                    if (typeof window.WearMaskOnI18nChange === 'function') {
+                        window.WearMaskOnI18nChange(dict, lang);
                     }
                 }
             });

@@ -4,7 +4,7 @@
 (function(global) {
     'use strict';
 
-    var VERSION = '3.2.0';
+    var VERSION = '3.3.0';
     var STORAGE_KEY = 'wearmask.lang';
     var DEFAULT_LANG = 'en';
     var SITE_ORIGIN = 'https://facemask-detection.com';
@@ -28,7 +28,8 @@
         dict: null,
         fallbackDict: null,
         basePath: 'i18n/',
-        ready: null
+        ready: null,
+        onLangChange: null
     };
 
     function normalizeLang(lang) {
@@ -273,6 +274,26 @@
         }
     }
 
+    function closeLangMenu(dropdownMenu, dropdownBtn, returnFocus) {
+        if (!dropdownMenu) return;
+        dropdownMenu.classList.remove('is-open');
+        if (dropdownBtn) dropdownBtn.setAttribute('aria-expanded', 'false');
+        if (returnFocus && dropdownBtn) dropdownBtn.focus();
+    }
+
+    function openLangMenu(dropdownMenu, dropdownBtn, focusSelected) {
+        if (!dropdownMenu || !dropdownBtn) return;
+        dropdownMenu.classList.remove('hidden');
+        // Force reflow so enter transition runs from the closed presentation value
+        void dropdownMenu.offsetWidth;
+        dropdownMenu.classList.add('is-open');
+        dropdownBtn.setAttribute('aria-expanded', 'true');
+        var options = Array.prototype.slice.call(dropdownMenu.querySelectorAll('[role="option"]'));
+        if (!options.length) return;
+        var selected = dropdownMenu.querySelector('[aria-selected="true"]') || options[0];
+        if (focusSelected) selected.focus();
+    }
+
     function initLangDropdown(lang) {
         buildLangMenu(lang);
         updateLangLabel(lang);
@@ -280,24 +301,14 @@
         var dropdownBtn = document.getElementById('lang-dropdown-btn');
         var dropdownMenu = document.getElementById('lang-dropdown-menu');
         if (!dropdownBtn || !dropdownMenu) return;
+        if (dropdownMenu.getAttribute('data-lang-ui-bound') === '1') return;
+        dropdownMenu.setAttribute('data-lang-ui-bound', '1');
+        dropdownMenu.classList.add('lang-dropdown-panel');
+        // Prefer is-open animation over display:none utility
+        dropdownMenu.classList.remove('hidden');
 
         function optionButtons() {
             return Array.prototype.slice.call(dropdownMenu.querySelectorAll('[role="option"]'));
-        }
-
-        function closeMenu(returnFocus) {
-            dropdownMenu.classList.add('hidden');
-            dropdownBtn.setAttribute('aria-expanded', 'false');
-            if (returnFocus) dropdownBtn.focus();
-        }
-
-        function openMenu(focusSelected) {
-            dropdownMenu.classList.remove('hidden');
-            dropdownBtn.setAttribute('aria-expanded', 'true');
-            var options = optionButtons();
-            if (!options.length) return;
-            var selected = dropdownMenu.querySelector('[aria-selected="true"]') || options[0];
-            if (focusSelected) selected.focus();
         }
 
         function moveFocus(delta) {
@@ -312,24 +323,24 @@
 
         dropdownBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            var isOpen = !dropdownMenu.classList.contains('hidden');
-            if (isOpen) closeMenu(false);
-            else openMenu(true);
+            var isOpen = dropdownMenu.classList.contains('is-open');
+            if (isOpen) closeLangMenu(dropdownMenu, dropdownBtn, false);
+            else openLangMenu(dropdownMenu, dropdownBtn, true);
         });
 
         dropdownBtn.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                openMenu(true);
+                openLangMenu(dropdownMenu, dropdownBtn, true);
             } else if (e.key === 'Escape') {
-                closeMenu(false);
+                closeLangMenu(dropdownMenu, dropdownBtn, false);
             }
         });
 
         dropdownMenu.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 e.preventDefault();
-                closeMenu(true);
+                closeLangMenu(dropdownMenu, dropdownBtn, true);
             } else if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 moveFocus(1);
@@ -345,15 +356,15 @@
                 var opts = optionButtons();
                 if (opts.length) opts[opts.length - 1].focus();
             } else if (e.key === 'Tab') {
-                closeMenu(false);
+                closeLangMenu(dropdownMenu, dropdownBtn, false);
             }
         });
 
         document.addEventListener('click', function(e) {
-            if (!dropdownMenu.classList.contains('hidden') &&
+            if (dropdownMenu.classList.contains('is-open') &&
                 !dropdownBtn.contains(e.target) &&
                 !dropdownMenu.contains(e.target)) {
-                closeMenu(false);
+                closeLangMenu(dropdownMenu, dropdownBtn, false);
             }
         });
     }
@@ -361,17 +372,35 @@
     function switchLanguage(lang) {
         lang = normalizeLang(lang);
         if (!lang) return;
-        if (lang === state.lang) {
-            var menu = document.getElementById('lang-dropdown-menu');
-            var btn = document.getElementById('lang-dropdown-btn');
-            if (menu) menu.classList.add('hidden');
-            if (btn) btn.setAttribute('aria-expanded', 'false');
-            return;
-        }
+
+        var menu = document.getElementById('lang-dropdown-menu');
+        var btn = document.getElementById('lang-dropdown-btn');
+        closeLangMenu(menu, btn, false);
+
+        if (lang === state.lang) return;
+
         try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
-        var url = new URL(global.location.href);
-        url.searchParams.set('lang', lang);
-        global.location.href = url.toString();
+
+        state.lang = lang;
+        applyDocumentLang(lang);
+
+        try {
+            var url = new URL(global.location.href);
+            url.searchParams.set('lang', lang);
+            if (global.history && global.history.replaceState) {
+                global.history.replaceState(null, '', url.pathname + url.search + url.hash);
+            }
+        } catch (e) {}
+
+        loadTranslations(lang).then(function(dict) {
+            buildLangMenu(lang);
+            updateLangLabel(lang);
+            rewriteInternalLinks(lang);
+            injectHreflang();
+            if (typeof state.onLangChange === 'function') {
+                state.onLangChange(dict || {}, lang);
+            }
+        });
     }
 
     function revealPage() {
@@ -396,6 +425,9 @@
     function init(options) {
         options = options || {};
         if (options.basePath) state.basePath = options.basePath;
+        if (typeof options.onLangChange === 'function') {
+            state.onLangChange = options.onLangChange;
+        }
 
         state.lang = detectLanguage();
         applyDocumentLang(state.lang);

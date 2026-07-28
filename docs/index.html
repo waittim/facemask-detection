@@ -165,11 +165,11 @@
     gtag('config', 'G-ZJ6JEE5PWX');
     </script>
 
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.2.1">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.3.0">
 
 </head>
 
-<body class="i18n-loading relative min-h-screen flex flex-col justify-between">
+<body class="relative min-h-screen flex flex-col justify-between">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Ambient Background Glows -->
     <div class="bg-glow-container" aria-hidden="true">
@@ -216,7 +216,7 @@
                         </svg>
                     </button>
 
-                    <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 rounded-xl bg-slate-900/95 border border-white/10 shadow-2xl backdrop-blur-xl py-1 z-50 transition-all duration-200 lang-dropdown-scroll" role="listbox" aria-labelledby="lang-dropdown-btn"></div>
+                    <div id="lang-dropdown-menu" class="hidden lang-dropdown-panel absolute right-0 mt-2 rounded-xl border border-white/10 shadow-2xl py-1 z-50 lang-dropdown-scroll" role="listbox" aria-labelledby="lang-dropdown-btn"></div>
                 </div>
             </div>
         </div>
@@ -321,7 +321,7 @@
                     <div class="telemetry-panel-header flex items-center justify-between">
                         <div class="flex items-center space-x-2 min-w-0">
                             <span class="relative flex h-3 w-3 shrink-0">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                              <span class="live-dot-pulse absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                               <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
                             </span>
                             <h2 class="font-bold text-base text-white tracking-wide truncate" data-i18n="telemetry.title">Real-time Telemetry</h2>
@@ -410,7 +410,7 @@
         <!-- 3-Column Feature Cards (collapsible) -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-14 sm:mt-16 mb-12 feature-cards">
             <!-- Setup Guide Card -->
-            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-cyan-500/30 transition shadow-lg group" open>
+            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-cyan-500/30 transition shadow-lg group">
                 <summary class="feature-card-summary">
                     <div class="feature-card-header">
                         <span class="feature-card-label bg-cyan-500/10 text-cyan-400 border-cyan-500/20" data-i18n="setup.label">Setup</span>
@@ -433,7 +433,7 @@
             </details>
 
             <!-- Privacy Statement Card -->
-            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-emerald-500/30 transition shadow-lg group" open>
+            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-emerald-500/30 transition shadow-lg group">
                 <summary class="feature-card-summary">
                     <div class="feature-card-header">
                         <span class="feature-card-label bg-emerald-500/10 text-emerald-400 border-emerald-500/20" data-i18n="privacy.label">Privacy</span>
@@ -460,7 +460,7 @@
             </details>
 
             <!-- Project Overview Card -->
-            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-indigo-500/30 transition shadow-lg group" open>
+            <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-indigo-500/30 transition shadow-lg group">
                 <summary class="feature-card-summary">
                     <div class="feature-card-header">
                         <span class="feature-card-label bg-indigo-500/10 text-indigo-400 border-indigo-500/20" data-i18n="project.label">Project</span>
@@ -491,7 +491,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 py-8">
+    <footer class="site-footer">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-400 mb-6">
                 <a href="about/" class="hover:text-cyan-400 transition" data-i18n="nav.about">About</a>
@@ -526,7 +526,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
             </svg>
-            <span class="hidden sm:inline font-medium text-xs tracking-wide" data-i18n="feedback.button">Feedback</span>
+            <span class="hidden sm:inline font-medium text-xs" data-i18n="feedback.button">Feedback</span>
         </a>
     </div>
 
@@ -539,9 +539,14 @@
     window.WearMaskOnI18nReady = function(dict) {
         initializeDetection(dict || {});
     };
+    window.WearMaskOnI18nChange = function() {
+        if (typeof window.WearMaskUpdateDetectionI18n === 'function') {
+            window.WearMaskUpdateDetectionI18n();
+        }
+    };
     </script>
-    <script src="static/js/i18n.js?v=3.2.0"></script>
-    <script src="static/js/site-common.js?v=3.2.0"></script>
+    <script src="static/js/i18n.js?v=3.3.0"></script>
+    <script src="static/js/site-common.js?v=3.3.0"></script>
     <script src="static/js/vendor/wasmFeatureDetect.js?version=2.0.3"></script>
     
     <!-- AI Detection & Telemetry Engine -->
@@ -561,6 +566,34 @@
             maskWarning: resolveTranslation('detection.status.maskWarning', 'Please wear a mask!')
         };
         var loadingLabel = resolveTranslation('status.loading', 'Loading...');
+
+        window.WearMaskUpdateDetectionI18n = function() {
+            class_names = resolveTranslation('detection.labels', ["background", "No Mask", "Mask"]);
+            detectionStatus = {
+                welcome: resolveTranslation('detection.status.welcome', 'Welcome!'),
+                maskWarning: resolveTranslation('detection.status.maskWarning', 'Please wear a mask!')
+            };
+            loadingLabel = resolveTranslation('status.loading', 'Loading...');
+            cachedRemindCtx = cachedNoMaskCount > 0
+                ? detectionStatus.maskWarning
+                : detectionStatus.welcome;
+            lastStatusKey = '';
+            updateTelemetryUI(true);
+            var btnPause = document.getElementById('btn-pause');
+            var labelPause = document.getElementById('label-pause');
+            var btnFlip = document.getElementById('btn-flip');
+            var btnSnapshot = document.getElementById('btn-snapshot');
+            var btnToggleTelemetry = document.getElementById('btn-toggle-telemetry');
+            if (btnPause) {
+                var pauseKey = isDetectionPaused ? 'controls.resume' : 'controls.pause';
+                var pauseFallback = isDetectionPaused ? 'Resume' : 'Pause';
+                btnPause.setAttribute('aria-label', resolveTranslation(pauseKey, pauseFallback));
+                if (labelPause) labelPause.textContent = resolveTranslation(pauseKey, pauseFallback);
+            }
+            if (btnFlip) btnFlip.setAttribute('aria-label', resolveTranslation('controls.switchCamera', 'Switch camera'));
+            if (btnSnapshot) btnSnapshot.setAttribute('aria-label', resolveTranslation('controls.snapshot', 'Take snapshot'));
+            if (btnToggleTelemetry) btnToggleTelemetry.setAttribute('aria-label', resolveTranslation('controls.toggleTelemetry', 'Toggle dashboard'));
+        };
 
         // Telemetry Counters & Controls State
         var isDetectionPaused = false;
@@ -1132,14 +1165,18 @@
             }
         }
 
+        var toastHideTimer = null;
         function showToast(msg) {
             var toast = document.getElementById('toast-msg');
             if (!toast) return;
             toast.textContent = msg;
+            toast.classList.remove('show');
+            void toast.offsetWidth;
             toast.classList.add('show');
-            setTimeout(function() {
+            if (toastHideTimer) clearTimeout(toastHideTimer);
+            toastHideTimer = setTimeout(function() {
                 toast.classList.remove('show');
-            }, 2500);
+            }, 2200);
         }
 
         function toggleCameraModal(success) {
