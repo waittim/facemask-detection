@@ -193,7 +193,7 @@
                 <details class="accordion-card group bg-slate-950/60 border border-white/10 rounded-2xl p-5 overflow-hidden">
                     <summary class="cursor-pointer flex items-center justify-between font-semibold text-white text-base select-none">
                         <span class="text-cyan-300 flex items-center gap-2">
-                            <span data-i18n="statement.heroTitle">Service Statement (Terms & Legal Privacy)</span>
+                            <span data-i18n="statement.heroTitle">Full Legal Service Statement & Privacy Terms</span>
                         </span>
                         <span class="text-xs text-cyan-400 group-open:hidden shrink-0 ml-3" data-i18n="statement.expand">Expand ↓</span>
                         <span class="text-xs text-cyan-400 hidden group-open:inline shrink-0 ml-3" data-i18n="statement.collapse">Collapse ↑</span>
@@ -201,50 +201,106 @@
                     
                     <div class="mt-5 space-y-6 text-xs sm:text-sm text-gray-300 border-t border-white/10 pt-4 leading-relaxed">
                         <p class="text-gray-400 italic" data-i18n="statement.heroDesc">
-                            By using the WearMask detection service, you agree to the following terms. If you do not agree, please stop using this service immediately.
+                            By using the WearMask detection service (the "Service"), you agree to the following terms. If you do not agree, please stop using this service immediately.
                         </p>
 
                         <div class="space-y-2">
-                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec1_title">1. Service Content</h3>
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec1_title">1. Service Content & Usage</h3>
                             <p data-i18n="statement.sec1_body">
-                                This service is provided as a web page. Simply open the page to access AI-based real-time mask detection and alerts.
+                                This service is provided as a web page. Upon granting camera access in your browser, the system runs on-device AI computer vision models to perform real-time mask detection and provide visual alerts.
                             </p>
                         </div>
 
                         <div class="space-y-3">
-                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec2_title">2. Privacy Protection</h3>
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec2_title">2. Privacy & Data Protection</h3>
                             
-                            <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
-                                <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_1_title">2.1 Data Collection</h4>
-                                <p data-i18n="statement.sec2_1_body">
-                                    To provide detection, you must authorize camera access. WearMask analyzes video frames locally on your device and never collects facial recognition data.
-                                </p>
-                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_1_title">2.1 Local Processing & No Biometrics</h4>
+                                    <p data-i18n="statement.sec2_1_body">
+                                        Powered by WebAssembly, all image processing and neural network inference execute locally in your browser. WearMask does not store facial images, nor does it extract or construct any biometric facial recognition templates.
+                                    </p>
+                                </div>
 
-                            <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
-                                <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_2_title">2.2 Data Storage & Protection</h4>
-                                <p data-i18n="statement.sec2_2_body">
-                                    Powered by WebAssembly, all computations are performed locally in your browser. We do not upload any video, images, or audio to servers. Your data never leaves your device.
-                                </p>
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_2_title">2.2 Zero Audio & Video Uploads</h4>
+                                    <p data-i18n="statement.sec2_2_body">
+                                        Camera video feeds, frames, and audio never leave your device and are never transmitted to remote servers or third-party cloud infrastructure.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_3_title">2.3 Permission Revocation</h4>
+                                    <p data-i18n="statement.sec2_3_body">
+                                        You may revoke or reset camera access permissions at any time through your browser's site settings. Once permissions are revoked, mask detection operations cease immediately.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec2_4_title">2.4 Technical Access Logs</h4>
+                                    <p data-i18n="statement.sec2_4_body">
+                                        WearMask does not use tracking cookies. Standard hosting infrastructure may log standard network requests (such as IP addresses, browser user-agents, and timestamps) solely for network communication, telemetry, and security defense.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec3_title">3. Technical Limitations & Disclaimer</h3>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-amber-300 text-xs" data-i18n="statement.sec3_1_title">3.1 Advisory Only (Non-Medical)</h4>
+                                    <p data-i18n="statement.sec3_1_body">
+                                        Computer vision accuracy is subject to lighting conditions, occlusions, camera angle, and hardware performance, which may result in false positives or missed detections. Detection outputs serve strictly as informational guidance and do not constitute medical diagnosis or official public health regulatory compliance verification.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-amber-300 text-xs" data-i18n="statement.sec3_2_title">3.2 Limitation of Liability</h4>
+                                    <p data-i18n="statement.sec3_2_body">
+                                        To the fullest extent permitted by law, WearMask and its contributors disclaim liability for any direct, indirect, or incidental damages (including regulatory fines, health consequences, or business interruption) arising from use or inability to use this service.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec4_title">4. User Conduct & Intellectual Property</h3>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec4_1_title">4.1 Compliance & Fair Use</h4>
+                                    <p data-i18n="statement.sec4_1_body">
+                                        You agree to use this service in compliance with all applicable laws and regulations and agree not to engage in malicious attacks, service disruption, or unauthorized security testing.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white/5 border border-white/5 rounded-xl p-3.5 space-y-1">
+                                    <h4 class="font-semibold text-cyan-300 text-xs" data-i18n="statement.sec4_2_title">4.2 Intellectual Property</h4>
+                                    <p data-i18n="statement.sec4_2_body">
+                                        Interface designs, model assets, and project materials are protected by applicable intellectual property rights and open-source licenses. Commercial redistribution or misappropriation without authorization is prohibited.
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
                         <div class="space-y-2">
-                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec3_title">3. Declaration & Warranty</h3>
-                            <p data-i18n="statement.sec3_body">
-                                You agree to use this service in compliance with applicable laws and are responsible for your content sources. WearMask provides this technical tool based on your instructions and is not liable for legal consequences arising from your use.
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec5_title">5. Notice & Policy Updates</h3>
+                            <p data-i18n="statement.sec5_body">
+                                We may update this statement to reflect changes in regulatory policy or technology. Revised statements become effective upon publication on this site. Please review this page periodically.
                             </p>
                         </div>
 
                         <div class="space-y-2">
-                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec4_title">4. Notice & Updates</h3>
-                            <p data-i18n="statement.sec4_body">
-                                We may update this statement to meet policy or service requirements. Please check this page regularly for the latest information.
+                            <h3 class="text-sm font-bold text-white" data-i18n="statement.sec6_title">6. Contact Information</h3>
+                            <p data-i18n-html="statement.sec6_body">
+                                If you have questions, feedback, or inquiries regarding this statement, please reach out via <a href="https://github.com/waittim/facemask-detection/issues" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:underline">GitHub Issues</a> or email <a href="mailto:wearmask.feedback@gmail.com" class="text-cyan-300 hover:underline">wearmask.feedback@gmail.com</a>.
                             </p>
                         </div>
 
                         <div class="pt-2 text-right">
-                            <span class="text-xs text-gray-500 italic" data-i18n="statement.metaUpdated">Last updated: November 1, 2025</span>
+                            <span class="text-xs text-gray-500 italic" data-i18n="statement.metaUpdated">Last updated: October 4, 2026</span>
                         </div>
                     </div>
                 </details>

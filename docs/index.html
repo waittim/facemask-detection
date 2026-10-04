@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0f19" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
     
     <title>WearMask: In-browser Face Mask Detection | Privacy-First AI</title>
     
@@ -165,7 +167,7 @@
     gtag('config', 'G-ZJ6JEE5PWX');
     </script>
 
-    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.3.1">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css?version=3.3.2">
 
 </head>
 
@@ -318,6 +320,10 @@
             <!-- Telemetry Dashboard Sidebar (~1/3 on large screens) -->
             <div id="telemetry-col" class="telemetry-col flex flex-col" aria-hidden="true">
                 <div class="glass-panel telemetry-panel rounded-2xl border border-white/10">
+                    <!-- Mobile Sheet Drag Handle (Direct Manipulation Affordance) -->
+                    <div class="telemetry-drag-handle-bar lg:hidden" aria-hidden="true">
+                        <div class="telemetry-drag-handle"></div>
+                    </div>
                     <div class="telemetry-panel-header flex items-center justify-between">
                         <div class="flex items-center space-x-2 min-w-0">
                             <span class="relative flex h-3 w-3 shrink-0">
@@ -408,7 +414,7 @@
         </div>
 
         <!-- 3-Column Feature Cards (collapsible) -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-14 sm:mt-16 mb-12 feature-cards">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-14 sm:mt-16 mb-6 sm:mb-8 feature-cards">
             <!-- Setup Guide Card -->
             <details class="feature-card glass-panel rounded-2xl border border-white/10 hover:border-cyan-500/30 transition shadow-lg group">
                 <summary class="feature-card-summary">
@@ -545,8 +551,8 @@
         }
     };
     </script>
-    <script src="static/js/i18n.js?v=3.3.0"></script>
-    <script src="static/js/site-common.js?v=3.3.0"></script>
+    <script src="static/js/i18n.js?v=3.3.2"></script>
+    <script src="static/js/site-common.js?v=3.3.2"></script>
     <script src="static/js/vendor/wasmFeatureDetect.js?version=2.0.3"></script>
     
     <!-- AI Detection & Telemetry Engine -->
@@ -712,6 +718,7 @@
 
             toggle.checked = performanceModeEnabled;
             toggle.addEventListener('change', function() {
+                if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('selection');
                 performanceModeEnabled = toggle.checked;
                 try {
                     localStorage.setItem('wearmask.performance_mode', performanceModeEnabled ? 'true' : 'false');
@@ -1064,6 +1071,7 @@
 
             if (btnPause) {
                 btnPause.addEventListener('click', function() {
+                    if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('light');
                     isDetectionPaused = !isDetectionPaused;
                     btnPause.classList.toggle('active', isDetectionPaused);
                     btnPause.setAttribute('aria-pressed', isDetectionPaused ? 'true' : 'false');
@@ -1084,6 +1092,7 @@
             // Flip Camera Button
             if (btnFlip) {
                 btnFlip.addEventListener('click', function() {
+                    if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('light');
                     currentFacingMode = (currentFacingMode === 'user') ? 'environment' : 'user';
                     initializeStream();
                     showToast(resolveTranslation('toast.switchingCamera', 'Switching camera...'));
@@ -1094,6 +1103,7 @@
             var btnRetryCamera = document.getElementById('btn-retry-camera');
             if (btnRetryCamera) {
                 btnRetryCamera.addEventListener('click', function() {
+                    if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('medium');
                     initializeStream();
                     showToast(resolveTranslation('toast.retryCamera', 'Retrying camera...'));
                 });
@@ -1104,6 +1114,7 @@
                 btnSnapshot.addEventListener('click', function() {
                     var canvas = document.getElementById('canvas');
                     if (!canvas) return;
+                    if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('medium');
                     var link = document.createElement('a');
                     link.download = 'wearmask_snapshot_' + Date.now() + '.png';
                     link.href = canvas.toDataURL('image/png');
@@ -1145,15 +1156,132 @@
 
             if (btnToggleTelemetry) {
                 btnToggleTelemetry.addEventListener('click', function() {
+                    if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('selection');
                     applyTelemetryVisibility(!isTelemetryVisible);
                 });
             }
 
             if (btnCloseTelemetry) {
                 btnCloseTelemetry.addEventListener('click', function() {
+                    if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('selection');
                     applyTelemetryVisibility(false);
+                    if (btnToggleTelemetry) btnToggleTelemetry.focus();
                 });
             }
+
+            // Apple WWDC Fluid Sheet Direct Manipulation (Pointer Events + Velocity + Rubberband + Momentum Projection)
+            function setupTelemetryGesture() {
+                var panel = document.querySelector('.telemetry-panel');
+                var handleBar = document.querySelector('.telemetry-drag-handle-bar');
+                var header = document.querySelector('.telemetry-panel-header');
+                if (!panel || !telemetryCol) return;
+
+                var startY = 0;
+                var currentY = 0;
+                var isDragging = false;
+                var history = [];
+                var panelHeight = 0;
+
+                // Apple WWDC exact rubberband resistance function
+                function rubberband(overshoot, dimension, constant) {
+                    constant = constant || 0.55;
+                    return (overshoot * dimension * constant) / (dimension + constant * Math.abs(overshoot));
+                }
+
+                // Apple WWDC exact scroll/flick momentum projection
+                function project(initialVelocity, decelerationRate) {
+                    decelerationRate = decelerationRate || 0.998;
+                    return (initialVelocity / 1000) * decelerationRate / (1 - decelerationRate);
+                }
+
+                function onPointerDown(e) {
+                    if (window.innerWidth >= 1024 || !isTelemetryVisible) return;
+                    if (e.target && e.target.closest && e.target.closest('button, input, a, label')) return;
+
+                    startY = e.clientY;
+                    currentY = 0;
+                    isDragging = false;
+                    panelHeight = panel.offsetHeight || 320;
+                    history = [{ y: e.clientY, time: performance.now() }];
+
+                    var captureTarget = handleBar || header || panel;
+                    try {
+                        captureTarget.setPointerCapture(e.pointerId);
+                    } catch (err) {}
+                }
+
+                function onPointerMove(e) {
+                    if (!history.length || window.innerWidth >= 1024 || !isTelemetryVisible) return;
+                    var now = performance.now();
+                    var rawDelta = e.clientY - startY;
+
+                    // Small hysteresis before committing to vertical swipe
+                    if (!isDragging) {
+                        if (Math.abs(rawDelta) > 8) {
+                            isDragging = true;
+                            panel.style.transition = 'none';
+                        } else {
+                            return;
+                        }
+                    }
+
+                    history.push({ y: e.clientY, time: now });
+                    if (history.length > 5) history.shift();
+
+                    if (rawDelta < 0) {
+                        currentY = -rubberband(Math.abs(rawDelta), panelHeight, 0.55);
+                    } else {
+                        currentY = rawDelta;
+                    }
+
+                    panel.style.transform = 'translateY(' + currentY + 'px)';
+                }
+
+                function onPointerUp(e) {
+                    if (!isDragging) {
+                        history = [];
+                        return;
+                    }
+                    isDragging = false;
+                    panel.style.transition = 'transform var(--ws-duration) var(--ws-ease)';
+
+                    var v = 0;
+                    if (history.length >= 2) {
+                        var first = history[0];
+                        var last = history[history.length - 1];
+                        var dt = (last.time - first.time) / 1000;
+                        if (dt > 0.001) {
+                            v = (last.y - first.y) / dt;
+                        }
+                    }
+                    history = [];
+
+                    var projected = currentY + project(v);
+                    var shouldDismiss = (projected > panelHeight * 0.35 && currentY > 30) || (v > 380 && currentY > 20);
+
+                    if (shouldDismiss) {
+                        if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('light');
+                        panel.style.transform = '';
+                        panel.style.transition = '';
+                        applyTelemetryVisibility(false);
+                    } else {
+                        panel.style.transform = '';
+                        setTimeout(function() {
+                            panel.style.transition = '';
+                        }, 350);
+                    }
+                }
+
+                var dragTarget = handleBar || header;
+                if (dragTarget) {
+                    dragTarget.addEventListener('pointerdown', onPointerDown);
+                    dragTarget.addEventListener('pointermove', onPointerMove);
+                    dragTarget.addEventListener('pointerup', onPointerUp);
+                    dragTarget.addEventListener('pointercancel', onPointerUp);
+                }
+            }
+
+            setupTelemetryGesture();
         }
 
         var toastHideTimer = null;

@@ -256,6 +256,7 @@
             }
 
             btn.addEventListener('click', function() {
+                if (window.WearMaskHaptics) window.WearMaskHaptics.trigger('selection');
                 switchLanguage(code);
             });
             menu.appendChild(btn);

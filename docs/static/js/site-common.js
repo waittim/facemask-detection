@@ -2,6 +2,20 @@
 (function() {
     'use strict';
 
+    // Multimodal Feedback: Apple-style subtle, non-intrusive haptic cues
+    window.WearMaskHaptics = {
+        trigger: function(type) {
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                try {
+                    if (type === 'light') navigator.vibrate(8);
+                    else if (type === 'medium') navigator.vibrate(14);
+                    else if (type === 'heavy') navigator.vibrate(24);
+                    else if (type === 'selection') navigator.vibrate(6);
+                } catch (e) {}
+            }
+        }
+    };
+
     var THEME_MODES = ['auto', 'light', 'dark'];
 
     function initTheme() {
@@ -76,6 +90,7 @@
 
         if (btnThemeCycle) {
             btnThemeCycle.addEventListener('click', function() {
+                window.WearMaskHaptics.trigger('selection');
                 var current = 'auto';
                 try { current = localStorage.getItem('wearmask.theme') || 'auto'; } catch (e) {}
                 var idx = THEME_MODES.indexOf(current);
@@ -139,6 +154,7 @@
         function copyChromeFlags(el) {
             if (el.classList.contains('is-copied')) return;
             copyTextToClipboard('chrome://flags').then(function() {
+                window.WearMaskHaptics.trigger('medium');
                 el.classList.add('is-copied');
                 setTimeout(function() {
                     el.classList.remove('is-copied');
@@ -166,9 +182,97 @@
         return syncTips;
     }
 
+    // Smooth Details Accordion Disclosure (Progressive Enhancement)
+    function initSmoothDetails() {
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+        // If the browser natively supports ::details-content interpolation, let CSS handle it
+        if (window.CSS && CSS.supports && (CSS.supports('interpolate-size: allow-keywords') || CSS.supports('selector(::details-content)'))) {
+            return;
+        }
+
+        var detailsElements = document.querySelectorAll('details.feature-card, details.accordion-card');
+        detailsElements.forEach(function(detail) {
+            var summary = detail.querySelector('summary');
+            if (!summary) return;
+
+            var isClosing = false;
+            var isExpanding = false;
+            var animation = null;
+
+            summary.addEventListener('click', function(e) {
+                e.preventDefault();
+                detail.style.overflow = 'hidden';
+
+                if (isClosing || !detail.open) {
+                    openDetail();
+                } else if (isExpanding || detail.open) {
+                    closeDetail();
+                }
+            });
+
+            function closeDetail() {
+                isClosing = true;
+                window.WearMaskHaptics.trigger('selection');
+                var startHeight = detail.offsetHeight + 'px';
+                var endHeight = summary.offsetHeight + 'px';
+
+                if (animation) animation.cancel();
+                animation = detail.animate({
+                    height: [startHeight, endHeight]
+                }, {
+                    duration: 280,
+                    easing: 'cubic-bezier(0.32, 0.72, 0, 1)'
+                });
+
+                animation.onfinish = function() {
+                    detail.open = false;
+                    animation = null;
+                    isClosing = false;
+                    detail.style.height = '';
+                    detail.style.overflow = '';
+                };
+                animation.oncancel = function() {
+                    isClosing = false;
+                };
+            }
+
+            function openDetail() {
+                isExpanding = true;
+                window.WearMaskHaptics.trigger('selection');
+                detail.style.height = detail.offsetHeight + 'px';
+                detail.open = true;
+
+                window.requestAnimationFrame(function() {
+                    var startHeight = detail.offsetHeight + 'px';
+                    var endHeight = detail.scrollHeight + 'px';
+
+                    if (animation) animation.cancel();
+                    animation = detail.animate({
+                        height: [startHeight, endHeight]
+                    }, {
+                        duration: 280,
+                        easing: 'cubic-bezier(0.32, 0.72, 0, 1)'
+                    });
+
+                    animation.onfinish = function() {
+                        animation = null;
+                        isExpanding = false;
+                        detail.style.height = '';
+                        detail.style.overflow = '';
+                    };
+                    animation.oncancel = function() {
+                        isExpanding = false;
+                    };
+                });
+            }
+        });
+    }
+
     function init() {
         initTheme();
         var syncChromeTips = initChromeFlagsCopy();
+        initSmoothDetails();
         if (window.WearMaskI18n) {
             WearMaskI18n.init({
                 basePath: resolveI18nBasePath(),
