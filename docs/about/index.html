@@ -2,12 +2,14 @@
 <html lang="en" class="dark" data-i18n-title-key="aboutPage.title">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0f19" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
     <title>About WearMask | In-browser Face Mask Detection</title>
     <meta name="description" content="WearMask is a privacy-first, real-time face mask detection research system that runs entirely inside the web browser using YOLO-Fastest, NCNN, and WebAssembly." />
     <link rel="canonical" href="https://facemask-detection.com/about/" />
     <link rel="icon" type="image/svg+xml" href="../static/images/logo_mask_v2.svg">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.3.1">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css?version=3.3.2">
     <!-- Early Theme + Language Boot -->
     <script>
     (function() {
@@ -100,11 +102,11 @@
             <span class="text-white font-medium" data-i18n="nav.about">About</span>
         </nav>
 
-        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-6">
-            <span class="text-cyan-400 font-medium" data-i18n="nav.about">About</span>
-            <a href="../technical-overview/" class="hover:text-cyan-400" data-i18n="nav.technicalOverview">Technical & Research</a>
-            <a href="../privacy/" class="hover:text-cyan-400" data-i18n="nav.privacy">Privacy & Limitations</a>
-        </div>
+        <nav class="doc-subnav" aria-label="Documentation sections">
+            <span class="doc-subnav-item active" aria-current="page" data-i18n="nav.about">About</span>
+            <a href="../technical-overview/" class="doc-subnav-item" data-i18n="nav.technicalOverview">Technical & Research</a>
+            <a href="../privacy/" class="doc-subnav-item" data-i18n="nav.privacy">Privacy & Limitations</a>
+        </nav>
 
         <article class="glass-panel rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-gray-300 leading-relaxed border border-white/10">
             <header class="space-y-3 border-b border-white/10 pb-6">
@@ -182,7 +184,7 @@
 
             <aside class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 text-amber-300" data-i18n-html="aboutPage.disclaimer">
                 <strong class="text-amber-200">Important:</strong> WearMask is a research and demonstration system, not a medical device or diagnostic tool.
-                See <a href="../limitations/" class="underline text-amber-200">known limitations</a>.
+                See <a href="../privacy/#limitations" class="underline text-amber-200">known limitations</a>.
             </aside>
         </article>
     </main>
@@ -197,7 +199,7 @@
         </div>
     </footer>
     <div id="toast-msg" class="toast-msg" role="status" aria-live="polite" aria-atomic="true"></div>
-    <script src="../static/js/i18n.js?v=3.3.0"></script>
-    <script src="../static/js/site-common.js?v=3.3.0"></script>
+    <script src="../static/js/i18n.js?v=3.3.2"></script>
+    <script src="../static/js/site-common.js?v=3.3.2"></script>
 </body>
 </html>

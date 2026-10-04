@@ -286,6 +286,7 @@ button {
   backdrop-filter: blur(var(--wm-blur-nav)) saturate(180%);
   -webkit-backdrop-filter: blur(var(--wm-blur-nav)) saturate(180%);
   border-bottom: none;
+  padding-top: calc(0.75rem + env(safe-area-inset-top, 0px)) !important;
 }
 
 /* Scroll edge fade under sticky nav — soft mask instead of 1px divider */
@@ -1411,8 +1412,8 @@ html.light .language-switcher button.lang-active {
 /* Mobile: keep theme + language on one nav row; icon-only language control */
 @media (max-width: 639px) {
   .glass-nav {
-    padding-top: 0.65rem;
-    padding-bottom: 0.65rem;
+    padding-top: calc(0.65rem + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: 0.65rem !important;
   }
 
   #lang-dropdown-btn {
@@ -2012,6 +2013,62 @@ html.light #bibtex-code.text-cyan-300 {
   color: #0369a1 !important;
 }
 
+#btn-copy-bibtex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1rem;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #67e8f9;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--wm-duration-fast) var(--wm-ease),
+              background-color var(--wm-duration-fast) var(--wm-ease),
+              border-color var(--wm-duration-fast) var(--wm-ease),
+              transform 100ms ease-out;
+}
+
+#btn-copy-bibtex:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #a5f3fc;
+}
+
+#btn-copy-bibtex:active {
+  transform: scale(var(--wm-press-scale));
+}
+
+#btn-copy-bibtex svg {
+  width: 0.875rem !important;
+  height: 0.875rem !important;
+  max-width: 0.875rem !important;
+  max-height: 0.875rem !important;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+#btn-copy-bibtex.is-copied {
+  color: #34d399 !important;
+  border-color: rgba(52, 211, 153, 0.4) !important;
+  background-color: rgba(52, 211, 153, 0.12) !important;
+}
+
+#btn-copy-bibtex.is-copied .bibtex-copy-icon {
+  display: none !important;
+}
+
+#btn-copy-bibtex.is-copied .bibtex-check-icon {
+  display: inline-block !important;
+  color: #34d399 !important;
+}
+
 html.light #btn-copy-bibtex {
   background-color: #ffffff !important;
   border-color: #cbd5e1 !important;
@@ -2023,6 +2080,16 @@ html.light #btn-copy-bibtex:hover {
   background-color: #f1f5f9 !important;
   color: #0c4a6e !important;
   border-color: #94a3b8 !important;
+}
+
+html.light #btn-copy-bibtex.is-copied {
+  background-color: #ecfdf5 !important;
+  border-color: #6ee7b7 !important;
+  color: #047857 !important;
+}
+
+html.light #btn-copy-bibtex.is-copied .bibtex-check-icon {
+  color: #047857 !important;
 }
 
 /* Amber Disclaimer & Warning Banners in Light Mode */
@@ -2277,6 +2344,8 @@ html.light .loading-overlay .spinner {
 .h-full { height: 100%; }
 .w-3 { width: 0.75rem; }
 .h-3 { height: 0.75rem; }
+.w-3\.5 { width: 0.875rem; }
+.h-3\.5 { height: 0.875rem; }
 .w-4 { width: 1rem; }
 .h-4 { height: 1rem; }
 .w-5 { width: 1.25rem; }
@@ -2311,6 +2380,9 @@ html.light .loading-overlay .spinner {
 
 .tracking-tight { letter-spacing: -0.025em; }
 .tracking-wide { letter-spacing: 0.015em; }
+.leading-tight { line-height: 1.25; }
+.leading-snug { line-height: 1.375; }
+.leading-normal { line-height: 1.5; }
 .leading-relaxed { line-height: 1.625; }
 .italic { font-style: italic; }
 
@@ -2548,4 +2620,74 @@ html.light .lang-dropdown-panel {
   background: rgba(255, 255, 255, 0.92) !important;
   border-color: #cbd5e1 !important;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Apple HIG Segmented Control for Documentation Navigation */
+.doc-subnav {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+}
+
+.doc-subnav-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--wm-muted);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: color var(--wm-duration-fast) var(--wm-ease),
+              background-color var(--wm-duration-fast) var(--wm-ease),
+              border-color var(--wm-duration-fast) var(--wm-ease),
+              transform 100ms ease-out;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+
+.doc-subnav-item:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.doc-subnav-item:active {
+  transform: scale(var(--wm-press-scale));
+}
+
+.doc-subnav-item.active {
+  color: #22d3ee;
+  background: rgba(34, 211, 238, 0.12);
+  border-color: rgba(34, 211, 238, 0.25);
+  font-weight: 600;
+}
+
+html.light .doc-subnav {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+html.light .doc-subnav-item {
+  color: #64748b;
+}
+
+html.light .doc-subnav-item:hover {
+  color: #0f172a;
+  background: #e2e8f0;
+}
+
+html.light .doc-subnav-item.active {
+  color: #0284c7;
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
