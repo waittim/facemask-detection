@@ -62,7 +62,7 @@
   "feedback": {
     "button": "フィードバック",
     "buttonTitle": "誤検出事例を報告するか、開発者と連絡してください。",
-    "mailto": "mailto:wearmask.feedback@gmail.com?subject=%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF&body=%E8%AA%A4%E8%AA%8D%E8%A8%98%E9%A8%93%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%81%8C%E3%81%82%E3%82%8C%E3%81%B0%E3%81%93%E3%81%A1%E3%82%89%E3%81%AB%E8%B2%BC%E3%82%8A%E4%BB%98%E3%81%91%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82"
+    "mailto": "mailto:feedback@facemask-detection.com?subject=%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF&body=%E8%AA%A4%E8%AA%8D%E8%A8%98%E9%A8%93%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%81%8C%E3%81%82%E3%82%8C%E3%81%B0%E3%81%93%E3%81%A1%E3%82%89%E3%81%AB%E8%B2%BC%E3%82%8A%E4%BB%98%E3%81%91%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82"
   },
   "modal": {
     "title": "カメラの許可が必要です",
@@ -248,17 +248,17 @@
     "sec2_desc": "モデルの学習と変換は <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a> リポジトリで実装されています:",
     "sec3_title": "コア技術",
     "tech1_k": "モデル",
-    "tech1_v": "YOLO-Fastest（物体検出）",
+    "tech1_v": "<a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">YOLO-Fastest</a>（物体検出）",
     "tech2_k": "学習",
-    "tech2_v": "PyTorch (mask-detector)",
+    "tech2_v": "<a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">PyTorch</a> (<a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">mask-detector</a>)",
     "tech3_k": "推論エンジン",
-    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
+    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
     "tech4_k": "ブラウザランタイム",
-    "tech4_v": "<a href=\"https://webassembly.org/\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via Emscripten",
+    "tech4_v": "<a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via <a href=\"https://emscripten.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">Emscripten</a>",
     "tech5_k": "フロントエンド",
     "tech5_v": "HTML, CSS, JavaScript",
     "tech6_k": "デプロイ",
-    "tech6_v": "GitHub Pages（静的ホスティング）",
+    "tech6_v": "<a href=\"https://pages.github.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">GitHub Pages</a>（静的ホスティング）",
     "sec4_title": "検出クラス",
     "cls1": "Background",
     "cls2": "マスクなし",
@@ -298,7 +298,7 @@
     "sec5_title": "5. 規約の変更および改定",
     "sec5_body": "法改正や技術更新に伴い、本声明を変更することがあります。改定内容は本ページへの掲載をもって効力を生じます。定期的にご確認ください。",
     "sec6_title": "6. お問い合わせ",
-    "sec6_body": "本声明またはプライバシー保護に関するご質問やご意見は、<a href=\"https://github.com/waittim/facemask-detection/issues\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\">GitHub Issues</a> またはメール <a href=\"mailto:wearmask.feedback@gmail.com\" class=\"text-cyan-300 hover:underline\">wearmask.feedback@gmail.com</a> よりお問い合わせください。",
+    "sec6_body": "本声明またはプライバシー保護に関するご質問やご意見は、<a href=\"https://github.com/waittim/facemask-detection/issues\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\">GitHub Issues</a> またはメール <a href=\"mailto:feedback@facemask-detection.com\" class=\"text-cyan-300 hover:underline\">feedback@facemask-detection.com</a> よりお問い合わせください。",
     "metaUpdated": "最終更新日：2026年10月4日"
   }
 }

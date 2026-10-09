@@ -62,7 +62,7 @@
   "feedback": {
     "button": "Обратная связь",
     "buttonTitle": "Сообщите об ошибках или свяжитесь с разработчиком.",
-    "mailto": "mailto:wearmask.feedback@gmail.com?subject=%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B2%D1%8F%D0%B7%D1%8C&body=%D0%95%D1%81%D0%BB%D0%B8%20%D0%B5%D1%81%D1%82%D1%8C%20%D1%81%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B0,%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C."
+    "mailto": "mailto:feedback@facemask-detection.com?subject=%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B2%D1%8F%D0%B7%D1%8C&body=%D0%95%D1%81%D0%BB%D0%B8%20%D0%B5%D1%81%D1%82%D1%8C%20%D1%81%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B0,%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C."
   },
   "modal": {
     "title": "Требуется разрешение камеры",
@@ -248,17 +248,17 @@
     "sec2_desc": "Обучение и конвертация модели реализованы в репозитории <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a>:",
     "sec3_title": "Ключевые технологии",
     "tech1_k": "Модель",
-    "tech1_v": "YOLO-Fastest (обнаружение объектов)",
+    "tech1_v": "<a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">YOLO-Fastest</a> (обнаружение объектов)",
     "tech2_k": "Обучение",
-    "tech2_v": "PyTorch (mask-detector)",
+    "tech2_v": "<a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">PyTorch</a> (<a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">mask-detector</a>)",
     "tech3_k": "Движок инференса",
-    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
+    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
     "tech4_k": "Браузерная среда",
-    "tech4_v": "<a href=\"https://webassembly.org/\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via Emscripten",
+    "tech4_v": "<a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via <a href=\"https://emscripten.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">Emscripten</a>",
     "tech5_k": "Frontend",
     "tech5_v": "HTML, CSS, JavaScript",
     "tech6_k": "Развертывание",
-    "tech6_v": "GitHub Pages (статический хостинг)",
+    "tech6_v": "<a href=\"https://pages.github.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">GitHub Pages</a> (статический хостинг)",
     "sec4_title": "Классы обнаружения",
     "cls1": "Background",
     "cls2": "Без маски",
@@ -298,7 +298,7 @@
     "sec5_title": "5. Изменения и обновления условий",
     "sec5_body": "Мы можем обновлять данное заявление в связи с изменениями законодательства или технологий. Обновленные условия вступают в силу с момента публикации на сайте. Регулярно проверяйте эту страницу.",
     "sec6_title": "6. Контактная информация",
-    "sec6_body": "Если у вас есть вопросы или отзывы по поводу настоящего заявления, свяжитесь с нами через <a href=\"https://github.com/waittim/facemask-detection/issues\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\">GitHub Issues</a> или по электронной почте <a href=\"mailto:wearmask.feedback@gmail.com\" class=\"text-cyan-300 hover:underline\">wearmask.feedback@gmail.com</a>.",
+    "sec6_body": "Если у вас есть вопросы или отзывы по поводу настоящего заявления, свяжитесь с нами через <a href=\"https://github.com/waittim/facemask-detection/issues\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\">GitHub Issues</a> или по электронной почте <a href=\"mailto:feedback@facemask-detection.com\" class=\"text-cyan-300 hover:underline\">feedback@facemask-detection.com</a>.",
     "metaUpdated": "Дата обновления: 4 октября 2026 г."
   }
 }

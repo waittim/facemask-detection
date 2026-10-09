@@ -62,7 +62,7 @@
   "feedback": {
     "button": "Commentaires",
     "buttonTitle": "Signalez des cas d'échec ou contactez le développeur.",
-    "mailto": "mailto:wearmask.feedback@gmail.com?subject=Commentaires&body=Si%20vous%20avez%20une%20capture%20d%27%C3%A9cran%20du%20r%C3%A9sultat%20incorrect,%20veuillez%20la%20joindre%20ici."
+    "mailto": "mailto:feedback@facemask-detection.com?subject=Commentaires&body=Si%20vous%20avez%20une%20capture%20d%27%C3%A9cran%20du%20r%C3%A9sultat%20incorrect,%20veuillez%20la%20joindre%20ici."
   },
   "modal": {
     "title": "Autorisation de la caméra requise",
@@ -248,17 +248,17 @@
     "sec2_desc": "L'entraînement et la conversion du modèle sont implémentés dans le dépôt <a href=\"https://github.com/waittim/mask-detector\" class=\"text-cyan-400 hover:underline\">mask-detector</a> :",
     "sec3_title": "Technologies clés",
     "tech1_k": "Modèle",
-    "tech1_v": "YOLO-Fastest (détection d'objets)",
+    "tech1_v": "<a href=\"https://github.com/dog-qiuqiu/Yolo-Fastest\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">YOLO-Fastest</a> (détection d'objets)",
     "tech2_k": "Entraînement",
-    "tech2_v": "PyTorch (mask-detector)",
+    "tech2_v": "<a href=\"https://pytorch.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">PyTorch</a> (<a href=\"https://github.com/waittim/mask-detector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">mask-detector</a>)",
     "tech3_k": "Moteur d'inférence",
-    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
+    "tech3_v": "<a href=\"https://github.com/Tencent/ncnn\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">NCNN</a>",
     "tech4_k": "Runtime navigateur",
-    "tech4_v": "<a href=\"https://webassembly.org/\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via Emscripten",
+    "tech4_v": "<a href=\"https://webassembly.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">WebAssembly</a> via <a href=\"https://emscripten.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">Emscripten</a>",
     "tech5_k": "Frontend",
     "tech5_v": "HTML, CSS, JavaScript",
     "tech6_k": "Déploiement",
-    "tech6_v": "GitHub Pages (hébergement statique)",
+    "tech6_v": "<a href=\"https://pages.github.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-400 hover:underline\">GitHub Pages</a> (hébergement statique)",
     "sec4_title": "Classes de détection",
     "cls1": "Background",
     "cls2": "Sans masque",
@@ -298,7 +298,7 @@
     "sec5_title": "5. Modifications et mises à jour",
     "sec5_body": "Nous pouvons actualiser cette déclaration en fonction des évolutions légales ou techniques. Les conditions révisées prennent effet dès leur publication sur ce site. Veuillez consulter régulièrement cette page.",
     "sec6_title": "6. Contact",
-    "sec6_body": "Pour toute question ou remarque concernant cette déclaration, contactez-nous via <a href=\"https://github.com/waittim/facemask-detection/issues\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\">GitHub Issues</a> ou par e-mail à <a href=\"mailto:wearmask.feedback@gmail.com\" class=\"text-cyan-300 hover:underline\">wearmask.feedback@gmail.com</a>.",
+    "sec6_body": "Pour toute question ou remarque concernant cette déclaration, contactez-nous via <a href=\"https://github.com/waittim/facemask-detection/issues\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-cyan-300 hover:underline\">GitHub Issues</a> ou par e-mail à <a href=\"mailto:feedback@facemask-detection.com\" class=\"text-cyan-300 hover:underline\">feedback@facemask-detection.com</a>.",
     "metaUpdated": "Dernière mise à jour : 4 octobre 2026"
   }
 }

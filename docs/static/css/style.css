@@ -913,20 +913,6 @@ html.light .telemetry-drag-handle {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.telemetry-tip {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
-  margin-top: 0.125rem;
-  padding: 0.625rem 0.75rem;
-  border-radius: 0.75rem;
-  background: rgba(30, 58, 138, 0.3);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: #93c5fd;
-}
-
 .metric-card {
   /* Solid-tint child surface — never stack blur on glass parent */
   background: rgba(17, 24, 39, 0.92);
@@ -1264,12 +1250,6 @@ html.light .text-rose-400 {
 /* Protective Advice & Disclaimer Banners */
 html.light .telemetry-panel-header {
   border-bottom-color: #e2e8f0;
-}
-
-html.light .telemetry-tip {
-  background: #eff6ff;
-  border-color: #bfdbfe;
-  color: #1e40af;
 }
 
 html.light .bg-blue-950\/30 {
